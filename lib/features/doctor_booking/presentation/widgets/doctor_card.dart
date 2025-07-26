@@ -1,10 +1,10 @@
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
+import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/utils/animations/app_animations.dart';
 
 class DoctorModel {

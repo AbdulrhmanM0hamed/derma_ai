@@ -1,10 +1,9 @@
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
+import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
 import '../../../../core/widgets/custom_button.dart';
@@ -14,7 +13,6 @@ import '../widgets/feature_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -252,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         AppLocalizations.of(context)!.diagnosisDescription,
                         style: getRegularStyle(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                           fontSize: 14,
                           fontFamily: FontConstant.cairo,
                         ),

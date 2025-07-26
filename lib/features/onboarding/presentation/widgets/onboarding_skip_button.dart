@@ -1,15 +1,13 @@
+import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 
 class OnboardingSkipButton extends StatelessWidget {
   final VoidCallback onSkip;
-
   const OnboardingSkipButton({super.key, required this.onSkip});
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +42,6 @@ class OnboardingSkipButton extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                
                 Container(
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
