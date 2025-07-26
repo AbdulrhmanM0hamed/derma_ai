@@ -11,11 +11,11 @@ class ImagePreviewWidget extends StatefulWidget {
   final VoidCallback onRetake;
 
   const ImagePreviewWidget({
-    Key? key,
+    super. key,
     required this.imagePath,
     required this.onConfirm,
     required this.onRetake,
-  }) : super(key: key);
+  }) ;
 
   @override
   State<ImagePreviewWidget> createState() => _ImagePreviewWidgetState();
@@ -27,7 +27,7 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.7,
       child: Column(
         children: [

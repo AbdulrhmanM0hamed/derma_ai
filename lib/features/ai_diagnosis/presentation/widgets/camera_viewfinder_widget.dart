@@ -13,12 +13,12 @@ class CameraViewfinderWidget extends StatelessWidget {
   final bool isInitialized;
 
   const CameraViewfinderWidget({
-    Key? key,
+    super.key,
     required this.cameraController,
     required this.isFlashOn,
     required this.onFlashToggle,
     required this.isInitialized,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +28,7 @@ class CameraViewfinderWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.border,
-          width: 1,
-        ),
+        border: Border.all(color: AppColors.border, width: 1),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
@@ -49,10 +46,10 @@ class CameraViewfinderWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircularProgressIndicator(
-                        color: AppColors.primary,
+                      CircularProgressIndicator(color: AppColors.primary),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                       Text(
                         'جاري تحضير الكاميرا...',
                         style: getRegularStyle(
@@ -78,10 +75,7 @@ class CameraViewfinderWidget extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.6,
                     height: MediaQuery.of(context).size.height * 0.3,
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColors.primary,
-                        width: 3,
-                      ),
+                      border: Border.all(color: AppColors.primary, width: 3),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Stack(
@@ -208,11 +202,7 @@ class CameraViewfinderWidget extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
-                      Icons.wb_sunny,
-                      color: Colors.green,
-                      size: 16,
-                    ),
+                    Icon(Icons.wb_sunny, color: Colors.green, size: 16),
                     SizedBox(width: 4),
                     Text(
                       'إضاءة جيدة',

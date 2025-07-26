@@ -10,10 +10,10 @@ class DiagnosisHistoryWidget extends StatelessWidget {
   final Function(Map<String, dynamic>) onCompareResults;
 
   const DiagnosisHistoryWidget({
-    Key? key,
+    super.key,
     required this.historyData,
     required this.onCompareResults,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,24 +45,30 @@ class DiagnosisHistoryWidget extends StatelessWidget {
 
         // History List
         Expanded(
-          child: historyData.isEmpty
-              ? _buildEmptyState(context)
-              : ListView.separated(
-                  padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.04),
-                  itemCount: historyData.length,
-                  separatorBuilder: (context, index) => SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                  itemBuilder: (context, index) {
-                    final diagnosis = historyData[index];
-                    return _buildHistoryCard(context, diagnosis, index);
-                  },
-                ),
+          child:
+              historyData.isEmpty
+                  ? _buildEmptyState(context)
+                  : ListView.separated(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    itemCount: historyData.length,
+                    separatorBuilder:
+                        (context, index) => SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                    itemBuilder: (context, index) {
+                      final diagnosis = historyData[index];
+                      return _buildHistoryCard(context, diagnosis, index);
+                    },
+                  ),
         ),
       ],
     );
   }
 
   Widget _buildEmptyState(BuildContext context) {
-    return Container(
+    return  SizedBox(
       height: MediaQuery.of(context).size.height * 0.7,
       child: Center(
         child: Column(
@@ -100,7 +106,11 @@ class DiagnosisHistoryWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildHistoryCard(BuildContext context, Map<String, dynamic> diagnosis, int index) {
+  Widget _buildHistoryCard(
+    BuildContext context,
+    Map<String, dynamic> diagnosis,
+    int index,
+  ) {
     final condition = diagnosis['condition'] as String;
     final date = diagnosis['date'] as DateTime;
     final confidence = (diagnosis['confidence'] as num).toDouble();
@@ -185,7 +195,9 @@ class DiagnosisHistoryWidget extends StatelessWidget {
                       ),
                       textDirection: TextDirection.rtl,
                     ).animate().fadeIn(),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.005,
+                    ),
                     Text(
                       '${date.day}/${date.month}/${date.year}',
                       style: getRegularStyle(
@@ -201,27 +213,33 @@ class DiagnosisHistoryWidget extends StatelessWidget {
 
               // Confidence Badge
               Container(
-                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02, vertical: MediaQuery.of(context).size.height * 0.005),
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.02,
+                  vertical: MediaQuery.of(context).size.height * 0.005,
+                ),
                 decoration: BoxDecoration(
-                  color: confidence >= 80
-                      ? AppColors.third.withValues(alpha: 0.1)
-                      : confidence >= 60
+                  color:
+                      confidence >= 80
+                          ? AppColors.third.withValues(alpha: 0.1)
+                          : confidence >= 60
                           ? Colors.orange.withValues(alpha: 0.1)
                           : AppColors.error.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Text(
-                  '${confidence.toStringAsFixed(0)}%',
-                  style: getSemiBoldStyle(
-                    color: confidence >= 80
-                        ? AppColors.third
-                        : confidence >= 60
-                            ? Colors.orange
-                            : AppColors.error,
-                    fontSize: 12,
-                    fontFamily: FontConstant.cairo,
-                  ),
-                ).animate().fadeIn(),
+                child:
+                    Text(
+                      '${confidence.toStringAsFixed(0)}%',
+                      style: getSemiBoldStyle(
+                        color:
+                            confidence >= 80
+                                ? AppColors.third
+                                : confidence >= 60
+                                ? Colors.orange
+                                : AppColors.error,
+                        fontSize: 12,
+                        fontFamily: FontConstant.cairo,
+                      ),
+                    ).animate().fadeIn(),
               ),
             ],
           ),
@@ -235,22 +253,27 @@ class DiagnosisHistoryWidget extends StatelessWidget {
               Spacer(),
               TextButton.icon(
                 onPressed: () => onCompareResults(diagnosis),
-                icon: Icon(
-                  Icons.compare_arrows,
-                  color: AppColors.primary,
-                  size: 16,
-                ).animate().fadeIn(),
-                label: Text(
-                  'مقارنة',
-                  style: getRegularStyle(
-                    color: AppColors.primary,
-                    fontSize: 12,
-                    fontFamily: FontConstant.cairo,
-                  ),
-                  textDirection: TextDirection.rtl,
-                ).animate().fadeIn(),
+                icon:
+                    Icon(
+                      Icons.compare_arrows,
+                      color: AppColors.primary,
+                      size: 16,
+                    ).animate().fadeIn(),
+                label:
+                    Text(
+                      'مقارنة',
+                      style: getRegularStyle(
+                        color: AppColors.primary,
+                        fontSize: 12,
+                        fontFamily: FontConstant.cairo,
+                      ),
+                      textDirection: TextDirection.rtl,
+                    ).animate().fadeIn(),
                 style: TextButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02, vertical: MediaQuery.of(context).size.height * 0.005),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.02,
+                    vertical: MediaQuery.of(context).size.height * 0.005,
+                  ),
                   minimumSize: Size.zero,
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
@@ -285,23 +308,24 @@ class DiagnosisHistoryWidget extends StatelessWidget {
     }
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02, vertical: MediaQuery.of(context).size.height * 0.005),
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.02,
+        vertical: MediaQuery.of(context).size.height * 0.005,
+      ),
       decoration: BoxDecoration(
         color: chipColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: chipColor.withValues(alpha: 0.3),
-          width: 1,
-        ),
+        border: Border.all(color: chipColor.withValues(alpha: 0.3), width: 1),
       ),
-      child: Text(
-        severityArabic,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          color: chipColor,
-          fontWeight: FontWeight.w500,
-        ),
-        textDirection: TextDirection.rtl,
-      ).animate().fadeIn(),
+      child:
+          Text(
+            severityArabic,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: chipColor,
+              fontWeight: FontWeight.w500,
+            ),
+            textDirection: TextDirection.rtl,
+          ).animate().fadeIn(),
     );
   }
 }

@@ -6,11 +6,11 @@ class CustomIconWidget extends StatelessWidget {
   final double size;
 
   const CustomIconWidget({
-    Key? key,
+    super.key,
     required this.iconName,
     this.color,
     this.size = 24.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -83,7 +83,7 @@ class DiagnosisCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
-      shadowColor: Colors.black.withOpacity(0.05),
+      shadowColor: Colors.black.withValues(alpha:0.05),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: InkWell(
         onTap: onTap,
@@ -209,7 +209,7 @@ class DiagnosisCard extends StatelessWidget {
             imageUrl: diagnosis.imageUrl,
             fit: BoxFit.cover,
             placeholder: (context, url) => Container(
-              color: AppColors.border.withOpacity(0.2),
+              color: AppColors.border.withValues(alpha:0.2),
               child: const Center(
                 child: SizedBox(
                   width: 24,
@@ -222,7 +222,7 @@ class DiagnosisCard extends StatelessWidget {
               ),
             ),
             errorWidget: (context, url, error) => Container(
-              color: AppColors.border.withOpacity(0.2),
+              color: AppColors.border.withValues(alpha:0.2),
               child: const Center(
                 child: Icon(
                   Icons.image_not_supported_outlined,
@@ -241,7 +241,7 @@ class DiagnosisCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: diagnosis.severityColor.withOpacity(0.1),
+        color: diagnosis.severityColor.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -338,7 +338,7 @@ class DiagnosisCard extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.1),
+            color: AppColors.primary.withValues(alpha:0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Text(

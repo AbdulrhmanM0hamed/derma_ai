@@ -6,10 +6,7 @@ import '../../../../core/utils/theme/app_colors.dart';
 class ProcessingScreenWidget extends StatefulWidget {
   final String currentStatus;
 
-  const ProcessingScreenWidget({
-    Key? key,
-    required this.currentStatus,
-  }) : super(key: key);
+  const ProcessingScreenWidget({super.key, required this.currentStatus});
 
   @override
   State<ProcessingScreenWidget> createState() => _ProcessingScreenWidgetState();
@@ -36,21 +33,13 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
       vsync: this,
     )..repeat();
 
-    _pulseAnimation = Tween<double>(
-      begin: 0.8,
-      end: 1.2,
-    ).animate(CurvedAnimation(
-      parent: _pulseController,
-      curve: Curves.easeInOut,
-    ));
+    _pulseAnimation = Tween<double>(begin: 0.8, end: 1.2).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
 
-    _rotationAnimation = Tween<double>(
-      begin: 0,
-      end: 2 * 3.14159,
-    ).animate(CurvedAnimation(
-      parent: _rotationController,
-      curve: Curves.linear,
-    ));
+    _rotationAnimation = Tween<double>(begin: 0, end: 2 * 3.14159).animate(
+      CurvedAnimation(parent: _rotationController, curve: Curves.linear),
+    );
   }
 
   @override
@@ -62,7 +51,7 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.7,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -80,18 +69,14 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
                     height: MediaQuery.of(context).size.width * 0.3,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [
-                          AppColors.primary,
-                          AppColors.secondary,
-                        ],
+                        colors: [AppColors.primary, AppColors.secondary],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.primary
-                              .withValues(alpha: 0.3),
+                          color: AppColors.primary.withValues(alpha: 0.3),
                           blurRadius: 20,
                           spreadRadius: 5,
                         ),
@@ -133,14 +118,15 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
 
           // Processing Details
           Container(
-            margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.06),
+            margin: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.06,
+            ),
             padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
             decoration: BoxDecoration(
               color: AppColors.cardBackground,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: AppColors.border
-                    .withValues(alpha: 0.3),
+                color: AppColors.border.withValues(alpha: 0.3),
                 width: 1,
               ),
             ),
@@ -160,11 +146,7 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.security,
-                      color: AppColors.third,
-                      size: 16,
-                    ),
+                    Icon(Icons.security, color: AppColors.third, size: 16),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.02),
                     Text(
                       'آمن ومشفر بالكامل',
@@ -194,66 +176,73 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
     ];
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.08),
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.08,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: steps.asMap().entries.map((entry) {
-          final index = entry.key;
-          final step = entry.value;
-          final isCompleted = step['completed'] as bool;
-          final isActive = index == 2; // Currently processing step
+        children:
+            steps.asMap().entries.map((entry) {
+              final index = entry.key;
+              final step = entry.value;
+              final isCompleted = step['completed'] as bool;
+              final isActive = index == 2; // Currently processing step
 
-          return Expanded(
-            child: Column(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.08,
-                  height: MediaQuery.of(context).size.width * 0.08,
-                  decoration: BoxDecoration(
-                    color: isCompleted
-                        ? AppColors.third
-                        : isActive
-                            ? AppColors.primary
-                            : AppColors.border,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: isCompleted
-                        ? Icon(
-                            Icons.check,
-                            color: AppColors.textLight,
-                            size: 16,
-                          )
-                        : isActive
-                            ? SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.04,
-                                height: MediaQuery.of(context).size.width * 0.04,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color:
-                                      AppColors.textLight,
-                                ),
-                              )
-                            : null,
-                  ),
+              return Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.08,
+                      height: MediaQuery.of(context).size.width * 0.08,
+                      decoration: BoxDecoration(
+                        color:
+                            isCompleted
+                                ? AppColors.third
+                                : isActive
+                                ? AppColors.primary
+                                : AppColors.border,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child:
+                            isCompleted
+                                ? Icon(
+                                  Icons.check,
+                                  color: AppColors.textLight,
+                                  size: 16,
+                                )
+                                : isActive
+                                ? SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.04,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.04,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: AppColors.textLight,
+                                  ),
+                                )
+                                : null,
+                      ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                    Text(
+                      step['label'] as String,
+                      style: getRegularStyle(
+                        fontFamily: FontConstant.cairo,
+                        color:
+                            isCompleted || isActive
+                                ? AppColors.textPrimary
+                                : AppColors.textSecondary,
+                        fontSize: MediaQuery.of(context).size.width * 0.0225,
+                      ),
+                      textAlign: TextAlign.center,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ],
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                Text(
-                  step['label'] as String,
-                  style: getRegularStyle(
-                    fontFamily: FontConstant.cairo,
-                    color: isCompleted || isActive
-                        ? AppColors.textPrimary
-                        : AppColors.textSecondary,
-                    fontSize: MediaQuery.of(context).size.width * 0.0225,
-                  ),
-                  textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl,
-                ),
-              ],
-            ),
-          );
-        }).toList(),
+              );
+            }).toList(),
       ),
     );
   }

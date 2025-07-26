@@ -14,18 +14,21 @@ class CaptureControlsWidget extends StatelessWidget {
   final bool isProcessing;
 
   const CaptureControlsWidget({
-    Key? key,
+    super.key,
     required this.onCapture,
     required this.onGallery,
     required this.onFlashToggle,
     required this.isFlashOn,
     this.isProcessing = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.04, vertical: MediaQuery.of(context).size.height * 0.02),
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.04,
+        vertical: MediaQuery.of(context).size.height * 0.02,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -40,49 +43,46 @@ class CaptureControlsWidget extends StatelessWidget {
 
           // Capture Button
           GestureDetector(
-            onTap: isProcessing
-                ? null
-                : () {
-                    HapticFeedback.mediumImpact();
-                    onCapture();
-                  },
+            onTap:
+                isProcessing
+                    ? null
+                    : () {
+                      HapticFeedback.mediumImpact();
+                      onCapture();
+                    },
             child: Container(
               width: MediaQuery.of(context).size.width * 0.2,
               height: MediaQuery.of(context).size.width * 0.2,
               decoration: BoxDecoration(
-                color: isProcessing
-                    ? AppColors.textSecondary
-                    : AppColors.primary,
+                color:
+                    isProcessing ? AppColors.textSecondary : AppColors.primary,
                 shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppColors.cardBackground,
-                  width: 4,
-                ),
+                border: Border.all(color: AppColors.cardBackground, width: 4),
                 boxShadow: [
                   BoxShadow(
-                    color:
-                        AppColors.primary.withValues(alpha: 0.3),
+                    color: AppColors.primary.withValues(alpha: 0.3),
                     blurRadius: 12,
                     offset: Offset(0, 4),
                   ),
                 ],
               ),
-              child: isProcessing
-                  ? Center(
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.08,
-                        height: MediaQuery.of(context).size.width * 0.08,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 3,
-                          color: AppColors.cardBackground,
+              child:
+                  isProcessing
+                      ? Center(
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.08,
+                          height: MediaQuery.of(context).size.width * 0.08,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 3,
+                            color: AppColors.cardBackground,
+                          ),
                         ),
+                      )
+                      : Icon(
+                        Icons.camera_alt_outlined,
+                        color: AppColors.textLight,
+                        size: 32,
                       ),
-                    )
-                  : Icon(
-                      Icons.camera_alt_outlined,
-                      color: AppColors.textLight,
-                      size: 32,
-                    ),
             ),
           ).animate().scale(duration: 500.ms, curve: Curves.easeInOut),
 
@@ -111,16 +111,15 @@ class CaptureControlsWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03, vertical: MediaQuery.of(context).size.height * 0.015),
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.03,
+          vertical: MediaQuery.of(context).size.height * 0.015,
+        ),
         decoration: BoxDecoration(
-          color: isSecondary
-              ? AppColors.cardBackground
-              : AppColors.primary,
+          color: isSecondary ? AppColors.cardBackground : AppColors.primary,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isSecondary
-                ? AppColors.border
-                : AppColors.primary,
+            color: isSecondary ? AppColors.border : AppColors.primary,
             width: 1,
           ),
           boxShadow: [
@@ -136,19 +135,17 @@ class CaptureControlsWidget extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: iconColor ??
-                  (isSecondary
-                      ? AppColors.textSecondary
-                      : AppColors.textLight),
+              color:
+                  iconColor ??
+                  (isSecondary ? AppColors.textSecondary : AppColors.textLight),
               size: 24,
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.005),
             Text(
               label,
               style: getRegularStyle(
-                color: isSecondary
-                    ? AppColors.textSecondary
-                    : AppColors.textLight,
+                color:
+                    isSecondary ? AppColors.textSecondary : AppColors.textLight,
                 fontSize: MediaQuery.of(context).size.width * 0.025,
                 fontFamily: FontConstant.cairo,
               ),

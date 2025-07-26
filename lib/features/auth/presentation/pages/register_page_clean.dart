@@ -24,8 +24,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final _confirmPasswordController = TextEditingController();
   bool _isLoading = false;
   bool _acceptTerms = false;
-  bool _obscurePassword = true;
-  bool _obscureConfirmPassword = true;
+  final bool _obscurePassword = true;
+  final bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
@@ -38,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future<void> _register() async {
     if (!_formKey.currentState!.validate()) return;
-    
+
     if (!_acceptTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -53,15 +53,15 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       // Simulate registration process
       await Future.delayed(const Duration(seconds: 2));
-      
+
       if (mounted) {
         Navigator.pushReplacementNamed(context, AppRoutes.login);
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Registration failed: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Registration failed: $e')));
       }
     } finally {
       if (mounted) {
@@ -138,10 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
           ),
-        ).animate(effects: fadeInScaleUp(
-          duration: 600.ms,
-          begin: 0.5,
-        )),
+        ).animate(effects: fadeInScaleUp(duration: 600.ms, begin: 0.5)),
         const SizedBox(height: 32),
         Text(
           AppLocalizations.of(context)!.createAccount,
@@ -151,11 +148,9 @@ class _RegisterPageState extends State<RegisterPage> {
             fontFamily: FontConstant.cairo,
           ),
           textAlign: TextAlign.center,
-        ).animate(effects: fadeInSlide(
-          duration: 600.ms,
-          delay: 200.ms,
-          beginY: 0.2,
-        )),
+        ).animate(
+          effects: fadeInSlide(duration: 600.ms, delay: 200.ms, beginY: 0.2),
+        ),
         const SizedBox(height: 12),
         Text(
           AppLocalizations.of(context)!.signUpToGetStarted,
@@ -165,11 +160,9 @@ class _RegisterPageState extends State<RegisterPage> {
             fontFamily: FontConstant.cairo,
           ),
           textAlign: TextAlign.center,
-        ).animate(effects: fadeInSlide(
-          duration: 600.ms,
-          delay: 300.ms,
-          beginY: 0.2,
-        )),
+        ).animate(
+          effects: fadeInSlide(duration: 600.ms, delay: 300.ms, beginY: 0.2),
+        ),
       ],
     );
   }
@@ -189,11 +182,9 @@ class _RegisterPageState extends State<RegisterPage> {
         }
         return null;
       },
-    ).animate(effects: fadeInSlide(
-      duration: 600.ms,
-      delay: 400.ms,
-      beginY: 0.2,
-    ));
+    ).animate(
+      effects: fadeInSlide(duration: 600.ms, delay: 400.ms, beginY: 0.2),
+    );
   }
 
   Widget _buildEmailField() {
@@ -212,11 +203,9 @@ class _RegisterPageState extends State<RegisterPage> {
         }
         return null;
       },
-    ).animate(effects: fadeInSlide(
-      duration: 600.ms,
-      delay: 500.ms,
-      beginY: 0.2,
-    ));
+    ).animate(
+      effects: fadeInSlide(duration: 600.ms, delay: 500.ms, beginY: 0.2),
+    );
   }
 
   Widget _buildPasswordField() {
@@ -236,11 +225,9 @@ class _RegisterPageState extends State<RegisterPage> {
         }
         return null;
       },
-    ).animate(effects: fadeInSlide(
-      duration: 600.ms,
-      delay: 600.ms,
-      beginY: 0.2,
-    ));
+    ).animate(
+      effects: fadeInSlide(duration: 600.ms, delay: 600.ms, beginY: 0.2),
+    );
   }
 
   Widget _buildConfirmPasswordField() {
@@ -260,11 +247,9 @@ class _RegisterPageState extends State<RegisterPage> {
         }
         return null;
       },
-    ).animate(effects: fadeInSlide(
-      duration: 600.ms,
-      delay: 700.ms,
-      beginY: 0.2,
-    ));
+    ).animate(
+      effects: fadeInSlide(duration: 600.ms, delay: 700.ms, beginY: 0.2),
+    );
   }
 
   Widget _buildTermsAndConditions() {
@@ -279,9 +264,7 @@ class _RegisterPageState extends State<RegisterPage> {
             });
           },
           activeColor: AppColors.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
         Expanded(
           child: Padding(
@@ -293,9 +276,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   fontFamily: FontConstant.cairo,
                 ),
                 children: [
-                  TextSpan(
-                    text: AppLocalizations.of(context)!.iAgreeToThe,
-                  ),
+                  TextSpan(text: AppLocalizations.of(context)!.iAgreeToThe),
                   TextSpan(
                     text: 'Terms and Conditions',
                     style: getSemiBoldStyle(
@@ -303,9 +284,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontFamily: FontConstant.cairo,
                     ),
                   ),
-                  TextSpan(
-                    text: ' ${AppLocalizations.of(context)!.and} ',
-                  ),
+                  TextSpan(text: ' ${AppLocalizations.of(context)!.and} '),
                   TextSpan(
                     text: AppLocalizations.of(context)!.privacyPolicy,
                     style: getSemiBoldStyle(
@@ -319,10 +298,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
       ],
-    ).animate(effects: fadeIn(
-      duration: 600.ms,
-      delay: 800.ms,
-    ));
+    ).animate(effects: fadeIn(duration: 600.ms, delay: 800.ms));
   }
 
   Widget _buildRegisterButton() {
@@ -362,9 +338,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _buildDivider() {
     return Row(
       children: [
-        const Expanded(
-          child: Divider(color: AppColors.border),
-        ),
+        const Expanded(child: Divider(color: AppColors.border)),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
@@ -375,14 +349,9 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
         ),
-        const Expanded(
-          child: Divider(color: AppColors.border),
-        ),
+        const Expanded(child: Divider(color: AppColors.border)),
       ],
-    ).animate(effects: fadeIn(
-      duration: 600.ms,
-      delay: 1000.ms,
-    ));
+    ).animate(effects: fadeIn(duration: 600.ms, delay: 1000.ms));
   }
 
   Widget _buildSocialLogin() {
@@ -410,10 +379,7 @@ class _RegisterPageState extends State<RegisterPage> {
           },
         ),
       ],
-    ).animate(effects: fadeIn(
-      duration: 600.ms,
-      delay: 1100.ms,
-    ));
+    ).animate(effects: fadeIn(duration: 600.ms, delay: 1100.ms));
   }
 
   Widget _buildSocialButton({
@@ -421,33 +387,35 @@ class _RegisterPageState extends State<RegisterPage> {
     required VoidCallback onPressed,
   }) {
     return InkWell(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        width: 60,
-        height: 60,
-        decoration: BoxDecoration(
-          color: Colors.white,
+          onTap: onPressed,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.border),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withValues(alpha: 0.1),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+          child: Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppColors.border),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withValues(alpha: 0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
-          ],
-        ),
-        child: Center(
-          child: Icon(
-            icon,
-            color: AppColors.textSecondary,
-            size: 24,
+            child: Center(
+              child: Icon(icon, color: AppColors.textSecondary, size: 24),
+            ),
           ),
-        ),
-      ),
-    ).animate(onPlay: (controller) => controller.repeat(reverse: true))
-        .scaleXY(begin: 1, end: 1.05, duration: 2000.ms, curve: Curves.easeInOut);
+        )
+        .animate(onPlay: (controller) => controller.repeat(reverse: true))
+        .scaleXY(
+          begin: 1,
+          end: 1.05,
+          duration: 2000.ms,
+          curve: Curves.easeInOut,
+        );
   }
 
   Widget _buildSignInLink() {
@@ -474,9 +442,6 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
       ],
-    ).animate(effects: fadeIn(
-      duration: 600.ms,
-      delay: 1200.ms,
-    ));
+    ).animate(effects: fadeIn(duration: 600.ms, delay: 1200.ms));
   }
 }

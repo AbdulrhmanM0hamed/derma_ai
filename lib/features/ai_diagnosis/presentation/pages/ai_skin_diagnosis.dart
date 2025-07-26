@@ -24,6 +24,8 @@ enum DiagnosisState {
 }
 
 class AiSkinDiagnosis extends StatefulWidget {
+  const AiSkinDiagnosis({super.key});
+
   @override
   State<AiSkinDiagnosis> createState() => _AiSkinDiagnosisState();
 }
@@ -134,7 +136,7 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
         });
       }
     } catch (e) {
-      print('Camera initialization error: $e');
+     // print('Camera initialization error: $e');
       if (mounted) {
         _showCameraErrorDialog();
       }

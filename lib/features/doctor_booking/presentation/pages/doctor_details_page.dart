@@ -205,7 +205,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
         icon: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.9),
+            color: Colors.white.withValues(alpha:0.9),
             shape: BoxShape.circle,
           ),
           child: const Icon(Icons.arrow_back),
@@ -217,7 +217,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
           icon: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha:0.9),
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.favorite_border),
@@ -273,7 +273,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.1),
+                  color: AppColors.primary.withValues(alpha:0.1),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Row(
@@ -427,7 +427,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.1),
+                  color: AppColors.primary.withValues(alpha:0.1),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(

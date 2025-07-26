@@ -220,7 +220,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
               borderSide: BorderSide(
-                color: AppColors.border.withOpacity(0.5),
+                color: AppColors.border.withValues(alpha:0.5),
                 width: 1,
               ),
             ),

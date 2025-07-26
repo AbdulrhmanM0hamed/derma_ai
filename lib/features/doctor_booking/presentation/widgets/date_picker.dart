@@ -106,7 +106,7 @@ class _DatePickerState extends State<DatePicker> {
                 boxShadow: isSelected
                     ? [
                         BoxShadow(
-                          color: AppColors.primary.withOpacity(0.3),
+                          color: AppColors.primary.withValues(alpha:0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 4),
                         ),
@@ -131,9 +131,9 @@ class _DatePickerState extends State<DatePicker> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: isToday && !isSelected
-                          ? AppColors.primary.withOpacity(0.1)
+                          ? AppColors.primary.withValues(alpha:0.1)
                           : isSelected
-                              ? Colors.white.withOpacity(0.2)
+                              ? Colors.white.withValues(alpha:0.2)
                               : Colors.transparent,
                     ),
                     child: Center(

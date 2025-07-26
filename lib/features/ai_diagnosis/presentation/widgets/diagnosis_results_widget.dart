@@ -9,11 +9,11 @@ class DiagnosisResultsWidget extends StatelessWidget {
   final VoidCallback onSaveToHistory;
 
   const DiagnosisResultsWidget({
-    Key? key,
+    super.key,
     required this.analysisResult,
     required this.onShareResult,
     required this.onSaveToHistory,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class DiagnosisResultsWidget extends StatelessWidget {
     final severity = analysisResult['severity'] as String;
     final recommendations = analysisResult['recommendations'] as List<String>;
 
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.8,
       child: SingleChildScrollView(
         child: Column(
@@ -246,7 +246,7 @@ class DiagnosisResultsWidget extends StatelessWidget {
                               ],
                             ),
                           ))
-                      .toList(),
+                      ,
                 ],
               ),
             ).animate().fadeIn(delay: 400.ms),

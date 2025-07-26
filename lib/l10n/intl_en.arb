@@ -1,21 +1,17 @@
 {
     "@@locale": "en",
-    
     "appName": "DermaAI",
     "appTagline": "Your Skin Health Companion",
     "loading": "Loading...",
-    
     "onboardingTitle1": "Find Trusted Dermatologists",
     "onboardingDesc1": "Connect with top dermatologists for personalized skin care advice and treatment.",
     "onboardingTitle2": "Instant AI Diagnosis",
     "onboardingDesc2": "Take a photo of your skin condition and get an instant AI-powered diagnosis.",
     "onboardingTitle3": "Track Your Skin Health",
     "onboardingDesc3": "Monitor your skin condition progress and get personalized care recommendations.",
-    
     "skip": "Skip",
     "next": "Next",
     "getStarted": "Get Started",
-    
     "welcomeBack": "Welcome Back",
     "signInToContinue": "Sign in to continue to DermaAI",
     "email": "Email",
@@ -48,7 +44,6 @@
     "privacyPolicy": "Privacy Policy",
     "pleaseAcceptTerms": "Please accept the terms and conditions",
     "alreadyHaveAccount": "Already have an account?",
-    
     "helloUser": "Hello, {name}!",
     "findYourDoctor": "Find Your Doctor",
     "howCanWeHelp": "How can we help your skin today?",
