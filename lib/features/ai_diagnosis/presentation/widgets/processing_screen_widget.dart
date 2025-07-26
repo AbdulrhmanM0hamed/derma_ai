@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
@@ -150,8 +148,10 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
               children: [
                 Text(
                   'يتم الآن تحليل الصورة باستخدام الذكاء الاصطناعي المتقدم',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  style: getRegularStyle(
                     color: AppColors.textSecondary,
+                    fontSize: 16,
+                    fontFamily: FontConstant.cairo,
                   ),
                   textAlign: TextAlign.center,
                   textDirection: TextDirection.rtl,
@@ -168,8 +168,10 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
                     SizedBox(width: MediaQuery.of(context).size.width * 0.02),
                     Text(
                       'آمن ومشفر بالكامل',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: getRegularStyle(
                         color: AppColors.third,
+                        fontSize: 12,
+                        fontFamily: FontConstant.cairo,
                       ),
                       textDirection: TextDirection.rtl,
                     ),
@@ -238,7 +240,8 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
                 SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                 Text(
                   step['label'] as String,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: getRegularStyle(
+                    fontFamily: FontConstant.cairo,
                     color: isCompleted || isActive
                         ? AppColors.textPrimary
                         : AppColors.textSecondary,

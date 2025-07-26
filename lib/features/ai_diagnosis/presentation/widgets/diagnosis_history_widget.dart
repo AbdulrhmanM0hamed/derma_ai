@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../core/utils/constant/font_manger.dart';
+import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 
 class DiagnosisHistoryWidget extends StatelessWidget {
@@ -30,8 +32,10 @@ class DiagnosisHistoryWidget extends StatelessWidget {
               SizedBox(width: MediaQuery.of(context).size.width * 0.03),
               Text(
                 'سجل التشخيصات السابقة',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
+                style: getBoldStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 24,
+                  fontFamily: FontConstant.cairo,
                 ),
                 textDirection: TextDirection.rtl,
               ).animate().fadeIn(),
@@ -72,16 +76,20 @@ class DiagnosisHistoryWidget extends StatelessWidget {
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Text(
               'لا توجد تشخيصات سابقة',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              style: getSemiBoldStyle(
                 color: AppColors.textSecondary,
+                fontSize: 18,
+                fontFamily: FontConstant.cairo,
               ),
               textDirection: TextDirection.rtl,
             ).animate().fadeIn(),
             SizedBox(height: MediaQuery.of(context).size.height * 0.01),
             Text(
               'ستظهر هنا جميع التشخيصات التي قمت بها',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: getRegularStyle(
                 color: AppColors.textSecondary,
+                fontSize: 14,
+                fontFamily: FontConstant.cairo,
               ),
               textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
@@ -170,16 +178,20 @@ class DiagnosisHistoryWidget extends StatelessWidget {
                   children: [
                     Text(
                       condition,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
+                      style: getSemiBoldStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: 16,
+                        fontFamily: FontConstant.cairo,
                       ),
                       textDirection: TextDirection.rtl,
                     ).animate().fadeIn(),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.005),
                     Text(
                       '${date.day}/${date.month}/${date.year}',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: getRegularStyle(
                         color: AppColors.textSecondary,
+                        fontSize: 12,
+                        fontFamily: FontConstant.cairo,
                       ),
                       textDirection: TextDirection.rtl,
                     ).animate().fadeIn(),
@@ -200,13 +212,14 @@ class DiagnosisHistoryWidget extends StatelessWidget {
                 ),
                 child: Text(
                   '${confidence.toStringAsFixed(0)}%',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: getSemiBoldStyle(
                     color: confidence >= 80
                         ? AppColors.third
                         : confidence >= 60
                             ? Colors.orange
                             : AppColors.error,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    fontFamily: FontConstant.cairo,
                   ),
                 ).animate().fadeIn(),
               ),
@@ -229,8 +242,10 @@ class DiagnosisHistoryWidget extends StatelessWidget {
                 ).animate().fadeIn(),
                 label: Text(
                   'مقارنة',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: getRegularStyle(
                     color: AppColors.primary,
+                    fontSize: 12,
+                    fontFamily: FontConstant.cairo,
                   ),
                   textDirection: TextDirection.rtl,
                 ).animate().fadeIn(),
