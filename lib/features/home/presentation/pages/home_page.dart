@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/utils/animations/app_animations.dart';
+import '../../../../core/utils/helper/on_genrated_routes.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../doctor_booking/presentation/widgets/doctor_card.dart';
 import '../../../ai_diagnosis/presentation/widgets/diagnosis_card.dart';
@@ -260,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                       CustomButton(
                         text: AppLocalizations.of(context)!.startDiagnosis,
                         onPressed: () {
-                          // Navigate to AI diagnosis
+                          Navigator.pushNamed(context, AppRoutes.diagnosis);
                         },
                         type: ButtonType.secondary,
                         icon: Icons.camera_alt_outlined,

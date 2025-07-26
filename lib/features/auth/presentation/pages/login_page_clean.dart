@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
@@ -102,22 +103,13 @@ class _LoginPageState extends State<LoginPage> {
           decoration: BoxDecoration(
             color: AppColors.primary.withValues(alpha: 0.1),
             shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primary.withValues(alpha: 0.2),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
-              ),
-            ],
+          
           ),
           child: Center(
-            child: Text(
-              'D',
-              style: getBoldStyle(
-                color: AppColors.primary,
-                fontSize: 36,
-                fontFamily: FontConstant.cairo,
-              ),
+            child:SvgPicture.asset(
+              'assets/images/logo.svg',
+              width: 80,
+              height: 80,
             ),
           ),
         ).animate(effects: fadeInScaleUp(
@@ -163,15 +155,15 @@ class _LoginPageState extends State<LoginPage> {
       hintText: AppLocalizations.of(context)!.enterEmail,
       prefixIcon: Icons.email_outlined,
       keyboardType: TextInputType.emailAddress,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return AppLocalizations.of(context)!.pleaseEnterEmail;
-        }
-        if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$').hasMatch(value)) {
-          return AppLocalizations.of(context)!.pleaseEnterValidEmail;
-        }
-        return null;
-      },
+      // validator: (value) {
+      //   if (value == null || value.isEmpty) {
+      //     return AppLocalizations.of(context)!.pleaseEnterEmail;
+      //   }
+      //   if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$').hasMatch(value)) {
+      //     return AppLocalizations.of(context)!.pleaseEnterValidEmail;
+      //   }
+      //   return null;
+      // },
     ).animate(effects: fadeInSlide(
       duration: 600.ms,
       delay: 400.ms,
@@ -186,15 +178,15 @@ class _LoginPageState extends State<LoginPage> {
       hintText: AppLocalizations.of(context)!.enterPassword,
       prefixIcon: Icons.lock_outline,
       obscureText: true,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return AppLocalizations.of(context)!.pleaseEnterPassword;
-        }
-        if (value.length < 6) {
-          return AppLocalizations.of(context)!.passwordMustBe;
-        }
-        return null;
-      },
+      // validator: (value) {
+      //   if (value == null || value.isEmpty) {
+      //     return AppLocalizations.of(context)!.pleaseEnterPassword;
+      //   }
+      //   if (value.length < 6) {
+      //     return AppLocalizations.of(context)!.passwordMustBe;
+      //   }
+      //   return null;
+      // },
     ).animate(effects: fadeInSlide(
       duration: 600.ms,
       delay: 500.ms,

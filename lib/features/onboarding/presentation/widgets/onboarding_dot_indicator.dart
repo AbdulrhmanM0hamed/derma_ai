@@ -17,7 +17,7 @@ class OnboardingDotIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 400),
-      margin: const EdgeInsets.symmetric(horizontal: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 2),
       width: isActive ? 32 : 12,
       height: 12,
       decoration: BoxDecoration(
