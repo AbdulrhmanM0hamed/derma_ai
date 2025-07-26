@@ -1,7 +1,6 @@
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../theme/app_colors.dart';
 
 enum ButtonType { primary, secondary, outline, text }
 
