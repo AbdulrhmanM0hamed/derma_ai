@@ -1,0 +1,39 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="80" fill="#E0F7FA"/>
+  
+  <!-- Phone outline -->
+  <rect x="60" y="40" width="80" height="120" rx="10" fill="#00C6B5"/>
+  <rect x="65" y="45" width="70" height="110" rx="5" fill="white"/>
+  
+  <!-- Camera lens on phone -->
+  <circle cx="100" cy="60" r="10" fill="#00C6B5"/>
+  <circle cx="100" cy="60" r="5" fill="#E0F7FA"/>
+  
+  <!-- Skin scan visualization -->
+  <rect x="75" y="75" width="50" height="50" rx="5" fill="#FFF9C4"/>
+  
+  <!-- Scan overlay elements -->
+  <rect x="80" y="85" width="15" height="15" rx="2" stroke="#FFA53E" stroke-width="2" fill="none"/>
+  <rect x="105" y="85" width="15" height="15" rx="2" stroke="#FFA53E" stroke-width="2" fill="none"/>
+  <rect x="80" y="110" width="15" height="10" rx="2" stroke="#FFA53E" stroke-width="2" fill="none"/>
+  <rect x="105" y="110" width="15" height="10" rx="2" stroke="#FFA53E" stroke-width="2" fill="none"/>
+  
+  <!-- AI analysis indicators -->
+  <path d="M130 75L135 80L145 70" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M130 100L135 105L145 95" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Brain representing AI -->
+  <path d="M100 140C100 140 85 145 85 155C85 165 95 170 100 165C105 170 115 165 115 155C115 145 100 140 100 140Z" fill="#2D8EFF"/>
+  <path d="M90 150C90 150 95 155 100 150C105 155 110 150 110 150" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M95 160C95 160 100 155 105 160" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Circuit lines representing technology -->
+  <path d="M40 70L60 70" stroke="#2D8EFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M45 80L60 80" stroke="#2D8EFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M50 90L60 90" stroke="#2D8EFF" stroke-width="2" stroke-linecap="round"/>
+  
+  <path d="M140 70L160 70" stroke="#2D8EFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M140 80L155 80" stroke="#2D8EFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M140 90L150 90" stroke="#2D8EFF" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,24 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Doctor with stethoscope -->
+  <circle cx="100" cy="100" r="80" fill="#E3F2FD"/>
+  
+  <!-- Doctor's head -->
+  <circle cx="100" cy="70" r="30" fill="#2D8EFF"/>
+  
+  <!-- Doctor's body -->
+  <rect x="70" y="100" width="60" height="70" rx="10" fill="#2D8EFF"/>
+  
+  <!-- Stethoscope -->
+  <path d="M70 120C70 120 50 130 50 150C50 160 60 165 70 160" stroke="#00C6B5" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="70" cy="160" r="8" fill="#00C6B5"/>
+  
+  <!-- Face details -->
+  <circle cx="90" cy="65" r="5" fill="white"/>
+  <circle cx="110" cy="65" r="5" fill="white"/>
+  <path d="M90 85C90 85 100 90 110 85" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Stars representing trusted doctors -->
+  <path d="M160 40L163 46L170 47L165 52L166 59L160 56L154 59L155 52L150 47L157 46L160 40Z" fill="#FFA53E"/>
+  <path d="M40 60L43 66L50 67L45 72L46 79L40 76L34 79L35 72L30 67L37 66L40 60Z" fill="#FFA53E"/>
+  <path d="M150 140L153 146L160 147L155 152L156 159L150 156L144 159L145 152L140 147L147 146L150 140Z" fill="#FFA53E"/>
+</svg>

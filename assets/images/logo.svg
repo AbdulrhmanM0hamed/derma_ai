@@ -1,0 +1,36 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main circle background -->
+  <circle cx="100" cy="100" r="80" fill="#2D8EFF" fill-opacity="0.1"/>
+  
+  <!-- Inner circle -->
+  <circle cx="100" cy="100" r="60" fill="#2D8EFF" fill-opacity="0.2"/>
+  
+  <!-- Logo main shape - stylized D for Derma -->
+  <path d="M70 60C70 60 90 50 110 60C130 70 140 90 130 120C120 150 90 150 70 140C70 140 60 130 60 100C60 70 70 60 70 60Z" fill="#2D8EFF"/>
+  
+  <!-- AI element - circuit board pattern -->
+  <path d="M100 80L120 80" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M90 90L120 90" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M80 100L120 100" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M80 110L110 110" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M80 120L100 120" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Skin cell pattern -->
+  <circle cx="130" cy="70" r="10" fill="#00C6B5"/>
+  <circle cx="130" cy="70" r="5" fill="white"/>
+  
+  <!-- Scan line effect -->
+  <rect x="70" y="95" width="60" height="2" fill="#FFA53E"/>
+  <circle cx="70" cy="96" r="3" fill="#FFA53E"/>
+  <circle cx="130" cy="96" r="3" fill="#FFA53E"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="150" cy="100" r="5" fill="#00C6B5"/>
+  <circle cx="50" cy="100" r="5" fill="#00C6B5"/>
+  <circle cx="100" cy="150" r="5" fill="#00C6B5"/>
+  <circle cx="100" cy="50" r="5" fill="#00C6B5"/>
+  
+  <!-- Pulse effect rings -->
+  <circle cx="100" cy="100" r="70" stroke="#2D8EFF" stroke-width="2" stroke-dasharray="10 5" fill="none"/>
+  <circle cx="100" cy="100" r="90" stroke="#2D8EFF" stroke-width="1" stroke-dasharray="5 5" fill="none"/>
+</svg>
