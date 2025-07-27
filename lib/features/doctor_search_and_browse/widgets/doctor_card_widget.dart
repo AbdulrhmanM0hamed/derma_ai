@@ -9,6 +9,7 @@ class DoctorCardWidget extends StatelessWidget {
   final VoidCallback onFavorite;
   final VoidCallback onShare;
   final VoidCallback onMessage;
+  final String? heroTagSuffix;
 
   const DoctorCardWidget({
     super.key,
@@ -17,6 +18,7 @@ class DoctorCardWidget extends StatelessWidget {
     required this.onFavorite,
     required this.onShare,
     required this.onMessage,
+    this.heroTagSuffix,
   });
 
   @override
@@ -88,7 +90,7 @@ class DoctorCardWidget extends StatelessWidget {
                 Row(
                   children: [
                     Hero(
-                      tag: 'doctor_${doctor["id"]}',
+                      tag: 'doctor_${doctor["id"]}${heroTagSuffix ?? ""}',
                       child: Container(
                         width: screenWidth * 0.2,
                         height: screenWidth * 0.2,

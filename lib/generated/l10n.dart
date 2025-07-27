@@ -1119,6 +1119,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Doctor Consultation`
+  String get doctorConsultation {
+    return Intl.message(
+      'Doctor Consultation',
+      name: 'doctorConsultation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skin Care`
+  String get skinCare {
+    return Intl.message(
+      'Skin Care',
+      name: 'skinCare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Health Tips`
+  String get healthTips {
+    return Intl.message(
+      'Health Tips',
+      name: 'healthTips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our Services`
+  String get ourServices {
+    return Intl.message(
+      'Our Services',
+      name: 'ourServices',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -43,12 +43,14 @@ class DoctorCard extends StatelessWidget {
   final DoctorModel doctor;
   final VoidCallback onTap;
   final bool isHorizontal;
+  final String? heroTagSuffix;
 
   const DoctorCard({
     super.key,
     required this.doctor,
     required this.onTap,
     this.isHorizontal = true,
+    this.heroTagSuffix,
   });
 
   @override
@@ -244,7 +246,7 @@ class DoctorCard extends StatelessWidget {
 
   Widget _buildDoctorAvatar({required double size}) {
     return Hero(
-      tag: 'doctor_${doctor.id}',
+      tag: 'doctor_${doctor.id}${heroTagSuffix ?? ""}',
       child: Container(
         width: size,
         height: size,

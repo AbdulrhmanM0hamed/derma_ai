@@ -480,6 +480,7 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
         final doctor = favoriteDoctors[index];
         return DoctorCardWidget(
           doctor: doctor,
+          heroTagSuffix: "_favorites",
           onTap: () => _onDoctorTap(doctor),
           onFavorite: () => _onFavoriteToggle(doctor),
           onShare: () => _onShareDoctor(doctor),

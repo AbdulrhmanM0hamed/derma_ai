@@ -1,3 +1,4 @@
+import 'package:derma_ai/features/navigation/presentation/pages/main_navigation_page.dart';
 import 'package:flutter/material.dart';
 
 // Splash and Onboarding
@@ -24,12 +25,15 @@ class AppRoutes {
   static const String diagnosis = '/diagnosis';
   static const String doctorDetails = '/doctor-details';
   static const String profile = '/profile';
+  static const String mainNavigationPage = '/main-navigation-page';
 }
 
 Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutes.splash:
       return _createRoute(const SplashPage());
+    case AppRoutes.mainNavigationPage:
+      return _createRoute(const MainNavigationPage());
     
     case AppRoutes.onboarding:
       return _createRoute(const OnboardingPage());

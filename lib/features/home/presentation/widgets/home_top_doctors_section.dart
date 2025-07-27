@@ -47,6 +47,7 @@ class HomeTopDoctorsSection extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ListView.separated(
+          padding: EdgeInsets.zero,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: topDoctors.length,
@@ -61,6 +62,7 @@ class HomeTopDoctorsSection extends StatelessWidget {
               ),
               child: DoctorCard(
                 doctor: doctor,
+                heroTagSuffix: "_home",
                 onTap: () {
                   // Navigate to doctor details
                 },

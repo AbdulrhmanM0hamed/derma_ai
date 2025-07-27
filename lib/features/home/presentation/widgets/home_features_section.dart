@@ -61,6 +61,7 @@ class HomeFeaturesSection extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         GridView.builder(
+          padding:  EdgeInsets.zero,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

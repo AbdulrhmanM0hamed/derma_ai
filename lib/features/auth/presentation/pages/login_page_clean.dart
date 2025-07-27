@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       await Future.delayed(const Duration(seconds: 2));
       
       if (mounted) {
-        Navigator.pushReplacementNamed(context, AppRoutes.home);
+        Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
       }
     } catch (e) {
       if (mounted) {

@@ -67,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "diagnosisSaved":
             MessageLookupByLibrary.simpleMessage("تم حفظ التشخيص في سجلاتك"),
         "doctor": MessageLookupByLibrary.simpleMessage("الطبيب"),
+        "doctorConsultation":
+            MessageLookupByLibrary.simpleMessage("استشارة طبيب"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "education": MessageLookupByLibrary.simpleMessage("التعليم"),
@@ -84,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
+        "healthTips": MessageLookupByLibrary.simpleMessage("نصائح صحية"),
         "helloUser": m0,
         "high": MessageLookupByLibrary.simpleMessage("مرتفع"),
         "highSeverity": MessageLookupByLibrary.simpleMessage("شدة مرتفعة"),
@@ -114,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تتبع صحة بشرتك"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("أو تابع باستخدام"),
+        "ourServices": MessageLookupByLibrary.simpleMessage("خدماتنا"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordMustBe": MessageLookupByLibrary.simpleMessage(
             "يجب أن تكون كلمة المرور 6 أحرف على الأقل"),
@@ -157,6 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUpToGetStarted":
             MessageLookupByLibrary.simpleMessage("سجل للبدء مع درما أي"),
         "similarCases": MessageLookupByLibrary.simpleMessage("حالات مشابهة"),
+        "skinCare": MessageLookupByLibrary.simpleMessage("العناية بالبشرة"),
         "skinHelpPrompt": MessageLookupByLibrary.simpleMessage(
             "كيف يمكننا مساعدة بشرتك اليوم؟"),
         "skinTips": MessageLookupByLibrary.simpleMessage("نصائح للبشرة"),

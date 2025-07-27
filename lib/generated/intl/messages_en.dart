@@ -69,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "diagnosisSaved": MessageLookupByLibrary.simpleMessage(
             "Diagnosis saved to your records"),
         "doctor": MessageLookupByLibrary.simpleMessage("Doctor"),
+        "doctorConsultation":
+            MessageLookupByLibrary.simpleMessage("Doctor Consultation"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
@@ -86,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
+        "healthTips": MessageLookupByLibrary.simpleMessage("Health Tips"),
         "helloUser": m0,
         "high": MessageLookupByLibrary.simpleMessage("High"),
         "highSeverity": MessageLookupByLibrary.simpleMessage("High Severity"),
@@ -117,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Track Your Skin Health"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("Or continue with"),
+        "ourServices": MessageLookupByLibrary.simpleMessage("Our Services"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordMustBe": MessageLookupByLibrary.simpleMessage(
             "Password must be at least 6 characters"),
@@ -160,6 +164,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUpToGetStarted": MessageLookupByLibrary.simpleMessage(
             "Sign up to get started with DermaAI"),
         "similarCases": MessageLookupByLibrary.simpleMessage("Similar Cases"),
+        "skinCare": MessageLookupByLibrary.simpleMessage("Skin Care"),
         "skinHelpPrompt": MessageLookupByLibrary.simpleMessage(
             "How can we help your skin today?"),
         "skinTips": MessageLookupByLibrary.simpleMessage("Skin Tips"),
