@@ -13,7 +13,6 @@ class HomePageBody extends StatelessWidget {
     super.key,
     required this.scrollController,
   });
-
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
