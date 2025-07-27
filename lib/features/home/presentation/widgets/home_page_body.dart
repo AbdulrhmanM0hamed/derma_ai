@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home_app_bar.dart';
 import 'home_welcome_section.dart';
 import 'home_features_section.dart';
 import 'home_top_doctors_section.dart';
@@ -18,7 +17,6 @@ class HomePageBody extends StatelessWidget {
     return CustomScrollView(
       controller: scrollController,
       slivers: [
-        const HomeAppBar(),
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(16),

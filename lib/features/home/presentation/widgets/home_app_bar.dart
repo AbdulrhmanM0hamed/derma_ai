@@ -1,131 +1,141 @@
+import 'package:derma_ai/core/utils/constant/font_manger.dart';
+import 'package:derma_ai/core/utils/constant/styles_manger.dart';
+import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/utils/animations/app_animations.dart';
-import '../../../../core/utils/constant/font_manger.dart';
-import '../../../../core/utils/constant/styles_manger.dart';
-import '../../../../core/utils/theme/app_colors.dart';
-
-class HomeAppBar extends StatelessWidget {
+class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(100);
+
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      expandedHeight: 120,
-      floating: false,
-      pinned: true,
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      flexibleSpace: FlexibleSpaceBar(
-        background: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                AppColors.primary.withValues(alpha: 0.1),
-                Colors.transparent,
-              ],
-            ),
+    return Container(
+      height: 100 + MediaQuery.of(context).padding.top,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            AppColors.primary,
+            AppColors.primary.withValues(alpha: 0.8),
+            AppColors.secondary,
+          ],
+        ),
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary.withValues(alpha: 0.3),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+            spreadRadius: 0,
           ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  Animate(
-                    effects: fadeInSlide(
-                      duration: 300.ms,
-                      beginX: -0.1,
-                    ),
-                    child: CircleAvatar(
-                      radius: 24,
-                      backgroundColor: AppColors.primary,
-                      child: Text(
-                        'أ',
-                        style: getBoldStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: FontConstant.cairo,
-                        ),
-                      ),
-                    ),
+        ],
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          child: Row(
+            children: [
+              // Profile Avatar with elegant design
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.3),
+                    width: 2,
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Animate(
-                          effects: fadeInSlide(
-                            duration: 300.ms,
-                            delay: 100.ms,
-                            beginX: -0.1,
-                          ),
-                          child: Text(
-                            'مرحباً بك',
-                            style: getRegularStyle(
-                              color: AppColors.textSecondary,
-                              fontSize: 14,
-                              fontFamily: FontConstant.cairo,
-                            ),
-                          ),
-                        ),
-                        Animate(
-                          effects: fadeInSlide(
-                            duration: 300.ms,
-                            delay: 200.ms,
-                            beginX: -0.1,
-                          ),
-                          child: Text(
-                            'أحمد محمد',
-                            style: getBoldStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: 18,
-                              fontFamily: FontConstant.cairo,
-                            ),
-                          ),
-                        ),
-                      ],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.1),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
                     ),
+                  ],
+                ),
+                child: CircleAvatar(
+                  radius: 24,
+                  backgroundColor: Colors.white.withValues(alpha: 0.2),
+                  child: SvgPicture.asset(
+                    'assets/images/onboarding1.svg',
+                    width: 60,
+                    height: 60,
                   ),
-                  Animate(
-                    effects: fadeInSlide(
-                      duration: 300.ms,
-                      delay: 300.ms,
-                      beginX: 0.1,
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        // Navigate to notifications
-                      },
-                      icon: Stack(
-                        children: [
-                          Icon(
-                            Icons.notifications_outlined,
-                            color: AppColors.textPrimary,
-                            size: 28,
-                          ),
-                          Positioned(
-                            right: 0,
-                            top: 0,
-                            child: Container(
-                              width: 12,
-                              height: 12,
-                              decoration: BoxDecoration(
-                                color: AppColors.error,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+              const SizedBox(width: 16),
+              // User Info Section
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'مرحباً بك 👋',
+                      style: getRegularStyle(
+                        color: Colors.white.withValues(alpha: 0.9),
+                        fontSize: 14,
+                        fontFamily: FontConstant.cairo,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'أحمد محمد',
+                      style: getBoldStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: FontConstant.cairo,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Notification Icon with modern design
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.2),
+                    width: 1,
+                  ),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    // Navigate to notifications
+                    HapticFeedback.lightImpact();
+                  },
+                  icon: Stack(
+                    children: [
+                      Icon(
+                        Icons.notifications_outlined,
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      Positioned(
+                        right: 2,
+                        top: 2,
+                        child: Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: AppColors.error,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 1.5),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

@@ -17,36 +17,7 @@ class HomeWelcomeSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Animate(
-          effects: fadeInSlide(
-            duration: 300.ms,
-            beginX: -0.1,
-          ),
-          child: Text(
-            AppLocalizations.of(context)!.helloUser('Ahmed'),
-            style: getBoldStyle(
-              color: AppColors.textPrimary,
-              fontSize: 28,
-              fontFamily: FontConstant.cairo,
-            ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Animate(
-          effects: fadeInSlide(
-            duration: 300.ms,
-            delay: 100.ms,
-            beginX: -0.1,
-          ),
-          child: Text(
-            AppLocalizations.of(context)!.skinHelpPrompt,
-            style: getRegularStyle(
-              color: AppColors.textSecondary,
-              fontSize: 16,
-              fontFamily: FontConstant.cairo,
-            ),
-          ),
-        ),
+     
         const SizedBox(height: 24),
         Animate(
           effects: fadeInScaleUp(
@@ -89,7 +60,7 @@ class HomeWelcomeSection extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.diagnosisDescription,
                         style: getRegularStyle(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                           fontSize: 14,
                           fontFamily: FontConstant.cairo,
                         ),
@@ -102,7 +73,7 @@ class HomeWelcomeSection extends StatelessWidget {
                         },
                         type: ButtonType.secondary,
                         icon: Icons.camera_alt_outlined,
-                        height: 44,
+                   
                       ),
                     ],
                   ),
