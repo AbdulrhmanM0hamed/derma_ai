@@ -338,4 +338,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ok => 'OK';
+
+  @override
+  String get doctorConsultation => 'Doctor Consultation';
+
+  @override
+  String get skinCare => 'Skin Care';
+
+  @override
+  String get healthTips => 'Health Tips';
+
+  @override
+  String get ourServices => 'Our Services';
 }

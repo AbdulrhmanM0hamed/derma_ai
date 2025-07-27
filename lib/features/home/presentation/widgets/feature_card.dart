@@ -25,6 +25,7 @@ class FeatureCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
@@ -40,8 +41,8 @@ class FeatureCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 48,
-              height: 48,
+              width: 35,
+              height: 35,
               decoration: BoxDecoration(
                 color: color.withValues(alpha:0.1),
                 shape: BoxShape.circle,

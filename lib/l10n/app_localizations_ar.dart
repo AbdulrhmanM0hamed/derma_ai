@@ -337,4 +337,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ok => 'موافق';
+
+  @override
+  String get doctorConsultation => 'استشارة طبيب';
+
+  @override
+  String get skinCare => 'العناية بالبشرة';
+
+  @override
+  String get healthTips => 'نصائح صحية';
+
+  @override
+  String get ourServices => 'خدماتنا';
 }

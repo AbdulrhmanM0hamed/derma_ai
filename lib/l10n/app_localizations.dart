@@ -739,6 +739,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'OK'**
   String get ok;
+
+  /// No description provided for @doctorConsultation.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor Consultation'**
+  String get doctorConsultation;
+
+  /// No description provided for @skinCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin Care'**
+  String get skinCare;
+
+  /// No description provided for @healthTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Tips'**
+  String get healthTips;
+
+  /// No description provided for @ourServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Services'**
+  String get ourServices;
 }
 
 class _AppLocalizationsDelegate

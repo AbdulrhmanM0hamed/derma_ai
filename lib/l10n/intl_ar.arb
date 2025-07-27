@@ -117,5 +117,10 @@
   "lowSeverity": "شدة منخفضة",
   "mediumSeverity": "شدة متوسطة",
   "highSeverity": "شدة مرتفعة",
-  "unknownSeverity": "شدة غير معروفة"
+  "unknownSeverity": "شدة غير معروفة",
+
+  "doctorConsultation": "استشارة طبيب",
+  "skinCare": "العناية بالبشرة",
+  "healthTips": "نصائح صحية",
+  "ourServices": "خدماتنا"
 }
