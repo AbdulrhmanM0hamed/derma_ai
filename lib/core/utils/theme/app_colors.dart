@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primary = Color(0xFF006E82);
-  static const Color secondary = Color.fromARGB(255, 59, 110, 151);
-  static const Color third = Color.fromARGB(255, 79, 143, 196);
+  static const Color primary = Color.fromARGB(255, 1, 126, 148);
+  static const Color secondary = Color(0xFF0085A3);
+  static const Color third = Color(0xFF7DD3FC);
+  
+  // static const Color primary = Color(0xFF5C16EA);
+  // static const Color secondary = Color(0xFF7D44ED);
+  // static const Color third = Color(0xFFCEB8F8);
 
   // Background Colors
   static const Color scaffoldBackground = Colors.white;
@@ -16,8 +20,23 @@ class AppColors {
   static const Color textLight70 = Colors.white60;
   static const Color black = Color.fromARGB(255, 0, 0, 0);
   static const List<Color> primaryGradient = [
-    Color(0xFF2D8EFF),
-    Color(0xFF00C6B5),
+    Color(0xFF00D4AA),
+    Color(0xFF00A8CC),
+  ];
+  
+  static const List<Color> secondaryGradient = [
+    Color(0xFF7DD3FC),
+    Color(0xFFE0F2FE),
+  ];
+  
+  static const List<Color> lightGradient = [
+    Color(0xFFE0F2FE),
+    Color(0xFFF0F9FF),
+  ];
+  
+  static const List<Color> medicalGradient = [
+    Color(0xFF06B6D4),
+    Color(0xFF0891B2),
   ];
 
   // Status Colors

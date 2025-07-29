@@ -26,19 +26,25 @@ class AiFeatureCard extends StatelessWidget {
             begin: 0.95,
           ),
           child: Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: AppColors.primaryGradient,
+                colors: AppColors.medicalGradient,
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.primary.withValues(alpha: 0.2),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
+                  color: AppColors.primary.withValues(alpha:0.25),
+                  blurRadius: 15,
+                  spreadRadius: 2,
+                  offset: const Offset(0, 8),
+                ),
+                BoxShadow(
+                  color: AppColors.secondary.withValues(alpha:0.15),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
                 ),
               ],
             ),
@@ -52,7 +58,7 @@ class AiFeatureCard extends StatelessWidget {
                         AppLocalizations.of(context)!.aiSkinDiagnosis,
                         style: getBoldStyle(
                           color: Colors.white,
-                          fontSize: 22,
+                          fontSize: 20,
                           fontFamily: FontConstant.cairo,
                         ),
                       ),
@@ -60,20 +66,19 @@ class AiFeatureCard extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.diagnosisDescription,
                         style: getRegularStyle(
-                          color: Colors.white.withValues(alpha: 0.9),
+                          color: Colors.white.withValues(alpha:0.9),
                           fontSize: 14,
                           fontFamily: FontConstant.cairo,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 20),
                       CustomButton(
                         text: AppLocalizations.of(context)!.startDiagnosis,
                         onPressed: () {
                           Navigator.pushNamed(context, AppRoutes.diagnosis);
                         },
-                        type: ButtonType.secondary,
+                      
                         icon: Icons.camera_alt_outlined,
-                   
                       ),
                     ],
                   ),
@@ -83,12 +88,12 @@ class AiFeatureCard extends StatelessWidget {
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
+                    color: Colors.white.withValues(alpha:0.15),
                     shape: BoxShape.circle,
                   ),
                   child: const Center(
                     child: Icon(
-                      Icons.health_and_safety_outlined,
+                      Icons.document_scanner_outlined,
                       color: Colors.white,
                       size: 40,
                     ),
