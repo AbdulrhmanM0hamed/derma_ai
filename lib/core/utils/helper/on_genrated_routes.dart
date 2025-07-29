@@ -1,3 +1,4 @@
+import 'package:derma_ai/features/doctor_profile/doctor_profile.dart';
 import 'package:derma_ai/features/navigation/presentation/pages/main_navigation_page.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,7 @@ class AppRoutes {
   static const String doctorDetails = '/doctor-details';
   static const String profile = '/profile';
   static const String mainNavigationPage = '/main-navigation-page';
+  static const String doctorProfile = '/doctor-profile';
 }
 
 Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
@@ -34,28 +36,30 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
       return _createRoute(const SplashPage());
     case AppRoutes.mainNavigationPage:
       return _createRoute(const MainNavigationPage());
-    
+
     case AppRoutes.onboarding:
       return _createRoute(const OnboardingPage());
-    
+
     case AppRoutes.login:
       return _createRoute(const LoginPage());
-    
+
     case AppRoutes.register:
       return _createRoute(const RegisterPage());
-    
+
     case AppRoutes.home:
       return _createRoute(const HomePage());
-    
+
     case AppRoutes.diagnosis:
       return _createRoute(const AiDiagnosisPage());
-    
+
     case AppRoutes.doctorDetails:
       return _createRoute(const DoctorDetailsPage());
-    
+
     case AppRoutes.profile:
       return _createRoute(const ProfilePage());
-    
+    case AppRoutes.doctorProfile:
+      return _createRoute(const DoctorProfile());
+
     default:
       return _createRoute(const SplashPage());
   }
@@ -70,14 +74,9 @@ PageRouteBuilder<T> _createRoute<T extends Object?>(Widget page) {
       const end = Offset.zero;
       const curve = Curves.easeInOut;
 
-      var tween = Tween(begin: begin, end: end).chain(
-        CurveTween(curve: curve),
-      );
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
+      return SlideTransition(position: animation.drive(tween), child: child);
     },
     transitionDuration: const Duration(milliseconds: 300),
   );
