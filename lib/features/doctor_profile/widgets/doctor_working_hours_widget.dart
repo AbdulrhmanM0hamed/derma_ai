@@ -27,7 +27,6 @@ class DoctorWorkingHoursWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(
-          
           horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
       padding: EdgeInsets.all(screenWidth * 0.04),
       decoration: BoxDecoration(

@@ -12,11 +12,11 @@ class DoctorHeroSectionWidget extends StatelessWidget {
   final bool isFavorite;
 
   const DoctorHeroSectionWidget({
-    Key? key,
+    super.key,
     required this.doctorData,
     required this.onFavoriteToggle,
     required this.isFavorite,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

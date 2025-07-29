@@ -8,9 +8,9 @@ class DoctorAboutSectionWidget extends StatelessWidget {
   final Map<String, dynamic> doctorData;
 
   const DoctorAboutSectionWidget({
-    Key? key,
+   super.key,
     required this.doctorData,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

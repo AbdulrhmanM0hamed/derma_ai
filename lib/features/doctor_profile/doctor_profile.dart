@@ -186,11 +186,11 @@ class _DoctorProfileState extends State<DoctorProfile> {
   }
 
   void _shareProfile() {
-    print("Sharing profile...");
+  //  print("Sharing profile...");
   }
 
   void _bookAppointment() {
-    print("Booking appointment...");
+   // print("Booking appointment...");
   }
 
   @override

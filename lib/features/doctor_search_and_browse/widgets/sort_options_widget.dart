@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 class SortOptionsWidget extends StatelessWidget {
   final Function(String) onSortSelected;
 
-  const SortOptionsWidget({Key? key, required this.onSortSelected})
-    : super(key: key);
+  const SortOptionsWidget({super.key, required this.onSortSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +52,8 @@ class SortOptionsWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
               itemCount: sortOptions.length,
               separatorBuilder:
-                  (context, index) => Divider(
-                    color: AppColors.border.withValues(alpha: 0.2),
-                  ),
+                  (context, index) =>
+                      Divider(color: AppColors.border.withValues(alpha: 0.2)),
               itemBuilder: (context, index) {
                 final option = sortOptions[index];
                 return ListTile(

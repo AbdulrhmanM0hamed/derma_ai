@@ -8,10 +8,10 @@ class FilterChipsWidget extends StatelessWidget {
   final Function(int) onRemoveFilter;
 
   const FilterChipsWidget({
-    Key? key,
+    super.key,
     required this.activeFilters,
     required this.onRemoveFilter,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class FilterChipsWidget extends StatelessWidget {
               vertical: screenHeight * 0.01,
             ),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
+              color: AppColors.primary.withValues(alpha:0.1),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: AppColors.primary,

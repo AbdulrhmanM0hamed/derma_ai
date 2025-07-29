@@ -141,7 +141,7 @@ class DoctorConsultationFeeWidget extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              "${(consultationFee["originalAmount"] as String?) ?? ""}",
+                              (consultationFee["originalAmount"] as String?) ?? "",
                               style: getRegularStyle(
                                 fontFamily: FontConstant.cairo,
                                 color: AppColors.textSecondary,
