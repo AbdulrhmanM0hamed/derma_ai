@@ -96,6 +96,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUp => 'Sign Up';
 
   @override
+  String get enterConfirmPassword => 'Enter confirm password';
+
+  @override
   String get createAccount => 'Create Account';
 
   @override

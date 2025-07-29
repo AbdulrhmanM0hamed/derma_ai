@@ -28,7 +28,7 @@
     "orContinueWith": "Or continue with",
     "dontHaveAccount": "Don't have an account?",
     "signUp": "Sign Up",
-    
+    "enterConfirmPassword": "Enter confirm password",
     "createAccount": "Create Account",
     "signUpToGetStarted": "Sign up to get started with DermaAI",
     "fullName": "Full Name",

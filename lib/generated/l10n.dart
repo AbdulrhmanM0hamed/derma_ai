@@ -330,6 +330,16 @@ class S {
     );
   }
 
+  /// `Enter confirm password`
+  String get enterConfirmPassword {
+    return Intl.message(
+      'Enter confirm password',
+      name: 'enterConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create Account`
   String get createAccount {
     return Intl.message(

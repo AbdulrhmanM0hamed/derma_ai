@@ -1,11 +1,13 @@
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:derma_ai/core/widgets/custom_button.dart';
 import 'package:derma_ai/core/widgets/custom_text_field.dart';
+import 'package:derma_ai/features/auth/presentation/widgets/social_auth_section.dart';
 import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
 
@@ -36,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-  Future<void> _register() async {
+  void _register() async {
     if (!_formKey.currentState!.validate()) return;
 
     if (!_acceptTerms) {
@@ -73,7 +75,6 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -95,12 +96,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 16),
                 _buildTermsAndConditions(),
                 const SizedBox(height: 24),
-                _buildRegisterButton(),
+                _buildSignUpButton(),
                 const SizedBox(height: 24),
-                _buildDivider(),
-                const SizedBox(height: 24),
-                _buildSocialLogin(),
-                const SizedBox(height: 24),
+                const SocialAuthSection(),
+                const SizedBox(height: 32),
                 _buildSignInLink(),
               ],
             ),
@@ -129,24 +128,17 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
           child: Center(
-            child: Text(
-              'D',
-              style: getBoldStyle(
-                color: AppColors.primary,
-                fontSize: 36,
-                fontFamily: FontConstant.cairo,
-              ),
+            child: SvgPicture.asset(
+              'assets/images/logo.svg',
+              width: 90,
+              height: 90,
             ),
           ),
         ).animate(effects: fadeInScaleUp(duration: 600.ms, begin: 0.5)),
-        const SizedBox(height: 32),
+        const SizedBox(height: 16),
         Text(
           AppLocalizations.of(context)!.createAccount,
-          style: getBoldStyle(
-            color: AppColors.textPrimary,
-            fontSize: 32,
-            fontFamily: FontConstant.cairo,
-          ),
+          style: getBoldStyle(fontSize: 24, fontFamily: FontConstant.cairo),
           textAlign: TextAlign.center,
         ).animate(
           effects: fadeInSlide(duration: 600.ms, delay: 200.ms, beginY: 0.2),
@@ -156,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
           AppLocalizations.of(context)!.signUpToGetStarted,
           style: getRegularStyle(
             color: AppColors.textSecondary,
-            fontSize: 16,
+            fontSize: 14,
             fontFamily: FontConstant.cairo,
           ),
           textAlign: TextAlign.center,
@@ -234,7 +226,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return CustomTextField(
       controller: _confirmPasswordController,
       labelText: AppLocalizations.of(context)!.confirmPassword,
-      hintText: 'Enter confirm password',
+      hintText: AppLocalizations.of(context)!.enterConfirmPassword,
       prefixIcon: Icons.lock_outline,
       obscureText: _obscureConfirmPassword,
       suffixIcon: Icons.visibility_off,
@@ -271,10 +263,7 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.only(top: 12),
             child: RichText(
               text: TextSpan(
-                style: getRegularStyle(
-                  color: AppColors.textSecondary,
-                  fontFamily: FontConstant.cairo,
-                ),
+                style: getRegularStyle(fontFamily: FontConstant.cairo),
                 children: [
                   TextSpan(text: AppLocalizations.of(context)!.iAgreeToThe),
                   TextSpan(
@@ -301,7 +290,7 @@ class _RegisterPageState extends State<RegisterPage> {
     ).animate(effects: fadeIn(duration: 600.ms, delay: 800.ms));
   }
 
-  Widget _buildRegisterButton() {
+  Widget _buildSignUpButton() {
     return Animate(
       effects: [
         FadeEffect(duration: 600.ms, delay: 900.ms),
@@ -312,110 +301,15 @@ class _RegisterPageState extends State<RegisterPage> {
           delay: 900.ms,
         ),
       ],
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primary.withValues(alpha: 0.3),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: CustomButton(
-          text: AppLocalizations.of(context)!.signUp,
-          onPressed: _register,
-          isLoading: _isLoading,
-          type: ButtonType.primary,
-          width: double.infinity,
-          height: 56,
-        ),
+      child: CustomButton(
+        text: AppLocalizations.of(context)!.signUp,
+        onPressed: _isLoading ? () {} : () => _register(),
+        isLoading: _isLoading,
+        type: ButtonType.primary,
+        width: double.infinity,
+        height: 56,
       ),
     );
-  }
-
-  Widget _buildDivider() {
-    return Row(
-      children: [
-        const Expanded(child: Divider(color: AppColors.border)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            AppLocalizations.of(context)!.orContinueWith,
-            style: getRegularStyle(
-              color: AppColors.textSecondary,
-              fontFamily: FontConstant.cairo,
-            ),
-          ),
-        ),
-        const Expanded(child: Divider(color: AppColors.border)),
-      ],
-    ).animate(effects: fadeIn(duration: 600.ms, delay: 1000.ms));
-  }
-
-  Widget _buildSocialLogin() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _buildSocialButton(
-          icon: Icons.g_mobiledata,
-          onPressed: () {
-            // Register with Google
-          },
-        ),
-        const SizedBox(width: 16),
-        _buildSocialButton(
-          icon: Icons.facebook,
-          onPressed: () {
-            // Register with Facebook
-          },
-        ),
-        const SizedBox(width: 16),
-        _buildSocialButton(
-          icon: Icons.apple,
-          onPressed: () {
-            // Register with Apple
-          },
-        ),
-      ],
-    ).animate(effects: fadeIn(duration: 600.ms, delay: 1100.ms));
-  }
-
-  Widget _buildSocialButton({
-    required IconData icon,
-    required VoidCallback onPressed,
-  }) {
-    return InkWell(
-          onTap: onPressed,
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AppColors.border),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withValues(alpha: 0.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Icon(icon, color: AppColors.textSecondary, size: 24),
-            ),
-          ),
-        )
-        .animate(onPlay: (controller) => controller.repeat(reverse: true))
-        .scaleXY(
-          begin: 1,
-          end: 1.05,
-          duration: 2000.ms,
-          curve: Curves.easeInOut,
-        );
   }
 
   Widget _buildSignInLink() {

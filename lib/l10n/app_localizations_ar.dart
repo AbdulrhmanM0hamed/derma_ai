@@ -96,6 +96,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signUp => 'إنشاء حساب';
 
   @override
+  String get enterConfirmPassword => 'أدخل تأكيد كلمة المرور';
+
+  @override
   String get createAccount => 'إنشاء حساب';
 
   @override

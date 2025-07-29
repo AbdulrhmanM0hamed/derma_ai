@@ -266,6 +266,12 @@ abstract class AppLocalizations {
   /// **'Sign Up'**
   String get signUp;
 
+  /// No description provided for @enterConfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter confirm password'**
+  String get enterConfirmPassword;
+
   /// No description provided for @createAccount.
   ///
   /// In en, this message translates to:

@@ -63,7 +63,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
     final isSmallScreen = screenSize.height < 700;
     final imageSize =
         isSmallScreen ? screenSize.width * 0.65 : screenSize.width * 0.78;
-    final titleFontSize = isSmallScreen ? 24.0 : 28.0;
+    final titleFontSize = isSmallScreen ? 22.0 : 24.0;
     final descriptionFontSize = isSmallScreen ? 14.0 : 16.0;
 
     return SafeArea(
@@ -171,7 +171,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     item.title,
                     style: getBoldStyle(
                       fontSize: titleFontSize,
-                      color: AppColors.textPrimary,
                       fontFamily: FontConstant.cairo,
                     ),
                     textAlign: TextAlign.center,

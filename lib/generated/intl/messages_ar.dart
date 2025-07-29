@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "education": MessageLookupByLibrary.simpleMessage("التعليم"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "enterConfirmPassword":
+            MessageLookupByLibrary.simpleMessage("أدخل تأكيد كلمة المرور"),
         "enterEmail":
             MessageLookupByLibrary.simpleMessage("أدخل بريدك الإلكتروني"),
         "enterFullName":
