@@ -107,25 +107,21 @@ class OnboardingPageView extends StatelessWidget {
                         height: 280,
                         width: 280,
                         fit: BoxFit.contain,
-),
+                      ),
                     ),
                   ],
                 ),
               ),
-),
+            ),
             const Spacer(flex: 1),
             // Title with enhanced typography
             Text(
               item.title,
-              style: getBoldStyle(
-                fontSize: 32,
-                color: AppColors.textPrimary,
-                fontFamily: FontConstant.cairo,
-              ),
+              style: getBoldStyle(fontSize: 32, fontFamily: FontConstant.cairo),
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-),
+            ),
             const SizedBox(height: 24),
             // Description with better spacing
             Padding(
@@ -136,12 +132,11 @@ class OnboardingPageView extends StatelessWidget {
                   fontSize: 18,
                   color: AppColors.textSecondary,
                   fontFamily: FontConstant.cairo,
-                
                 ),
                 textAlign: TextAlign.center,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-),
+              ),
             ),
             const Spacer(flex: 2),
           ],

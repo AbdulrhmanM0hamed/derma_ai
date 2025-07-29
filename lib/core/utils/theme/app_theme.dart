@@ -9,7 +9,6 @@ import 'custom_themes/outline_button_theme.dart';
 import 'custom_themes/text_field_theme.dart';
 import 'custom_themes/text_theme.dart';
 
-
 class AppTheme {
   AppTheme._();
 
@@ -33,15 +32,13 @@ class AppTheme {
       primary: AppColors.primary,
       secondary: AppColors.secondary,
       surface: Colors.white,
-   
+
       error: AppColors.error,
     ),
     cardColor: Colors.white,
     shadowColor: Colors.black.withValues(alpha: 0.04),
     dividerColor: Colors.grey.shade200,
-    extensions: [
-      CustomColors.light,
-    ],
+    extensions: [CustomColors.light],
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -49,7 +46,7 @@ class AppTheme {
     fontFamily: 'Cairo',
     brightness: Brightness.dark,
     primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: const Color(0xFF1A1A1A),
+    scaffoldBackgroundColor: const Color(0xFF1E1E1E),
     textTheme: TTextTheme.darkTextTheme,
     elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
     appBarTheme: TAppBarTheme.darkAppBarTheme,
@@ -63,16 +60,14 @@ class AppTheme {
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
-      surface:  Color(0xFF2A2A2A),
-     
+      surface: Color(0xFF2A2A2A),
+
       error: AppColors.error,
     ),
     cardColor: const Color(0xFF2A2A2A),
     shadowColor: Colors.black.withValues(alpha: 0.2),
     dividerColor: Colors.grey.shade800,
-    extensions: [
-      CustomColors.dark,
-    ],
+    extensions: [CustomColors.dark],
   );
 }
 
@@ -144,7 +139,8 @@ class CustomColors extends ThemeExtension<CustomColors> {
       textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
       textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
       timeContainerBg: Color.lerp(timeContainerBg, other.timeContainerBg, t)!,
-      timeContainerBorder: Color.lerp(timeContainerBorder, other.timeContainerBorder, t)!,
+      timeContainerBorder:
+          Color.lerp(timeContainerBorder, other.timeContainerBorder, t)!,
     );
   }
 }

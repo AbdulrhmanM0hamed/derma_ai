@@ -9,8 +9,8 @@ import '../../../../core/utils/helper/on_genrated_routes.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 
-class HomeWelcomeSection extends StatelessWidget {
-  const HomeWelcomeSection({super.key});
+class AiFeatureCard extends StatelessWidget {
+  const AiFeatureCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class HomeWelcomeSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
      
-        const SizedBox(height: 24),
+        const SizedBox(height: 8),
         Animate(
           effects: fadeInScaleUp(
             duration: 400.ms,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_welcome_section.dart';
+import 'ai_feature_card.dart';
 import 'home_features_section.dart';
 import 'home_top_doctors_section.dart';
 import 'home_recent_diagnoses_section.dart';
@@ -23,7 +23,7 @@ class HomePageBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                HomeWelcomeSection(),
+                AiFeatureCard(),
                 SizedBox(height: 32),
                 HomeFeaturesSection(),
                 SizedBox(height: 32),
