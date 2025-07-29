@@ -66,22 +66,7 @@ class DoctorCardWidget extends StatelessWidget {
         onDismissed: (direction) {
           // Handle swipe actions
         },
-        child: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.04,
-            vertical: screenHeight * 0.01,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.grey.withValues(alpha: 0.1),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
+        child: Card(
           child: Padding(
             padding: EdgeInsets.all(screenWidth * 0.04),
             child: Column(
@@ -97,12 +82,12 @@ class DoctorCardWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: AppColors.primary.withValues(alpha: 0.2),
+                            color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
                             width: 1,
                           ),
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(14),
                           child: Image.network(
                             doctor["profileImage"] as String,
                             width: screenWidth * 0.2,
@@ -112,7 +97,7 @@ class DoctorCardWidget extends StatelessWidget {
                                 (context, error, stackTrace) => Icon(
                                   Icons.person,
                                   size: screenWidth * 0.1,
-                                  color: AppColors.textSecondary,
+                                  color: Theme.of(context).iconTheme.color,
                                 ),
                           ),
                         ),
@@ -127,7 +112,7 @@ class DoctorCardWidget extends StatelessWidget {
                             doctor["nameArabic"] as String,
                             style: getSemiBoldStyle(
                               fontFamily: FontConstant.cairo,
-                              color: AppColors.textPrimary,
+                              color: Theme.of(context).textTheme.titleMedium?.color,
                               fontSize: 16,
                             ),
                             maxLines: 1,
@@ -138,7 +123,7 @@ class DoctorCardWidget extends StatelessWidget {
                             doctor["nameEnglish"] as String,
                             style: getRegularStyle(
                               fontFamily: FontConstant.cairo,
-                              color: AppColors.textSecondary,
+                              color: Theme.of(context).textTheme.bodySmall?.color,
                               fontSize: 12,
                             ),
                             maxLines: 1,
@@ -149,7 +134,7 @@ class DoctorCardWidget extends StatelessWidget {
                             doctor["specialtyArabic"] as String,
                             style: getMediumStyle(
                               fontFamily: FontConstant.cairo,
-                              color: AppColors.primary,
+                              color: Theme.of(context).primaryColor,
                               fontSize: 14,
                             ),
                             maxLines: 1,
@@ -173,7 +158,7 @@ class DoctorCardWidget extends StatelessWidget {
                             Text(
                               doctor["rating"].toString(),
                               style: getSemiBoldStyle(
-                                color: AppColors.textPrimary,
+                                color: Theme.of(context).textTheme.bodyMedium?.color ?? AppColors.textPrimary,
                                 fontSize: 12,
                                 fontFamily: FontConstant.cairo,
                               ),
@@ -185,7 +170,7 @@ class DoctorCardWidget extends StatelessWidget {
                           "${doctor["reviewCount"]} تقييم",
                           style: getRegularStyle(
                             fontFamily: FontConstant.cairo,
-                            color: AppColors.textSecondary,
+                            color: Theme.of(context).textTheme.bodySmall?.color,
                             fontSize: 12,
                           ),
                         ),
@@ -195,14 +180,14 @@ class DoctorCardWidget extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.location_on_outlined,
-                              color: AppColors.textSecondary,
+                              color: Theme.of(context).iconTheme.color,
                               size: screenWidth * 0.04,
                             ),
                             SizedBox(width: screenWidth * 0.01),
                             Text(
                               "${doctor["distance"]} كم",
                               style: getRegularStyle(
-                                color: AppColors.textPrimary,
+                                color: Theme.of(context).textTheme.bodyMedium?.color ?? AppColors.textPrimary,
                                 fontSize: 12,
                                 fontFamily: FontConstant.cairo,
                               ),
@@ -232,7 +217,7 @@ class DoctorCardWidget extends StatelessWidget {
                             Text(
                               "الموعد التالي",
                               style: getMediumStyle(
-                                color: AppColors.textSecondary,
+                                color: Theme.of(context).textTheme.bodySmall?.color,
                                 fontSize: 12,
                                 fontFamily: FontConstant.cairo,
                               ),
@@ -241,7 +226,7 @@ class DoctorCardWidget extends StatelessWidget {
                             Text(
                               doctor["nextAvailable"] as String,
                               style: getBoldStyle(
-                                color: AppColors.textPrimary,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 16,
                                 fontFamily: FontConstant.cairo,
                               ),
@@ -267,7 +252,7 @@ class DoctorCardWidget extends StatelessWidget {
                             "رسوم الاستشارة",
                             style: getRegularStyle(
                               fontFamily: FontConstant.cairo,
-                              color: AppColors.textSecondary,
+                              color: Theme.of(context).textTheme.bodySmall?.color,
                               fontSize: 12,
                             ),
                           ),
@@ -275,8 +260,8 @@ class DoctorCardWidget extends StatelessWidget {
                           Text(
                             doctor["consultationFee"] as String,
                             style: getSemiBoldStyle(
-                              color: AppColors.primary,
-                              fontSize: 14,
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 16,
                               fontFamily: FontConstant.cairo,
                             ),
                           ),

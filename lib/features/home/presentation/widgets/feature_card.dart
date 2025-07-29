@@ -1,6 +1,7 @@
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -22,18 +23,20 @@ class FeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: theme.cardColor,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withValues(alpha:0.1),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              color: AppColors.textSecondary.withValues(alpha:0.5),
+              blurRadius: 8,
+              spreadRadius: -2,
+              offset: const Offset(0, 5),
             ),
           ],
         ),
@@ -44,7 +47,7 @@ class FeatureCard extends StatelessWidget {
               width: 35,
               height: 35,
               decoration: BoxDecoration(
-                color: color.withValues(alpha:0.1),
+                color: color.withValues(alpha:0.15),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -60,8 +63,8 @@ class FeatureCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               title,
-              style: getMediumStyle(
-                color: AppColors.textPrimary,
+              style: getSemiBoldStyle(
+                color: theme.colorScheme.onSurface,
                 fontSize: 14,
                 fontFamily: FontConstant.cairo,
               ),
@@ -71,12 +74,7 @@ class FeatureCard extends StatelessWidget {
             ),
           ],
         ),
-      ).animate(effects: cardSelection(
-        duration: 200.ms,
-        scaleBegin: const Offset(1, 1),
-        scaleEnd: const Offset(0.95, 0.95),
-        color: color,
-      )),
+      ).animate().fadeIn(duration: 500.ms).scale(delay: 100.ms),
     );
   }
 }

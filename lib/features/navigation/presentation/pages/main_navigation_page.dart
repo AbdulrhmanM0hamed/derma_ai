@@ -27,74 +27,75 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Use AnnotatedRegion to control the system UI overlay style
+    final theme = Theme.of(context);
+    final isLight = theme.brightness == Brightness.light;
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        // Set the system navigation bar color to white to match the bottom nav bar
-        systemNavigationBarColor: Colors.white,
-        // Set the system navigation bar icons to dark for visibility
-        systemNavigationBarIconBrightness: Brightness.dark,
-        // Keep the status bar transparent for an edge-to-edge feel
+      value: SystemUiOverlayStyle(
+        systemNavigationBarColor: theme.scaffoldBackgroundColor,
+        systemNavigationBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
         statusBarColor: Colors.transparent,
-        // Set the status bar icons to dark for visibility on light backgrounds
-        statusBarIconBrightness: Brightness.dark,
+        statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
       ),
       child: Scaffold(
         body: IndexedStack(
           index: currentPage,
           children: _pages,
         ),
-        bottomNavigationBar: SafeArea(
-          // Use SafeArea to avoid overlap with system navigation buttons
-          child: CircleBottomNavigation(
-            initialSelection: currentPage,
-            circleColor: AppColors.primary,
-            activeIconColor: Colors.white,
-            inactiveIconColor: Theme.of(context).unselectedWidgetColor,
-            textColor: Theme.of(context).colorScheme.onSurface,
-            barBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            circleSize: 60.0,
-            barHeight: 60.0,
-            arcHeight: 70.0,
-            arcWidth: 90.0,
-            circleOutline: 10.0,
-            shadowAllowance: 20.0,
-            hasElevationShadows: true,
-            blurShadowRadius: 8.0,
-            tabs: [
-              TabData(
-                icon: Icons.home,
-                title: 'الرئيسية',
-                iconSize: 24,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-              TabData(
-                icon: Icons.local_hospital,
-                title: 'الأطباء',
-                iconSize: 24,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-              TabData(
-                icon: Icons.calendar_today,
-                title: 'المواعيد',
-                iconSize: 24,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-              TabData(
-                icon: Icons.person,
-                title: 'الحساب',
-                iconSize: 24,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-            ],
-            onTabChangedListener: (index) {
-              setState(() => currentPage = index);
-              HapticFeedback.lightImpact();
-            },
+        bottomNavigationBar: Material(
+          elevation: 8.0,
+          shadowColor: Colors.black.withOpacity(0.1),
+          child: SafeArea(
+            child: CircleBottomNavigation(
+              initialSelection: currentPage,
+              circleColor: AppColors.primary,
+              activeIconColor: Colors.white,
+              inactiveIconColor: theme.unselectedWidgetColor,
+              textColor: theme.colorScheme.onSurface,
+              barBackgroundColor: theme.scaffoldBackgroundColor,
+              circleSize: 60.0,
+              barHeight: 60.0,
+              arcHeight: 70.0,
+              arcWidth: 90.0,
+              circleOutline: 10.0,
+              shadowAllowance: 20.0,
+              hasElevationShadows: true,
+              blurShadowRadius: 8.0,
+              tabs: [
+                TabData(
+                  icon: Icons.home,
+                  title: 'الرئيسية',
+                  iconSize: 24,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+                TabData(
+                  icon: Icons.local_hospital,
+                  title: 'الأطباء',
+                  iconSize: 24,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+                TabData(
+                  icon: Icons.calendar_today,
+                  title: 'المواعيد',
+                  iconSize: 24,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+                TabData(
+                  icon: Icons.person,
+                  title: 'الحساب',
+                  iconSize: 24,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ],
+              onTabChangedListener: (index) {
+                setState(() => currentPage = index);
+                HapticFeedback.lightImpact();
+              },
+            ),
           ),
         ),
       ),

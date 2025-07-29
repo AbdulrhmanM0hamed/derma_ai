@@ -66,7 +66,7 @@ class HomeFeaturesSection extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
-            crossAxisSpacing: 4,
+            crossAxisSpacing: 8,
             mainAxisSpacing: 16,
             childAspectRatio: 0.8,
           ),

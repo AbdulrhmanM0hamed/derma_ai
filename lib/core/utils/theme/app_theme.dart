@@ -36,8 +36,17 @@ class AppTheme {
       error: AppColors.error,
     ),
     cardColor: Colors.white,
-    shadowColor: Colors.black.withValues(alpha: 0.04),
+    shadowColor: Colors.grey.withValues(alpha: 0.15),
     dividerColor: Colors.grey.shade200,
+    cardTheme: const CardThemeData(
+      elevation: 8,
+      shadowColor: Colors.grey,
+      surfaceTintColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+      ),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
     extensions: [CustomColors.light],
   );
 
@@ -65,8 +74,17 @@ class AppTheme {
       error: AppColors.error,
     ),
     cardColor: const Color(0xFF2A2A2A),
-    shadowColor: Colors.black.withValues(alpha: 0.2),
+    shadowColor: Colors.black.withOpacity(0.3),
     dividerColor: Colors.grey.shade800,
+    cardTheme: const CardThemeData(
+      elevation: 8,
+      shadowColor: Colors.black,
+      surfaceTintColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+      ),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
     extensions: [CustomColors.dark],
   );
 }
