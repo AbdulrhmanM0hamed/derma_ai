@@ -63,8 +63,9 @@ class DoctorEducationWidget extends StatelessWidget {
                 color: AppColors.primary,
               ),
             ),
-            SizedBox(height: screenHeight * 0.01),
+            SizedBox(height: screenHeight * 0.02),
             ListView.separated(
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: education.length,
@@ -75,7 +76,7 @@ class DoctorEducationWidget extends StatelessWidget {
                 return _EducationListItem(edu: edu, index: index);
               },
             ),
-            SizedBox(height: screenHeight * 0.02),
+            SizedBox(height: screenHeight * 0.03),
           ],
           // Certifications Section
           if (certifications.isNotEmpty) ...[
@@ -87,8 +88,9 @@ class DoctorEducationWidget extends StatelessWidget {
                 color: AppColors.primary,
               ),
             ),
-            SizedBox(height: screenHeight * 0.01),
+            SizedBox(height: screenHeight * 0.02),
             ListView.separated(
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: certifications.length,

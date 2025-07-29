@@ -31,7 +31,7 @@ class DoctorHeroSectionWidget extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            AppColors.primary.withOpacity(0.1),
+            AppColors.primary.withValues(alpha:0.1),
             Colors.white,
           ],
           stops: const [0.0, 0.7],
@@ -52,7 +52,7 @@ class DoctorHeroSectionWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(18),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.primary.withOpacity(0.2),
+                        color: AppColors.primary.withValues(alpha:0.2),
                         blurRadius: 15,
                         offset: const Offset(0, 5),
                       ),
@@ -101,7 +101,7 @@ class DoctorHeroSectionWidget extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03, vertical: screenHeight * 0.005),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.1),
+                        color: AppColors.primary.withValues(alpha:0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -148,7 +148,7 @@ class DoctorHeroSectionWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.textSecondary.withOpacity(0.1),
+                        color: AppColors.textSecondary.withValues(alpha:0.1),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),

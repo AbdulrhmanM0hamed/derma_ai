@@ -53,6 +53,7 @@ class DoctorSpecializationsWidget extends StatelessWidget {
           ),
           SizedBox(height: screenHeight * 0.02),
           ListView.separated(
+            padding: EdgeInsets.zero,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: specializations.length,

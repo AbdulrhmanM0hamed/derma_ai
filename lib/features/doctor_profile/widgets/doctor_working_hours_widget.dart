@@ -27,6 +27,7 @@ class DoctorWorkingHoursWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(
+          
           horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
       padding: EdgeInsets.all(screenWidth * 0.04),
       decoration: BoxDecoration(
@@ -34,7 +35,7 @@ class DoctorWorkingHoursWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(screenWidth * 0.03),
         boxShadow: [
           BoxShadow(
-            color: AppColors.textSecondary.withOpacity(0.05),
+            color: AppColors.textSecondary.withValues(alpha:0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -63,6 +64,7 @@ class DoctorWorkingHoursWidget extends StatelessWidget {
           ),
           SizedBox(height: screenHeight * 0.02),
           ListView.separated(
+            padding: EdgeInsets.zero,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: workingHours.keys.length,
@@ -98,13 +100,13 @@ class _WorkingHoursListItem extends StatelessWidget {
       padding: EdgeInsets.all(screenWidth * 0.03),
       decoration: BoxDecoration(
         color: isAvailable
-            ? AppColors.primary.withOpacity(0.05)
-            : AppColors.textSecondary.withOpacity(0.05),
+            ? AppColors.primary.withValues(alpha:0.05)
+            : AppColors.textSecondary.withValues(alpha:0.05),
         borderRadius: BorderRadius.circular(screenWidth * 0.02),
         border: Border.all(
           color: isAvailable
-              ? AppColors.primary.withOpacity(0.2)
-              : AppColors.textSecondary.withOpacity(0.2),
+              ? AppColors.primary.withValues(alpha:0.2)
+              : AppColors.textSecondary.withValues(alpha:0.2),
           width: 1,
         ),
       ),

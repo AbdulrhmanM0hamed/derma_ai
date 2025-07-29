@@ -255,7 +255,7 @@ class _ReviewListItem extends StatelessWidget {
           ),
           SizedBox(height: screenHeight * 0.015),
           Text(
-            (review["comment"] as String?) ?? "",
+            (review["reviewText"] as String?) ?? "",
             style: getRegularStyle(
                 fontFamily: FontConstant.cairo,
                 color: AppColors.textSecondary,

@@ -41,7 +41,7 @@ class _DoctorAvailabilityCalendarWidgetState
         borderRadius: BorderRadius.circular(screenWidth * 0.03),
         boxShadow: [
           BoxShadow(
-            color: AppColors.textSecondary.withOpacity(0.05),
+            color: AppColors.textSecondary.withValues(alpha:0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -173,14 +173,14 @@ class _DayItem extends StatelessWidget {
               ? AppColors.primary
               : hasSlots
                   ? Colors.white
-                  : AppColors.textSecondary.withOpacity(0.1),
+                  : AppColors.textSecondary.withValues(alpha:0.1),
           borderRadius: BorderRadius.circular(screenWidth * 0.02),
           border: Border.all(
             color: isSelected
                 ? AppColors.primary
                 : hasSlots
-                    ? AppColors.primary.withOpacity(0.3)
-                    : AppColors.textSecondary.withOpacity(0.3),
+                    ? AppColors.primary.withValues(alpha:0.3)
+                    : AppColors.textSecondary.withValues(alpha:0.3),
             width: 1,
           ),
         ),
@@ -247,14 +247,14 @@ class _TimeSlotItem extends StatelessWidget {
               ? AppColors.primary
               : isAvailable
                   ? Colors.white
-                  : AppColors.textSecondary.withOpacity(0.1),
+                  : AppColors.textSecondary.withValues(alpha:0.1),
           borderRadius: BorderRadius.circular(screenWidth * 0.02),
           border: Border.all(
             color: isSelected
                 ? AppColors.primary
                 : isAvailable
-                    ? AppColors.primary.withOpacity(0.3)
-                    : AppColors.textSecondary.withOpacity(0.3),
+                    ? AppColors.primary.withValues(alpha:0.3)
+                    : AppColors.textSecondary.withValues(alpha:0.3),
             width: 1,
           ),
         ),
@@ -288,7 +288,7 @@ class _NoSlotsAvailable extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(screenWidth * 0.04),
       decoration: BoxDecoration(
-        color: AppColors.textSecondary.withOpacity(0.05),
+        color: AppColors.textSecondary.withValues(alpha:0.05),
         borderRadius: BorderRadius.circular(screenWidth * 0.02),
       ),
       child: Column(
