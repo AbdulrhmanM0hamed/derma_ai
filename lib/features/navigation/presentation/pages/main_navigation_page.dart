@@ -44,7 +44,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         ),
         bottomNavigationBar: Material(
           elevation: 8.0,
-          shadowColor: Colors.black.withOpacity(0.1),
+          shadowColor: Colors.black.withValues(alpha:0.1),
           child: SafeArea(
             child: CircleBottomNavigation(
               initialSelection: currentPage,

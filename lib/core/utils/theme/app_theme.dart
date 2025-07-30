@@ -74,7 +74,7 @@ class AppTheme {
       error: AppColors.error,
     ),
     cardColor: const Color(0xFF2A2A2A),
-    shadowColor: Colors.black.withOpacity(0.3),
+    shadowColor: Colors.black.withValues(alpha:0.3),
     dividerColor: Colors.grey.shade800,
     cardTheme: const CardThemeData(
       elevation: 8,

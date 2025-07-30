@@ -23,9 +23,6 @@ class DiseaseInfoCard extends StatefulWidget {
 class _DiseaseInfoCardState extends State<DiseaseInfoCard> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
     return Card(
           margin: const EdgeInsets.only(bottom: 16),
           child: Padding(
