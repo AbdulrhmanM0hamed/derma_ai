@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
-import '../../../../core/utils/theme/app_colors.dart';
 import '../../data/dummy_health_tips_data.dart';
 import 'article_card.dart';
 import 'daily_tip_card.dart';
@@ -22,7 +21,6 @@ class HealthTipsBody extends StatelessWidget {
           Text(
             'نصيحة اليوم',
             style: getBoldStyle(
-              color: AppColors.textPrimary,
               fontSize: 20,
               fontFamily: FontConstant.cairo,
             ),
@@ -36,7 +34,6 @@ class HealthTipsBody extends StatelessWidget {
           Text(
             'مقالات طبية',
             style: getBoldStyle(
-              color: AppColors.textPrimary,
               fontSize: 20,
               fontFamily: FontConstant.cairo,
             ),
@@ -55,7 +52,6 @@ class HealthTipsBody extends StatelessWidget {
           Text(
             'معلومات عن الأمراض الجلدية',
             style: getBoldStyle(
-              color: AppColors.textPrimary,
               fontSize: 20,
               fontFamily: FontConstant.cairo,
             ),
