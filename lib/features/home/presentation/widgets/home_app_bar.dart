@@ -21,8 +21,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           end: Alignment.bottomRight,
           colors: [
             AppColors.primary,
-            AppColors.primary.withValues(alpha: 0.8),
-            AppColors.secondary,
+            const Color.fromARGB(255, 35, 102, 196).withValues(alpha: 0.8),
+            const Color.fromARGB(255, 2, 83, 150),
           ],
         ),
         borderRadius: const BorderRadius.only(

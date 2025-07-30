@@ -6,6 +6,11 @@ import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
+import 'package:derma_ai/features/ai_diagnosis/presentation/pages/ai_diagnosis_page.dart';
+import 'package:derma_ai/features/doctor_search_and_browse/doctor_search_and_browse.dart';
+import 'package:derma_ai/features/health_tips/presentation/pages/health_tips_page.dart';
+import 'package:derma_ai/features/skin_care/presentation/pages/skin_care_page.dart';
+
 import 'feature_card.dart';
 
 class HomeFeaturesSection extends StatelessWidget {
@@ -19,31 +24,31 @@ class HomeFeaturesSection extends StatelessWidget {
         'icon': Icons.auto_awesome_outlined,
         'color': AppColors.primary,
         'onTap': () {
-          // Navigate to AI diagnosis
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const AiDiagnosisPage()));
         },
       },
       {
         'title': AppLocalizations.of(context)!.doctorConsultation,
         'icon': Icons.medical_services_outlined,
-        'color': const Color.fromARGB(255, 115, 182, 238),
+        'color': AppColors.secondary,
         'onTap': () {
-          // Navigate to doctor consultation
+           Navigator.push(context, MaterialPageRoute(builder: (context) => const DoctorSearchAndBrowse()));
         },
       },
       {
         'title': AppLocalizations.of(context)!.skinCare,
         'icon': Icons.spa_outlined,
-        'color': const Color.fromARGB(255, 8, 150, 194),
+        'color': AppColors.tertiary,
         'onTap': () {
-          // Navigate to skin care
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const SkinCarePage()));
         },
       },
       {
         'title': AppLocalizations.of(context)!.healthTips,
         'icon': Icons.lightbulb_outline,
-        'color': Colors.orange,
+        'color': AppColors.quaternary,
         'onTap': () {
-          // Navigate to health tips
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const HealthTipsPage()));
         },
       },
     ];

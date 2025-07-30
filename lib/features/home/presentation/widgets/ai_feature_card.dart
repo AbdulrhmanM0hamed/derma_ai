@@ -28,6 +28,7 @@ class AiFeatureCard extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
+              
               gradient: const LinearGradient(
                 colors: AppColors.medicalGradient,
                 begin: Alignment.topLeft,
