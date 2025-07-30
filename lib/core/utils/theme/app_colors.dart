@@ -28,7 +28,7 @@ class AppColors {
   static const List<Color> primaryGradient = [
     
     Color(0xFF005F73),
-    Color(0xFF00A8CC),
+    Color(0xFF3F8EFC),
   ];
 
   static const List<Color> secondaryGradient = [
