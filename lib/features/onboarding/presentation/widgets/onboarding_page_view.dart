@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/utils/constant/font_manger.dart';
@@ -32,115 +33,48 @@ class OnboardingPageView extends StatelessWidget {
   }
 
   Widget _buildOnboardingPage(OnboardingItem item) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: Column(
-          children: [
-            const Spacer(flex: 2),
-            // Image container with professional design
-            Container(
-              height: 350,
-              width: 350,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.white,
-                    AppColors.primary.withValues(alpha: 0.08),
-                    Colors.white.withValues(alpha: 0.95),
-                  ],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withValues(alpha: 0.15),
-                    blurRadius: 40,
-                    offset: const Offset(0, 20),
-                    spreadRadius: -5,
-                  ),
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 20,
-                    offset: const Offset(0, 10),
-                  ),
-                ],
-                border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.8),
-                  width: 1,
-                ),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(40),
-                child: Stack(
-                  children: [
-                    // Subtle background pattern
-                    Positioned(
-                      top: -50,
-                      right: -50,
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary.withValues(alpha: 0.03),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: -30,
-                      left: -30,
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary.withValues(alpha: 0.02),
-                        ),
-                      ),
-                    ),
-                    // Main image
-                    Center(
-                      child: SvgPicture.asset(
-                        item.image,
-                        height: 280,
-                        width: 280,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Spacer(flex: 3),
+          SvgPicture.asset(
+            item.image,
+            height: 300,
+            fit: BoxFit.contain,
+          )
+              .animate()
+              .fadeIn(duration: 900.ms, delay: 300.ms)
+              .slideY(begin: 0.2, duration: 700.ms, curve: Curves.easeOut),
+          const Spacer(flex: 2),
+          Text(
+            item.title,
+            textAlign: TextAlign.center,
+            style: getBoldStyle(
+              fontSize: 26,
+              fontFamily: FontConstant.cairo,
             ),
-            const Spacer(flex: 1),
-            // Title with enhanced typography
-            Text(
-              item.title,
-              style: getBoldStyle(fontSize: 32, fontFamily: FontConstant.cairo),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+          )
+              .animate()
+              .fadeIn(duration: 900.ms, delay: 500.ms)
+              .slideY(begin: 0.3, duration: 700.ms, curve: Curves.easeOut),
+          const SizedBox(height: 16),
+          Text(
+            item.description,
+            textAlign: TextAlign.center,
+            style: getRegularStyle(
+              fontSize: 16,
+              color: AppColors.textSecondary,
+              fontFamily: FontConstant.cairo,
+              height: 1.5,
             ),
-            const SizedBox(height: 24),
-            // Description with better spacing
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                item.description,
-                style: getRegularStyle(
-                  fontSize: 18,
-                  color: AppColors.textSecondary,
-                  fontFamily: FontConstant.cairo,
-                ),
-                textAlign: TextAlign.center,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            const Spacer(flex: 2),
-          ],
-        ),
+          )
+              .animate()
+              .fadeIn(duration: 900.ms, delay: 700.ms)
+              .slideY(begin: 0.3, duration: 700.ms, curve: Curves.easeOut),
+          const Spacer(flex: 3),
+        ],
       ),
     );
   }

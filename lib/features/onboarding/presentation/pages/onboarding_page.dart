@@ -82,35 +82,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   curve: Curves.easeOutCubic,
                   height: imageSize,
                   width: imageSize,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(imageSize * 0.12),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.white,
-                        AppColors.primary.withValues(alpha: 0.06),
-                        Colors.white.withValues(alpha: 0.98),
-                      ],
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primary.withValues(alpha: 0.12),
-                        blurRadius: imageSize * 0.12,
-                        offset: Offset(0, imageSize * 0.06),
-                        spreadRadius: -imageSize * 0.02,
-                      ),
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.04),
-                        blurRadius: imageSize * 0.06,
-                        offset: Offset(0, imageSize * 0.03),
-                      ),
-                    ],
-                    border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.9),
-                      width: 1.5,
-                    ),
-                  ),
+               
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(imageSize * 0.12),
                     child: Stack(
@@ -151,8 +123,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               scale: 1.0,
                               child: SvgPicture.asset(
                                 item.image,
-                                height: imageSize * 0.7,
-                                width: imageSize * 0.7,
+                                height: imageSize * 0.9,
+                                width: imageSize * 0.9,
                                 fit: BoxFit.contain,
                               ),
                             ),
@@ -162,7 +134,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: constraints.maxHeight * 0.04),
+                SizedBox(height: constraints.maxHeight * 0.02),
                 // Animated Title with enhanced typography
                 AnimatedOpacity(
                   duration: const Duration(milliseconds: 600),
@@ -212,85 +184,71 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.white,
-              AppColors.primary.withValues(alpha: 0.05),
-              Colors.white,
-            ],
-            stops: const [0.0, 0.5, 1.0],
+      body: Stack(
+        children: [
+          // Background decorative elements
+          Positioned(
+            top: -100,
+            right: -100,
+            child: Container(
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.primary.withValues(alpha: 0.03),
+              ),
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            // Background decorative elements
-            Positioned(
-              top: -100,
-              right: -100,
-              child: Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primary.withValues(alpha: 0.03),
-                ),
+          Positioned(
+            bottom: -150,
+            left: -150,
+            child: Container(
+              width: 400,
+              height: 400,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.primary.withValues(alpha: 0.02),
               ),
             ),
-            Positioned(
-              bottom: -150,
-              left: -150,
-              child: Container(
-                width: 400,
-                height: 400,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primary.withValues(alpha: 0.02),
-                ),
-              ),
-            ),
-            // Main content
-            PageView.builder(
-              controller: _pageController,
-              reverse: Directionality.of(context) == TextDirection.rtl,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentPage = index;
-                });
-              },
-              itemCount: _onboardingItems.length,
-              itemBuilder: (context, index) {
-                return _buildOnboardingPage(_onboardingItems[index]);
+          ),
+          // Main content
+          PageView.builder(
+            controller: _pageController,
+            reverse: Directionality.of(context) == TextDirection.rtl,
+            onPageChanged: (index) {
+              setState(() {
+                _currentPage = index;
+              });
+            },
+            itemCount: _onboardingItems.length,
+            itemBuilder: (context, index) {
+              return _buildOnboardingPage(_onboardingItems[index]);
+            },
+          ),
+          // Skip button
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 20,
+            right: 20,
+            child: OnboardingSkipButton(
+              onSkip: () {
+                Navigator.pushReplacementNamed(context, AppRoutes.login);
               },
             ),
-            // Skip button
-            Positioned(
-              top: MediaQuery.of(context).padding.top + 20,
-              right: 20,
-              child: OnboardingSkipButton(
-                onSkip: () {
-                  Navigator.pushReplacementNamed(context, AppRoutes.login);
-                },
-              ),
+          ),
+          // Navigation controls
+          Positioned(
+            bottom: MediaQuery.of(context).padding.bottom + 25,
+            left: 0,
+            right: 0,
+            child: OnboardingBottomSection(
+              currentPage: _currentPage,
+              totalPages: _onboardingItems.length,
+              onNext: _nextPage,
+              onPrevious: _previousPage,
+              pageController: _pageController,
             ),
-            // Navigation controls
-            Positioned(
-              bottom: MediaQuery.of(context).padding.bottom + 25,
-              left: 0,
-              right: 0,
-              child: OnboardingBottomSection(
-                currentPage: _currentPage,
-                totalPages: _onboardingItems.length,
-                onNext: _nextPage,
-                onPrevious: _previousPage,
-                pageController: _pageController,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

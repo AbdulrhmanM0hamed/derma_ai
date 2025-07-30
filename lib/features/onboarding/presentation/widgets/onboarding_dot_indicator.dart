@@ -1,3 +1,4 @@
+import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 
@@ -24,17 +25,17 @@ class OnboardingDotIndicator extends StatelessWidget {
         gradient: isActive
             ? LinearGradient(
                 colors: [
-                  Colors.white,
-                  Colors.white.withValues(alpha: 0.9),
+                  AppColors.primary,
+                  AppColors.primary,
                 ],
               )
             : null,
-        color: isActive ? null : Colors.white.withValues(alpha: 0.5),
+        color: isActive ? null : AppColors.primary.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(6),
         boxShadow: isActive
             ? [
                 BoxShadow(
-                  color: Colors.white.withValues(alpha: 0.5),
+                  color: AppColors.primary,
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
