@@ -265,15 +265,27 @@ class _RegisterPageState extends State<RegisterPage> {
               text: TextSpan(
                 style: getRegularStyle(fontFamily: FontConstant.cairo),
                 children: [
-                  TextSpan(text: AppLocalizations.of(context)!.iAgreeToThe),
                   TextSpan(
-                    text: 'Terms and Conditions',
+                    text: AppLocalizations.of(context)!.iAgreeToThe,
+                    style: getMediumStyle(
+                      fontFamily: FontConstant.cairo,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                  TextSpan(
+                    text: ' ${AppLocalizations.of(context)!.termsOfService}',
                     style: getSemiBoldStyle(
                       color: AppColors.primary,
                       fontFamily: FontConstant.cairo,
                     ),
                   ),
-                  TextSpan(text: ' ${AppLocalizations.of(context)!.and} '),
+                  TextSpan(
+                    text: ' ${AppLocalizations.of(context)!.and} ',
+                    style: getMediumStyle(
+                      fontFamily: FontConstant.cairo,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
                   TextSpan(
                     text: AppLocalizations.of(context)!.privacyPolicy,
                     style: getSemiBoldStyle(

@@ -30,7 +30,7 @@ class HomeFeaturesSection extends StatelessWidget {
       {
         'title': AppLocalizations.of(context)!.doctorConsultation,
         'icon': Icons.medical_services_outlined,
-        'color': AppColors.secondary,
+        'color': AppColors.third,
         'onTap': () {
            Navigator.push(context, MaterialPageRoute(builder: (context) => const DoctorSearchAndBrowse()));
         },
@@ -38,7 +38,7 @@ class HomeFeaturesSection extends StatelessWidget {
       {
         'title': AppLocalizations.of(context)!.skinCare,
         'icon': Icons.spa_outlined,
-        'color': AppColors.tertiary,
+        'color': const Color.fromARGB(255, 11, 167, 214),
         'onTap': () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const SkinCarePage()));
         },
