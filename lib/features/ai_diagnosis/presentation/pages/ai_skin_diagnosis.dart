@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,13 +16,7 @@ import 'package:derma_ai/features/ai_diagnosis/presentation/widgets/diagnosis_re
 import 'package:derma_ai/features/ai_diagnosis/presentation/widgets/image_preview_widget.dart';
 import 'package:derma_ai/features/ai_diagnosis/presentation/widgets/processing_screen_widget.dart';
 
-enum DiagnosisState {
-  camera,
-  preview,
-  processing,
-  results,
-  history,
-}
+enum DiagnosisState { camera, preview, processing, results, history }
 
 class AiSkinDiagnosis extends StatefulWidget {
   const AiSkinDiagnosis({super.key});
@@ -61,8 +56,8 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
       "recommendations": [
         "استخدام منظف لطيف للوجه مرتين يومياً",
         "تجنب لمس الوجه بالأيدي غير النظيفة",
-        "استشارة طبيب الجلدية للعلاج المناسب"
-      ]
+        "استشارة طبيب الجلدية للعلاج المناسب",
+      ],
     },
     {
       "id": 2,
@@ -76,8 +71,8 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
       "recommendations": [
         "استخدام شامبو طبي مضاد للفطريات",
         "تجنب المنتجات الدهنية على فروة الرأس",
-        "مراجعة طبيب الجلدية لوصف العلاج المناسب"
-      ]
+        "مراجعة طبيب الجلدية لوصف العلاج المناسب",
+      ],
     },
   ];
 
@@ -111,13 +106,16 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
       if (_cameras.isEmpty) return;
 
       // Select appropriate camera
-      final camera = kIsWeb
-          ? _cameras.firstWhere(
-              (c) => c.lensDirection == CameraLensDirection.front,
-              orElse: () => _cameras.first)
-          : _cameras.firstWhere(
-              (c) => c.lensDirection == CameraLensDirection.back,
-              orElse: () => _cameras.first);
+      final camera =
+          kIsWeb
+              ? _cameras.firstWhere(
+                (c) => c.lensDirection == CameraLensDirection.front,
+                orElse: () => _cameras.first,
+              )
+              : _cameras.firstWhere(
+                (c) => c.lensDirection == CameraLensDirection.back,
+                orElse: () => _cameras.first,
+              );
 
       // Initialize camera controller
       _cameraController = CameraController(
@@ -136,7 +134,7 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
         });
       }
     } catch (e) {
-     // print('Camera initialization error: $e');
+      // print('Camera initialization error: $e');
       if (mounted) {
         _showCameraErrorDialog();
       }
@@ -289,97 +287,88 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
   void _showHelpDialog() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          'إرشادات التصوير',
-          textDirection: TextDirection.rtl,
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '• تأكد من وجود إضاءة جيدة',
-              textDirection: TextDirection.rtl,
+      builder:
+          (context) => AlertDialog(
+            title: Text('إرشادات التصوير', textDirection: TextDirection.rtl),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '• تأكد من وجود إضاءة جيدة',
+                  textDirection: TextDirection.rtl,
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                Text(
+                  '• ضع المنطقة المصابة في المربع المحدد',
+                  textDirection: TextDirection.rtl,
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                Text(
+                  '• احتفظ بمسافة مناسبة من الكاميرا',
+                  textDirection: TextDirection.rtl,
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                Text(
+                  '• تجنب الحركة أثناء التصوير',
+                  textDirection: TextDirection.rtl,
+                ),
+              ],
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-            Text(
-              '• ضع المنطقة المصابة في المربع المحدد',
-              textDirection: TextDirection.rtl,
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-            Text(
-              '• احتفظ بمسافة مناسبة من الكاميرا',
-              textDirection: TextDirection.rtl,
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-            Text(
-              '• تجنب الحركة أثناء التصوير',
-              textDirection: TextDirection.rtl,
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(
-              'فهمت',
-              textDirection: TextDirection.rtl,
-            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('فهمت', textDirection: TextDirection.rtl),
+              ),
+            ],
           ),
-        ],
-      ),
     );
   }
 
   void _showPermissionDialog() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          'إذن الكاميرا مطلوب',
-          textDirection: TextDirection.rtl,
-        ),
-        content: Text(
-          'يحتاج التطبيق إلى إذن الوصول للكاميرا لتتمكن من تصوير المنطقة المصابة وتحليلها.',
-          textDirection: TextDirection.rtl,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('إلغاء', textDirection: TextDirection.rtl),
+      builder:
+          (context) => AlertDialog(
+            title: Text('إذن الكاميرا مطلوب', textDirection: TextDirection.rtl),
+            content: Text(
+              'يحتاج التطبيق إلى إذن الوصول للكاميرا لتتمكن من تصوير المنطقة المصابة وتحليلها.',
+              textDirection: TextDirection.rtl,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('إلغاء', textDirection: TextDirection.rtl),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  openAppSettings();
+                },
+                child: Text('الإعدادات', textDirection: TextDirection.rtl),
+              ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              openAppSettings();
-            },
-            child: Text('الإعدادات', textDirection: TextDirection.rtl),
-          ),
-        ],
-      ),
     );
   }
 
   void _showCameraErrorDialog() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          'خطأ في الكاميرا',
-          textDirection: TextDirection.rtl,
-        ),
-        content: Text(
-          'حدث خطأ في تشغيل الكاميرا. يمكنك اختيار صورة من المعرض بدلاً من ذلك.',
-          textDirection: TextDirection.rtl,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('موافق', textDirection: TextDirection.rtl),
+      builder:
+          (context) => AlertDialog(
+            title: Text('خطأ في الكاميرا', textDirection: TextDirection.rtl),
+            content: Text(
+              'حدث خطأ في تشغيل الكاميرا. يمكنك اختيار صورة من المعرض بدلاً من ذلك.',
+              textDirection: TextDirection.rtl,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('موافق', textDirection: TextDirection.rtl),
+              ),
+            ],
           ),
-        ],
-      ),
     );
   }
 
@@ -413,80 +402,72 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBackground,
-      appBar: AppBar(
-        title: Text(
-          'تشخيص الجلد بالذكاء الاصطناعي',
-          textDirection: TextDirection.rtl,
-        ),
+      appBar: CustomAppBar(
+        title: 'تشخيص الجلد بالذكاء الاصطناعي',
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: _showHelpDialog,
-            icon: CustomIconWidget(
-              iconName: 'help_outline',
-              color: AppColors.textPrimary,
-              size: 24,
-            ),
+            icon: CustomIconWidget(iconName: 'help_outline', size: 24),
           ),
         ],
-        bottom: _currentState == DiagnosisState.camera ||
-                _currentState == DiagnosisState.history
-            ? TabBar(
-                controller: _tabController,
-                onTap: (index) {
-                  setState(() {
-                    _currentState = index == 0
-                        ? DiagnosisState.camera
-                        : DiagnosisState.history;
-                  });
-                },
-                tabs: [
-                  Tab(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomIconWidget(
-                          iconName: 'camera_alt',
-                          color: _currentState == DiagnosisState.camera
-                              ? AppColors.primary
-                              : AppColors.textSecondary,
-                          size: 20,
-                        ),
-                        SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                        Text(
-                          'تشخيص جديد',
-                          textDirection: TextDirection.rtl,
-                        ),
-                      ],
+        bottom:
+            _currentState == DiagnosisState.camera ||
+                    _currentState == DiagnosisState.history
+                ? TabBar(
+                  controller: _tabController,
+                  onTap: (index) {
+                    setState(() {
+                      _currentState =
+                          index == 0
+                              ? DiagnosisState.camera
+                              : DiagnosisState.history;
+                    });
+                  },
+                  tabs: [
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomIconWidget(
+                            iconName: 'camera_alt',
+                            color:
+                                _currentState == DiagnosisState.camera
+                                    ? AppColors.primary
+                                    : AppColors.textSecondary,
+                            size: 20,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.02,
+                          ),
+                          Text('تشخيص جديد', textDirection: TextDirection.rtl),
+                        ],
+                      ),
                     ),
-                  ),
-                  Tab(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomIconWidget(
-                          iconName: 'history',
-                          color: _currentState == DiagnosisState.history
-                              ? AppColors.primary
-                              : AppColors.textSecondary,
-                          size: 20,
-                        ),
-                        SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                        Text(
-                          'السجل',
-                          textDirection: TextDirection.rtl,
-                        ),
-                      ],
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomIconWidget(
+                            iconName: 'history',
+                            color:
+                                _currentState == DiagnosisState.history
+                                    ? AppColors.primary
+                                    : AppColors.textSecondary,
+                            size: 20,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.02,
+                          ),
+                          Text('السجل', textDirection: TextDirection.rtl),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              )
-            : null,
+                  ],
+                )
+                : null,
       ),
-      body: SafeArea(
-        child: _buildCurrentScreen(),
-      ),
+      body: SafeArea(child: _buildCurrentScreen()),
     );
   }
 
@@ -554,9 +535,7 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
   }
 
   Widget _buildProcessingScreen() {
-    return ProcessingScreenWidget(
-      currentStatus: _processingStatus,
-    );
+    return ProcessingScreenWidget(currentStatus: _processingStatus);
   }
 
   Widget _buildResultsScreen() {

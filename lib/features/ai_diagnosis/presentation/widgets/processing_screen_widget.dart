@@ -69,7 +69,7 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
                     height: MediaQuery.of(context).size.width * 0.3,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [AppColors.primary, AppColors.secondary],
+                        colors: AppColors.secondaryGradient,
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),

@@ -68,7 +68,7 @@ class DiagnosisHistoryWidget extends StatelessWidget {
   }
 
   Widget _buildEmptyState(BuildContext context) {
-    return  SizedBox(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.7,
       child: Center(
         child: Column(
@@ -120,7 +120,6 @@ class DiagnosisHistoryWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
       decoration: BoxDecoration(
-        color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: AppColors.border.withValues(alpha: 0.3),
@@ -189,7 +188,6 @@ class DiagnosisHistoryWidget extends StatelessWidget {
                     Text(
                       condition,
                       style: getSemiBoldStyle(
-                        color: AppColors.textPrimary,
                         fontSize: 16,
                         fontFamily: FontConstant.cairo,
                       ),

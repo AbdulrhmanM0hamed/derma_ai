@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'doctor_card_widget.dart';
 
 class DoctorsListView extends StatelessWidget {
@@ -39,7 +40,7 @@ class DoctorsListView extends StatelessWidget {
             onFavorite: () => onFavoriteToggle(doctor),
             onShare: () => onShareDoctor(doctor),
             onMessage: () => onMessageDoctor(doctor),
-          );
+          ).animate().fadeIn(duration: 500.ms, delay: (100 * index).ms).slideX(begin: -0.2, end: 0);
         },
       ),
     );

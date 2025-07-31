@@ -1,4 +1,5 @@
 import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
@@ -173,17 +174,12 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: CustomAppBar(
-          // backgroundColor: AppColors.cardBackground,
           elevation: 0,
           title: "البحث عن الأطباء",
           actions: [
             IconButton(
               onPressed: _toggleMapView,
-              icon: Icon(
-                isMapView ? Icons.list : Icons.map,
-                color: AppColors.textPrimary,
-                size: 24,
-              ),
+              icon: Icon(isMapView ? Icons.list : Icons.map, size: 24),
             ),
           ],
           bottom: TabBar(
@@ -208,43 +204,43 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
             ],
           ),
         ),
-        body: Column(
-          children: [
-            SearchBarWidget(
-              controller: _searchController,
-              onFilterTap: _showFilterBottomSheet,
-              onSearchChanged: _onSearchChanged,
-            ),
-            if (activeFilters.isNotEmpty) ...[
-              SizedBox(height: screenHeight * 0.02),
-              FilterChipsWidget(
-                activeFilters: activeFilters,
-                onRemoveFilter: _removeFilter,
-              ),
-            ],
-            if (showLocationPermission) ...[
-              SizedBox(height: screenHeight * 0.02),
-              LocationPermissionWidget(
-                onAllowLocation: _onAllowLocation,
-                onSkip: _onSkipLocation,
-              ),
-            ],
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  _buildDoctorsList(),
-                  _buildFavoritesList(),
-                  _buildAppointmentsList(),
-                ],
-              ),
-            ),
-          ],
-        ),
+                        body: Column(
+                          children: [
+                            SearchBarWidget(
+                              controller: _searchController,
+                              onFilterTap: _showFilterBottomSheet,
+                              onSearchChanged: _onSearchChanged,
+                            ),
+                            if (activeFilters.isNotEmpty) ...[
+                              SizedBox(height: screenHeight * 0.01),
+                              FilterChipsWidget(
+                                activeFilters: activeFilters,
+                                onRemoveFilter: _removeFilter,
+                              ),
+                            ],
+                            if (showLocationPermission) ...[
+                              SizedBox(height: screenHeight * 0.02),
+                              LocationPermissionWidget(
+                                onAllowLocation: _onAllowLocation,
+                                onSkip: _onSkipLocation,
+                              ),
+                            ],
+                            Expanded(
+                              child: TabBarView(
+                                controller: _tabController,
+                                children: [
+                                  _buildDoctorsList(),
+                                  _buildFavoritesList(),
+                                  _buildAppointmentsList(),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.2, end: 0),
         floatingActionButton: FloatingActionButton(
           onPressed: _showSortOptions,
-          child: Icon(Icons.sort, color: Colors.white, size: 24),
-        ),
+          child: const Icon(Icons.sort, color: Colors.white, size: 24),
+        ).animate().scale(duration: 400.ms, delay: 200.ms),
       ),
     );
   }

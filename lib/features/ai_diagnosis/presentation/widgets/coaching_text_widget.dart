@@ -23,7 +23,10 @@ class CoachingTextWidget extends StatelessWidget {
     final isSmallScreen = screenHeight < 700;
 
     return Animate(
-      effects: const [FadeEffect(duration: Duration(milliseconds: 400)), SlideEffect()],
+      effects: const [
+        FadeEffect(duration: Duration(milliseconds: 400)),
+        SlideEffect(),
+      ],
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 32,
@@ -36,7 +39,6 @@ class CoachingTextWidget extends StatelessWidget {
               mainText,
               textAlign: TextAlign.center,
               style: getSemiBoldStyle(
-                color: AppColors.textPrimary,
                 fontSize: isSmallScreen ? 16 : 18,
                 fontFamily: FontConstant.cairo,
               ),
@@ -63,7 +65,9 @@ class CoachingTextWidget extends StatelessWidget {
                     height: 20,
                     child: CircularProgressIndicator(
                       strokeWidth: 2.5,
-                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        AppColors.primary,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 12),

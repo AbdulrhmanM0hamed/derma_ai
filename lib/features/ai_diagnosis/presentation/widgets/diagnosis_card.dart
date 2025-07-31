@@ -36,7 +36,6 @@ class DiagnosisModel {
 
   String get severityLevel {
     if (severity == null) return 'Unknown';
-    
     switch (severity!.toLowerCase()) {
       case 'high':
         return 'High';
@@ -103,7 +102,6 @@ class DiagnosisCard extends StatelessWidget {
                         child: Text(
                           diagnosis.diseaseName,
                           style: getBoldStyle(
-                            color: AppColors.textPrimary,
                             fontSize: 16,
                             fontFamily: FontConstant.cairo,
                           ),
@@ -118,7 +116,6 @@ class DiagnosisCard extends StatelessWidget {
                   Text(
                     AppUtils.formatDate(diagnosis.diagnosisDate),
                     style: getRegularStyle(
-                      color: AppColors.textSecondary,
                       fontFamily: FontConstant.cairo,
                     ),
                   ),
@@ -129,7 +126,6 @@ class DiagnosisCard extends StatelessWidget {
                     Text(
                       AppLocalizations.of(context)!.description,
                       style: getSemiBoldStyle(
-                        color: AppColors.textPrimary,
                         fontSize: 14,
                         fontFamily: FontConstant.cairo,
                       ),
@@ -148,7 +144,6 @@ class DiagnosisCard extends StatelessWidget {
                     Text(
                       AppLocalizations.of(context)!.symptoms,
                       style: getSemiBoldStyle(
-                        color: AppColors.textPrimary,
                         fontSize: 14,
                         fontFamily: FontConstant.cairo,
                       ),

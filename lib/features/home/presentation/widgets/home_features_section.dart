@@ -24,7 +24,10 @@ class HomeFeaturesSection extends StatelessWidget {
         'icon': Icons.auto_awesome_outlined,
         'color': AppColors.primary,
         'onTap': () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const AiDiagnosisPage()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AiDiagnosisPage()),
+          );
         },
       },
       {
@@ -32,7 +35,12 @@ class HomeFeaturesSection extends StatelessWidget {
         'icon': Icons.medical_services_outlined,
         'color': AppColors.third,
         'onTap': () {
-           Navigator.push(context, MaterialPageRoute(builder: (context) => const DoctorSearchAndBrowse()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DoctorSearchAndBrowse(),
+            ),
+          );
         },
       },
       {
@@ -40,7 +48,10 @@ class HomeFeaturesSection extends StatelessWidget {
         'icon': Icons.spa_outlined,
         'color': const Color.fromARGB(255, 11, 167, 214),
         'onTap': () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const SkinCarePage()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SkinCarePage()),
+          );
         },
       },
       {
@@ -48,7 +59,10 @@ class HomeFeaturesSection extends StatelessWidget {
         'icon': Icons.lightbulb_outline,
         'color': AppColors.quaternary,
         'onTap': () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const HealthTipsPage()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HealthTipsPage()),
+          );
         },
       },
     ];
@@ -66,7 +80,7 @@ class HomeFeaturesSection extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         GridView.builder(
-          padding:  EdgeInsets.zero,
+          padding: EdgeInsets.zero,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

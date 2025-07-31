@@ -110,34 +110,21 @@ class CaptureControlsWidget extends StatelessWidget {
   }) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.03,
-          vertical: MediaQuery.of(context).size.height * 0.015,
-        ),
-        decoration: BoxDecoration(
-          color: isSecondary ? AppColors.cardBackground : AppColors.primary,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isSecondary ? AppColors.border : AppColors.primary,
-            width: 1,
+      child: Card(
+        elevation: 2,
+   
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.03,
+            vertical: MediaQuery.of(context).size.height * 0.015,
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 4,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
-              color:
-                  iconColor ??
-                  (isSecondary ? AppColors.textSecondary : AppColors.textLight),
+              color: iconColor ?? AppColors.textSecondary,
               size: 24,
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.005),
@@ -154,6 +141,6 @@ class CaptureControlsWidget extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }
