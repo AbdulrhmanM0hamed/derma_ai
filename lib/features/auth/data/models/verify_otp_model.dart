@@ -1,4 +1,6 @@
-class VerifyOtpRequestModel {
+import 'package:equatable/equatable.dart';
+
+class VerifyOtpRequestModel extends Equatable {
   final int userId;
   final String otp;
   final String type;
@@ -16,9 +18,13 @@ class VerifyOtpRequestModel {
       'type': type,
     };
   }
+
+  @override
+  List<Object?> get props => [userId, otp, type];
 }
 
-class VerifyOtpResponseModel {
+
+class VerifyOtpResponseModel extends Equatable {
   final bool success;
   final String messageEn;
   final String messageAr;
@@ -36,4 +42,7 @@ class VerifyOtpResponseModel {
       messageAr: json['message_ar'] ?? '',
     );
   }
+
+  @override
+  List<Object?> get props => [success, messageEn, messageAr];
 }

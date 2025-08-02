@@ -1,4 +1,6 @@
-class RegisterResponseModel {
+import 'package:equatable/equatable.dart';
+
+class RegisterResponseModel extends Equatable {
   final bool success;
   final String messageEn;
   final String messageAr;
@@ -30,6 +32,9 @@ class RegisterResponseModel {
           : null,
     );
   }
+
+  @override
+  List<Object?> get props => [success, messageEn, messageAr, userId, profileId, uuid, requiresVerification];
 }
 
 class RequiresVerification {

@@ -1,4 +1,6 @@
-class RegisterRequestModel {
+import 'package:equatable/equatable.dart';
+
+class RegisterRequestModel extends Equatable {
   final String email;
   final String phone;
   final String password;
@@ -10,6 +12,9 @@ class RegisterRequestModel {
     required this.password,
     required this.fullName,
   });
+
+  @override
+  List<Object?> get props => [email, phone, password, fullName];
 
   Map<String, dynamic> toJson() {
     return {
