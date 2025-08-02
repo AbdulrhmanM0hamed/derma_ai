@@ -490,6 +490,16 @@ class S {
     );
   }
 
+  /// `Create New Account`
+  String get createNewAccount {
+    return Intl.message(
+      'Create New Account',
+      name: 'createNewAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Phone Number`
   String get phoneNumber {
     return Intl.message(
@@ -525,6 +535,16 @@ class S {
     return Intl.message(
       'Please enter a valid phone number',
       name: 'pleaseEnterValidPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `join us and start your skin care journey`
+  String get welcomeToDermaAI {
+    return Intl.message(
+      'join us and start your skin care journey',
+      name: 'welcomeToDermaAI',
       desc: '',
       args: [],
     );

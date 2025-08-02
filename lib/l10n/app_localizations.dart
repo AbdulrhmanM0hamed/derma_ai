@@ -362,6 +362,12 @@ abstract class AppLocalizations {
   /// **'Already have an account?'**
   String get alreadyHaveAccount;
 
+  /// No description provided for @createNewAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Account'**
+  String get createNewAccount;
+
   /// No description provided for @phoneNumber.
   ///
   /// In en, this message translates to:
@@ -385,6 +391,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a valid phone number'**
   String get pleaseEnterValidPhoneNumber;
+
+  /// No description provided for @welcomeToDermaAI.
+  ///
+  /// In en, this message translates to:
+  /// **'join us and start your skin care journey'**
+  String get welcomeToDermaAI;
 
   /// No description provided for @accountVerification.
   ///

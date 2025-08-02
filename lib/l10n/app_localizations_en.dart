@@ -144,6 +144,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get alreadyHaveAccount => 'Already have an account?';
 
   @override
+  String get createNewAccount => 'Create New Account';
+
+  @override
   String get phoneNumber => 'Phone Number';
 
   @override
@@ -154,6 +157,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterValidPhoneNumber => 'Please enter a valid phone number';
+
+  @override
+  String get welcomeToDermaAI => 'join us and start your skin care journey';
 
   @override
   String get accountVerification => 'Account Verification';

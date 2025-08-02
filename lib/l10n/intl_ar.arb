@@ -32,7 +32,8 @@
   "orContinueWith": "أو تابع باستخدام",
   "dontHaveAccount": "ليس لديك حساب؟",
   "signUp": "إنشاء حساب",
-  
+   "createNewAccount": "إنشاء حساب جديد",
+  "welcomeToDermaAI": "انضم إلينا وابدأ رحلتك في العناية بالبشرة",
   "createAccount": "إنشاء حساب",
   "signUpToGetStarted": "سجل للبدء مع درما أي",
   "fullName": "الاسم الكامل",

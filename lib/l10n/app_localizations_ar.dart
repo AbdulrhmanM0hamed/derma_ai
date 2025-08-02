@@ -144,6 +144,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get alreadyHaveAccount => 'لديك حساب بالفعل؟';
 
   @override
+  String get createNewAccount => 'إنشاء حساب جديد';
+
+  @override
   String get phoneNumber => 'رقم الهاتف';
 
   @override
@@ -154,6 +157,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterValidPhoneNumber => 'يرجى إدخال رقم هاتف صحيح';
+
+  @override
+  String get welcomeToDermaAI => 'انضم إلينا وابدأ رحلتك في العناية بالبشرة';
 
   @override
   String get accountVerification => 'تأكيد الحساب';

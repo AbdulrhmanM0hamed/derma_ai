@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmYourPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "createNewAccount":
+            MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
         "diagnosedOn": MessageLookupByLibrary.simpleMessage("تم التشخيص في"),
@@ -208,6 +210,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyOtpCode":
             MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
-        "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك")
+        "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
+        "welcomeToDermaAI": MessageLookupByLibrary.simpleMessage(
+            "انضم إلينا وابدأ رحلتك في العناية بالبشرة")
       };
 }

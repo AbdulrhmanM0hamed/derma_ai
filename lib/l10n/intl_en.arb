@@ -44,12 +44,12 @@
     "privacyPolicy": "Privacy Policy",
     "pleaseAcceptTerms": "Please accept the terms and conditions",
     "alreadyHaveAccount": "Already have an account?",
-    
+    "createNewAccount": "Create New Account",
     "phoneNumber": "Phone Number",
     "enterPhoneNumber": "Enter your phone number",
     "pleaseEnterPhoneNumber": "Please enter your phone number",
     "pleaseEnterValidPhoneNumber": "Please enter a valid phone number",
-    
+    "welcomeToDermaAI": "join us and start your skin care journey",
     "accountVerification": "Account Verification",
     "verifyOtpCode": "Verify OTP Code",
     "otpSentToEmail": "Verification code sent to your email",

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/common/custom_progress_indicator.dart';
 import '../../../../core/utils/common/custom_snackbar.dart';
@@ -74,70 +73,71 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               BlocListener<AuthCubit, AuthState>(
                 listener: (context, state) {
-          if (state is RegisterSuccess) {
-            CustomSnackbar.showSuccess(
-              context: context,
-              message: CustomSnackbar.getLocalizedMessage(
-                context: context,
-                messageAr: state.entity.messageAr,
-                messageEn: state.entity.messageEn,
-              ),
-            );
-            // Navigate to OTP verification
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => OtpVerificationPage(
-                  userId: state.entity.userId!,
-                  email: _emailController.text.trim(),
-                  phone: _phoneController.text.trim(),
+                  if (state is RegisterSuccess) {
+                    CustomSnackbar.showSuccess(
+                      context: context,
+                      message: CustomSnackbar.getLocalizedMessage(
+                        context: context,
+                        messageAr: state.entity.messageAr,
+                        messageEn: state.entity.messageEn,
+                      ),
+                    );
+                    // Navigate to OTP verification
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => OtpVerificationPage(
+                              userId: state.entity.userId!,
+                              email: _emailController.text.trim(),
+                              phone: _phoneController.text.trim(),
+                            ),
+                      ),
+                    );
+                  } else if (state is RegisterFailure) {
+                    CustomSnackbar.showError(
+                      context: context,
+                      message: CustomSnackbar.getLocalizedMessage(
+                        context: context,
+                        messageAr: state.messageAr,
+                        messageEn: state.messageEn,
+                      ),
+                    );
+                  }
+                },
+                child: SafeArea(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(24),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const SizedBox(height: 40),
+                          _buildHeader(),
+                          const SizedBox(height: 40),
+                          _buildNameField(),
+                          const SizedBox(height: 16),
+                          _buildEmailField(),
+                          const SizedBox(height: 16),
+                          _buildPhoneField(),
+                          const SizedBox(height: 16),
+                          _buildPasswordField(),
+                          const SizedBox(height: 16),
+                          _buildConfirmPasswordField(),
+                          const SizedBox(height: 16),
+                          _buildTermsAndConditions(),
+                          const SizedBox(height: 20),
+                          _buildSignUpButton(),
+                          const SizedBox(height: 24),
+                          const SocialAuthSection(),
+                          const SizedBox(height: 8),
+                          _buildSignInLink(),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            );
-          } else if (state is RegisterFailure) {
-            CustomSnackbar.showError(
-              context: context,
-              message: CustomSnackbar.getLocalizedMessage(
-                context: context,
-                messageAr: state.messageAr,
-                messageEn: state.messageEn,
-              ),
-            );
-          }
-        },
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 40),
-                  _buildHeader(),
-                  const SizedBox(height: 40),
-                  _buildNameField(),
-                  const SizedBox(height: 16),
-                  _buildEmailField(),
-                  const SizedBox(height: 16),
-                  _buildPhoneField(),
-                  const SizedBox(height: 16),
-                  _buildPasswordField(),
-                  const SizedBox(height: 16),
-                  _buildConfirmPasswordField(),
-                  const SizedBox(height: 16),
-                  _buildTermsAndConditions(),
-                  const SizedBox(height: 24),
-                  _buildSignUpButton(),
-                  const SizedBox(height: 24),
-                  const SocialAuthSection(),
-                  const SizedBox(height: 32),
-                  _buildSignInLink(),
-                ],
-              ),
-            ),
-          ),
-        ),
               ),
               // Progress Indicator Overlay
               if (state is AuthLoading)
@@ -178,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ).animate(effects: fadeInScaleUp(duration: 600.ms, begin: 0.5)),
         const SizedBox(height: 16),
         Text(
-          'إنشاء حساب جديد',
+          AppLocalizations.of(context)!.createAccount,
           style: getBoldStyle(fontSize: 24, fontFamily: FontConstant.cairo),
           textAlign: TextAlign.center,
         ).animate(
@@ -186,7 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         const SizedBox(height: 12),
         Text(
-          'انضم إلينا وابدأ رحلتك في العناية بالبشرة',
+          AppLocalizations.of(context)!.welcomeToDermaAI,
           style: getRegularStyle(
             color: AppColors.textSecondary,
             fontSize: 14,
@@ -260,11 +260,12 @@ class _RegisterPageState extends State<RegisterPage> {
       prefixIcon: Icons.lock_outline,
       obscureText: _obscureConfirmPassword,
       suffixIcon: Icons.visibility_off,
-      validator: (value) => FormValidators.validatePasswordConfirmation(
-        value,
-        _passwordController.text,
-        context,
-      ),
+      validator:
+          (value) => FormValidators.validatePasswordConfirmation(
+            value,
+            _passwordController.text,
+            context,
+          ),
     ).animate(
       effects: fadeInSlide(duration: 600.ms, delay: 700.ms, beginY: 0.2),
     );
@@ -332,7 +333,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         final isLoading = state is AuthLoading;
-        
+
         return Animate(
           effects: [
             FadeEffect(duration: 600.ms, delay: 900.ms),
@@ -344,11 +345,10 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ],
           child: CustomButton(
-            text: 'إنشاء حساب',
+            text: AppLocalizations.of(context)!.createAccount,
             onPressed: isLoading ? () {} : () => _register(),
             type: ButtonType.primary,
             width: double.infinity,
-            height: 56,
           ),
         );
       },

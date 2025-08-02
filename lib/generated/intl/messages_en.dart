@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmYourPassword":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
+        "createNewAccount":
+            MessageLookupByLibrary.simpleMessage("Create New Account"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "diagnosedOn": MessageLookupByLibrary.simpleMessage("Diagnosed on"),
@@ -212,6 +214,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyOtpCode":
             MessageLookupByLibrary.simpleMessage("Verify OTP Code"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
-        "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back")
+        "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
+        "welcomeToDermaAI": MessageLookupByLibrary.simpleMessage(
+            "join us and start your skin care journey")
       };
 }
