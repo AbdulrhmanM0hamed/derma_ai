@@ -24,51 +24,43 @@ class DoctorSpecializationsWidget extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Container(
-      width: double.infinity,
+    return Card(
+      elevation: 2,
       margin: EdgeInsets.symmetric(
           horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(screenWidth * 0.03),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha:0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "التخصصات",
-            style: getSemiBoldStyle(
-              fontFamily: FontConstant.cairo,
-              fontSize: 16,
-              color: AppColors.textPrimary,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(screenWidth * 0.03)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "التخصصات",
+              style: getSemiBoldStyle(
+                fontFamily: FontConstant.cairo,
+                fontSize: 16,
+        
+              ),
             ),
-          ),
-          SizedBox(height: screenHeight * 0.02),
-          ListView.separated(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: specializations.length,
-            separatorBuilder: (context, index) =>
-                SizedBox(height: screenHeight * 0.01),
-            itemBuilder: (context, index) {
-              final specialization =
-                  specializations[index] as Map<String, dynamic>;
-              return _SpecializationListItem(specialization: specialization)
-                  .animate()
-                  .fadeIn(duration: 300.ms, delay: (100 * index).ms)
-                  .slideY(begin: 0.2);
-            },
-          ),
-        ],
+            SizedBox(height: screenHeight * 0.02),
+            ListView.separated(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: specializations.length,
+              separatorBuilder: (context, index) =>
+                  SizedBox(height: screenHeight * 0.01),
+              itemBuilder: (context, index) {
+                final specialization =
+                    specializations[index] as Map<String, dynamic>;
+                return _SpecializationListItem(specialization: specialization)
+                    .animate()
+                    .fadeIn(duration: 300.ms, delay: (100 * index).ms)
+                    .slideY(begin: 0.2);
+              },
+            ),
+          ],
+        ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1);
   }
@@ -116,7 +108,6 @@ class _SpecializationListItem extends StatelessWidget {
                   (specialization["arabicName"] as String?) ?? "",
                   style: getSemiBoldStyle(
                     fontFamily: FontConstant.cairo,
-                    color: AppColors.textPrimary,
                     fontSize: 14,
                   ),
                 ),

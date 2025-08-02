@@ -20,22 +20,16 @@ class DoctorHeroSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: const EdgeInsets.all(16),
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 5,
         shadowColor: AppColors.primary.withValues(alpha: 0.1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Container(
           padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-          
-          ),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           child: Column(
             children: [
               // Top Row: Image and Basic Info
@@ -62,22 +56,24 @@ class DoctorHeroSectionWidget extends StatelessWidget {
                         child: CachedNetworkImage(
                           imageUrl: (doctorData["photo"] as String?) ?? "",
                           fit: BoxFit.cover,
-                          placeholder: (context, url) => Container(
-                            color: AppColors.secondary,
-                            child: const Icon(
-                              Icons.person,
-                              color: AppColors.textSecondary,
-                              size: 40,
-                            ),
-                          ),
-                          errorWidget: (context, url, error) => Container(
-                            color: AppColors.secondary,
-                            child: const Icon(
-                              Icons.person,
-                              color: AppColors.textSecondary,
-                              size: 40,
-                            ),
-                          ),
+                          placeholder:
+                              (context, url) => Container(
+                                color: AppColors.secondary,
+                                child: const Icon(
+                                  Icons.person,
+                                  color: AppColors.textSecondary,
+                                  size: 40,
+                                ),
+                              ),
+                          errorWidget:
+                              (context, url, error) => Container(
+                                color: AppColors.secondary,
+                                child: const Icon(
+                                  Icons.person,
+                                  color: AppColors.textSecondary,
+                                  size: 40,
+                                ),
+                              ),
                         ),
                       ),
                     ),
@@ -129,16 +125,23 @@ class DoctorHeroSectionWidget extends StatelessWidget {
                       width: 44,
                       height: 44,
                       decoration: BoxDecoration(
-                        color: isFavorite ? Colors.red.withValues(alpha: 0.1) : AppColors.secondary,
+                        color:
+                            isFavorite
+                                ? Colors.red.withValues(alpha: 0.1)
+                                : AppColors.secondary,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: isFavorite ? Colors.red.withValues(alpha: 0.3) : Colors.transparent,
+                          color:
+                              isFavorite
+                                  ? Colors.red.withValues(alpha: 0.3)
+                                  : Colors.transparent,
                           width: 1,
                         ),
                       ),
                       child: Icon(
                         isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorite ? Colors.red : AppColors.textSecondary,
+                        color:
+                            isFavorite ? Colors.red : AppColors.textSecondary,
                         size: 20,
                       ),
                     ),
@@ -195,32 +198,18 @@ class DoctorHeroSectionWidget extends StatelessWidget {
   }) {
     return Container(
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-     
-        borderRadius: BorderRadius.circular(12),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
       child: Column(
         children: [
-          Icon(
-            icon,
-            color: iconColor,
-            size: 20,
-          ),
+          Icon(icon, color: iconColor, size: 20),
           const SizedBox(height: 4),
           Text(
             value,
-            style: getBoldStyle(
-              fontSize: 16,
-              fontFamily: FontConstant.cairo,
-            ),
+            style: getBoldStyle(fontSize: 16, fontFamily: FontConstant.cairo),
           ),
           Text(
             label,
-            style: getBoldStyle(
-            
-              fontSize: 10,
-              fontFamily: FontConstant.cairo,
-            ),
+            style: getBoldStyle(fontSize: 10, fontFamily: FontConstant.cairo),
             textAlign: TextAlign.center,
           ),
         ],

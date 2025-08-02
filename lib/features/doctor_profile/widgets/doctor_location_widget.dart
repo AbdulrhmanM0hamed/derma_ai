@@ -8,10 +8,7 @@ import '../../../core/utils/theme/app_colors.dart';
 class DoctorLocationWidget extends StatelessWidget {
   final Map<String, dynamic> doctorData;
 
-  const DoctorLocationWidget({
-    super.key,
-    required this.doctorData,
-  });
+  const DoctorLocationWidget({super.key, required this.doctorData});
 
   @override
   Widget build(BuildContext context) {
@@ -24,50 +21,42 @@ class DoctorLocationWidget extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Container(
-      width: double.infinity,
+    return Card(
+      elevation: 2,
       margin: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(screenWidth * 0.03),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha:0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        horizontal: screenWidth * 0.04,
+        vertical: screenHeight * 0.01,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.location_on_outlined,
-                color: AppColors.primary,
-                size: screenWidth * 0.06,
-              ),
-              SizedBox(width: screenWidth * 0.02),
-              Text(
-                "الموقع",
-                style: getSemiBoldStyle(
-                  fontFamily: FontConstant.cairo,
-                  fontSize: 16,
-                  color: AppColors.textPrimary,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.location_on_outlined,
+                  color: AppColors.primary,
+                  size: screenWidth * 0.06,
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: screenHeight * 0.02),
-          _AddressCard(location: location),
-          SizedBox(height: screenHeight * 0.02),
-          const _MapPlaceholder(),
-          SizedBox(height: screenHeight * 0.02),
-          _ActionButtons(location: location),
-        ],
+                SizedBox(width: screenWidth * 0.02),
+                Text(
+                  "الموقع",
+                  style: getSemiBoldStyle(
+                    fontFamily: FontConstant.cairo,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: screenHeight * 0.02),
+            _AddressCard(location: location),
+            SizedBox(height: screenHeight * 0.02),
+            const _MapPlaceholder(),
+            SizedBox(height: screenHeight * 0.02),
+            _ActionButtons(location: location),
+          ],
+        ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1);
   }
@@ -84,7 +73,7 @@ class _AddressCard extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      padding: EdgeInsets.all(screenWidth * 0.03),
+      padding: EdgeInsets.all(screenWidth * 0.06),
       decoration: BoxDecoration(
         color: AppColors.primary.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(screenWidth * 0.02),
@@ -99,25 +88,28 @@ class _AddressCard extends StatelessWidget {
           Text(
             (location["clinicName"] as String?) ?? "اسم العيادة",
             style: getSemiBoldStyle(
-                fontFamily: FontConstant.cairo,
-                color: AppColors.textPrimary,
-                fontSize: 14),
+              fontFamily: FontConstant.cairo,
+
+              fontSize: 14,
+            ),
           ),
           SizedBox(height: screenHeight * 0.01),
           Text(
             (location["address"] as String?) ?? "العنوان بالتفصيل",
             style: getRegularStyle(
-                fontFamily: FontConstant.cairo,
-                color: AppColors.textSecondary,
-                fontSize: 12),
+              fontFamily: FontConstant.cairo,
+              color: AppColors.textSecondary,
+              fontSize: 12,
+            ),
           ),
           SizedBox(height: screenHeight * 0.005),
           Text(
             (location["district"] as String?) ?? "الحي",
             style: getRegularStyle(
-                fontFamily: FontConstant.cairo,
-                color: AppColors.textSecondary,
-                fontSize: 12),
+              fontFamily: FontConstant.cairo,
+              color: AppColors.textSecondary,
+              fontSize: 12,
+            ),
           ),
         ],
       ),
@@ -137,10 +129,10 @@ class _MapPlaceholder extends StatelessWidget {
       width: double.infinity,
       height: screenHeight * 0.2,
       decoration: BoxDecoration(
-        color: AppColors.textSecondary.withValues(alpha:0.1),
+        color: AppColors.textSecondary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(screenWidth * 0.02),
         border: Border.all(
-          color: AppColors.textSecondary.withValues(alpha:0.2),
+          color: AppColors.textSecondary.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
@@ -159,9 +151,10 @@ class _MapPlaceholder extends StatelessWidget {
                 Text(
                   "خريطة الموقع",
                   style: getRegularStyle(
-                      fontFamily: FontConstant.cairo,
-                      color: AppColors.textSecondary,
-                      fontSize: 14),
+                    fontFamily: FontConstant.cairo,
+                    color: AppColors.textSecondary,
+                    fontSize: 14,
+                  ),
                 ),
               ],
             ),
@@ -176,7 +169,7 @@ class _MapPlaceholder extends StatelessWidget {
                 borderRadius: BorderRadius.circular(screenWidth * 0.02),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.textSecondary.withValues(alpha:0.1),
+                    color: AppColors.textSecondary.withValues(alpha: 0.1),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),
@@ -209,9 +202,9 @@ class _ActionButtons extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            padding: EdgeInsets.all(screenWidth * 0.03),
+            padding: EdgeInsets.all(screenWidth * 0.055),
             decoration: BoxDecoration(
-              color: Colors.amber.withValues(alpha:0.1),
+              color: Colors.amber.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(screenWidth * 0.02),
             ),
             child: Row(
@@ -249,9 +242,10 @@ class _ActionButtons extends StatelessWidget {
             label: Text(
               "الاتجاهات",
               style: getSemiBoldStyle(
-                  fontFamily: FontConstant.cairo,
-                  color: Colors.white,
-                  fontSize: 12),
+                fontFamily: FontConstant.cairo,
+                color: Colors.white,
+                fontSize: 12,
+              ),
             ),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,

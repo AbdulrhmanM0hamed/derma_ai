@@ -8,10 +8,7 @@ import '../../../core/utils/theme/app_colors.dart';
 class DoctorEducationWidget extends StatelessWidget {
   final Map<String, dynamic> doctorData;
 
-  const DoctorEducationWidget({
-    super.key,
-    required this.doctorData,
-  });
+  const DoctorEducationWidget({super.key, required this.doctorData});
 
   @override
   Widget build(BuildContext context) {
@@ -25,84 +22,78 @@ class DoctorEducationWidget extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Container(
-      width: double.infinity,
+    return Card(
+      elevation: 2,
       margin: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(screenWidth * 0.03),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha:0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        horizontal: screenWidth * 0.04,
+        vertical: screenHeight * 0.01,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "التعليم والشهادات",
-            style: getSemiBoldStyle(
-              fontFamily: FontConstant.cairo,
-              fontSize: 16,
-              color: AppColors.textPrimary,
-            ),
-          ),
-          SizedBox(height: screenHeight * 0.02),
-          // Education Section
-          if (education.isNotEmpty) ...[
+
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Text(
-              "التعليم",
+              "التعليم والشهادات",
               style: getSemiBoldStyle(
                 fontFamily: FontConstant.cairo,
-                fontSize: 14,
-                color: AppColors.primary,
+                fontSize: 16,
+             
               ),
             ),
             SizedBox(height: screenHeight * 0.02),
-            ListView.separated(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: education.length,
-              separatorBuilder: (context, index) =>
-                  SizedBox(height: screenHeight * 0.015),
-              itemBuilder: (context, index) {
-                final edu = education[index] as Map<String, dynamic>;
-                return _EducationListItem(edu: edu, index: index);
-              },
-            ),
-            SizedBox(height: screenHeight * 0.03),
-          ],
-          // Certifications Section
-          if (certifications.isNotEmpty) ...[
-            Text(
-              "الشهادات",
-              style: getSemiBoldStyle(
-                fontFamily: FontConstant.cairo,
-                fontSize: 14,
-                color: AppColors.primary,
+            // Education Section
+            if (education.isNotEmpty) ...[
+              Text(
+                "التعليم",
+                style: getSemiBoldStyle(
+                  fontFamily: FontConstant.cairo,
+                  fontSize: 14,
+                  color: AppColors.primary,
+                ),
               ),
-            ),
-            SizedBox(height: screenHeight * 0.02),
-            ListView.separated(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: certifications.length,
-              separatorBuilder: (context, index) =>
-                  SizedBox(height: screenHeight * 0.015),
-              itemBuilder: (context, index) {
-                final cert = certifications[index] as Map<String, dynamic>;
-                return _CertificationListItem(cert: cert, index: index);
-              },
-            ),
+              SizedBox(height: screenHeight * 0.02),
+              ListView.separated(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: education.length,
+                separatorBuilder:
+                    (context, index) => SizedBox(height: screenHeight * 0.015),
+                itemBuilder: (context, index) {
+                  final edu = education[index] as Map<String, dynamic>;
+                  return _EducationListItem(edu: edu, index: index);
+                },
+              ),
+              SizedBox(height: screenHeight * 0.03),
+            ],
+            // Certifications Section
+            if (certifications.isNotEmpty) ...[
+              Text(
+                "الشهادات",
+                style: getSemiBoldStyle(
+                  fontFamily: FontConstant.cairo,
+                  fontSize: 14,
+                  color: AppColors.primary,
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.02),
+              ListView.separated(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: certifications.length,
+                separatorBuilder:
+                    (context, index) => SizedBox(height: screenHeight * 0.015),
+                itemBuilder: (context, index) {
+                  final cert = certifications[index] as Map<String, dynamic>;
+                  return _CertificationListItem(cert: cert, index: index);
+                },
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1);
   }
@@ -138,24 +129,26 @@ class _EducationListItem extends StatelessWidget {
               Text(
                 (edu["degree"] as String?) ?? "",
                 style: getSemiBoldStyle(
-                    fontFamily: FontConstant.cairo,
-                    color: AppColors.textPrimary,
-                    fontSize: 14),
+                  fontFamily: FontConstant.cairo,
+                  fontSize: 14,
+                ),
               ),
               SizedBox(height: screenHeight * 0.005),
               Text(
                 (edu["institution"] as String?) ?? "",
                 style: getRegularStyle(
-                    fontFamily: FontConstant.cairo,
-                    color: AppColors.textSecondary,
-                    fontSize: 12),
+                  fontFamily: FontConstant.cairo,
+                  color: AppColors.textSecondary,
+                  fontSize: 12,
+                ),
               ),
               Text(
                 (edu["year"] as String?) ?? "",
                 style: getRegularStyle(
-                    fontFamily: FontConstant.cairo,
-                    color: AppColors.textSecondary,
-                    fontSize: 12),
+                  fontFamily: FontConstant.cairo,
+                  color: AppColors.textSecondary,
+                  fontSize: 12,
+                ),
               ),
             ],
           ),
@@ -195,24 +188,27 @@ class _CertificationListItem extends StatelessWidget {
               Text(
                 (cert["name"] as String?) ?? "",
                 style: getSemiBoldStyle(
-                    fontFamily: FontConstant.cairo,
-                    color: AppColors.textPrimary,
-                    fontSize: 14),
+                  fontFamily: FontConstant.cairo,
+                
+                  fontSize: 14,
+                ),
               ),
               SizedBox(height: screenHeight * 0.005),
               Text(
                 (cert["issuer"] as String?) ?? "",
                 style: getRegularStyle(
-                    fontFamily: FontConstant.cairo,
-                    color: AppColors.textSecondary,
-                    fontSize: 12),
+                  fontFamily: FontConstant.cairo,
+                  color: AppColors.textSecondary,
+                  fontSize: 12,
+                ),
               ),
               Text(
                 (cert["year"] as String?) ?? "",
                 style: getRegularStyle(
-                    fontFamily: FontConstant.cairo,
-                    color: AppColors.textSecondary,
-                    fontSize: 12),
+                  fontFamily: FontConstant.cairo,
+                  color: AppColors.textSecondary,
+                  fontSize: 12,
+                ),
               ),
             ],
           ),

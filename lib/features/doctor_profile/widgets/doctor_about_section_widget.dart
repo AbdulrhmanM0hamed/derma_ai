@@ -11,77 +11,69 @@ class DoctorAboutSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return Container(
-      width: double.infinity,
+    return Card(
+      elevation: 2,
       margin: EdgeInsets.symmetric(
         horizontal: screenWidth * 0.04,
         vertical: screenHeight * 0.01,
       ),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha: 0.03),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-                "نبذة عن الطبيب",
-                style: getBoldStyle(
-                  fontSize: 18,
-                  fontFamily: FontConstant.cairo,
-                ),
-              )
-              .animate()
-              .fadeIn(duration: 600.ms, delay: 100.ms)
-              .slideY(begin: 0.2),
-          SizedBox(height: screenHeight * 0.02),
-          Text(
-                (doctorData["arabicBio"] as String?) ??
-                    "معلومات الطبيب غير متوفرة حالياً",
-                style: getRegularStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 14,
-                  fontFamily: FontConstant.cairo,
-                ),
-                textAlign: TextAlign.justify,
-              )
-              .animate()
-              .fadeIn(duration: 600.ms, delay: 200.ms)
-              .slideY(begin: 0.2),
-          SizedBox(height: screenHeight * 0.025),
-          Text(
-                "الخلفية الطبية",
-                style: getSemiBoldStyle(
-                  fontSize: 16,
-                  fontFamily: FontConstant.cairo,
-                ),
-              )
-              .animate()
-              .fadeIn(duration: 600.ms, delay: 300.ms)
-              .slideY(begin: 0.2),
-          SizedBox(height: screenHeight * 0.015),
-          Text(
-                (doctorData["medicalBackground"] as String?) ??
-                    "الخلفية الطبية غير متوفرة حالياً",
-                style: getRegularStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 14,
-                  fontFamily: FontConstant.cairo,
-                ),
-                textAlign: TextAlign.justify,
-              )
-              .animate()
-              .fadeIn(duration: 600.ms, delay: 400.ms)
-              .slideY(begin: 0.2),
-        ],
+   
+      child: Padding(
+        padding: EdgeInsets.all(screenWidth * 0.04),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+                  "نبذة عن الطبيب",
+                  style: getBoldStyle(
+                    fontSize: 18,
+                    fontFamily: FontConstant.cairo,
+                  ),
+                )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 100.ms)
+                .slideY(begin: 0.2),
+            SizedBox(height: screenHeight * 0.02),
+            Text(
+                  (doctorData["arabicBio"] as String?) ??
+                      "معلومات الطبيب غير متوفرة حالياً",
+                  style: getRegularStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 14,
+                    fontFamily: FontConstant.cairo,
+                  ),
+                  textAlign: TextAlign.justify,
+                )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 200.ms)
+                .slideY(begin: 0.2),
+            SizedBox(height: screenHeight * 0.025),
+            Text(
+                  "الخلفية الطبية",
+                  style: getSemiBoldStyle(
+                    fontSize: 16,
+                    fontFamily: FontConstant.cairo,
+                  ),
+                )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 300.ms)
+                .slideY(begin: 0.2),
+            SizedBox(height: screenHeight * 0.015),
+            Text(
+                  (doctorData["medicalBackground"] as String?) ??
+                      "الخلفية الطبية غير متوفرة حالياً",
+                  style: getRegularStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 14,
+                    fontFamily: FontConstant.cairo,
+                  ),
+                  textAlign: TextAlign.justify,
+                )
+                .animate()
+                .fadeIn(duration: 600.ms, delay: 400.ms)
+                .slideY(begin: 0.2),
+          ],
+        ),
       ),
     ).animate().fadeIn(duration: 800.ms, delay: 50.ms).scaleXY(begin: 0.95);
   }

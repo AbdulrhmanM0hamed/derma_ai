@@ -9,10 +9,7 @@ import '../../../core/utils/theme/app_colors.dart';
 class DoctorAvailabilityCalendarWidget extends StatefulWidget {
   final Map<String, dynamic> doctorData;
 
-  const DoctorAvailabilityCalendarWidget({
-    super.key,
-    required this.doctorData,
-  });
+  const DoctorAvailabilityCalendarWidget({super.key, required this.doctorData});
 
   @override
   State<DoctorAvailabilityCalendarWidget> createState() =>
@@ -31,117 +28,117 @@ class _DoctorAvailabilityCalendarWidgetState
     final List<dynamic> availableDays =
         (widget.doctorData["availableDays"] as List?) ?? [];
 
-    return Container(
-      width: double.infinity,
+    return Card(
+      elevation: 2,
       margin: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(screenWidth * 0.03),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha:0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        horizontal: screenWidth * 0.04,
+        vertical: screenHeight * 0.01,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.calendar_today_outlined,
-                color: AppColors.primary,
-                size: screenWidth * 0.05,
-              ),
-              SizedBox(width: screenWidth * 0.02),
-              Text(
-                "المواعيد المتاحة",
-                style: getSemiBoldStyle(
-                  fontFamily: FontConstant.cairo,
-                  fontSize: 16,
-                  color: AppColors.textPrimary,
+
+      child: Padding(
+        padding: EdgeInsets.all(screenWidth * 0.04),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.calendar_today_outlined,
+                  color: AppColors.primary,
+                  size: screenWidth * 0.05,
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: screenHeight * 0.02),
-          // Days Selector
-          SizedBox(
-            height: screenHeight * 0.12,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: availableDays.length > 7 ? 7 : availableDays.length,
-              separatorBuilder: (context, index) =>
-                  SizedBox(width: screenWidth * 0.02),
-              itemBuilder: (context, index) {
-                final day = availableDays[index] as Map<String, dynamic>;
-                return _DayItem(
-                  day: day,
-                  isSelected: selectedDayIndex == index,
-                  onTap: () {
-                    setState(() {
-                      selectedDayIndex = index;
-                      selectedTimeSlot = null;
-                    });
-                  },
-                );
-              },
+                SizedBox(width: screenWidth * 0.02),
+                Text(
+                  "المواعيد المتاحة",
+                  style: getSemiBoldStyle(
+                    fontFamily: FontConstant.cairo,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
-          ).animate().fadeIn(duration: 400.ms, delay: 200.ms).slideX(begin: 0.2),
-          SizedBox(height: screenHeight * 0.02),
-          // Time Slots
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            transitionBuilder: (child, animation) {
-              return FadeTransition(
-                opacity: animation,
-                child: child,
-              );
-            },
-            child: _buildTimeSlots(availableDays, screenWidth, screenHeight),
-          ),
-        ],
+            SizedBox(height: screenHeight * 0.02),
+            // Days Selector
+            SizedBox(
+                  height: screenHeight * 0.12,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount:
+                        availableDays.length > 7 ? 7 : availableDays.length,
+                    separatorBuilder:
+                        (context, index) => SizedBox(width: screenWidth * 0.02),
+                    itemBuilder: (context, index) {
+                      final day = availableDays[index] as Map<String, dynamic>;
+                      return _DayItem(
+                        day: day,
+                        isSelected: selectedDayIndex == index,
+                        onTap: () {
+                          setState(() {
+                            selectedDayIndex = index;
+                            selectedTimeSlot = null;
+                          });
+                        },
+                      );
+                    },
+                  ),
+                )
+                .animate()
+                .fadeIn(duration: 400.ms, delay: 200.ms)
+                .slideX(begin: 0.2),
+            SizedBox(height: screenHeight * 0.02),
+            // Time Slots
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+              child: _buildTimeSlots(availableDays, screenWidth, screenHeight),
+            ),
+          ],
+        ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1);
   }
 
   Widget _buildTimeSlots(
-      List<dynamic> availableDays, double screenWidth, double screenHeight) {
+    List<dynamic> availableDays,
+    double screenWidth,
+    double screenHeight,
+  ) {
     if (availableDays.isEmpty || selectedDayIndex >= availableDays.length) {
       return const _NoSlotsAvailable(message: "لا توجد أيام متاحة حالياً");
     }
 
     final selectedDay = availableDays[selectedDayIndex];
-    final List<dynamic> timeSlots =
-        (selectedDay["timeSlots"] as List?) ?? [];
+    final List<dynamic> timeSlots = (selectedDay["timeSlots"] as List?) ?? [];
 
     if (timeSlots.isEmpty) {
       return const _NoSlotsAvailable(
-          message: "لا توجد مواعيد متاحة في هذا اليوم");
+        message: "لا توجد مواعيد متاحة في هذا اليوم",
+      );
     }
 
     return Wrap(
-      key: ValueKey<int>(selectedDayIndex), // Ensures widget rebuilds on day change
+      key: ValueKey<int>(
+        selectedDayIndex,
+      ), // Ensures widget rebuilds on day change
       spacing: screenWidth * 0.02,
       runSpacing: screenHeight * 0.01,
-      children: timeSlots.map((slot) {
-        final timeSlot = slot as Map<String, dynamic>;
-        return _TimeSlotItem(
-          timeSlot: timeSlot,
-          isSelected: selectedTimeSlot == timeSlot["time"],
-          onTap: () {
-            if ((timeSlot["available"] as bool?) ?? false) {
-              setState(() {
-                selectedTimeSlot = timeSlot["time"];
-              });
-            }
-          },
-        );
-      }).toList(),
+      children:
+          timeSlots.map((slot) {
+            final timeSlot = slot as Map<String, dynamic>;
+            return _TimeSlotItem(
+              timeSlot: timeSlot,
+              isSelected: selectedTimeSlot == timeSlot["time"],
+              onTap: () {
+                if ((timeSlot["available"] as bool?) ?? false) {
+                  setState(() {
+                    selectedTimeSlot = timeSlot["time"];
+                  });
+                }
+              },
+            );
+          }).toList(),
     );
   }
 }
@@ -169,18 +166,20 @@ class _DayItem extends StatelessWidget {
         width: screenWidth * 0.18,
         padding: EdgeInsets.all(screenWidth * 0.02),
         decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.primary
-              : hasSlots
+          color:
+              isSelected
+                  ? AppColors.primary
+                  : hasSlots
                   ? Colors.white
-                  : AppColors.textSecondary.withValues(alpha:0.1),
+                  : AppColors.textSecondary.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(screenWidth * 0.02),
           border: Border.all(
-            color: isSelected
-                ? AppColors.primary
-                : hasSlots
-                    ? AppColors.primary.withValues(alpha:0.3)
-                    : AppColors.textSecondary.withValues(alpha:0.3),
+            color:
+                isSelected
+                    ? AppColors.primary
+                    : hasSlots
+                    ? AppColors.primary.withValues(alpha: 0.3)
+                    : AppColors.textSecondary.withValues(alpha: 0.3),
             width: 1,
           ),
         ),
@@ -192,9 +191,10 @@ class _DayItem extends StatelessWidget {
               style: getRegularStyle(
                 fontFamily: FontConstant.cairo,
                 fontSize: 12,
-                color: isSelected
-                    ? Colors.white
-                    : hasSlots
+                color:
+                    isSelected
+                        ? Colors.white
+                        : hasSlots
                         ? AppColors.textPrimary
                         : AppColors.textSecondary,
               ),
@@ -205,9 +205,10 @@ class _DayItem extends StatelessWidget {
               style: getBoldStyle(
                 fontFamily: FontConstant.cairo,
                 fontSize: 16,
-                color: isSelected
-                    ? Colors.white
-                    : hasSlots
+                color:
+                    isSelected
+                        ? Colors.white
+                        : hasSlots
                         ? AppColors.textPrimary
                         : AppColors.textSecondary,
               ),
@@ -241,20 +242,24 @@ class _TimeSlotItem extends StatelessWidget {
       onTap: isAvailable ? onTap : null,
       child: Container(
         padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.04, vertical: screenHeight * 0.015),
+          horizontal: screenWidth * 0.04,
+          vertical: screenHeight * 0.015,
+        ),
         decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.primary
-              : isAvailable
+          color:
+              isSelected
+                  ? AppColors.primary
+                  : isAvailable
                   ? Colors.white
-                  : AppColors.textSecondary.withValues(alpha:0.1),
+                  : AppColors.textSecondary.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(screenWidth * 0.02),
           border: Border.all(
-            color: isSelected
-                ? AppColors.primary
-                : isAvailable
-                    ? AppColors.primary.withValues(alpha:0.3)
-                    : AppColors.textSecondary.withValues(alpha:0.3),
+            color:
+                isSelected
+                    ? AppColors.primary
+                    : isAvailable
+                    ? AppColors.primary.withValues(alpha: 0.3)
+                    : AppColors.textSecondary.withValues(alpha: 0.3),
             width: 1,
           ),
         ),
@@ -263,9 +268,10 @@ class _TimeSlotItem extends StatelessWidget {
           style: getSemiBoldStyle(
             fontFamily: FontConstant.cairo,
             fontSize: 14,
-            color: isSelected
-                ? Colors.white
-                : isAvailable
+            color:
+                isSelected
+                    ? Colors.white
+                    : isAvailable
                     ? AppColors.textPrimary
                     : AppColors.textSecondary,
           ),
@@ -288,7 +294,7 @@ class _NoSlotsAvailable extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(screenWidth * 0.04),
       decoration: BoxDecoration(
-        color: AppColors.textSecondary.withValues(alpha:0.05),
+        color: AppColors.textSecondary.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(screenWidth * 0.02),
       ),
       child: Column(

@@ -243,7 +243,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 DoctorEducationWidget(doctorData: doctorData),
                 DoctorWorkingHoursWidget(doctorData: doctorData),
                 DoctorLocationWidget(doctorData: doctorData),
-                DoctorContactOptionsWidget(doctorData: doctorData),
+           //     DoctorContactOptionsWidget(doctorData: doctorData),
                 DoctorAvailabilityCalendarWidget(doctorData: doctorData),
                 DoctorReviewsWidget(doctorData: doctorData),
                 SizedBox(height: screenHeight * 0.12),

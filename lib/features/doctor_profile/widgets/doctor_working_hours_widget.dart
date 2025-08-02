@@ -8,10 +8,7 @@ import '../../../core/utils/theme/app_colors.dart';
 class DoctorWorkingHoursWidget extends StatelessWidget {
   final Map<String, dynamic> doctorData;
 
-  const DoctorWorkingHoursWidget({
-    super.key,
-    required this.doctorData,
-  });
+  const DoctorWorkingHoursWidget({super.key, required this.doctorData});
 
   @override
   Widget build(BuildContext context) {
@@ -24,61 +21,55 @@ class DoctorWorkingHoursWidget extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Container(
-      width: double.infinity,
+    return Card(
+      elevation: 2,
       margin: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(screenWidth * 0.03),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha:0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        horizontal: screenWidth * 0.04,
+        vertical: screenHeight * 0.01,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.access_time_outlined,
-                color: AppColors.primary,
-                size: screenWidth * 0.06,
-              ),
-              SizedBox(width: screenWidth * 0.02),
-              Text(
-                "ساعات العمل",
-                style: getSemiBoldStyle(
-                  fontFamily: FontConstant.cairo,
-                  fontSize: 16,
-                  color: AppColors.textPrimary,
+
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.access_time_outlined,
+                  color: AppColors.primary,
+                  size: screenWidth * 0.06,
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: screenHeight * 0.02),
-          ListView.separated(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: workingHours.keys.length,
-            separatorBuilder: (context, index) =>
-                SizedBox(height: screenHeight * 0.01),
-            itemBuilder: (context, index) {
-              final day = workingHours.keys.elementAt(index);
-              final hours = workingHours[day] as Map<String, dynamic>;
-              return _WorkingHoursListItem(day: day, hours: hours)
-                  .animate()
-                  .fadeIn(duration: 300.ms, delay: (100 * index).ms)
-                  .slideY(begin: 0.2);
-            },
-          ),
-        ],
+                SizedBox(width: screenWidth * 0.02),
+                Text(
+                  "ساعات العمل",
+                  style: getSemiBoldStyle(
+                    fontFamily: FontConstant.cairo,
+                    fontSize: 16,
+                 
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: screenHeight * 0.02),
+            ListView.separated(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: workingHours.keys.length,
+              separatorBuilder:
+                  (context, index) => SizedBox(height: screenHeight * 0.01),
+              itemBuilder: (context, index) {
+                final day = workingHours.keys.elementAt(index);
+                final hours = workingHours[day] as Map<String, dynamic>;
+                return _WorkingHoursListItem(day: day, hours: hours)
+                    .animate()
+                    .fadeIn(duration: 300.ms, delay: (100 * index).ms)
+                    .slideY(begin: 0.2);
+              },
+            ),
+          ],
+        ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1);
   }
@@ -98,14 +89,16 @@ class _WorkingHoursListItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(screenWidth * 0.03),
       decoration: BoxDecoration(
-        color: isAvailable
-            ? AppColors.primary.withValues(alpha:0.05)
-            : AppColors.textSecondary.withValues(alpha:0.05),
+        color:
+            isAvailable
+                ? AppColors.primary.withValues(alpha: 0.05)
+                : AppColors.textSecondary.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(screenWidth * 0.02),
         border: Border.all(
-          color: isAvailable
-              ? AppColors.primary.withValues(alpha:0.2)
-              : AppColors.textSecondary.withValues(alpha:0.2),
+          color:
+              isAvailable
+                  ? AppColors.primary.withValues(alpha: 0.2)
+                  : AppColors.textSecondary.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
@@ -116,7 +109,7 @@ class _WorkingHoursListItem extends StatelessWidget {
             day,
             style: getSemiBoldStyle(
               fontFamily: FontConstant.cairo,
-              color: AppColors.textPrimary,
+
               fontSize: 14,
             ),
           ),
@@ -126,7 +119,7 @@ class _WorkingHoursListItem extends StatelessWidget {
                 width: screenWidth * 0.02,
                 height: screenWidth * 0.02,
                 decoration: BoxDecoration(
-                  color: isAvailable ? AppColors.primary : AppColors.textSecondary,
+                  color: isAvailable ? AppColors.success : AppColors.error,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -135,9 +128,7 @@ class _WorkingHoursListItem extends StatelessWidget {
                 isAvailable ? "${hours["start"]} - ${hours["end"]}" : "مغلق",
                 style: getRegularStyle(
                   fontFamily: FontConstant.cairo,
-                  color: isAvailable
-                      ? AppColors.textPrimary
-                      : AppColors.textSecondary,
+                  color: isAvailable ? AppColors.success : AppColors.error,
                   fontSize: 14,
                 ),
               ),

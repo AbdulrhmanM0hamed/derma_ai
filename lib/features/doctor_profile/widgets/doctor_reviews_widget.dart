@@ -27,74 +27,67 @@ class DoctorReviewsWidget extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Container(
-      width: double.infinity,
+    return Card(
+      elevation: 2,
       margin: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(screenWidth * 0.03),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha:0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        horizontal: screenWidth * 0.04,
+        vertical: screenHeight * 0.01,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.star_rounded,
-                color: Colors.amber,
-                size: screenWidth * 0.06,
-              ),
-              SizedBox(width: screenWidth * 0.02),
-              Text(
-                "تقييمات المرضى",
-                style: getSemiBoldStyle(
-                  fontFamily: FontConstant.cairo,
-                  fontSize: 16,
-                  color: AppColors.textPrimary,
+      child: Padding(
+        padding: EdgeInsets.all(screenWidth * 0.04),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.star_rounded,
+                  color: Colors.amber,
+                  size: screenWidth * 0.06,
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: screenHeight * 0.02),
-          _RatingSummary(
-            rating: rating,
-            reviewCount: reviewCount,
-            ratingBreakdown: ratingBreakdown,
-          ),
-          SizedBox(height: screenHeight * 0.02),
-          const Divider(),
-          SizedBox(height: screenHeight * 0.01),
-          ...reviews.take(3).map((review) {
-            return _ReviewListItem(review: review as Map<String, dynamic>);
-          }).toList().animate(interval: 100.ms).fadeIn(duration: 300.ms).slideY(begin: 0.2),
-          if (reviews.length > 3) ...[
-            SizedBox(height: screenHeight * 0.02),
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  // TODO: Show all reviews
-                },
-                child: Text(
-                  "عرض جميع المراجعات",
+                SizedBox(width: screenWidth * 0.02),
+                Text(
+                  "تقييمات المرضى",
                   style: getSemiBoldStyle(
                     fontFamily: FontConstant.cairo,
-                    color: AppColors.primary,
-                    fontSize: 14,
+                    fontSize: 16,
+             
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: screenHeight * 0.02),
+            _RatingSummary(
+              rating: rating,
+              reviewCount: reviewCount,
+              ratingBreakdown: ratingBreakdown,
+            ),
+            SizedBox(height: screenHeight * 0.02),
+            const Divider(),
+            SizedBox(height: screenHeight * 0.01),
+            ...reviews.take(3).map((review) {
+              return _ReviewListItem(review: review as Map<String, dynamic>);
+            }).toList().animate(interval: 100.ms).fadeIn(duration: 300.ms).slideY(begin: 0.2),
+            if (reviews.length > 3) ...[
+              SizedBox(height: screenHeight * 0.02),
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    // TODO: Show all reviews
+                  },
+                  child: Text(
+                    "عرض جميع المراجعات",
+                    style: getSemiBoldStyle(
+                      fontFamily: FontConstant.cairo,
+                      color: AppColors.primary,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
               ),
-            ),
+            ],
           ],
-        ],
+        ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideX(begin: 0.1);
   }
@@ -135,7 +128,7 @@ class _RatingSummary extends StatelessWidget {
                 style: getBoldStyle(
                   fontFamily: FontConstant.cairo,
                   fontSize: 24,
-                  color: AppColors.textPrimary,
+                 
                 ),
               ),
               _RatingBar(rating: rating, size: screenWidth * 0.04),
@@ -230,7 +223,7 @@ class _ReviewListItem extends StatelessWidget {
                       (review["userName"] as String?) ?? "اسم المستخدم",
                       style: getSemiBoldStyle(
                           fontFamily: FontConstant.cairo,
-                          color: AppColors.textPrimary,
+                          
                           fontSize: 14),
                     ),
                     Row(
