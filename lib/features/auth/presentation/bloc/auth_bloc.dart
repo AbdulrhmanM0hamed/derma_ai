@@ -1,23 +1,47 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/register_usecase.dart';
 import '../../domain/usecases/verify_otp_usecase.dart';
 import '../../domain/usecases/resend_otp_usecase.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
+  final LoginUsecase _loginUsecase;
   final RegisterUsecase _registerUsecase;
   final VerifyOtpUsecase _verifyOtpUsecase;
   final ResendOtpUsecase _resendOtpUsecase;
 
   AuthCubit({
+    required LoginUsecase loginUsecase,
     required RegisterUsecase registerUsecase,
     required VerifyOtpUsecase verifyOtpUsecase,
     required ResendOtpUsecase resendOtpUsecase,
-  })  : _registerUsecase = registerUsecase,
+  })  : _loginUsecase = loginUsecase,
+        _registerUsecase = registerUsecase,
         _verifyOtpUsecase = verifyOtpUsecase,
         _resendOtpUsecase = resendOtpUsecase,
         super(AuthInitial());
+
+  Future<void> login({
+    required String email,
+    required String password,
+  }) async {
+    emit(AuthLoading());
+
+    final result = await _loginUsecase(LoginParams(
+      email: email,
+      password: password,
+    ));
+
+    result.fold(
+      (failure) => emit(LoginFailure(
+        messageEn: failure.message,
+        messageAr: failure.messageAr,
+      )),
+      (entity) => emit(LoginSuccess(entity)),
+    );
+  }
 
   Future<void> register({
     required String email,

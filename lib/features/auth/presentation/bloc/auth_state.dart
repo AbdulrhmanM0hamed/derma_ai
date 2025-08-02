@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/register_entity.dart';
 import '../../domain/entities/verify_otp_entity.dart';
 
@@ -13,6 +14,28 @@ abstract class AuthState extends Equatable {
 class AuthInitial extends AuthState {}
 
 class AuthLoading extends AuthState {}
+
+class LoginSuccess extends AuthState {
+  final LoginEntity entity;
+
+  const LoginSuccess(this.entity);
+
+  @override
+  List<Object?> get props => [entity];
+}
+
+class LoginFailure extends AuthState {
+  final String messageEn;
+  final String messageAr;
+
+  const LoginFailure({
+    required this.messageEn,
+    required this.messageAr,
+  });
+
+  @override
+  List<Object?> get props => [messageEn, messageAr];
+}
 
 class RegisterSuccess extends AuthState {
   final RegisterEntity entity;

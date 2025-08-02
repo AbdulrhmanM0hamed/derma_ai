@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/register_entity.dart';
 import '../../domain/entities/verify_otp_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -13,6 +14,38 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   AuthRepositoryImpl({required this.remoteDataSource});
+
+  @override
+  Future<Either<Failure, LoginEntity>> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await remoteDataSource.login(
+        email: email,
+        password: password,
+      );
+
+      return Right(LoginEntity(
+        success: response.success,
+        messageEn: response.messageEn,
+        messageAr: response.messageAr,
+        token: response.token,
+        userId: response.userId,
+        userType: response.userType,
+      ));
+    } on DioException catch (e) {
+      return Left(ServerFailure(
+        message: e.response?.data['message_en'] ?? 'Server error occurred',
+        messageAr: e.response?.data['message_ar'] ?? 'حدث خطأ في الخادم',
+      ));
+    } catch (e) {
+      return Left(ServerFailure(
+        message: 'An unexpected error occurred',
+        messageAr: 'حدث خطأ غير متوقع',
+      ));
+    }
+  }
 
   @override
   Future<Either<Failure, RegisterEntity>> register({

@@ -1,10 +1,16 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
+import '../entities/login_entity.dart';
 import '../entities/register_entity.dart';
 import '../entities/verify_otp_entity.dart';
 
 abstract class AuthRepository {
+  Future<Either<Failure, LoginEntity>> login({
+    required String email,
+    required String password,
+  });
+
   Future<Either<Failure, RegisterEntity>> register({
     required String email,
     required String phone,

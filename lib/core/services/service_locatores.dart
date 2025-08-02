@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import '../../features/auth/data/datasources/auth_remote_datasource.dart';
 import '../../features/auth/data/repositories/auth_repository_impl.dart';
 import '../../features/auth/domain/repositories/auth_repository.dart';
+import '../../features/auth/domain/usecases/login_usecase.dart';
 import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/verify_otp_usecase.dart';
 import '../../features/auth/domain/usecases/resend_otp_usecase.dart';
@@ -15,12 +16,14 @@ Future<void> init() async {
   //! Features - Auth
   // Bloc
   sl.registerFactory(() => AuthCubit(
+        loginUsecase: sl(),
         registerUsecase: sl(),
         verifyOtpUsecase: sl(),
         resendOtpUsecase: sl(),
       ));
 
   // Use cases
+  sl.registerLazySingleton(() => LoginUsecase(sl()));
   sl.registerLazySingleton(() => RegisterUsecase(sl()));
   sl.registerLazySingleton(() => VerifyOtpUsecase(sl()));
   sl.registerLazySingleton(() => ResendOtpUsecase(sl()));

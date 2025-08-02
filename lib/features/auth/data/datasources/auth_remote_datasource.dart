@@ -2,11 +2,17 @@ import 'package:dio/dio.dart';
 
 import '../../../../core/services/dio_service.dart';
 import '../../../../core/utils/constant/api_endpoints.dart';
+import '../models/login_model.dart';
 import '../models/register_request_model.dart';
 import '../models/register_response_model.dart';
 import '../models/verify_otp_model.dart';
 
 abstract class AuthRemoteDataSource {
+  Future<LoginResponseModel> login({
+    required String email,
+    required String password,
+  });
+  
   Future<RegisterResponseModel> register(RegisterRequestModel request);
   Future<VerifyOtpResponseModel> verifyOtp(VerifyOtpRequestModel request);
   Future<Map<String, dynamic>> resendOtp({
@@ -19,6 +25,21 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final DioService dioService;
 
   AuthRemoteDataSourceImpl({required this.dioService});
+
+  @override
+  Future<LoginResponseModel> login({
+    required String email,
+    required String password,
+  }) async {
+    final response = await dioService.post(
+      ApiEndpoints.login,
+      data: {
+        'email': email,
+        'password': password,
+      },
+    );
+    return LoginResponseModel.fromJson(response.data);
+  }
 
   @override
   Future<RegisterResponseModel> register(RegisterRequestModel request) async {
