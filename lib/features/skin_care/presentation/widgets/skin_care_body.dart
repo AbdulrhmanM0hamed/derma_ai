@@ -20,45 +20,33 @@ class SkinCareBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Welcome section
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: AppColors.lightGradient,
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+          Card(
+            elevation: 2,
+            margin: EdgeInsets.zero,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'اكتشف روتين العناية المثالي لبشرتك',
+                    style: getBoldStyle(
+                      color: AppColors.primary,
+                      fontSize: 18,
+                      fontFamily: FontConstant.cairo,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'نصائح مخصصة وروتين يومي للحصول على بشرة صحية ومشرقة',
+                    style: getRegularStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 14,
+                      fontFamily: FontConstant.cairo,
+                    ),
+                  ),
+                ],
               ),
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primary.withValues(alpha:.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'اكتشف روتين العناية المثالي لبشرتك',
-                  style: getBoldStyle(
-                    color: AppColors.primary,
-                    fontSize: 18,
-                    fontFamily: FontConstant.cairo,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'نصائح مخصصة وروتين يومي للحصول على بشرة صحية ومشرقة',
-                  style: getRegularStyle(
-                    color: AppColors.textSecondary,
-                    fontSize: 14,
-                    fontFamily: FontConstant.cairo,
-                  ),
-                ),
-              ],
             ),
           ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.1),
 

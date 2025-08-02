@@ -27,9 +27,9 @@ class DoctorConsultationInfoBody extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.third.withValues(alpha: 0.05),
-                  AppColors.quaternary.withValues(alpha: 0.05),
-                  AppColors.third.withValues(alpha: 0.08),
+                  AppColors.tertiary.withValues(alpha: 0.05),
+                  AppColors.tertiary.withValues(alpha: 0.03),
+                  AppColors.tertiary.withValues(alpha: 0.08),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -37,7 +37,7 @@ class DoctorConsultationInfoBody extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.third.withValues(alpha: 0.1),
+                  color: AppColors.tertiary.withValues(alpha: 0.1),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -51,12 +51,12 @@ class DoctorConsultationInfoBody extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: AppColors.third.withValues(alpha: 0.1),
+                        color: AppColors.tertiary.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
                         Icons.medical_services,
-                        color: AppColors.third,
+                        color: AppColors.tertiary,
                         size: 24,
                       ),
                     ),
@@ -65,7 +65,7 @@ class DoctorConsultationInfoBody extends StatelessWidget {
                       child: Text(
                         'استشارة طبية متخصصة ومباشرة',
                         style: getBoldStyle(
-                          color: AppColors.third,
+                          color: AppColors.tertiary,
                           fontSize: 18,
                           fontFamily: FontConstant.cairo,
                         ),
@@ -95,7 +95,7 @@ class DoctorConsultationInfoBody extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.third,
+                      backgroundColor: AppColors.tertiary,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(

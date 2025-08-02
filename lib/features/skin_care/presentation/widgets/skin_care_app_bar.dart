@@ -15,7 +15,7 @@ class SkinCareAppBar extends StatelessWidget {
       expandedHeight: 200,
       floating: false,
       pinned: true,
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
         onPressed: () => Navigator.of(context).pop(),
@@ -32,7 +32,11 @@ class SkinCareAppBar extends StatelessWidget {
         background: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: AppColors.primaryGradient,
+              colors: [
+                AppColors.secondary,
+                AppColors.secondary.withValues(alpha: 0.8),
+                AppColors.secondary.withValues(alpha: 0.6),
+              ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),

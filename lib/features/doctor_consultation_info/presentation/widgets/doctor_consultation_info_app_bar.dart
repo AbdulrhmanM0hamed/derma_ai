@@ -14,7 +14,7 @@ class DoctorConsultationInfoAppBar extends StatelessWidget {
       expandedHeight: 200,
       floating: false,
       pinned: true,
-      backgroundColor: AppColors.third,
+      backgroundColor: AppColors.tertiary,
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           'استشارة طبيب',
@@ -28,9 +28,9 @@ class DoctorConsultationInfoAppBar extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.third,
-                AppColors.third.withValues(alpha: 0.8),
-                AppColors.quaternary.withValues(alpha: 0.6),
+                AppColors.tertiary,
+                AppColors.tertiary.withValues(alpha: 0.8),
+                AppColors.tertiary.withValues(alpha: 0.6),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,

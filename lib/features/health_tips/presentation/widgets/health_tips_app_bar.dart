@@ -15,7 +15,7 @@ class HealthTipsAppBar extends StatelessWidget {
       expandedHeight: 200,
       floating: false,
       pinned: true,
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.quaternary,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
         onPressed: () => Navigator.of(context).pop(),
@@ -32,7 +32,11 @@ class HealthTipsAppBar extends StatelessWidget {
         background: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: AppColors.primaryGradient,
+              colors: [
+                AppColors.quaternary,
+                AppColors.quaternary.withValues(alpha: 0.8),
+                AppColors.quaternary.withValues(alpha: 0.6),
+              ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),

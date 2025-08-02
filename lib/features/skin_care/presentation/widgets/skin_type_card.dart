@@ -58,7 +58,6 @@ class SkinTypeCard extends StatelessWidget {
           skinTypes.asMap().entries.map((entry) {
             final index = entry.key;
             final skinType = entry.value;
-
             return Container(
                   margin: const EdgeInsets.only(bottom: 16),
                   child: Card(

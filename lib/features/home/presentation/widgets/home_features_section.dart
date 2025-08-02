@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:derma_ai/l10n/app_localizations.dart';
-
 import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
@@ -46,7 +45,7 @@ class HomeFeaturesSection extends StatelessWidget {
       {
         'title': AppLocalizations.of(context)!.skinCare,
         'icon': Icons.spa_outlined,
-        'color': const Color.fromARGB(255, 11, 167, 214),
+        'color': AppColors.secondary,
         'onTap': () {
           Navigator.push(
             context,

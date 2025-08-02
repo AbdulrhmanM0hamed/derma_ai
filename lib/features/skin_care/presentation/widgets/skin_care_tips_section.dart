@@ -73,10 +73,8 @@ class SkinCareTipsSection extends StatelessWidget {
           itemCount: tips.length,
           itemBuilder: (context, index) {
             final tip = tips[index];
-
             return Card(
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-
                   elevation: 2,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
