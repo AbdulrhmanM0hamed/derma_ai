@@ -3,6 +3,7 @@ import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/widgets/custom_button.dart';
 import 'package:derma_ai/core/widgets/custom_text_field.dart';
+import 'package:derma_ai/core/utils/common/custom_progress_indicator.dart';
 import 'package:derma_ai/features/auth/presentation/widgets/social_auth_section.dart';
 import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -61,29 +62,35 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _buildHeader(),
-                const SizedBox(height: 32),
-                _buildEmailField(),
-                const SizedBox(height: 16),
-                _buildPasswordField(),
-                const SizedBox(height: 16),
-                _buildRememberMeAndForgotPassword(),
-                const SizedBox(height: 32),
-                _buildLoginButton(),
-                const SizedBox(height: 24),
-                const SocialAuthSection(),
-                const SizedBox(height: 32),
-                _buildSignUpLink(),
-              ],
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              padding: const EdgeInsets.all(24),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _buildHeader(),
+                    const SizedBox(height: 32),
+                    _buildEmailField(),
+                    const SizedBox(height: 16),
+                    _buildPasswordField(),
+                    const SizedBox(height: 16),
+                    _buildRememberMeAndForgotPassword(),
+                    const SizedBox(height: 32),
+                    _buildLoginButton(),
+                    const SizedBox(height: 24),
+                    const SocialAuthSection(),
+                    const SizedBox(height: 32),
+                    _buildSignUpLink(),
+                  ],
+                ),
+              ),
             ),
-          ),
+            if (_isLoading)
+              const CustomProgressIndicator(),
+          ],
         ),
       ),
     );
@@ -219,8 +226,7 @@ class _LoginPageState extends State<LoginPage> {
       effects: [FadeEffect(delay: 700.ms, duration: 600.ms)],
       child: CustomButton(
         text: AppLocalizations.of(context)!.login,
-        onPressed: _isLoading ? () {} : () => _login(),
-        isLoading: _isLoading,
+                onPressed: _isLoading ? () {} : _login,
       ),
     );
   }
