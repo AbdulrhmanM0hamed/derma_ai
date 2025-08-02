@@ -1,14 +1,11 @@
 import 'package:derma_ai/core/utils/common/custom_progress_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
 import '../../core/utils/constant/font_manger.dart';
 import '../../core/utils/constant/styles_manger.dart';
 import '../../core/utils/theme/app_colors.dart';
 import './widgets/doctor_about_section_widget.dart';
 import './widgets/doctor_availability_calendar_widget.dart';
-import './widgets/doctor_contact_options_widget.dart';
 import './widgets/doctor_education_widget.dart';
 import './widgets/doctor_hero_section_widget.dart';
 import './widgets/doctor_location_widget.dart';
@@ -46,51 +43,51 @@ class _DoctorProfileState extends State<DoctorProfile> {
       {
         "arabicName": "علاج الأكزيما والحساسية الجلدية",
         "description":
-            "تشخيص وعلاج جميع أنواع الأكزيما والحساسية الجلدية باستخدام أحدث الطرق العلاجية"
+            "تشخيص وعلاج جميع أنواع الأكزيما والحساسية الجلدية باستخدام أحدث الطرق العلاجية",
       },
       {
         "arabicName": "علاج الصدفية",
         "description":
-            "علاج متقدم للصدفية باستخدام العلاجات البيولوجية والضوئية"
+            "علاج متقدم للصدفية باستخدام العلاجات البيولوجية والضوئية",
       },
       {
         "arabicName": "فحص وعلاج سرطان الجلد",
-        "description": "الكشف المبكر وعلاج سرطان الجلد بأنواعه المختلفة"
+        "description": "الكشف المبكر وعلاج سرطان الجلد بأنواعه المختلفة",
       },
       {
         "arabicName": "علاج حب الشباب والندبات",
         "description":
-            "علاج شامل لحب الشباب وإزالة الندبات بالليزر والتقشير الكيميائي"
-      }
+            "علاج شامل لحب الشباب وإزالة الندبات بالليزر والتقشير الكيميائي",
+      },
     ],
     "education": [
       {
         "degree": "بكالوريوس الطب والجراحة",
         "institution": "جامعة الملك سعود - كلية الطب",
-        "year": "2005"
+        "year": "2005",
       },
       {
         "degree": "ماجستير الأمراض الجلدية",
         "institution": "جامعة الملك فيصل - كلية الطب",
-        "year": "2009"
-      }
+        "year": "2009",
+      },
     ],
     "certifications": [
       {
         "name": "البورد السعودي للأمراض الجلدية",
         "issuer": "الهيئة السعودية للتخصصات الصحية",
-        "year": "2010"
+        "year": "2010",
       },
       {
         "name": "شهادة الليزر الطبي",
         "issuer": "الأكاديمية الأمريكية للأمراض الجلدية",
-        "year": "2012"
+        "year": "2012",
       },
       {
         "name": "شهادة علاج السرطان الجلدي",
         "issuer": "المعهد الوطني للسرطان",
-        "year": "2015"
-      }
+        "year": "2015",
+      },
     ],
     "workingHours": {
       "sunday": {"start": "9:00 AM", "end": "5:00 PM", "available": true},
@@ -99,13 +96,13 @@ class _DoctorProfileState extends State<DoctorProfile> {
       "wednesday": {"start": "9:00 AM", "end": "5:00 PM", "available": true},
       "thursday": {"start": "9:00 AM", "end": "1:00 PM", "available": true},
       "friday": {"start": "", "end": "", "available": false},
-      "saturday": {"start": "", "end": "", "available": false}
+      "saturday": {"start": "", "end": "", "available": false},
     },
     "location": {
       "address": "1234 طريق الملك فهد، الرياض، المملكة العربية السعودية",
       "latitude": 24.7136,
       "longitude": 46.6753,
-      "clinicName": "عيادة ديرما كير"
+      "clinicName": "عيادة ديرما كير",
     },
     "contact": {"phone": "+966114670000", "email": "info@dermatology.com"},
     "reviews": [
@@ -117,7 +114,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
         "reviewText":
             "دكتور أحمد رائع جداً، استمع لمشكلتي بعناية وقدم لي العلاج المناسب. تحسنت بشرتي بشكل ملحوظ خلال فترة قصيرة. أنصح به بشدة!",
         "helpfulVotes": 12,
-        "date": "2023-05-15"
+        "date": "2023-05-15",
       },
       {
         "reviewerName": "محمد عبدالله",
@@ -127,8 +124,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
         "reviewText":
             "تجربة جيدة جداً، الطبيب محترف والعيادة نظيفة. العيب الوحيد هو صعوبة الحصول على موعد قريب.",
         "helpfulVotes": 5,
-        "date": "2023-04-22"
-      }
+        "date": "2023-04-22",
+      },
     ],
     "availableDays": [
       {
@@ -139,30 +136,27 @@ class _DoctorProfileState extends State<DoctorProfile> {
           {"time": "10:00 ص", "available": true},
           {"time": "10:30 ص", "available": true},
           {"time": "11:00 ص", "available": false},
-          {"time": "11:30 ص", "available": true}
-        ]
+          {"time": "11:30 ص", "available": true},
+        ],
       },
       {
         "date": "2023-06-11",
         "timeSlots": [
           {"time": "09:00 ص", "available": true},
           {"time": "09:30 ص", "available": true},
-          {"time": "10:00 ص", "available": true}
-        ]
+          {"time": "10:00 ص", "available": true},
+        ],
       },
-      {
-        "date": "2023-06-12",
-        "timeSlots": []
-      },
+      {"date": "2023-06-12", "timeSlots": []},
       {
         "date": "2023-06-13",
         "timeSlots": [
           {"time": "01:00 م", "available": true},
           {"time": "01:30 م", "available": true},
-          {"time": "02:00 م", "available": false}
-        ]
-      }
-    ]
+          {"time": "02:00 م", "available": false},
+        ],
+      },
+    ],
   };
 
   @override
@@ -187,19 +181,19 @@ class _DoctorProfileState extends State<DoctorProfile> {
   }
 
   void _shareProfile() {
-  //  print("Sharing profile...");
+    //  print("Sharing profile...");
   }
 
   void _bookAppointment() {
-   // print("Booking appointment...");
+    // print("Booking appointment...");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
- 
       body: isLoading ? _buildLoadingState() : _buildContent(context),
-      floatingActionButton: isLoading ? null : _buildFloatingActionButton(context),
+      floatingActionButton:
+          isLoading ? null : _buildFloatingActionButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
@@ -243,7 +237,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 DoctorEducationWidget(doctorData: doctorData),
                 DoctorWorkingHoursWidget(doctorData: doctorData),
                 DoctorLocationWidget(doctorData: doctorData),
-           //     DoctorContactOptionsWidget(doctorData: doctorData),
+                //     DoctorContactOptionsWidget(doctorData: doctorData),
                 DoctorAvailabilityCalendarWidget(doctorData: doctorData),
                 DoctorReviewsWidget(doctorData: doctorData),
                 SizedBox(height: screenHeight * 0.12),
@@ -264,27 +258,18 @@ class _DoctorProfileState extends State<DoctorProfile> {
         right: screenWidth * 0.04,
         bottom: screenWidth * 0.04,
       ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadow.withValues(alpha:0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildAppBarIcon(context, Icons.arrow_back_ios_new, () => Navigator.pop(context)),
+          _buildAppBarIcon(
+            context,
+            Icons.arrow_back_ios_new,
+            () => Navigator.pop(context),
+          ),
           Text(
             "ملف الطبيب",
-            style: getBoldStyle(
-              color: AppColors.textPrimary,
-              fontSize: 18,
-              fontFamily: FontConstant.cairo,
-            ),
+            style: getBoldStyle(fontSize: 18, fontFamily: FontConstant.cairo),
           ),
           _buildAppBarIcon(context, Icons.share_outlined, _shareProfile),
         ],
@@ -292,21 +277,21 @@ class _DoctorProfileState extends State<DoctorProfile> {
     );
   }
 
-  Widget _buildAppBarIcon(BuildContext context, IconData icon, VoidCallback onTap) {
+  Widget _buildAppBarIcon(
+    BuildContext context,
+    IconData icon,
+    VoidCallback onTap,
+  ) {
     final screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(screenWidth * 0.02),
         decoration: BoxDecoration(
-          color: AppColors.primary.withValues(alpha:0.1),
+          color: AppColors.primary.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(screenWidth * 0.02),
         ),
-        child: Icon(
-          icon,
-          color: AppColors.primary,
-          size: screenWidth * 0.05,
-        ),
+        child: Icon(icon, color: AppColors.primary, size: screenWidth * 0.05),
       ),
     );
   }
