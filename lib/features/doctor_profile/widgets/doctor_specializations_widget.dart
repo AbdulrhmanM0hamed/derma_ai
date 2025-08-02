@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/utils/constant/font_manger.dart';
 import '../../../core/utils/constant/styles_manger.dart';
 import '../../../core/utils/theme/app_colors.dart';
+import '../../../core/widgets/scroll_animated_widget.dart';
 
 class DoctorSpecializationsWidget extends StatelessWidget {
   final Map<String, dynamic> doctorData;
@@ -24,7 +25,7 @@ class DoctorSpecializationsWidget extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Card(
+    final cardWidget = Card(
       elevation: 2,
       margin: EdgeInsets.symmetric(
           horizontal: screenWidth * 0.04, vertical: screenHeight * 0.01),
@@ -62,7 +63,14 @@ class DoctorSpecializationsWidget extends StatelessWidget {
           ],
         ),
       ),
-    ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1);
+    );
+    
+    return ScrollAnimatedWidget(
+      duration: const Duration(milliseconds: 500),
+      delay: const Duration(milliseconds: 100),
+      slideOffset: 0.25,
+      child: cardWidget,
+    );
   }
 }
 
