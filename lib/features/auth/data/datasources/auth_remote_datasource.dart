@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../../../../core/services/dio_service.dart';
+import '../../../../core/services/token_storage_service.dart';
 import '../../../../core/utils/constant/api_endpoints.dart';
 import '../models/login_model.dart';
 import '../models/register_request_model.dart';
@@ -23,8 +24,12 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final DioService dioService;
+  final TokenStorageService tokenStorageService;
 
-  AuthRemoteDataSourceImpl({required this.dioService});
+  AuthRemoteDataSourceImpl({
+    required this.dioService,
+    required this.tokenStorageService,
+  });
 
   @override
   Future<LoginResponseModel> login({
@@ -38,7 +43,35 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         'password': password,
       },
     );
-    return LoginResponseModel.fromJson(response.data);
+    
+    final loginResponse = LoginResponseModel.fromJson(response.data);
+    
+    // Save tokens if login is successful
+    if (loginResponse.success && 
+        loginResponse.accessToken != null &&
+        loginResponse.refreshToken != null &&
+        loginResponse.sessionToken != null) {
+      await tokenStorageService.saveTokens(
+        accessToken: loginResponse.accessToken!,
+        refreshToken: loginResponse.refreshToken!,
+        sessionToken: loginResponse.sessionToken!,
+      );
+      
+      // Save user data
+      if (loginResponse.userId != null &&
+          loginResponse.userUuid != null &&
+          loginResponse.userEmail != null &&
+          loginResponse.userStatus != null) {
+        await tokenStorageService.saveUserData(
+          userId: loginResponse.userId!,
+          userUuid: loginResponse.userUuid!,
+          userEmail: loginResponse.userEmail!,
+          userStatus: loginResponse.userStatus!,
+        );
+      }
+    }
+    
+    return loginResponse;
   }
 
   @override

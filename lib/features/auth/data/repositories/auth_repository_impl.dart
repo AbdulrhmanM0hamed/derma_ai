@@ -30,9 +30,13 @@ class AuthRepositoryImpl implements AuthRepository {
         success: response.success,
         messageEn: response.messageEn,
         messageAr: response.messageAr,
-        token: response.token,
+        accessToken: response.accessToken,
+        refreshToken: response.refreshToken,
+        sessionToken: response.sessionToken,
         userId: response.userId,
-        userType: response.userType,
+        userUuid: response.userUuid,
+        userEmail: response.userEmail,
+        userStatus: response.userStatus,
       ));
     } on DioException catch (e) {
       return Left(ServerFailure(

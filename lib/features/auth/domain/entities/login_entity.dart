@@ -4,17 +4,25 @@ class LoginEntity extends Equatable {
   final bool success;
   final String messageEn;
   final String messageAr;
-  final String? token;
+  final String? accessToken;
+  final String? refreshToken;
+  final String? sessionToken;
   final int? userId;
-  final String? userType;
+  final String? userUuid;
+  final String? userEmail;
+  final String? userStatus;
 
   const LoginEntity({
     required this.success,
     required this.messageEn,
     required this.messageAr,
-    this.token,
+    this.accessToken,
+    this.refreshToken,
+    this.sessionToken,
     this.userId,
-    this.userType,
+    this.userUuid,
+    this.userEmail,
+    this.userStatus,
   });
 
   @override
@@ -22,8 +30,12 @@ class LoginEntity extends Equatable {
         success,
         messageEn,
         messageAr,
-        token,
+        accessToken,
+        refreshToken,
+        sessionToken,
         userId,
-        userType,
+        userUuid,
+        userEmail,
+        userStatus,
       ];
 }
