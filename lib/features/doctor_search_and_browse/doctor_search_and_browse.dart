@@ -204,39 +204,39 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
             ],
           ),
         ),
-                        body: Column(
-                          children: [
-                            SearchBarWidget(
-                              controller: _searchController,
-                              onFilterTap: _showFilterBottomSheet,
-                              onSearchChanged: _onSearchChanged,
-                            ),
-                            if (activeFilters.isNotEmpty) ...[
-                              SizedBox(height: screenHeight * 0.01),
-                              FilterChipsWidget(
-                                activeFilters: activeFilters,
-                                onRemoveFilter: _removeFilter,
-                              ),
-                            ],
-                            if (showLocationPermission) ...[
-                              SizedBox(height: screenHeight * 0.02),
-                              LocationPermissionWidget(
-                                onAllowLocation: _onAllowLocation,
-                                onSkip: _onSkipLocation,
-                              ),
-                            ],
-                            Expanded(
-                              child: TabBarView(
-                                controller: _tabController,
-                                children: [
-                                  _buildDoctorsList(),
-                                  _buildFavoritesList(),
-                                  _buildAppointmentsList(),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.2, end: 0),
+        body: Column(
+          children: [
+            SearchBarWidget(
+              controller: _searchController,
+              onFilterTap: _showFilterBottomSheet,
+              onSearchChanged: _onSearchChanged,
+            ),
+            if (activeFilters.isNotEmpty) ...[
+              SizedBox(height: screenHeight * 0.01),
+              FilterChipsWidget(
+                activeFilters: activeFilters,
+                onRemoveFilter: _removeFilter,
+              ),
+            ],
+            if (showLocationPermission) ...[
+              SizedBox(height: screenHeight * 0.02),
+              LocationPermissionWidget(
+                onAllowLocation: _onAllowLocation,
+                onSkip: _onSkipLocation,
+              ),
+            ],
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildDoctorsList(),
+                  _buildFavoritesList(),
+                  _buildAppointmentsList(),
+                ],
+              ),
+            ),
+          ],
+        ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.2, end: 0),
         floatingActionButton: FloatingActionButton(
           onPressed: _showSortOptions,
           child: const Icon(Icons.sort, color: Colors.white, size: 24),
