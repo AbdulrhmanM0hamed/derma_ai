@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("عن الطبيب"),
+        "accountVerification":
+            MessageLookupByLibrary.simpleMessage("تأكيد الحساب"),
         "aiDiagnosis":
             MessageLookupByLibrary.simpleMessage("تشخيص الذكاء الاصطناعي"),
         "aiDisclaimerMessage": MessageLookupByLibrary.simpleMessage(
@@ -49,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookAppointmentWithDermatologist":
             MessageLookupByLibrary.simpleMessage("حجز موعد مع طبيب جلدية"),
         "changePhoto": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),
+        "codeValidFor5Minutes":
+            MessageLookupByLibrary.simpleMessage("الرمز صالح لمدة 5 دقائق فقط"),
         "commonSymptoms":
             MessageLookupByLibrary.simpleMessage("الأعراض الشائعة"),
         "confidence": MessageLookupByLibrary.simpleMessage("الثقة"),
@@ -73,6 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "education": MessageLookupByLibrary.simpleMessage("التعليم"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "emailVerification":
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "enterConfirmPassword":
             MessageLookupByLibrary.simpleMessage("أدخل تأكيد كلمة المرور"),
         "enterEmail":
@@ -81,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل اسمك الكامل"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+        "enterPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
         "experience": MessageLookupByLibrary.simpleMessage("الخبرة"),
         "findDoctors": MessageLookupByLibrary.simpleMessage("البحث عن أطباء"),
         "findYourDoctor": MessageLookupByLibrary.simpleMessage("ابحث عن طبيبك"),
@@ -119,6 +127,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تتبع صحة بشرتك"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("أو تابع باستخدام"),
+        "otpSentToEmail": MessageLookupByLibrary.simpleMessage(
+            "تم إرسال رمز التحقق إلى بريدك الإلكتروني"),
+        "otpSentToPhone": MessageLookupByLibrary.simpleMessage(
+            "تم إرسال رمز التحقق إلى رقم هاتفك"),
         "ourServices": MessageLookupByLibrary.simpleMessage("خدماتنا"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordMustBe": MessageLookupByLibrary.simpleMessage(
@@ -127,6 +139,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمات المرور غير متطابقة"),
         "patientReviews":
             MessageLookupByLibrary.simpleMessage("تقييمات المرضى"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "phoneVerification": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "photoGuidelines": MessageLookupByLibrary.simpleMessage(
             "للحصول على تشخيص دقيق، تأكد من أن الصورة واضحة وجيدة الإضاءة وتركز على المنطقة المصابة."),
         "pleaseAcceptTerms": MessageLookupByLibrary.simpleMessage(
@@ -139,8 +153,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال اسمك"),
         "pleaseEnterPassword":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال كلمة المرور"),
+        "pleaseEnterPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم الهاتف"),
         "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
             "الرجاء إدخال بريد إلكتروني صحيح"),
+        "pleaseEnterValidPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم هاتف صحيح"),
         "pleaseSelectTimeSlot":
             MessageLookupByLibrary.simpleMessage("الرجاء اختيار فترة زمنية"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
@@ -150,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recommendedTreatments":
             MessageLookupByLibrary.simpleMessage("العلاجات الموصى بها"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+        "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
         "reviews": MessageLookupByLibrary.simpleMessage("تقييمات"),
         "saveToMyRecords":
             MessageLookupByLibrary.simpleMessage("حفظ في سجلاتي"),
@@ -185,6 +204,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadOrTakePhoto":
             MessageLookupByLibrary.simpleMessage("ارفع أو التقط صورة"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("ارفع صورة"),
+        "verifyCode": MessageLookupByLibrary.simpleMessage("تأكيد الرمز"),
+        "verifyOtpCode":
+            MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك")
       };

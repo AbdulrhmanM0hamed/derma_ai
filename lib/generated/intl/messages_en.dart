@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "accountVerification":
+            MessageLookupByLibrary.simpleMessage("Account Verification"),
         "aiDiagnosis": MessageLookupByLibrary.simpleMessage("AI Diagnosis"),
         "aiDisclaimerMessage": MessageLookupByLibrary.simpleMessage(
             "This is an AI-generated diagnosis. Please consult with a dermatologist for professional medical advice."),
@@ -51,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Book Appointment with Dermatologist"),
         "changePhoto": MessageLookupByLibrary.simpleMessage("Change Photo"),
+        "codeValidFor5Minutes": MessageLookupByLibrary.simpleMessage(
+            "Code is valid for 5 minutes only"),
         "commonSymptoms":
             MessageLookupByLibrary.simpleMessage("Common Symptoms"),
         "confidence": MessageLookupByLibrary.simpleMessage("Confidence"),
@@ -75,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "emailVerification": MessageLookupByLibrary.simpleMessage("Email"),
         "enterConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Enter confirm password"),
         "enterEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
@@ -82,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your full name"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "enterPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "experience": MessageLookupByLibrary.simpleMessage("Experience"),
         "findDoctors": MessageLookupByLibrary.simpleMessage("Find Doctors"),
         "findYourDoctor":
@@ -122,6 +129,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Track Your Skin Health"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("Or continue with"),
+        "otpSentToEmail": MessageLookupByLibrary.simpleMessage(
+            "Verification code sent to your email"),
+        "otpSentToPhone": MessageLookupByLibrary.simpleMessage(
+            "Verification code sent to your phone"),
         "ourServices": MessageLookupByLibrary.simpleMessage("Our Services"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordMustBe": MessageLookupByLibrary.simpleMessage(
@@ -130,6 +141,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "patientReviews":
             MessageLookupByLibrary.simpleMessage("Patient Reviews"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "phoneVerification": MessageLookupByLibrary.simpleMessage("Phone"),
         "photoGuidelines": MessageLookupByLibrary.simpleMessage(
             "For accurate diagnosis, ensure the photo is clear, well-lit, and focused on the affected area."),
         "pleaseAcceptTerms": MessageLookupByLibrary.simpleMessage(
@@ -142,8 +155,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "pleaseEnterPassword":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "pleaseEnterPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter your phone number"),
         "pleaseEnterValidEmail":
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
+        "pleaseEnterValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid phone number"),
         "pleaseSelectTimeSlot":
             MessageLookupByLibrary.simpleMessage("Please select a time slot"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
@@ -153,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recommendedTreatments":
             MessageLookupByLibrary.simpleMessage("Recommended Treatments"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+        "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "saveToMyRecords":
             MessageLookupByLibrary.simpleMessage("Save to My Records"),
@@ -190,6 +208,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadOrTakePhoto":
             MessageLookupByLibrary.simpleMessage("Upload or Take a Photo"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload Photo"),
+        "verifyCode": MessageLookupByLibrary.simpleMessage("Verify Code"),
+        "verifyOtpCode":
+            MessageLookupByLibrary.simpleMessage("Verify OTP Code"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back")
       };

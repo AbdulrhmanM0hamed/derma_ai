@@ -1,15 +1,22 @@
-import 'package:derma_ai/core/utils/theme/app_colors.dart';
-import 'package:derma_ai/core/widgets/custom_button.dart';
-import 'package:derma_ai/core/widgets/custom_text_field.dart';
-import 'package:derma_ai/features/auth/presentation/widgets/social_auth_section.dart';
-import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:derma_ai/core/utils/constant/font_manger.dart';
-import 'package:derma_ai/core/utils/constant/styles_manger.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/utils/animations/app_animations.dart';
+import '../../../../core/utils/common/custom_progress_indicator.dart';
+import '../../../../core/utils/common/custom_snackbar.dart';
+import '../../../../core/utils/constant/font_manger.dart';
+import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
+import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/validators/form_validators.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_text_field.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_state.dart';
+import '../widgets/social_auth_section.dart';
+import 'otp_verification_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -22,89 +29,125 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  bool _isLoading = false;
   bool _acceptTerms = false;
-  final bool _obscurePassword = true;
-  final bool _obscureConfirmPassword = true;
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
   }
 
-  void _register() async {
+  void _register() {
     if (!_formKey.currentState!.validate()) return;
 
     if (!_acceptTerms) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppLocalizations.of(context)!.pleaseAcceptTerms),
-        ),
+      CustomSnackbar.showError(
+        context: context,
+        message: 'يرجى قبول الشروط والأحكام',
       );
       return;
     }
 
-    setState(() => _isLoading = true);
-
-    try {
-      // Simulate registration process
-      await Future.delayed(const Duration(seconds: 2));
-
-      if (mounted) {
-        Navigator.pushReplacementNamed(context, AppRoutes.login);
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Registration failed: $e')));
-      }
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
-    }
+    context.read<AuthCubit>().register(
+      email: _emailController.text.trim(),
+      phone: _phoneController.text.trim(),
+      password: _passwordController.text,
+      fullName: _nameController.text.trim(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 40),
-                _buildHeader(),
-                const SizedBox(height: 40),
-                _buildNameField(),
-                const SizedBox(height: 16),
-                _buildEmailField(),
-                const SizedBox(height: 16),
-                _buildPasswordField(),
-                const SizedBox(height: 16),
-                _buildConfirmPasswordField(),
-                const SizedBox(height: 16),
-                _buildTermsAndConditions(),
-                const SizedBox(height: 24),
-                _buildSignUpButton(),
-                const SizedBox(height: 24),
-                const SocialAuthSection(),
-                const SizedBox(height: 32),
-                _buildSignInLink(),
-              ],
+      body: BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          return Stack(
+            children: [
+              BlocListener<AuthCubit, AuthState>(
+                listener: (context, state) {
+          if (state is RegisterSuccess) {
+            CustomSnackbar.showSuccess(
+              context: context,
+              message: CustomSnackbar.getLocalizedMessage(
+                context: context,
+                messageAr: state.entity.messageAr,
+                messageEn: state.entity.messageEn,
+              ),
+            );
+            // Navigate to OTP verification
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OtpVerificationPage(
+                  userId: state.entity.userId!,
+                  email: _emailController.text.trim(),
+                  phone: _phoneController.text.trim(),
+                ),
+              ),
+            );
+          } else if (state is RegisterFailure) {
+            CustomSnackbar.showError(
+              context: context,
+              message: CustomSnackbar.getLocalizedMessage(
+                context: context,
+                messageAr: state.messageAr,
+                messageEn: state.messageEn,
+              ),
+            );
+          }
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 40),
+                  _buildHeader(),
+                  const SizedBox(height: 40),
+                  _buildNameField(),
+                  const SizedBox(height: 16),
+                  _buildEmailField(),
+                  const SizedBox(height: 16),
+                  _buildPhoneField(),
+                  const SizedBox(height: 16),
+                  _buildPasswordField(),
+                  const SizedBox(height: 16),
+                  _buildConfirmPasswordField(),
+                  const SizedBox(height: 16),
+                  _buildTermsAndConditions(),
+                  const SizedBox(height: 24),
+                  _buildSignUpButton(),
+                  const SizedBox(height: 24),
+                  const SocialAuthSection(),
+                  const SizedBox(height: 32),
+                  _buildSignInLink(),
+                ],
+              ),
             ),
           ),
         ),
+              ),
+              // Progress Indicator Overlay
+              if (state is AuthLoading)
+                Container(
+                  color: Colors.black.withValues(alpha: 0.3),
+                  child: const CustomProgressIndicator(),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -127,17 +170,15 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ],
           ),
-          child: Center(
-            child: SvgPicture.asset(
-              'assets/images/logo.svg',
-              width: 90,
-              height: 90,
-            ),
+          child: Icon(
+            Icons.person_add_outlined,
+            size: 40,
+            color: AppColors.primary,
           ),
         ).animate(effects: fadeInScaleUp(duration: 600.ms, begin: 0.5)),
         const SizedBox(height: 16),
         Text(
-          AppLocalizations.of(context)!.createAccount,
+          'إنشاء حساب جديد',
           style: getBoldStyle(fontSize: 24, fontFamily: FontConstant.cairo),
           textAlign: TextAlign.center,
         ).animate(
@@ -145,7 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         const SizedBox(height: 12),
         Text(
-          AppLocalizations.of(context)!.signUpToGetStarted,
+          'انضم إلينا وابدأ رحلتك في العناية بالبشرة',
           style: getRegularStyle(
             color: AppColors.textSecondary,
             fontSize: 14,
@@ -165,15 +206,7 @@ class _RegisterPageState extends State<RegisterPage> {
       labelText: AppLocalizations.of(context)!.fullName,
       hintText: AppLocalizations.of(context)!.enterFullName,
       prefixIcon: Icons.person_outline,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return AppLocalizations.of(context)!.pleaseEnterName;
-        }
-        if (value.length < 2) {
-          return 'Name must be at least 2 characters';
-        }
-        return null;
-      },
+      validator: (value) => FormValidators.validateFullName(value, context),
     ).animate(
       effects: fadeInSlide(duration: 600.ms, delay: 400.ms, beginY: 0.2),
     );
@@ -186,17 +219,22 @@ class _RegisterPageState extends State<RegisterPage> {
       hintText: AppLocalizations.of(context)!.enterEmail,
       prefixIcon: Icons.email_outlined,
       keyboardType: TextInputType.emailAddress,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return AppLocalizations.of(context)!.pleaseEnterEmail;
-        }
-        if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$').hasMatch(value)) {
-          return AppLocalizations.of(context)!.pleaseEnterValidEmail;
-        }
-        return null;
-      },
+      validator: (value) => FormValidators.validateEmail(value, context),
     ).animate(
       effects: fadeInSlide(duration: 600.ms, delay: 500.ms, beginY: 0.2),
+    );
+  }
+
+  Widget _buildPhoneField() {
+    return CustomTextField(
+      controller: _phoneController,
+      labelText: AppLocalizations.of(context)!.phoneNumber,
+      hintText: AppLocalizations.of(context)!.enterPhoneNumber,
+      prefixIcon: Icons.phone_outlined,
+      keyboardType: TextInputType.phone,
+      validator: (value) => FormValidators.validatePhoneNumber(value, context),
+    ).animate(
+      effects: fadeInSlide(duration: 600.ms, delay: 550.ms, beginY: 0.2),
     );
   }
 
@@ -208,15 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
       prefixIcon: Icons.lock_outline,
       obscureText: _obscurePassword,
       suffixIcon: Icons.visibility_off,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return AppLocalizations.of(context)!.pleaseEnterPassword;
-        }
-        if (value.length < 6) {
-          return AppLocalizations.of(context)!.passwordMustBe;
-        }
-        return null;
-      },
+      validator: (value) => FormValidators.validatePassword(value, context),
     ).animate(
       effects: fadeInSlide(duration: 600.ms, delay: 600.ms, beginY: 0.2),
     );
@@ -230,15 +260,11 @@ class _RegisterPageState extends State<RegisterPage> {
       prefixIcon: Icons.lock_outline,
       obscureText: _obscureConfirmPassword,
       suffixIcon: Icons.visibility_off,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return AppLocalizations.of(context)!.pleaseConfirmPassword;
-        }
-        if (value != _passwordController.text) {
-          return AppLocalizations.of(context)!.passwordsDoNotMatch;
-        }
-        return null;
-      },
+      validator: (value) => FormValidators.validatePasswordConfirmation(
+        value,
+        _passwordController.text,
+        context,
+      ),
     ).animate(
       effects: fadeInSlide(duration: 600.ms, delay: 700.ms, beginY: 0.2),
     );
@@ -303,24 +329,29 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _buildSignUpButton() {
-    return Animate(
-      effects: [
-        FadeEffect(duration: 600.ms, delay: 900.ms),
-        SlideEffect(
-          begin: const Offset(0, 0.3),
-          end: Offset.zero,
-          duration: 600.ms,
-          delay: 900.ms,
-        ),
-      ],
-      child: CustomButton(
-        text: AppLocalizations.of(context)!.signUp,
-        onPressed: _isLoading ? () {} : () => _register(),
-        isLoading: _isLoading,
-        type: ButtonType.primary,
-        width: double.infinity,
-        height: 56,
-      ),
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        final isLoading = state is AuthLoading;
+        
+        return Animate(
+          effects: [
+            FadeEffect(duration: 600.ms, delay: 900.ms),
+            SlideEffect(
+              begin: const Offset(0, 0.3),
+              end: Offset.zero,
+              duration: 600.ms,
+              delay: 900.ms,
+            ),
+          ],
+          child: CustomButton(
+            text: 'إنشاء حساب',
+            onPressed: isLoading ? () {} : () => _register(),
+            type: ButtonType.primary,
+            width: double.infinity,
+            height: 56,
+          ),
+        );
+      },
     );
   }
 

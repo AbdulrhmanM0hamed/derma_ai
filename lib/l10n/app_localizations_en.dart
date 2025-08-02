@@ -144,6 +144,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get alreadyHaveAccount => 'Already have an account?';
 
   @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get enterPhoneNumber => 'Enter your phone number';
+
+  @override
+  String get pleaseEnterPhoneNumber => 'Please enter your phone number';
+
+  @override
+  String get pleaseEnterValidPhoneNumber => 'Please enter a valid phone number';
+
+  @override
+  String get accountVerification => 'Account Verification';
+
+  @override
+  String get verifyOtpCode => 'Verify OTP Code';
+
+  @override
+  String get otpSentToEmail => 'Verification code sent to your email';
+
+  @override
+  String get otpSentToPhone => 'Verification code sent to your phone';
+
+  @override
+  String get emailVerification => 'Email';
+
+  @override
+  String get phoneVerification => 'Phone';
+
+  @override
+  String get verifyCode => 'Verify Code';
+
+  @override
+  String get resendCode => 'Resend Code';
+
+  @override
+  String get codeValidFor5Minutes => 'Code is valid for 5 minutes only';
+
+  @override
   String helloUser(Object name) {
     return 'Hello, $name!';
   }

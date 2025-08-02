@@ -144,6 +144,45 @@ class AppLocalizationsAr extends AppLocalizations {
   String get alreadyHaveAccount => 'لديك حساب بالفعل؟';
 
   @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get enterPhoneNumber => 'أدخل رقم هاتفك';
+
+  @override
+  String get pleaseEnterPhoneNumber => 'يرجى إدخال رقم الهاتف';
+
+  @override
+  String get pleaseEnterValidPhoneNumber => 'يرجى إدخال رقم هاتف صحيح';
+
+  @override
+  String get accountVerification => 'تأكيد الحساب';
+
+  @override
+  String get verifyOtpCode => 'تأكيد رمز التحقق';
+
+  @override
+  String get otpSentToEmail => 'تم إرسال رمز التحقق إلى بريدك الإلكتروني';
+
+  @override
+  String get otpSentToPhone => 'تم إرسال رمز التحقق إلى رقم هاتفك';
+
+  @override
+  String get emailVerification => 'البريد الإلكتروني';
+
+  @override
+  String get phoneVerification => 'رقم الهاتف';
+
+  @override
+  String get verifyCode => 'تأكيد الرمز';
+
+  @override
+  String get resendCode => 'إعادة إرسال الرمز';
+
+  @override
+  String get codeValidFor5Minutes => 'الرمز صالح لمدة 5 دقائق فقط';
+
+  @override
   String helloUser(Object name) {
     return 'مرحباً، $name!';
   }

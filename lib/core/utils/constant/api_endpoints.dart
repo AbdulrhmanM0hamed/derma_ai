@@ -1,32 +1,9 @@
 class ApiEndpoints {
-  static const String baseUrl = 'https://moezez.com/api/';
-  static const String login = 'login';
-  static const String register = 'register';
-  static const String logout = 'logout';
-  static const String subscribe = 'subscribe';
-  static const String profile = 'profile';
-  static const String packages = 'packages';
-  //static const String trialPackage = 'trial-package';
-  static const String currentSubscription = 'current-subscription';
-  static const String myTeam = 'my-team';
-  static const String createTeam = 'create-team';
-  static const String sendInvitation = 'invitations/sent';
-  static const String teamInvitations = 'team/invitations';
-  static const String removeTeamMember = 'team/remove-member';
-  static const String myInvitations = 'my-invitations';
-  static const String invitationRespond = 'invitations/respond';
-  static const String teamRewards = 'team/rewards';
-  static const String myRewards = 'my-rewards';
-  static const String passwordResetLink = 'password/reset-link';
- // static const String teamMembers = 'team/member-stats';
-  static const String createTask = 'team/create-task';
-  static const String closeTask = 'tasks/close';
-  static const String taskDetails = 'task-details';
-  static const String myTasks = 'my-tasks';
-  static const String subscriptions = 'subscriptions';
-  static const String payments = 'payments';
-  static const String financialDetails = 'financial-details';
-  static const String search = 'search';
-  static const String completeStage = 'tasks/complete-stage';
-  static const String paymentMobileInit = 'payment/mobile-init';
+  static const String baseUrl = 'https://node-backend-railway-bashraai-production.up.railway.app/api/';
+  
+  // Auth endpoints
+  static const String register = 'auth-user/register';
+  static const String verifyOtp = 'auth-user/verify-otp';
+  static const String login = 'auth-user/login';
+  static const String resendOtp = 'auth-user/resend-otp';
 }

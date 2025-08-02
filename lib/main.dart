@@ -1,14 +1,20 @@
-import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'core/utils/theme/app_theme.dart';
+
+import 'core/services/service_locatores.dart' as di;
 import 'core/utils/helper/on_genrated_routes.dart';
+import 'core/utils/theme/app_theme.dart';
+import 'features/auth/presentation/bloc/auth_bloc.dart';
+import 'l10n/app_localizations.dart';
 
-
-
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Service Locator
+  await di.init();
+  
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -29,22 +35,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'DermaAI',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.splash,
-      onGenerateRoute: onGeneratedRoutes,
-      locale: const Locale('ar'),
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthCubit>(
+          create: (context) => di.sl<AuthCubit>(),
+        ),
       ],
+      child: MaterialApp(
+        title: 'DermaAI',
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.system,
+        debugShowCheckedModeBanner: false,
+        initialRoute: AppRoutes.splash,
+        onGenerateRoute: onGeneratedRoutes,
+        locale: const Locale('en'),
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+      ),
     );
   }
 }

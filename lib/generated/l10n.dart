@@ -490,6 +490,136 @@ class S {
     );
   }
 
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number`
+  String get enterPhoneNumber {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'enterPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone number`
+  String get pleaseEnterPhoneNumber {
+    return Intl.message(
+      'Please enter your phone number',
+      name: 'pleaseEnterPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get pleaseEnterValidPhoneNumber {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'pleaseEnterValidPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Verification`
+  String get accountVerification {
+    return Intl.message(
+      'Account Verification',
+      name: 'accountVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify OTP Code`
+  String get verifyOtpCode {
+    return Intl.message(
+      'Verify OTP Code',
+      name: 'verifyOtpCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code sent to your email`
+  String get otpSentToEmail {
+    return Intl.message(
+      'Verification code sent to your email',
+      name: 'otpSentToEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code sent to your phone`
+  String get otpSentToPhone {
+    return Intl.message(
+      'Verification code sent to your phone',
+      name: 'otpSentToPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get emailVerification {
+    return Intl.message(
+      'Email',
+      name: 'emailVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone`
+  String get phoneVerification {
+    return Intl.message(
+      'Phone',
+      name: 'phoneVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Code`
+  String get verifyCode {
+    return Intl.message(
+      'Verify Code',
+      name: 'verifyCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend Code`
+  String get resendCode {
+    return Intl.message(
+      'Resend Code',
+      name: 'resendCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code is valid for 5 minutes only`
+  String get codeValidFor5Minutes {
+    return Intl.message(
+      'Code is valid for 5 minutes only',
+      name: 'codeValidFor5Minutes',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hello, {name}!`
   String helloUser(Object name) {
     return Intl.message(

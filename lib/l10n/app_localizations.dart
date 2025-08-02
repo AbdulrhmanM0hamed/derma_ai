@@ -362,6 +362,84 @@ abstract class AppLocalizations {
   /// **'Already have an account?'**
   String get alreadyHaveAccount;
 
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @enterPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get enterPhoneNumber;
+
+  /// No description provided for @pleaseEnterPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your phone number'**
+  String get pleaseEnterPhoneNumber;
+
+  /// No description provided for @pleaseEnterValidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number'**
+  String get pleaseEnterValidPhoneNumber;
+
+  /// No description provided for @accountVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Verification'**
+  String get accountVerification;
+
+  /// No description provided for @verifyOtpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify OTP Code'**
+  String get verifyOtpCode;
+
+  /// No description provided for @otpSentToEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code sent to your email'**
+  String get otpSentToEmail;
+
+  /// No description provided for @otpSentToPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code sent to your phone'**
+  String get otpSentToPhone;
+
+  /// No description provided for @emailVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailVerification;
+
+  /// No description provided for @phoneVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phoneVerification;
+
+  /// No description provided for @verifyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Code'**
+  String get verifyCode;
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Code'**
+  String get resendCode;
+
+  /// No description provided for @codeValidFor5Minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Code is valid for 5 minutes only'**
+  String get codeValidFor5Minutes;
+
   /// No description provided for @helloUser.
   ///
   /// In en, this message translates to:

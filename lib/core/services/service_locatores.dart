@@ -1,0 +1,40 @@
+import 'package:get_it/get_it.dart';
+
+import '../../features/auth/data/datasources/auth_remote_datasource.dart';
+import '../../features/auth/data/repositories/auth_repository_impl.dart';
+import '../../features/auth/domain/repositories/auth_repository.dart';
+import '../../features/auth/domain/usecases/register_usecase.dart';
+import '../../features/auth/domain/usecases/verify_otp_usecase.dart';
+import '../../features/auth/domain/usecases/resend_otp_usecase.dart';
+import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../services/dio_service.dart';
+
+final sl = GetIt.instance;
+
+Future<void> init() async {
+  //! Features - Auth
+  // Bloc
+  sl.registerFactory(() => AuthCubit(
+        registerUsecase: sl(),
+        verifyOtpUsecase: sl(),
+        resendOtpUsecase: sl(),
+      ));
+
+  // Use cases
+  sl.registerLazySingleton(() => RegisterUsecase(sl()));
+  sl.registerLazySingleton(() => VerifyOtpUsecase(sl()));
+  sl.registerLazySingleton(() => ResendOtpUsecase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(dioService: sl()),
+  );
+
+  //! Core
+  sl.registerLazySingleton(() => DioService.instance);
+}
