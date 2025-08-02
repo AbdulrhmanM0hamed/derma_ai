@@ -6,8 +6,8 @@ import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
-import 'package:derma_ai/features/ai_diagnosis/presentation/pages/ai_diagnosis_page.dart';
-import 'package:derma_ai/features/doctor_search_and_browse/doctor_search_and_browse.dart';
+import 'package:derma_ai/features/ai_diagnosis_info/presentation/pages/ai_diagnosis_info_page.dart';
+import 'package:derma_ai/features/doctor_consultation_info/presentation/pages/doctor_consultation_info_page.dart';
 import 'package:derma_ai/features/health_tips/presentation/pages/health_tips_page.dart';
 import 'package:derma_ai/features/skin_care/presentation/pages/skin_care_page.dart';
 
@@ -26,19 +26,19 @@ class HomeFeaturesSection extends StatelessWidget {
         'onTap': () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AiDiagnosisPage()),
+            MaterialPageRoute(builder: (context) => const AiDiagnosisInfoPage()),
           );
         },
       },
       {
         'title': AppLocalizations.of(context)!.doctorConsultation,
         'icon': Icons.medical_services_outlined,
-        'color': AppColors.third,
+        'color': AppColors.tertiary,
         'onTap': () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const DoctorSearchAndBrowse(),
+              builder: (context) => const DoctorConsultationInfoPage(),
             ),
           );
         },
