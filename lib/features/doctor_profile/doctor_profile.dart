@@ -1,3 +1,4 @@
+import 'package:derma_ai/core/utils/common/custom_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -196,7 +197,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+ 
       body: isLoading ? _buildLoadingState() : _buildContent(context),
       floatingActionButton: isLoading ? null : _buildFloatingActionButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -208,7 +209,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircularProgressIndicator(color: AppColors.primary),
+          CustomProgressIndicator(color: AppColors.primary),
           const SizedBox(height: 16),
           Text(
             "جاري تحميل بيانات الطبيب...",

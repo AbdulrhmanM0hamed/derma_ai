@@ -19,11 +19,10 @@ class DoctorAboutSectionWidget extends StatelessWidget {
       ),
       padding: EdgeInsets.all(screenWidth * 0.04),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha: 0.08),
+            color: AppColors.textSecondary.withValues(alpha: 0.03),
             blurRadius: 12,
             offset: const Offset(0, 4),
             spreadRadius: 0,
@@ -36,7 +35,6 @@ class DoctorAboutSectionWidget extends StatelessWidget {
           Text(
                 "نبذة عن الطبيب",
                 style: getBoldStyle(
-                  color: AppColors.textPrimary,
                   fontSize: 18,
                   fontFamily: FontConstant.cairo,
                 ),
@@ -62,7 +60,6 @@ class DoctorAboutSectionWidget extends StatelessWidget {
           Text(
                 "الخلفية الطبية",
                 style: getSemiBoldStyle(
-                  color: AppColors.textPrimary,
                   fontSize: 16,
                   fontFamily: FontConstant.cairo,
                 ),

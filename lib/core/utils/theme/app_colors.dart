@@ -4,7 +4,12 @@ class AppColors {
   static const Color primary = Color(0xFF3F8EFC); // Azure Blue
   static const Color secondary = Color(0xFFF2F7FB); // Off White
   static const Color third = Color(0xFF005F73); // Medical Deep Teal
-  static const Color tertiary = Color.fromARGB(255, 8, 150, 194); // Teal for Skin Care
+  static const Color tertiary = Color.fromARGB(
+    255,
+    8,
+    150,
+    194,
+  ); // Teal for Skin Care
   static const Color quaternary = Colors.orange; // Orange for Health Tips
   // static const Color primary = Color(0xFF6EC1E4); // Sky Blue
   // static const Color secondary = Color(0xFFFDEFF2); // Very Pale Pink
@@ -25,19 +30,19 @@ class AppColors {
   static const Color textLight = Colors.white;
   static const Color textLight70 = Colors.white60;
   static const Color black = Color.fromARGB(255, 0, 0, 0);
+
   static const List<Color> primaryGradient = [
-    
     Color(0xFF005F73),
     Color(0xFF3F8EFC),
   ];
 
   static const List<Color> secondaryGradient = [
-    Color(0xFF3F8EFC),
     Color.fromARGB(255, 145, 196, 229),
+    Color(0xFF005F73),
   ];
 
   static const List<Color> lightGradient = [
-    Color(0xFFE0F2FE),
+    Color.fromARGB(255, 55, 160, 230),
     Color(0xFFF0F9FF),
   ];
 

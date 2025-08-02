@@ -15,9 +15,20 @@ class CustomProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SpinKitWaveSpinner(
-        color: color,
-        size: size,
+      child: Card(
+        color: Colors.black.withValues(alpha: 0.1),
+        margin: const EdgeInsets.all(16),
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: SpinKitWaveSpinner(
+            color: color,
+            size: size,
+          ),
+        ),
       ),
     );
   }
