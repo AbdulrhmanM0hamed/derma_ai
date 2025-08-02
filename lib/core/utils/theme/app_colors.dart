@@ -37,8 +37,8 @@ class AppColors {
   ];
 
   static const List<Color> secondaryGradient = [
-    Color.fromARGB(255, 145, 196, 229),
     Color(0xFF005F73),
+    Color.fromARGB(255, 145, 196, 229),
   ];
 
   static const List<Color> lightGradient = [

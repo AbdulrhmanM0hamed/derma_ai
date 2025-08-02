@@ -184,7 +184,7 @@ class _DailyRoutineCardState extends State<DailyRoutineCard>
                     height: 40,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: AppColors.primaryGradient,
+                        colors: AppColors.secondaryGradient,
                       ),
                       shape: BoxShape.circle,
                     ),
