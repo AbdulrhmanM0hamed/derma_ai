@@ -148,6 +148,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> logout() async {
     try {
       await dioService.post(ApiEndpoints.logout);
+    } catch (e) {
     } finally {
       await tokenStorageService.clearAll();
     }
