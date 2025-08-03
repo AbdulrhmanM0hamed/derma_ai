@@ -60,6 +60,7 @@ class DoctorCard extends StatelessWidget {
 
   Widget _buildHorizontalCard(BuildContext context) {
     return Card(
+      margin: EdgeInsets.zero,
       elevation: 2,
       shadowColor: Colors.black.withValues(alpha: 0.05),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

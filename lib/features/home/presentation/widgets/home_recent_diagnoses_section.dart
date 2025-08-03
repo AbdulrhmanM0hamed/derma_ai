@@ -29,7 +29,7 @@ class HomeRecentDiagnosesSection extends StatelessWidget {
             Text(
               AppLocalizations.of(context)!.recentDiagnoses,
               style: getBoldStyle(
-                color: AppColors.textPrimary,
+       
                 fontSize: 22,
                 fontFamily: FontConstant.cairo,
               ),

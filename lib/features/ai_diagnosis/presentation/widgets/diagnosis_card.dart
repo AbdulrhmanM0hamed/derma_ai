@@ -81,6 +81,7 @@ class DiagnosisCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.zero,
       elevation: 2,
       shadowColor: Colors.black.withValues(alpha:0.05),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

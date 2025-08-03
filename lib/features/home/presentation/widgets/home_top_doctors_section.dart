@@ -24,11 +24,7 @@ class HomeTopDoctorsSection extends StatelessWidget {
           children: [
             Text(
               AppLocalizations.of(context)!.topDermatologists,
-              style: getBoldStyle(
-                color: AppColors.textPrimary,
-                fontSize: 22,
-                fontFamily: FontConstant.cairo,
-              ),
+              style: getBoldStyle(fontSize: 22, fontFamily: FontConstant.cairo),
             ),
             TextButton(
               onPressed: () {
@@ -51,7 +47,7 @@ class HomeTopDoctorsSection extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: topDoctors.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 12),
+          separatorBuilder: (context, index) => const SizedBox(height: 16),
           itemBuilder: (context, index) {
             final doctor = topDoctors[index];
             return Animate(
