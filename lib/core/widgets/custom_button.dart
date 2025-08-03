@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final ButtonType type;
   final IconData? icon;
-  final bool isLoading;
+
   final bool fullWidth;
   final double? width;
   final double height;
@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.type = ButtonType.primary,
     this.icon,
-    this.isLoading = false,
+
     this.fullWidth = false,
     this.width,
     this.height = 50,
@@ -69,7 +69,7 @@ class CustomButton extends StatelessWidget {
       width: fullWidth ? double.infinity : width,
       height: height,
       child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
@@ -89,7 +89,7 @@ class CustomButton extends StatelessWidget {
       width: fullWidth ? double.infinity : width,
       height: height,
       child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.secondary,
           foregroundColor: Colors.white,
@@ -109,7 +109,7 @@ class CustomButton extends StatelessWidget {
       width: fullWidth ? double.infinity : width,
       height: height,
       child: OutlinedButton(
-        onPressed: isLoading ? null : onPressed,
+        onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primary,
           side: const BorderSide(color: AppColors.primary, width: 1.5),
@@ -128,7 +128,7 @@ class CustomButton extends StatelessWidget {
       width: fullWidth ? double.infinity : width,
       height: height,
       child: TextButton(
-        onPressed: isLoading ? null : onPressed,
+        onPressed: onPressed,
         style: TextButton.styleFrom(
           foregroundColor: AppColors.primary,
           padding: padding,
@@ -142,16 +142,6 @@ class CustomButton extends StatelessWidget {
   }
 
   Widget _buildButtonContent(Color color) {
-    if (isLoading) {
-      return SizedBox(
-        width: 24,
-        height: 24,
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-          valueColor: AlwaysStoppedAnimation<Color>(color),
-        ),
-      );
-    }
 
     if (icon != null) {
       return Row(

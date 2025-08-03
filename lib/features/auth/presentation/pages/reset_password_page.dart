@@ -1,10 +1,11 @@
 import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
-import 'package:derma_ai/core/utils/common/custom_button.dart';
+
 import 'package:derma_ai/core/utils/common/custom_progress_indicator.dart';
 import 'package:derma_ai/core/utils/common/custom_text_field.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:derma_ai/core/utils/widgets/custom_snackbar.dart';
+import 'package:derma_ai/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -323,9 +324,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   SizedBox(height: size.height * 0.04),
 
                   // Reset Button
-                  CustomButton(
-                    onPressed: _resetPassword,
-                    text: AppLocalizations.of(context)!.resetPasswordButton,
+                  BlocBuilder<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      return CustomButton(
+                        onPressed: _resetPassword,
+                        text: AppLocalizations.of(context)!.resetPasswordButton,
+                       
+                      );
+                    },
                   ).animate(effects: [
                     FadeEffect(duration: 600.ms, delay: 1000.ms),
                     SlideEffect(

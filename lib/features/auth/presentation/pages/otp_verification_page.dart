@@ -1,6 +1,7 @@
 import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
-import 'package:derma_ai/core/utils/common/custom_button.dart';
+
 import 'package:derma_ai/core/utils/helper/on_genrated_routes.dart';
+import 'package:derma_ai/core/widgets/custom_button.dart';
 import 'package:derma_ai/l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';

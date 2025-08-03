@@ -207,15 +207,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       // Submit Button
                       BlocBuilder<AuthCubit, AuthState>(
                         builder: (context, state) {
-                          final isLoading = state is AuthLoading;
-
                           return CustomButton(
                             text:
                                 AppLocalizations.of(
                                   context,
                                 )!.sendVerificationCode,
-                            onPressed: isLoading ? () {} : () => _requestOtp(),
-                            isLoading: isLoading,
+                            onPressed: () => _requestOtp(),
                           );
                         },
                       ).animate(

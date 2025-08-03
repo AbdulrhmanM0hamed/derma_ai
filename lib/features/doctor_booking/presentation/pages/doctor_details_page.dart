@@ -719,7 +719,6 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
             child: CustomButton(
               text: 'Book Appointment',
               onPressed: _bookAppointment,
-              isLoading: _isBookingInProgress,
               type: ButtonType.primary,
             ),
           ),

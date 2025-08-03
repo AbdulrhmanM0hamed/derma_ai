@@ -1,8 +1,8 @@
+import 'package:derma_ai/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
-import 'package:derma_ai/core/utils/common/custom_button.dart';
 
 class MapView extends StatelessWidget {
   final VoidCallback onToggleView;
