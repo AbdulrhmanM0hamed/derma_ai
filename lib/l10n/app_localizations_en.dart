@@ -150,6 +150,73 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createNewAccount => 'Create New Account';
 
   @override
+  String get forgotPasswordTitle => 'Forgot Password?';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'Enter your email and we\'ll send you a verification code to reset your password';
+
+  @override
+  String get sendVerificationCode => 'Send Verification Code';
+
+  @override
+  String get rememberPassword => 'Remember your password?';
+
+  @override
+  String get backToLogin => 'Back to Login';
+
+  @override
+  String get resetPasswordTitle => 'Reset Password';
+
+  @override
+  String get verifyCodeTitle => 'Verify Code';
+
+  @override
+  String get enterCodeSentTo => 'Enter the verification code sent to';
+
+  @override
+  String get verifyCodeButton => 'Verify Code';
+
+  @override
+  String get didNotReceiveCode => 'Didn\'t receive the code?';
+
+  @override
+  String get resendCodeButton => 'Resend';
+
+  @override
+  String get createNewPasswordTitle => 'Create New Password';
+
+  @override
+  String get enterNewPasswordFor => 'Enter a new password for your account';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get enterNewPassword => 'Enter new password';
+
+  @override
+  String get confirmNewPassword => 'Confirm Password';
+
+  @override
+  String get reEnterPassword => 'Re-enter password';
+
+  @override
+  String get resetPasswordButton => 'Reset Password';
+
+  @override
+  String get passwordRequirements => 'Password Requirements:';
+
+  @override
+  String get atLeast8Characters => 'At least 8 characters';
+
+  @override
+  String get upperLowerCase => 'Upper and lower case letters';
+
+  @override
+  String get atLeastOneNumber => 'At least one number';
+
+  @override
   String get phoneNumber => 'Phone Number';
 
   @override

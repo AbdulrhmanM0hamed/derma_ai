@@ -374,6 +374,138 @@ abstract class AppLocalizations {
   /// **'Create New Account'**
   String get createNewAccount;
 
+  /// No description provided for @forgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPasswordTitle;
+
+  /// No description provided for @forgotPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email and we\'ll send you a verification code to reset your password'**
+  String get forgotPasswordSubtitle;
+
+  /// No description provided for @sendVerificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Verification Code'**
+  String get sendVerificationCode;
+
+  /// No description provided for @rememberPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember your password?'**
+  String get rememberPassword;
+
+  /// No description provided for @backToLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Login'**
+  String get backToLogin;
+
+  /// No description provided for @resetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPasswordTitle;
+
+  /// No description provided for @verifyCodeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Code'**
+  String get verifyCodeTitle;
+
+  /// No description provided for @enterCodeSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the verification code sent to'**
+  String get enterCodeSentTo;
+
+  /// No description provided for @verifyCodeButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Code'**
+  String get verifyCodeButton;
+
+  /// No description provided for @didNotReceiveCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code?'**
+  String get didNotReceiveCode;
+
+  /// No description provided for @resendCodeButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resendCodeButton;
+
+  /// No description provided for @createNewPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Password'**
+  String get createNewPasswordTitle;
+
+  /// No description provided for @enterNewPasswordFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a new password for your account'**
+  String get enterNewPasswordFor;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPassword;
+
+  /// No description provided for @enterNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new password'**
+  String get enterNewPassword;
+
+  /// No description provided for @confirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmNewPassword;
+
+  /// No description provided for @reEnterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-enter password'**
+  String get reEnterPassword;
+
+  /// No description provided for @resetPasswordButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPasswordButton;
+
+  /// No description provided for @passwordRequirements.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Requirements:'**
+  String get passwordRequirements;
+
+  /// No description provided for @atLeast8Characters.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters'**
+  String get atLeast8Characters;
+
+  /// No description provided for @upperLowerCase.
+  ///
+  /// In en, this message translates to:
+  /// **'Upper and lower case letters'**
+  String get upperLowerCase;
+
+  /// No description provided for @atLeastOneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'At least one number'**
+  String get atLeastOneNumber;
+
   /// No description provided for @phoneNumber.
   ///
   /// In en, this message translates to:

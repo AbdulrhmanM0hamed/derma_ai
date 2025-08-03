@@ -2,15 +2,16 @@ import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
 import 'package:derma_ai/core/utils/common/custom_progress_indicator.dart';
 import 'package:derma_ai/core/utils/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
-
 import '../../../../core/services/service_locatores.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
 import '../../../../core/widgets/custom_button.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
 
@@ -70,13 +71,13 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
     return BlocProvider.value(
       value: _authCubit,
       child: Scaffold(
-        appBar: CustomAppBar(title: 'التحقق من الرمز', centerTitle: true),
+        appBar: CustomAppBar(title: AppLocalizations.of(context)!.verifyCodeTitle, centerTitle: true),
         body: BlocListener<AuthCubit, AuthState>(
           listener: (context, state) {
-            print('🔍 Password Reset OTP State: ${state.runtimeType}');
+      //      print('🔍 Password Reset OTP State: ${state.runtimeType}');
 
             if (state is VerifyPasswordResetOtpSuccess) {
-              print('✅ OTP Success - navigating to reset password page');
+      //        print('✅ OTP Success - navigating to reset password page');
               setState(() => _resetToken = state.resetToken);
               CustomSnackbar.showSuccess(
                 message: CustomSnackbar.getLocalizedMessage(
@@ -96,16 +97,16 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                 },
               );
             } else if (state is VerifyPasswordResetOtpFailure) {
-              print('❌ OTP Verification Failed:');
-              print('  messageAr: ${state.messageAr}');
-              print('  messageEn: ${state.messageEn}');
+      //        print('❌ OTP Verification Failed:');
+      //        print('  messageAr: ${state.messageAr}');
+      //        print('  messageEn: ${state.messageEn}');
 
               final errorMessage = CustomSnackbar.getLocalizedMessage(
                 context: context,
                 messageAr: state.messageAr,
                 messageEn: state.messageEn,
               );
-              print('  Final message: $errorMessage');
+         //     print('  Final message: $errorMessage');
 
               CustomSnackbar.showError(message: errorMessage, context: context);
             } else if (state is RequestPasswordResetOtpSuccess) {
@@ -154,19 +155,29 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                             size: size.width * 0.12,
                             color: AppColors.primary,
                           ),
-                        ),
+                        ).animate(effects: [
+                          FadeEffect(duration: 600.ms),
+                          ScaleEffect(duration: 600.ms, begin: const Offset(0.5, 0.5)),
+                        ]),
 
                         SizedBox(height: size.height * 0.04),
 
                         // Title
                         Text(
-                          'التحقق من الرمز',
+                          AppLocalizations.of(context)!.verifyCodeTitle,
                           style: getBoldStyle(
                             fontSize: 24,
                             fontFamily: FontConstant.cairo,
                           ),
                           textAlign: TextAlign.center,
-                        ),
+                        ).animate(effects: [
+                          FadeEffect(duration: 600.ms, delay: 200.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 200.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ]),
 
                         SizedBox(height: size.height * 0.02),
 
@@ -180,8 +191,8 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                               fontFamily: FontConstant.cairo,
                             ),
                             children: [
-                              const TextSpan(
-                                text: 'أدخل رمز التحقق المرسل إلى\n',
+                              TextSpan(
+                                text: '${AppLocalizations.of(context)!.enterCodeSentTo}\n',
                               ),
                               TextSpan(
                                 text: widget.email,
@@ -193,7 +204,14 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                               ),
                             ],
                           ),
-                        ),
+                        ).animate(effects: [
+                          FadeEffect(duration: 600.ms, delay: 400.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 400.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ]),
 
                         SizedBox(height: size.height * 0.05),
 
@@ -253,7 +271,14 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                             ),
                             otpPinFieldDecoration: OtpPinFieldDecoration.custom,
                           ),
-                        ),
+                        ).animate(effects: [
+                          FadeEffect(duration: 600.ms, delay: 600.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 600.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ]),
 
                         SizedBox(height: size.height * 0.04),
 
@@ -269,11 +294,18 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                                     isLoading || _otpCode.length < 6
                                         ? () {}
                                         : () => _verifyOtp(),
-                                text: 'تحقق من الرمز',
+                                text: AppLocalizations.of(context)!.verifyCodeButton,
                               ),
                             );
                           },
-                        ),
+                        ).animate(effects: [
+                          FadeEffect(duration: 600.ms, delay: 800.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 800.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ]),
 
                         SizedBox(height: size.height * 0.03),
 
@@ -286,7 +318,7 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'لم تستلم الرمز؟ ',
+                                  '${AppLocalizations.of(context)!.didNotReceiveCode} ',
                                   style: getRegularStyle(
                                     fontFamily: FontConstant.cairo,
                                     color: AppColors.grey,
@@ -296,7 +328,7 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                                 GestureDetector(
                                   onTap: isLoading ? null : _resendOtp,
                                   child: Text(
-                                    'إعادة الإرسال',
+                                    AppLocalizations.of(context)!.resendCodeButton,
                                     style: getSemiBoldStyle(
                                       fontFamily: FontConstant.cairo,
                                       color:
@@ -310,7 +342,14 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                               ],
                             );
                           },
-                        ),
+                        ).animate(effects: [
+                          FadeEffect(duration: 600.ms, delay: 1000.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 1000.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ]),
                       ],
                     ),
                   ),

@@ -2,6 +2,7 @@ import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
 import 'package:derma_ai/core/utils/common/custom_progress_indicator.dart';
 import 'package:derma_ai/core/utils/helper/on_genrated_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/services/service_locatores.dart';
 import '../../../../core/utils/theme/app_colors.dart';
@@ -10,6 +11,7 @@ import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/utils/widgets/custom_snackbar.dart';
 import '../../../../core/widgets/custom_text_field.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
 
@@ -52,23 +54,23 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return BlocProvider.value(
       value: _authCubit,
       child: Scaffold(
-   
         appBar: CustomAppBar(
-          title: 'إعادة تعيين كلمة المرور',
+          title: AppLocalizations.of(context)!.resetPasswordTitle,
           centerTitle: true,
         ),
         body: BlocListener<AuthCubit, AuthState>(
           listener: (context, state) {
-            print('🔍 Forgot Password State: ${state.runtimeType}');
+            //    print('🔍 Forgot Password State: ${state.runtimeType}');
 
             if (state is RequestPasswordResetOtpSuccess) {
-              print('✅ OTP Request Success - navigating to OTP page');
+              //      print('✅ OTP Request Success - navigating to OTP page');
               CustomSnackbar.showSuccess(
                 context: context,
-                message:
-                    state.messageAr.isNotEmpty
-                        ? state.messageAr
-                        : state.messageEn,
+                message: CustomSnackbar.getLocalizedMessage(
+                  context: context,
+                  messageAr: state.messageAr,
+                  messageEn: state.messageEn,
+                ),
               );
               Navigator.pushNamed(
                 context,
@@ -76,13 +78,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 arguments: {'email': _emailController.text.trim()},
               );
             } else if (state is RequestPasswordResetOtpFailure) {
-              print('❌ OTP Request Failed: ${state.messageEn}');
               CustomSnackbar.showError(
                 context: context,
-                message:
-                    state.messageAr.isNotEmpty
-                        ? state.messageAr
-                        : state.messageEn,
+                message: CustomSnackbar.getLocalizedMessage(
+                  context: context,
+                  messageAr: state.messageAr,
+                  messageEn: state.messageEn,
+                ),
               );
             }
           },
@@ -111,6 +113,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             color: AppColors.primary,
                             size: 40,
                           ),
+                        ).animate(
+                          effects: [
+                            FadeEffect(duration: 600.ms),
+                            ScaleEffect(
+                              duration: 600.ms,
+                              begin: const Offset(0.5, 0.5),
+                            ),
+                          ],
                         ),
                       ),
 
@@ -118,26 +128,43 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                       // Title
                       Text(
-                        'نسيت كلمة المرور؟',
+                        AppLocalizations.of(context)!.forgotPasswordTitle,
                         style: getBoldStyle(
-                          color: AppColors.primary,
                           fontSize: 24,
                           fontFamily: FontConstant.cairo,
                         ),
                         textAlign: TextAlign.center,
+                      ).animate(
+                        effects: [
+                          FadeEffect(duration: 600.ms, delay: 200.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 200.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ],
                       ),
 
                       const SizedBox(height: 16),
 
                       // Subtitle
                       Text(
-                        'أدخل بريدك الإلكتروني وسنرسل لك رمز التحقق لإعادة تعيين كلمة المرور',
+                        AppLocalizations.of(context)!.forgotPasswordSubtitle,
                         style: getRegularStyle(
                           color: AppColors.textSecondary,
                           fontSize: 16,
                           fontFamily: FontConstant.cairo,
                         ),
                         textAlign: TextAlign.center,
+                      ).animate(
+                        effects: [
+                          FadeEffect(duration: 600.ms, delay: 400.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 400.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ],
                       ),
 
                       const SizedBox(height: 40),
@@ -145,21 +172,34 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       // Email Field
                       CustomTextField(
                         controller: _emailController,
-                        labelText: 'البريد الإلكتروني',
-                        hintText: 'أدخل بريدك الإلكتروني',
+                        labelText: AppLocalizations.of(context)!.email,
+                        hintText: AppLocalizations.of(context)!.enterEmail,
                         keyboardType: TextInputType.emailAddress,
                         prefixIcon: Icons.email_outlined,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال البريد الإلكتروني';
+                            return AppLocalizations.of(
+                              context,
+                            )!.pleaseEnterEmail;
                           }
                           if (!RegExp(
                             r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                           ).hasMatch(value)) {
-                            return 'يرجى إدخال بريد إلكتروني صحيح';
+                            return AppLocalizations.of(
+                              context,
+                            )!.pleaseEnterValidEmail;
                           }
                           return null;
                         },
+                      ).animate(
+                        effects: [
+                          FadeEffect(duration: 600.ms, delay: 600.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 600.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ],
                       ),
 
                       const SizedBox(height: 32),
@@ -170,11 +210,23 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           final isLoading = state is AuthLoading;
 
                           return CustomButton(
-                            text: 'إرسال رمز التحقق',
+                            text:
+                                AppLocalizations.of(
+                                  context,
+                                )!.sendVerificationCode,
                             onPressed: isLoading ? () {} : () => _requestOtp(),
                             isLoading: isLoading,
                           );
                         },
+                      ).animate(
+                        effects: [
+                          FadeEffect(duration: 600.ms, delay: 800.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 800.ms,
+                            begin: const Offset(0, 0.2),
+                          ),
+                        ],
                       ),
 
                       const SizedBox(height: 24),
@@ -184,7 +236,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'تذكرت كلمة المرور؟ ',
+                            '${AppLocalizations.of(context)!.rememberPassword} ',
                             style: getRegularStyle(
                               color: AppColors.textSecondary,
                               fontSize: 14,
@@ -194,13 +246,22 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           GestureDetector(
                             onTap: () => Navigator.pop(context),
                             child: Text(
-                              'تسجيل الدخول',
+                              AppLocalizations.of(context)!.login,
                               style: getSemiBoldStyle(
                                 color: AppColors.primary,
                                 fontSize: 14,
                                 fontFamily: FontConstant.cairo,
                               ),
                             ),
+                          ),
+                        ],
+                      ).animate(
+                        effects: [
+                          FadeEffect(duration: 600.ms, delay: 1000.ms),
+                          SlideEffect(
+                            duration: 600.ms,
+                            delay: 1000.ms,
+                            begin: const Offset(0, 0.2),
                           ),
                         ],
                       ),

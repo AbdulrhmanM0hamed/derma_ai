@@ -150,6 +150,73 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createNewAccount => 'إنشاء حساب جديد';
 
   @override
+  String get forgotPasswordTitle => 'نسيت كلمة المرور؟';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'أدخل بريدك الإلكتروني وسنرسل لك رمز التحقق لإعادة تعيين كلمة المرور';
+
+  @override
+  String get sendVerificationCode => 'إرسال رمز التحقق';
+
+  @override
+  String get rememberPassword => 'تذكرت كلمة المرور؟';
+
+  @override
+  String get backToLogin => 'العودة لتسجيل الدخول';
+
+  @override
+  String get resetPasswordTitle => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get verifyCodeTitle => 'التحقق من الرمز';
+
+  @override
+  String get enterCodeSentTo => 'أدخل رمز التحقق المرسل إلى';
+
+  @override
+  String get verifyCodeButton => 'تحقق من الرمز';
+
+  @override
+  String get didNotReceiveCode => 'لم تستلم الرمز؟';
+
+  @override
+  String get resendCodeButton => 'إعادة الإرسال';
+
+  @override
+  String get createNewPasswordTitle => 'إنشاء كلمة مرور جديدة';
+
+  @override
+  String get enterNewPasswordFor => 'أدخل كلمة مرور جديدة لحسابك';
+
+  @override
+  String get newPassword => 'كلمة المرور الجديدة';
+
+  @override
+  String get enterNewPassword => 'أدخل كلمة المرور الجديدة';
+
+  @override
+  String get confirmNewPassword => 'تأكيد كلمة المرور';
+
+  @override
+  String get reEnterPassword => 'أعد إدخال كلمة المرور';
+
+  @override
+  String get resetPasswordButton => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get passwordRequirements => 'متطلبات كلمة المرور:';
+
+  @override
+  String get atLeast8Characters => '8 أحرف على الأقل';
+
+  @override
+  String get upperLowerCase => 'حرف كبير وحرف صغير';
+
+  @override
+  String get atLeastOneNumber => 'رقم واحد على الأقل';
+
+  @override
   String get phoneNumber => 'رقم الهاتف';
 
   @override

@@ -6,10 +6,12 @@ import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:derma_ai/core/utils/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/services/service_locatores.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
 
@@ -90,7 +92,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       value: _authCubit,
       child: Scaffold(
      
-        appBar: CustomAppBar(title: 'كلمة مرور جديدة'),
+        appBar: CustomAppBar(title: AppLocalizations.of(context)!.createNewPasswordTitle),
         body: Stack(
           children: [
             // Main Content
@@ -154,19 +156,29 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       size: size.width * 0.12,
                       color: AppColors.primary,
                     ),
-                  ),
+                  ).animate(effects: [
+                    FadeEffect(duration: 600.ms),
+                    ScaleEffect(duration: 600.ms, begin: const Offset(0.5, 0.5)),
+                  ]),
 
                   SizedBox(height: size.height * 0.04),
 
                   // Title
                   Text(
-                    'إنشاء كلمة مرور جديدة',
+                    AppLocalizations.of(context)!.createNewPasswordTitle,
                     style: getBoldStyle(
                       fontFamily: FontConstant.cairo,
                       fontSize: 24,
                     ),
                     textAlign: TextAlign.center,
-                  ),
+                  ).animate(effects: [
+                    FadeEffect(duration: 600.ms, delay: 200.ms),
+                    SlideEffect(
+                      duration: 600.ms,
+                      delay: 200.ms,
+                      begin: const Offset(0, 0.2),
+                    ),
+                  ]),
 
                   SizedBox(height: size.height * 0.01),
 
@@ -180,7 +192,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         fontSize: 16,
                       ),
                       children: [
-                        const TextSpan(text: 'أدخل كلمة مرور جديدة لحسابك\n'),
+                        TextSpan(text: '${AppLocalizations.of(context)!.enterNewPasswordFor}\n'),
                         TextSpan(
                           text: widget.email,
                           style: getSemiBoldStyle(
@@ -199,22 +211,29 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   TextButton(
                     onPressed: _isLoading ? null : () => Navigator.pop(context),
                     child: Text(
-                      'العودة لتسجيل الدخول',
+                      AppLocalizations.of(context)!.backToLogin,
                       style: getSemiBoldStyle(
                         fontFamily: FontConstant.cairo,
                         color: AppColors.primary,
                         fontSize: 14,
                       ),
                     ),
-                  ),
+                  ).animate(effects: [
+                    FadeEffect(duration: 600.ms, delay: 400.ms),
+                    SlideEffect(
+                      duration: 600.ms,
+                      delay: 400.ms,
+                      begin: const Offset(0, 0.2),
+                    ),
+                  ]),
 
                   SizedBox(height: size.height * 0.02),
 
                   // New Password Field
                   CustomTextField(
                     controller: _passwordController,
-                    label: 'كلمة المرور الجديدة',
-                    hint: 'أدخل كلمة المرور الجديدة',
+                    label: AppLocalizations.of(context)!.newPassword,
+                    hint: AppLocalizations.of(context)!.enterNewPassword,
                     obscureText: _obscurePassword,
                     prefix: Icon(Icons.lock_outline),
                     suffix: IconButton(
@@ -229,15 +248,22 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       },
                     ),
                     validator: _validatePassword,
-                  ),
+                  ).animate(effects: [
+                    FadeEffect(duration: 600.ms, delay: 600.ms),
+                    SlideEffect(
+                      duration: 600.ms,
+                      delay: 600.ms,
+                      begin: const Offset(0, 0.2),
+                    ),
+                  ]),
 
                   SizedBox(height: size.height * 0.02),
 
                   // Confirm Password Field
                   CustomTextField(
                     controller: _confirmPasswordController,
-                    label: 'تأكيد كلمة المرور',
-                    hint: 'أعد إدخال كلمة المرور',
+                    label: AppLocalizations.of(context)!.confirmNewPassword,
+                    hint: AppLocalizations.of(context)!.reEnterPassword,
                     obscureText: _obscureConfirmPassword,
                     prefix: Icon(Icons.lock_outline),
                     suffix: IconButton(
@@ -256,7 +282,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       },
                     ),
                     validator: _validateConfirmPassword,
-                  ),
+                  ).animate(effects: [
+                    FadeEffect(duration: 600.ms, delay: 800.ms),
+                    SlideEffect(
+                      duration: 600.ms,
+                      delay: 800.ms,
+                      begin: const Offset(0, 0.2),
+                    ),
+                  ]),
 
                   SizedBox(height: size.height * 0.01),
 
@@ -292,9 +325,15 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   // Reset Button
                   CustomButton(
                     onPressed: _resetPassword,
-                    text: 'إعادة تعيين كلمة المرور',
-                   
+                    text: AppLocalizations.of(context)!.resetPasswordButton,
+                  ).animate(effects: [
+                    FadeEffect(duration: 600.ms, delay: 1000.ms),
+                    SlideEffect(
+                      duration: 600.ms,
+                      delay: 1000.ms,
+                      begin: const Offset(0, 0.2),
                     ),
+                  ]),
                   
                     ],
                   ),
@@ -316,23 +355,23 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     );
   }
 
-  Widget _buildRequirement(String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: Row(
-        children: [
-          Icon(Icons.check_circle_outline, size: 16, color: AppColors.grey),
-          const SizedBox(width: 8),
-          Text(
-            text,
-            style: getRegularStyle(
-              color: AppColors.grey,
-              fontSize: 12,
-              fontFamily: FontConstant.cairo,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildRequirement(String text) {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(vertical: 2),
+  //     child: Row(
+  //       children: [
+  //         Icon(Icons.check_circle_outline, size: 16, color: AppColors.grey),
+  //         const SizedBox(width: 8),
+  //         Text(
+  //           text,
+  //           style: getRegularStyle(
+  //             color: AppColors.grey,
+  //             fontSize: 12,
+  //             fontFamily: FontConstant.cairo,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

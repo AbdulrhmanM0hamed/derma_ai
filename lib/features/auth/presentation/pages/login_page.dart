@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../core/utils/common/custom_progress_indicator.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
@@ -18,7 +17,6 @@ import '../../../../core/services/token_storage_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
-import 'forgot_password_page.dart';
 import '../widgets/social_auth_section.dart';
 
 class LoginPage extends StatefulWidget {
@@ -61,6 +59,14 @@ class _LoginPageState extends State<LoginPage> {
       
       } 
     } catch (e) {
+      CustomSnackbar.showError(
+        context: context,
+        message: CustomSnackbar.getLocalizedMessage(
+          context: context,
+          messageAr: 'حدث خطأ أثناء تحميل بيانات الذاكرة',
+          messageEn: 'An error occurred while loading remember me data',
+        ),
+      );
     }
   }
 
