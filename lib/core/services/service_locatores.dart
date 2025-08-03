@@ -8,6 +8,7 @@ import '../../features/auth/domain/usecases/login_usecase.dart';
 import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/verify_otp_usecase.dart';
 import '../../features/auth/domain/usecases/resend_otp_usecase.dart';
+import '../../features/auth/domain/usecases/logout_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../services/dio_service.dart';
 import '../services/token_storage_service.dart';
@@ -26,6 +27,7 @@ Future<void> init() async {
         registerUsecase: sl(),
         verifyOtpUsecase: sl(),
         resendOtpUsecase: sl(),
+        logoutUsecase: sl(),
       ));
 
   // Use cases
@@ -33,6 +35,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => RegisterUsecase(sl()));
   sl.registerLazySingleton(() => VerifyOtpUsecase(sl()));
   sl.registerLazySingleton(() => ResendOtpUsecase(sl()));
+  sl.registerLazySingleton(() => LogoutUsecase(sl()));
 
   // Repository
   sl.registerLazySingleton<AuthRepository>(
@@ -48,6 +51,10 @@ Future<void> init() async {
   );
 
   //! Core
-  sl.registerLazySingleton(() => DioService.instance);
+  sl.registerLazySingleton(() {
+    final dioService = DioService.instance;
+    dioService.setTokenStorageService(sl());
+    return dioService;
+  });
   sl.registerLazySingleton(() => TokenStorageService(sl()));
 }

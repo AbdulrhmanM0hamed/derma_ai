@@ -1,5 +1,5 @@
 import 'package:derma_ai/core/utils/animations/app_animations.dart';
-import 'package:derma_ai/core/utils/common/custom_snackbar.dart';
+import 'package:derma_ai/core/utils/widgets/custom_snackbar.dart';
 import 'package:derma_ai/core/utils/validators/form_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

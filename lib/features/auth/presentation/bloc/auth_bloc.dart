@@ -4,6 +4,7 @@ import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/register_usecase.dart';
 import '../../domain/usecases/verify_otp_usecase.dart';
 import '../../domain/usecases/resend_otp_usecase.dart';
+import '../../domain/usecases/logout_usecase.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -11,16 +12,19 @@ class AuthCubit extends Cubit<AuthState> {
   final RegisterUsecase _registerUsecase;
   final VerifyOtpUsecase _verifyOtpUsecase;
   final ResendOtpUsecase _resendOtpUsecase;
+  final LogoutUsecase _logoutUsecase;
 
   AuthCubit({
     required LoginUsecase loginUsecase,
     required RegisterUsecase registerUsecase,
     required VerifyOtpUsecase verifyOtpUsecase,
     required ResendOtpUsecase resendOtpUsecase,
+    required LogoutUsecase logoutUsecase,
   })  : _loginUsecase = loginUsecase,
         _registerUsecase = registerUsecase,
         _verifyOtpUsecase = verifyOtpUsecase,
         _resendOtpUsecase = resendOtpUsecase,
+        _logoutUsecase = logoutUsecase,
         super(AuthInitial());
 
   Future<void> login({
@@ -109,6 +113,18 @@ class AuthCubit extends Cubit<AuthState> {
         messageEn: data['message_en'] ?? 'OTP sent successfully',
         messageAr: data['message_ar'] ?? 'تم إرسال الرمز بنجاح',
       )),
+    );
+  }
+
+  Future<void> logout() async {
+    emit(AuthLoading());
+    final result = await _logoutUsecase();
+    result.fold(
+      (failure) => emit(LogoutFailure(
+        messageEn: failure.message,
+        messageAr: failure.messageAr,
+      )),
+      (_) => emit(LogoutSuccess()),
     );
   }
 }

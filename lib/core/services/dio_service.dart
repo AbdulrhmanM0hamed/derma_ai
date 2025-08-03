@@ -2,14 +2,20 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../utils/constant/api_endpoints.dart';
+import 'token_storage_service.dart';
 
 class DioService {
   static DioService? _instance;
   late Dio _dio;
+  TokenStorageService? _tokenStorageService;
 
   DioService._internal() {
     _dio = Dio();
     _initializeDio();
+  }
+
+  void setTokenStorageService(TokenStorageService tokenStorageService) {
+    _tokenStorageService = tokenStorageService;
   }
 
   static DioService get instance {
@@ -35,6 +41,10 @@ class DioService {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
+          final token = _tokenStorageService?.accessToken;
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
           if (kDebugMode) {
             print('🚀 REQUEST: ${options.method} ${options.uri}');
             print('📤 DATA: ${options.data}');

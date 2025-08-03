@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
 
-import '../../../../core/utils/common/custom_snackbar.dart';
+import '../../../../core/utils/widgets/custom_snackbar.dart';
 import '../../../../core/utils/common/custom_progress_indicator.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';

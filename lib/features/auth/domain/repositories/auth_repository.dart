@@ -28,4 +28,6 @@ abstract class AuthRepository {
     required int userId,
     required String type,
   });
+
+  Future<Either<Failure, void>> logout();
 }

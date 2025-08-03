@@ -173,4 +173,17 @@ class AuthRepositoryImpl implements AuthRepository {
       ));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> logout() async {
+    try {
+      await remoteDataSource.logout();
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(
+        message: 'Logout failed.',
+        messageAr: 'فشل تسجيل الخروج.',
+      ));
+    }
+  }
 }

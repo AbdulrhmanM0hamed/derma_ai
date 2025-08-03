@@ -20,6 +20,8 @@ abstract class AuthRemoteDataSource {
     required int userId,
     required String type,
   });
+  
+  Future<void> logout();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -139,6 +141,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         'message_en': 'An unexpected error occurred',
         'message_ar': 'حدث خطأ غير متوقع',
       };
+    }
+  }
+
+  @override
+  Future<void> logout() async {
+    try {
+      await dioService.post(ApiEndpoints.logout);
+    } finally {
+      await tokenStorageService.clearAll();
     }
   }
 }

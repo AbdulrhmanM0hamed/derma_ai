@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'core/services/service_locatores.dart' as di;
 import 'core/utils/helper/on_genrated_routes.dart';
 import 'core/utils/theme/app_theme.dart';

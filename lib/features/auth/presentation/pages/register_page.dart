@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/common/custom_progress_indicator.dart';
-import '../../../../core/utils/common/custom_snackbar.dart';
+import '../../../../core/utils/widgets/custom_snackbar.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
