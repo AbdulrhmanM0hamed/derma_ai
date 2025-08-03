@@ -124,7 +124,10 @@ class AuthCubit extends Cubit<AuthState> {
         messageEn: failure.message,
         messageAr: failure.messageAr,
       )),
-      (_) => emit(LogoutSuccess()),
+      (_) => emit(LogoutSuccess(
+        messageEn: 'Logged out successfully',
+        messageAr: 'تم تسجيل الخروج بنجاح',
+      )),
     );
   }
 }

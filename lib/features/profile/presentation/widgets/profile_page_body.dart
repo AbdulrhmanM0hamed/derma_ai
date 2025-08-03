@@ -35,8 +35,8 @@ class ProfilePageBody extends StatelessWidget {
             context: context,
             message: CustomSnackbar.getLocalizedMessage(
               context: context,
-              messageAr: 'تم تسجيل الخروج بنجاح',
-              messageEn: 'Logged out successfully',
+              messageAr: state.messageAr,
+              messageEn: state.messageEn,
             ),
           );
           Navigator.of(

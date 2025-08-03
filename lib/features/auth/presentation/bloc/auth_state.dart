@@ -107,7 +107,18 @@ class ResendOtpFailure extends AuthState {
   List<Object?> get props => [messageEn, messageAr];
 }
 
-class LogoutSuccess extends AuthState {}
+class LogoutSuccess extends AuthState {
+  final String messageEn;
+  final String messageAr;
+
+  const LogoutSuccess({
+    required this.messageEn,
+    required this.messageAr,
+  });
+
+  @override
+  List<Object?> get props => [messageEn, messageAr];
+}
 
 class LogoutFailure extends AuthState {
   final String messageEn;
