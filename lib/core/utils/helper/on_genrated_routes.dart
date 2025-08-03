@@ -9,6 +9,9 @@ import '../../../features/onboarding/presentation/pages/onboarding_page.dart';
 // Auth
 import '../../../features/auth/presentation/pages/login_page.dart';
 import '../../../features/auth/presentation/pages/register_page.dart';
+import '../../../features/auth/presentation/pages/forgot_password_page.dart';
+import '../../../features/auth/presentation/pages/password_reset_otp_page.dart';
+import '../../../features/auth/presentation/pages/reset_password_page.dart';
 
 // Main App
 import '../../../features/home/presentation/pages/home_page.dart';
@@ -22,6 +25,9 @@ class AppRoutes {
   static const String onboarding = '/onboarding';
   static const String login = '/login';
   static const String register = '/register';
+  static const String forgotPassword = '/forgot-password';
+  static const String passwordResetOtp = '/password-reset-otp';
+  static const String resetPassword = '/reset-password';
   static const String home = '/home';
   static const String diagnosis = '/diagnosis';
   static const String doctorDetails = '/doctor-details';
@@ -45,6 +51,20 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
 
     case AppRoutes.register:
       return _createRoute(const RegisterPage());
+
+    case AppRoutes.forgotPassword:
+      return _createRoute(const ForgotPasswordPage());
+
+    case AppRoutes.passwordResetOtp:
+      final args = settings.arguments as Map<String, String>;
+      return _createRoute(PasswordResetOtpPage(email: args['email']!));
+
+    case AppRoutes.resetPassword:
+      final args = settings.arguments as Map<String, String>;
+      return _createRoute(ResetPasswordPage(
+        email: args['email']!,
+        resetToken: args['resetToken']!,
+      ));
 
     case AppRoutes.home:
       return _createRoute(const HomePage());

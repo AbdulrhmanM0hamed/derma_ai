@@ -18,6 +18,7 @@ import '../../../../core/services/token_storage_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
+import 'forgot_password_page.dart';
 import '../widgets/social_auth_section.dart';
 
 class LoginPage extends StatefulWidget {
@@ -269,7 +270,10 @@ class _LoginPageState extends State<LoginPage> {
         ),
         TextButton(
           onPressed: () {
-            // Navigate to forgot password page
+            Navigator.pushNamed(
+              context,
+              AppRoutes.forgotPassword,
+            );
           },
           child: Text(
             AppLocalizations.of(context)!.forgotPassword,

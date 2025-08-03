@@ -7,6 +7,10 @@ import '../models/login_model.dart';
 import '../models/register_request_model.dart';
 import '../models/register_response_model.dart';
 import '../models/verify_otp_model.dart';
+import '../models/password_reset_request_model.dart';
+import '../models/password_reset_response_model.dart';
+import '../models/verify_password_reset_otp_model.dart';
+import '../models/reset_password_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<LoginResponseModel> login({
@@ -22,6 +26,11 @@ abstract class AuthRemoteDataSource {
   });
   
   Future<void> logout();
+  
+  // Password reset methods
+  Future<PasswordResetResponseModel> requestPasswordResetOtp(PasswordResetRequestModel request);
+  Future<VerifyPasswordResetOtpResponseModel> verifyPasswordResetOtp(VerifyPasswordResetOtpRequestModel request);
+  Future<ResetPasswordResponseModel> resetPassword(ResetPasswordRequestModel request);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -151,6 +160,70 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     } catch (e) {
     } finally {
       await tokenStorageService.clearAll();
+    }
+  }
+
+  @override
+  Future<PasswordResetResponseModel> requestPasswordResetOtp(PasswordResetRequestModel request) async {
+    try {
+      final response = await dioService.post(
+        ApiEndpoints.requestPasswordResetOtp,
+        data: request.toJson(),
+      );
+      
+      return PasswordResetResponseModel.fromJson(response.data);
+    } on DioException catch (e) {
+      final errorData = DioService.handleError(e);
+      return PasswordResetResponseModel.fromJson(errorData);
+    } catch (e) {
+      return PasswordResetResponseModel(
+        success: false,
+        messageEn: 'An unexpected error occurred',
+        messageAr: 'حدث خطأ غير متوقع',
+      );
+    }
+  }
+
+  @override
+  Future<VerifyPasswordResetOtpResponseModel> verifyPasswordResetOtp(VerifyPasswordResetOtpRequestModel request) async {
+    try {
+      final response = await dioService.post(
+        ApiEndpoints.verifyPasswordResetOtp,
+        data: request.toJson(),
+      );
+      
+      return VerifyPasswordResetOtpResponseModel.fromJson(response.data);
+    } on DioException catch (e) {
+      final errorData = DioService.handleError(e);
+      return VerifyPasswordResetOtpResponseModel.fromJson(errorData);
+    } catch (e) {
+      return VerifyPasswordResetOtpResponseModel(
+        success: false,
+        messageEn: 'An unexpected error occurred',
+        messageAr: 'حدث خطأ غير متوقع',
+        resetToken: '',
+      );
+    }
+  }
+
+  @override
+  Future<ResetPasswordResponseModel> resetPassword(ResetPasswordRequestModel request) async {
+    try {
+      final response = await dioService.post(
+        ApiEndpoints.resetPassword,
+        data: request.toJson(),
+      );
+      
+      return ResetPasswordResponseModel.fromJson(response.data);
+    } on DioException catch (e) {
+      final errorData = DioService.handleError(e);
+      return ResetPasswordResponseModel.fromJson(errorData);
+    } catch (e) {
+      return ResetPasswordResponseModel(
+        success: false,
+        messageEn: 'An unexpected error occurred',
+        messageAr: 'حدث خطأ غير متوقع',
+      );
     }
   }
 }

@@ -5,10 +5,14 @@ import '../../../../core/error/failures.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/register_entity.dart';
 import '../../domain/entities/verify_otp_entity.dart';
+import '../../domain/entities/password_reset_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_datasource.dart';
 import '../models/register_request_model.dart';
 import '../models/verify_otp_model.dart';
+import '../models/password_reset_request_model.dart';
+import '../models/verify_password_reset_otp_model.dart';
+import '../models/reset_password_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
@@ -183,6 +187,121 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(ServerFailure(
         message: 'Logout failed.',
         messageAr: 'فشل تسجيل الخروج.',
+      ));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PasswordResetEntity>> requestPasswordResetOtp({
+    required String email,
+    required String type,
+  }) async {
+    try {
+      final request = PasswordResetRequestModel(
+        email: email,
+        type: type,
+      );
+
+      final result = await remoteDataSource.requestPasswordResetOtp(request);
+
+      if (result.success) {
+        return Right(PasswordResetEntity(
+          success: result.success,
+          messageEn: result.messageEn,
+          messageAr: result.messageAr,
+        ));
+      } else {
+        return Left(ServerFailure(
+          message: result.messageEn,
+          messageAr: result.messageAr,
+        ));
+      }
+    } on DioException catch (e) {
+      return Left(ServerFailure(
+        message: e.message ?? 'Server error occurred',
+        messageAr: 'حدث خطأ في الخادم',
+      ));
+    } catch (e) {
+      return Left(ServerFailure(
+        message: 'An unexpected error occurred',
+        messageAr: 'حدث خطأ غير متوقع',
+      ));
+    }
+  }
+
+  @override
+  Future<Either<Failure, VerifyPasswordResetOtpEntity>> verifyPasswordResetOtp({
+    required String email,
+    required String otp,
+  }) async {
+    try {
+      final request = VerifyPasswordResetOtpRequestModel(
+        email: email,
+        otp: otp,
+      );
+
+      final result = await remoteDataSource.verifyPasswordResetOtp(request);
+
+      if (result.success) {
+        return Right(VerifyPasswordResetOtpEntity(
+          success: result.success,
+          messageEn: result.messageEn,
+          messageAr: result.messageAr,
+          resetToken: result.resetToken,
+        ));
+      } else {
+        return Left(ServerFailure(
+          message: result.messageEn,
+          messageAr: result.messageAr,
+        ));
+      }
+    } on DioException catch (e) {
+      return Left(ServerFailure(
+        message: e.message ?? 'Server error occurred',
+        messageAr: 'حدث خطأ في الخادم',
+      ));
+    } catch (e) {
+      return Left(ServerFailure(
+        message: 'An unexpected error occurred',
+        messageAr: 'حدث خطأ غير متوقع',
+      ));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ResetPasswordEntity>> resetPassword({
+    required String token,
+    required String newPassword,
+  }) async {
+    try {
+      final request = ResetPasswordRequestModel(
+        token: token,
+        newPassword: newPassword,
+      );
+
+      final result = await remoteDataSource.resetPassword(request);
+
+      if (result.success) {
+        return Right(ResetPasswordEntity(
+          success: result.success,
+          messageEn: result.messageEn,
+          messageAr: result.messageAr,
+        ));
+      } else {
+        return Left(ServerFailure(
+          message: result.messageEn,
+          messageAr: result.messageAr,
+        ));
+      }
+    } on DioException catch (e) {
+      return Left(ServerFailure(
+        message: e.message ?? 'Server error occurred',
+        messageAr: 'حدث خطأ في الخادم',
+      ));
+    } catch (e) {
+      return Left(ServerFailure(
+        message: 'An unexpected error occurred',
+        messageAr: 'حدث خطأ غير متوقع',
       ));
     }
   }

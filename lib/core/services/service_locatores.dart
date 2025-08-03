@@ -9,6 +9,9 @@ import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/verify_otp_usecase.dart';
 import '../../features/auth/domain/usecases/resend_otp_usecase.dart';
 import '../../features/auth/domain/usecases/logout_usecase.dart';
+import '../../features/auth/domain/usecases/request_password_reset_otp_usecase.dart';
+import '../../features/auth/domain/usecases/verify_password_reset_otp_usecase.dart';
+import '../../features/auth/domain/usecases/reset_password_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../services/dio_service.dart';
 import '../services/token_storage_service.dart';
@@ -28,6 +31,9 @@ Future<void> init() async {
         verifyOtpUsecase: sl(),
         resendOtpUsecase: sl(),
         logoutUsecase: sl(),
+        requestPasswordResetOtpUsecase: sl(),
+        verifyPasswordResetOtpUsecase: sl(),
+        resetPasswordUsecase: sl(),
       ));
 
   // Use cases
@@ -36,6 +42,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => VerifyOtpUsecase(sl()));
   sl.registerLazySingleton(() => ResendOtpUsecase(sl()));
   sl.registerLazySingleton(() => LogoutUsecase(sl()));
+  sl.registerLazySingleton(() => RequestPasswordResetOtpUsecase(sl()));
+  sl.registerLazySingleton(() => VerifyPasswordResetOtpUsecase(sl()));
+  sl.registerLazySingleton(() => ResetPasswordUsecase(sl()));
 
   // Repository
   sl.registerLazySingleton<AuthRepository>(

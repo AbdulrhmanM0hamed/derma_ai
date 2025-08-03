@@ -132,3 +132,84 @@ class LogoutFailure extends AuthState {
   @override
   List<Object?> get props => [messageEn, messageAr];
 }
+
+// Password Reset States
+class RequestPasswordResetOtpSuccess extends AuthState {
+  final String messageEn;
+  final String messageAr;
+
+  const RequestPasswordResetOtpSuccess({
+    required this.messageEn,
+    required this.messageAr,
+  });
+
+  @override
+  List<Object?> get props => [messageEn, messageAr];
+}
+
+class RequestPasswordResetOtpFailure extends AuthState {
+  final String messageEn;
+  final String messageAr;
+
+  const RequestPasswordResetOtpFailure({
+    required this.messageEn,
+    required this.messageAr,
+  });
+
+  @override
+  List<Object?> get props => [messageEn, messageAr];
+}
+
+class VerifyPasswordResetOtpSuccess extends AuthState {
+  final String messageEn;
+  final String messageAr;
+  final String resetToken;
+
+  const VerifyPasswordResetOtpSuccess({
+    required this.messageEn,
+    required this.messageAr,
+    required this.resetToken,
+  });
+
+  @override
+  List<Object?> get props => [messageEn, messageAr, resetToken];
+}
+
+class VerifyPasswordResetOtpFailure extends AuthState {
+  final String messageEn;
+  final String messageAr;
+
+  const VerifyPasswordResetOtpFailure({
+    required this.messageEn,
+    required this.messageAr,
+  });
+
+  @override
+  List<Object?> get props => [messageEn, messageAr];
+}
+
+class ResetPasswordSuccess extends AuthState {
+  final String messageEn;
+  final String messageAr;
+
+  const ResetPasswordSuccess({
+    required this.messageEn,
+    required this.messageAr,
+  });
+
+  @override
+  List<Object?> get props => [messageEn, messageAr];
+}
+
+class ResetPasswordFailure extends AuthState {
+  final String messageEn;
+  final String messageAr;
+
+  const ResetPasswordFailure({
+    required this.messageEn,
+    required this.messageAr,
+  });
+
+  @override
+  List<Object?> get props => [messageEn, messageAr];
+}
