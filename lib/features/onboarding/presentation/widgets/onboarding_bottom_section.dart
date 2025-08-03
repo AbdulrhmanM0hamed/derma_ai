@@ -1,3 +1,4 @@
+import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
@@ -77,7 +78,7 @@ class OnboardingBottomSection extends StatelessWidget {
                   );
                 },
                 child: isLastPage
-                    ? _buildGetStartedButton(isSmallScreen: isSmallScreen)
+                    ? _buildGetStartedButton(isSmallScreen: isSmallScreen, context: context)
                     : _buildNavigationButton(
                         key: const ValueKey('next'),
                         icon: Icons.arrow_back_ios,
@@ -102,7 +103,7 @@ class OnboardingBottomSection extends StatelessWidget {
     );
   }
 
-  Widget _buildGetStartedButton({bool isSmallScreen = false}) {
+  Widget _buildGetStartedButton({bool isSmallScreen = false, required BuildContext context}) {
     final buttonWidth = isSmallScreen ? 100.0 : 120.0;
     final buttonHeight = isSmallScreen ? 56.0 : 64.0;
     
@@ -157,7 +158,7 @@ class OnboardingBottomSection extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'ابدأ الآن',
+                  AppLocalizations.of(context)!.getStarted,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,

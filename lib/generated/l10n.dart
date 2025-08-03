@@ -80,60 +80,60 @@ class S {
     );
   }
 
-  /// `Find Trusted Dermatologists`
+  /// `AI Skin Analysis`
   String get onboardingTitle1 {
     return Intl.message(
-      'Find Trusted Dermatologists',
+      'AI Skin Analysis',
       name: 'onboardingTitle1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Connect with top dermatologists for personalized skin care advice and treatment.`
+  /// `Get an instant analysis of your skin condition using advanced AI techniques`
   String get onboardingDesc1 {
     return Intl.message(
-      'Connect with top dermatologists for personalized skin care advice and treatment.',
+      'Get an instant analysis of your skin condition using advanced AI techniques',
       name: 'onboardingDesc1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Instant AI Diagnosis`
+  /// `Consult Certified Dermatologists`
   String get onboardingTitle2 {
     return Intl.message(
-      'Instant AI Diagnosis',
+      'Consult Certified Dermatologists',
       name: 'onboardingTitle2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Take a photo of your skin condition and get an instant AI-powered diagnosis.`
+  /// `Connect with specialized dermatologists for reliable medical advice`
   String get onboardingDesc2 {
     return Intl.message(
-      'Take a photo of your skin condition and get an instant AI-powered diagnosis.',
+      'Connect with specialized dermatologists for reliable medical advice',
       name: 'onboardingDesc2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Track Your Skin Health`
+  /// `Personalized Treatment Plans`
   String get onboardingTitle3 {
     return Intl.message(
-      'Track Your Skin Health',
+      'Personalized Treatment Plans',
       name: 'onboardingTitle3',
       desc: '',
       args: [],
     );
   }
 
-  /// `Monitor your skin condition progress and get personalized care recommendations.`
+  /// `Receive customized treatment recommendations tailored to your skin type and condition`
   String get onboardingDesc3 {
     return Intl.message(
-      'Monitor your skin condition progress and get personalized care recommendations.',
+      'Receive customized treatment recommendations tailored to your skin type and condition',
       name: 'onboardingDesc3',
       desc: '',
       args: [],
@@ -155,6 +155,16 @@ class S {
     return Intl.message(
       'Next',
       name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Previous`
+  String get previous {
+    return Intl.message(
+      'Previous',
+      name: 'previous',
       desc: '',
       args: [],
     );

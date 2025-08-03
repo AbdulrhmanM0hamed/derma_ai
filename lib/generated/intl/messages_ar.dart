@@ -116,17 +116,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "ok": MessageLookupByLibrary.simpleMessage("موافق"),
         "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
-            "تواصل مع أفضل أطباء الجلدية للحصول على نصائح وعلاجات مخصصة للعناية بالبشرة."),
+            "احصل على تحليل فوري لحالة بشرتك باستخدام تقنيات الذكاء الاصطناعي المتقدمة"),
         "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
-            "التقط صورة لحالة بشرتك واحصل على تشخيص فوري مدعوم بالذكاء الاصطناعي."),
+            "تواصل مع أطباء جلدية متخصصين للحصول على نصائح طبية موثوقة"),
         "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
-            "راقب تقدم حالة بشرتك واحصل على نصائح مخصصة للعناية بها."),
+            "استلم توصيات علاجية مخصصة تناسب نوع بشرتك وحالتها"),
         "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
-            "ابحث عن أطباء الجلدية الموثوقين"),
+            "تحليل البشرة بالذكاء الاصطناعي"),
         "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
-            "تشخيص فوري بالذكاء الاصطناعي"),
+            "استشارة أطباء الجلد المعتمدين"),
         "onboardingTitle3":
-            MessageLookupByLibrary.simpleMessage("تتبع صحة بشرتك"),
+            MessageLookupByLibrary.simpleMessage("خطط علاجية مخصصة لبشرتك"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("أو تابع باستخدام"),
         "otpSentToEmail": MessageLookupByLibrary.simpleMessage(
@@ -163,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم هاتف صحيح"),
         "pleaseSelectTimeSlot":
             MessageLookupByLibrary.simpleMessage("الرجاء اختيار فترة زمنية"),
+        "previous": MessageLookupByLibrary.simpleMessage("السابق"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "quickAccess": MessageLookupByLibrary.simpleMessage("وصول سريع"),
         "recentDiagnoses":

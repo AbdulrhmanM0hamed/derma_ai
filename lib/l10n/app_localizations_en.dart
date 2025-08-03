@@ -18,31 +18,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loading => 'Loading...';
 
   @override
-  String get onboardingTitle1 => 'Find Trusted Dermatologists';
+  String get onboardingTitle1 => 'AI Skin Analysis';
 
   @override
   String get onboardingDesc1 =>
-      'Connect with top dermatologists for personalized skin care advice and treatment.';
+      'Get an instant analysis of your skin condition using advanced AI techniques';
 
   @override
-  String get onboardingTitle2 => 'Instant AI Diagnosis';
+  String get onboardingTitle2 => 'Consult Certified Dermatologists';
 
   @override
   String get onboardingDesc2 =>
-      'Take a photo of your skin condition and get an instant AI-powered diagnosis.';
+      'Connect with specialized dermatologists for reliable medical advice';
 
   @override
-  String get onboardingTitle3 => 'Track Your Skin Health';
+  String get onboardingTitle3 => 'Personalized Treatment Plans';
 
   @override
   String get onboardingDesc3 =>
-      'Monitor your skin condition progress and get personalized care recommendations.';
+      'Receive customized treatment recommendations tailored to your skin type and condition';
 
   @override
   String get skip => 'Skip';
 
   @override
   String get next => 'Next';
+
+  @override
+  String get previous => 'Previous';
 
   @override
   String get getStarted => 'Get Started';

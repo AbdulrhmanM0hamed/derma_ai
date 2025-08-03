@@ -8,6 +8,10 @@ class TokenStorageService {
   static const String _userUuidKey = 'user_uuid';
   static const String _userEmailKey = 'user_email';
   static const String _userStatusKey = 'user_status';
+  static const String _onboardingCompletedKey = 'onboarding_completed';
+  static const String _rememberMeKey = 'remember_me';
+  static const String _rememberedEmailKey = 'remembered_email';
+  static const String _rememberedPasswordKey = 'remembered_password';
 
   final SharedPreferences _prefs;
 
@@ -55,7 +59,47 @@ class TokenStorageService {
   // Check if user is logged in
   bool get isLoggedIn => accessToken != null && accessToken!.isNotEmpty;
 
-  // Clear all data (logout)
+  // Mark onboarding as completed
+  Future<void> setOnboardingCompleted({bool completed = true}) async {
+    await _prefs.setBool(_onboardingCompletedKey, completed);
+  }
+
+  bool get isOnboardingCompleted => _prefs.getBool(_onboardingCompletedKey) ?? false;
+
+  // Remember me functionality
+  Future<void> setRememberMe({
+    required bool remember, 
+    String? email, 
+    String? password
+  }) async {
+    await _prefs.setBool(_rememberMeKey, remember);
+    if (remember) {
+      if (email != null) {
+        await _prefs.setString(_rememberedEmailKey, email);
+      }
+      if (password != null) {
+        await _prefs.setString(_rememberedPasswordKey, password);
+      }
+    } else {
+      await _prefs.remove(_rememberedEmailKey);
+      await _prefs.remove(_rememberedPasswordKey);
+    }
+  }
+
+  bool get isRememberMeEnabled => _prefs.getBool(_rememberMeKey) ?? false;
+  String? get rememberedEmail => _prefs.getString(_rememberedEmailKey);
+  String? get rememberedPassword => _prefs.getString(_rememberedPasswordKey);
+
+  // Clear only remember me data (if user wants to forget credentials)
+  Future<void> clearRememberMe() async {
+    await Future.wait([
+      _prefs.remove(_rememberMeKey),
+      _prefs.remove(_rememberedEmailKey),
+      _prefs.remove(_rememberedPasswordKey),
+    ]);
+  }
+
+  // Clear all data (logout) - but preserve remember me settings
   Future<void> clearAll() async {
     await Future.wait([
       _prefs.remove(_accessTokenKey),
@@ -65,6 +109,8 @@ class TokenStorageService {
       _prefs.remove(_userUuidKey),
       _prefs.remove(_userEmailKey),
       _prefs.remove(_userStatusKey),
+      // Note: We DON'T clear remember me data on logout
+      // This allows user to have email pre-filled on next login
     ]);
   }
 

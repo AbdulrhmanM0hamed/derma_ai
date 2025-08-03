@@ -1,9 +1,12 @@
+import 'package:derma_ai/core/services/token_storage_service.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
+import '../../../../core/services/service_locatores.dart';
 import '../widgets/onboarding_skip_button.dart';
 import '../widgets/onboarding_bottom_section.dart';
 import '../../domain/models/onboarding_item.dart';
@@ -19,24 +22,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  final List<OnboardingItem> _onboardingItems = [
-    OnboardingItem(
-      image: 'assets/images/onboarding1.svg',
-      title: 'تحليل البشرة بالذكاء الاصطناعي',
-      description:
-          'احصل على تحليل فوري لحالة بشرتك باستخدام تقنيات الذكاء الاصطناعي المتقدمة',
-    ),
-    OnboardingItem(
-      image: 'assets/images/onboarding2.svg',
-      title: 'استشارة أطباء الجلد المعتمدين',
-      description: 'تواصل مع أطباء جلدية متخصصين للحصول على نصائح طبية موثوقة',
-    ),
-    OnboardingItem(
-      image: 'assets/images/onboarding3.svg',
-      title: 'خطط علاجية مخصصة لبشرتك',
-      description: 'استلم توصيات علاجية مخصصة تناسب نوع بشرتك وحالتها',
-    ),
-  ];
+  List<OnboardingItem> get _onboardingItems {
+    return [
+      OnboardingItem(
+        image: 'assets/images/onboarding1.svg',
+        title: AppLocalizations.of(context)!.onboardingTitle1,
+        description: AppLocalizations.of(context)!.onboardingDesc1,
+      ),
+      OnboardingItem(
+        image: 'assets/images/onboarding2.svg',
+        title: AppLocalizations.of(context)!.onboardingTitle2,
+        description: AppLocalizations.of(context)!.onboardingDesc2,
+      ),
+      OnboardingItem(
+        image: 'assets/images/onboarding3.svg',
+        title: AppLocalizations.of(context)!.onboardingTitle3,
+        description: AppLocalizations.of(context)!.onboardingDesc3,
+      ),
+    ];
+  }
 
   void _nextPage() {
     if (_currentPage < _onboardingItems.length - 1) {
@@ -45,6 +49,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
         curve: Curves.easeInOutCubic,
       );
     } else {
+      // Mark onboarding as completed and navigate to login
+      sl<TokenStorageService>().setOnboardingCompleted();
       Navigator.pushReplacementNamed(context, AppRoutes.login);
     }
   }
@@ -231,6 +237,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             right: 20,
             child: OnboardingSkipButton(
               onSkip: () {
+                sl<TokenStorageService>().setOnboardingCompleted();
                 Navigator.pushReplacementNamed(context, AppRoutes.login);
               },
             ),

@@ -18,31 +18,34 @@ class AppLocalizationsAr extends AppLocalizations {
   String get loading => 'جاري التحميل...';
 
   @override
-  String get onboardingTitle1 => 'ابحث عن أطباء الجلدية الموثوقين';
+  String get onboardingTitle1 => 'تحليل البشرة بالذكاء الاصطناعي';
 
   @override
   String get onboardingDesc1 =>
-      'تواصل مع أفضل أطباء الجلدية للحصول على نصائح وعلاجات مخصصة للعناية بالبشرة.';
+      'احصل على تحليل فوري لحالة بشرتك باستخدام تقنيات الذكاء الاصطناعي المتقدمة';
 
   @override
-  String get onboardingTitle2 => 'تشخيص فوري بالذكاء الاصطناعي';
+  String get onboardingTitle2 => 'استشارة أطباء الجلد المعتمدين';
 
   @override
   String get onboardingDesc2 =>
-      'التقط صورة لحالة بشرتك واحصل على تشخيص فوري مدعوم بالذكاء الاصطناعي.';
+      'تواصل مع أطباء جلدية متخصصين للحصول على نصائح طبية موثوقة';
 
   @override
-  String get onboardingTitle3 => 'تتبع صحة بشرتك';
+  String get onboardingTitle3 => 'خطط علاجية مخصصة لبشرتك';
 
   @override
   String get onboardingDesc3 =>
-      'راقب تقدم حالة بشرتك واحصل على نصائح مخصصة للعناية بها.';
+      'استلم توصيات علاجية مخصصة تناسب نوع بشرتك وحالتها';
 
   @override
   String get skip => 'تخطي';
 
   @override
   String get next => 'التالي';
+
+  @override
+  String get previous => 'السابق';
 
   @override
   String get getStarted => 'ابدأ الآن';

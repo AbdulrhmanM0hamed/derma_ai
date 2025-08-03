@@ -119,37 +119,37 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingTitle1.
   ///
   /// In en, this message translates to:
-  /// **'Find Trusted Dermatologists'**
+  /// **'AI Skin Analysis'**
   String get onboardingTitle1;
 
   /// No description provided for @onboardingDesc1.
   ///
   /// In en, this message translates to:
-  /// **'Connect with top dermatologists for personalized skin care advice and treatment.'**
+  /// **'Get an instant analysis of your skin condition using advanced AI techniques'**
   String get onboardingDesc1;
 
   /// No description provided for @onboardingTitle2.
   ///
   /// In en, this message translates to:
-  /// **'Instant AI Diagnosis'**
+  /// **'Consult Certified Dermatologists'**
   String get onboardingTitle2;
 
   /// No description provided for @onboardingDesc2.
   ///
   /// In en, this message translates to:
-  /// **'Take a photo of your skin condition and get an instant AI-powered diagnosis.'**
+  /// **'Connect with specialized dermatologists for reliable medical advice'**
   String get onboardingDesc2;
 
   /// No description provided for @onboardingTitle3.
   ///
   /// In en, this message translates to:
-  /// **'Track Your Skin Health'**
+  /// **'Personalized Treatment Plans'**
   String get onboardingTitle3;
 
   /// No description provided for @onboardingDesc3.
   ///
   /// In en, this message translates to:
-  /// **'Monitor your skin condition progress and get personalized care recommendations.'**
+  /// **'Receive customized treatment recommendations tailored to your skin type and condition'**
   String get onboardingDesc3;
 
   /// No description provided for @skip.
@@ -163,6 +163,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next'**
   String get next;
+
+  /// No description provided for @previous.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get previous;
 
   /// No description provided for @getStarted.
   ///

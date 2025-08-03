@@ -118,17 +118,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
-            "Connect with top dermatologists for personalized skin care advice and treatment."),
+            "Get an instant analysis of your skin condition using advanced AI techniques"),
         "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
-            "Take a photo of your skin condition and get an instant AI-powered diagnosis."),
+            "Connect with specialized dermatologists for reliable medical advice"),
         "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
-            "Monitor your skin condition progress and get personalized care recommendations."),
+            "Receive customized treatment recommendations tailored to your skin type and condition"),
         "onboardingTitle1":
-            MessageLookupByLibrary.simpleMessage("Find Trusted Dermatologists"),
-        "onboardingTitle2":
-            MessageLookupByLibrary.simpleMessage("Instant AI Diagnosis"),
-        "onboardingTitle3":
-            MessageLookupByLibrary.simpleMessage("Track Your Skin Health"),
+            MessageLookupByLibrary.simpleMessage("AI Skin Analysis"),
+        "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
+            "Consult Certified Dermatologists"),
+        "onboardingTitle3": MessageLookupByLibrary.simpleMessage(
+            "Personalized Treatment Plans"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("Or continue with"),
         "otpSentToEmail": MessageLookupByLibrary.simpleMessage(
@@ -165,6 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter a valid phone number"),
         "pleaseSelectTimeSlot":
             MessageLookupByLibrary.simpleMessage("Please select a time slot"),
+        "previous": MessageLookupByLibrary.simpleMessage("Previous"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "quickAccess": MessageLookupByLibrary.simpleMessage("Quick Access"),
         "recentDiagnoses":

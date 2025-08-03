@@ -13,6 +13,8 @@ import '../../../../core/utils/helper/on_genrated_routes.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
+import '../../../../core/services/service_locatores.dart';
+import '../../../../core/services/token_storage_service.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
@@ -33,18 +35,66 @@ class _LoginPageState extends State<LoginPage> {
   bool _obscurePassword = true;
 
   @override
+  void initState() {
+    super.initState();
+    _loadRememberedEmail();
+  }
+
+  void _loadRememberedEmail() async {
+    try {
+      final storage = sl<TokenStorageService>();
+      final isRememberEnabled = storage.isRememberMeEnabled;
+      final rememberedEmail = storage.rememberedEmail;
+      final rememberedPassword = storage.rememberedPassword;
+      
+      if (isRememberEnabled) {
+        setState(() {
+          if (rememberedEmail != null && rememberedEmail.isNotEmpty) {
+            _emailController.text = rememberedEmail;
+          }
+          if (rememberedPassword != null && rememberedPassword.isNotEmpty) {
+            _passwordController.text = rememberedPassword;
+          }
+          _rememberMe = true;
+        });
+      
+      } 
+    } catch (e) {
+    }
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
-  void _login() {
+  void _login() async {
     if (_formKey.currentState!.validate()) {
-      context.read<AuthCubit>().login(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+      try {
+        // Save remember me preference
+        final email = _emailController.text.trim();
+        final password = _passwordController.text.trim();
+        
+        await sl<TokenStorageService>().setRememberMe(
+          remember: _rememberMe,
+          email: _rememberMe ? email : null,
+          password: _rememberMe ? password : null,
+        );
+        
+        
+        context.read<AuthCubit>().login(
+          email: email,
+          password: _passwordController.text.trim(),
+        );
+      } catch (e) {
+        // Continue with login even if remember me fails
+        context.read<AuthCubit>().login(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+      }
     }
   }
 
@@ -102,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                           _buildLoginButton(),
                           const SizedBox(height: 24),
                           const SocialAuthSection(),
-                          const SizedBox(height: 32),
+                          const SizedBox(height: 12),
                           _buildSignUpLink(),
                         ],
                       ),
