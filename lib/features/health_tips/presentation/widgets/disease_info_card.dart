@@ -24,6 +24,7 @@ class _DiseaseInfoCardState extends State<DiseaseInfoCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
+          elevation: 2,
           margin: const EdgeInsets.only(bottom: 16),
           child: Padding(
             padding: const EdgeInsets.all(16.0),

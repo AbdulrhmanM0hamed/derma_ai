@@ -104,7 +104,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                     // Navigate to main app or next step
                     Navigator.pushReplacementNamed(
                       context,
-                      AppRoutes.mainNavigationPage,
+                      AppRoutes.login,
                     );
                   } else if (state is VerifyOtpFailure) {
                     CustomSnackbar.showError(
