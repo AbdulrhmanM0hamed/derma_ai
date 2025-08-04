@@ -128,6 +128,27 @@ class _LoginPageState extends State<LoginPage> {
                       context,
                       AppRoutes.mainNavigationPage,
                     );
+                  } else if (state is AccountNotVerified) {
+                    // Show message about account verification
+                    CustomSnackbar.showSuccess(
+                      context: context,
+                      message: CustomSnackbar.getLocalizedMessage(
+                        context: context,
+                        messageAr: state.messageAr,
+                        messageEn: state.messageEn,
+                      ),
+                    );
+                    // Navigate to OTP verification page
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.otpVerification,
+                      arguments: {
+                        'userId': state.userId,
+                        'email': _emailController.text.trim(),
+                        'phone': '', // Phone not available from login
+                        'type': 'email', // Based on requiresVerification
+                      },
+                    );
                   } else if (state is LoginFailure) {
                     CustomSnackbar.showError(
                       context: context,

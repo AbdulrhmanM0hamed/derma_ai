@@ -55,7 +55,19 @@ class AuthCubit extends Cubit<AuthState> {
         messageEn: failure.message,
         messageAr: failure.messageAr,
       )),
-      (entity) => emit(LoginSuccess(entity)),
+      (entity) {
+        // Check if account is not verified
+        if (entity.accountNotVerified == true && entity.userId != null) {
+          emit(AccountNotVerified(
+            userId: entity.userId!,
+            messageEn: entity.messageEn,
+            messageAr: entity.messageAr,
+            requiresVerification: entity.requiresVerification,
+          ));
+        } else {
+          emit(LoginSuccess(entity));
+        }
+      },
     );
   }
 

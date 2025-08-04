@@ -31,6 +31,8 @@ class LoginResponseModel extends Equatable {
   final String? userUuid;
   final String? userEmail;
   final String? userStatus;
+  final bool? accountNotVerified;
+  final Map<String, bool>? requiresVerification;
 
   const LoginResponseModel({
     required this.success,
@@ -43,6 +45,8 @@ class LoginResponseModel extends Equatable {
     this.userUuid,
     this.userEmail,
     this.userStatus,
+    this.accountNotVerified,
+    this.requiresVerification,
   });
 
   @override
@@ -57,6 +61,8 @@ class LoginResponseModel extends Equatable {
         userUuid,
         userEmail,
         userStatus,
+        accountNotVerified,
+        requiresVerification,
       ];
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
@@ -70,10 +76,14 @@ class LoginResponseModel extends Equatable {
       accessToken: tokens?['accessToken'],
       refreshToken: tokens?['refreshToken'],
       sessionToken: tokens?['sessionToken'],
-      userId: user?['id'],
+      userId: user?['id'] ?? json['userId'],
       userUuid: user?['uuid'],
       userEmail: user?['email'],
       userStatus: user?['status'],
+      accountNotVerified: json['accountNotVerified'],
+      requiresVerification: json['requiresVerification'] != null
+          ? Map<String, bool>.from(json['requiresVerification'])
+          : null,
     );
   }
 }

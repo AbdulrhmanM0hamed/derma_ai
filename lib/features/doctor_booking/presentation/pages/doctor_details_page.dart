@@ -12,7 +12,6 @@ import '../../../../core/widgets/custom_button.dart';
 import '../widgets/doctor_card.dart';
 import '../widgets/date_picker.dart';
 
-
 class DoctorDetailsPage extends StatefulWidget {
   const DoctorDetailsPage({super.key});
 
@@ -23,12 +22,12 @@ class DoctorDetailsPage extends StatefulWidget {
 class _DoctorDetailsPageState extends State<DoctorDetailsPage>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
-  final bool _isBookingInProgress = false;
+  //final bool _isBookingInProgress = false;
   DateTime _selectedDate = DateTime.now();
   String? _selectedTimeSlot;
 
   // Dummy data for the doctor
-  final _doctor =  DoctorModel(
+  final _doctor = DoctorModel(
     id: '1',
     name: 'Dr. Arlene L. Johnson',
     specialty: 'Dermatologist',
@@ -80,76 +79,74 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
     // Show a confirmation dialog
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Confirm Booking'),
-        content: Text(
-          'Book an appointment with ${_doctor.name} on ${DateFormat.yMMMd().format(_selectedDate)} at $_selectedTimeSlot?',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+      builder:
+          (context) => AlertDialog(
+            title: const Text('Confirm Booking'),
+            content: Text(
+              'Book an appointment with ${_doctor.name} on ${DateFormat.yMMMd().format(_selectedDate)} at $_selectedTimeSlot?',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _showBookingSuccess();
+                },
+                child: const Text('Confirm'),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              _showBookingSuccess();
-            },
-            child: const Text('Confirm'),
-          ),
-        ],
-      ),
     );
   }
 
   void _showBookingSuccess() {
     showDialog(
-        context: context,
-        builder: (context) {
-          return Dialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.check_circle, color: Colors.green, size: 64),
+                const SizedBox(height: 16),
+                Text(
+                  'Appointment Booked!',
+                  style: getBoldStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 20,
+                    fontFamily: FontConstant.cairo,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Your appointment with ${_doctor.name} has been successfully booked.',
+                  textAlign: TextAlign.center,
+                  style: getRegularStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 14,
+                    fontFamily: FontConstant.cairo,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                CustomButton(
+                  text: 'Done',
+                  onPressed: () => Navigator.of(context).pop(),
+                  type: ButtonType.primary,
+                ),
+              ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.check_circle,
-                    color: Colors.green,
-                    size: 64,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Appointment Booked!',
-                    style: getBoldStyle(
-                      color: AppColors.textPrimary,
-                      fontSize: 20,
-                      fontFamily: FontConstant.cairo,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Your appointment with ${_doctor.name} has been successfully booked.',
-                    textAlign: TextAlign.center,
-                    style: getRegularStyle(
-                      color: AppColors.textSecondary,
-                      fontSize: 14,
-                      fontFamily: FontConstant.cairo,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  CustomButton(
-                    text: 'Done',
-                    onPressed: () => Navigator.of(context).pop(),
-                    type: ButtonType.primary,
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -188,16 +185,16 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
           child: CachedNetworkImage(
             imageUrl: _doctor.imageUrl,
             fit: BoxFit.cover,
-            placeholder: (context, url) => Container(
-              color: Colors.grey[300],
-              child: const Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-            errorWidget: (context, url, error) => Container(
-              color: Colors.grey[300],
-              child: const Icon(Icons.error),
-            ),
+            placeholder:
+                (context, url) => Container(
+                  color: Colors.grey[300],
+                  child: const Center(child: CircularProgressIndicator()),
+                ),
+            errorWidget:
+                (context, url, error) => Container(
+                  color: Colors.grey[300],
+                  child: const Icon(Icons.error),
+                ),
           ),
         ),
       ),
@@ -205,7 +202,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
         icon: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha:0.9),
+            color: Colors.white.withValues(alpha: 0.9),
             shape: BoxShape.circle,
           ),
           child: const Icon(Icons.arrow_back),
@@ -217,7 +214,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
           icon: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha:0.9),
+              color: Colors.white.withValues(alpha: 0.9),
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.favorite_border),
@@ -246,14 +243,12 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
                     Text(
                       _doctor.name,
                       style: getBoldStyle(
-                        color: AppColors.textPrimary,
                         fontSize: 24,
                         fontFamily: FontConstant.cairo,
                       ),
-                    ).animate(effects: fadeInSlide(
-                      duration: 300.ms,
-                      beginX: -0.1,
-                    )),
+                    ).animate(
+                      effects: fadeInSlide(duration: 300.ms, beginX: -0.1),
+                    ),
                     const SizedBox(height: 4),
                     Text(
                       _doctor.specialty,
@@ -262,27 +257,28 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
                         fontSize: 16,
                         fontFamily: FontConstant.cairo,
                       ),
-                    ).animate(effects: fadeInSlide(
-                      duration: 300.ms,
-                      delay: 100.ms,
-                      beginX: -0.1,
-                    )),
+                    ).animate(
+                      effects: fadeInSlide(
+                        duration: 300.ms,
+                        delay: 100.ms,
+                        beginX: -0.1,
+                      ),
+                    ),
                   ],
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha:0.1),
+                  color: AppColors.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Row(
                   children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 18,
-                    ),
+                    const Icon(Icons.star, color: Colors.amber, size: 18),
                     const SizedBox(width: 4),
                     Text(
                       _doctor.rating.toString(),
@@ -302,10 +298,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
                     ),
                   ],
                 ),
-              ).animate(effects: fadeIn(
-                duration: 300.ms,
-                delay: 200.ms,
-              )),
+              ).animate(effects: fadeIn(duration: 300.ms, delay: 200.ms)),
             ],
           ),
           const SizedBox(height: 16),
@@ -326,11 +319,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
     return Expanded(
       child: Row(
         children: [
-          Icon(
-            icon,
-            size: 16,
-            color: AppColors.textSecondary,
-          ),
+          Icon(icon, size: 16, color: AppColors.textSecondary),
           const SizedBox(width: 4),
           Flexible(
             child: Text(
@@ -369,8 +358,16 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
           Tab(text: AppLocalizations.of(context)!.experience),
           Tab(text: AppLocalizations.of(context)!.reviews),
         ],
-        labelStyle: getSemiBoldStyle(color: AppColors.primary, fontSize: 14, fontFamily: FontConstant.cairo),
-        unselectedLabelStyle: getRegularStyle(color: AppColors.textSecondary, fontSize: 14, fontFamily: FontConstant.cairo),
+        labelStyle: getSemiBoldStyle(
+          color: AppColors.primary,
+          fontSize: 14,
+          fontFamily: FontConstant.cairo,
+        ),
+        unselectedLabelStyle: getRegularStyle(
+          color: AppColors.textSecondary,
+          fontSize: 14,
+          fontFamily: FontConstant.cairo,
+        ),
         indicatorColor: AppColors.primary,
         indicatorSize: TabBarIndicatorSize.label,
       ),
@@ -382,11 +379,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
       height: 200,
       child: TabBarView(
         controller: _tabController,
-        children: [
-          _buildAboutTab(),
-          _buildExperienceTab(),
-          _buildReviewsTab(),
-        ],
+        children: [_buildAboutTab(), _buildExperienceTab(), _buildReviewsTab()],
       ),
     );
   }
@@ -399,9 +392,9 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
         children: [
           Text(
             AppLocalizations.of(context)!.about,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           Text(
@@ -415,31 +408,35 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
           const SizedBox(height: 16),
           Text(
             AppLocalizations.of(context)!.services,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: (_doctor.services ?? []).map((service) {
-              return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha:0.1),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Text(
-                  service,
-                  style: getRegularStyle(
-                    color: AppColors.primary,
-                    fontSize: 12,
-                    fontFamily: FontConstant.cairo,
-                  ),
-                ),
-              );
-            }).toList(),
+            children:
+                (_doctor.services ?? []).map((service) {
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Text(
+                      service,
+                      style: getRegularStyle(
+                        color: AppColors.primary,
+                        fontSize: 12,
+                        fontFamily: FontConstant.cairo,
+                      ),
+                    ),
+                  );
+                }).toList(),
           ),
         ],
       ),
@@ -454,38 +451,39 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
         children: [
           Text(
             AppLocalizations.of(context)!.education,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           Column(
-            children: (_doctor.education ?? []).map((education) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.school,
-                      size: 16,
-                      color: AppColors.textSecondary,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        education,
-                        style: getRegularStyle(
+            children:
+                (_doctor.education ?? []).map((education) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.school,
+                          size: 16,
                           color: AppColors.textSecondary,
-                          fontSize: 14,
-                          fontFamily: FontConstant.cairo,
                         ),
-                      ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            education,
+                            style: getRegularStyle(
+                              color: AppColors.textSecondary,
+                              fontSize: 14,
+                              fontFamily: FontConstant.cairo,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              );
-            }).toList(),
+                  );
+                }).toList(),
           ),
         ],
       ),
@@ -499,14 +497,16 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
         'name': 'John Doe',
         'rating': 5.0,
         'date': '2 weeks ago',
-        'comment': 'Dr. Johnson was very thorough and took the time to explain my condition and treatment options.',
+        'comment':
+            'Dr. Johnson was very thorough and took the time to explain my condition and treatment options.',
         'avatar': 'https://randomuser.me/api/portraits/men/32.jpg',
       },
       {
         'name': 'Jane Smith',
         'rating': 4.5,
         'date': '1 month ago',
-        'comment': 'Great doctor, very knowledgeable and professional. The wait time was a bit long though.',
+        'comment':
+            'Great doctor, very knowledgeable and professional. The wait time was a bit long though.',
         'avatar': 'https://randomuser.me/api/portraits/women/32.jpg',
       },
     ];
@@ -591,8 +591,8 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
                                 i < (review['rating'] as double).floor()
                                     ? Icons.star
                                     : i < (review['rating'] as double)
-                                        ? Icons.star_half
-                                        : Icons.star_border,
+                                    ? Icons.star_half
+                                    : Icons.star_border,
                                 color: Colors.amber,
                                 size: 16,
                               );

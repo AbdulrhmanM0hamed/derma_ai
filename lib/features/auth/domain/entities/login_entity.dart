@@ -11,6 +11,8 @@ class LoginEntity extends Equatable {
   final String? userUuid;
   final String? userEmail;
   final String? userStatus;
+  final bool? accountNotVerified;
+  final Map<String, bool>? requiresVerification;
 
   const LoginEntity({
     required this.success,
@@ -23,6 +25,8 @@ class LoginEntity extends Equatable {
     this.userUuid,
     this.userEmail,
     this.userStatus,
+    this.accountNotVerified,
+    this.requiresVerification,
   });
 
   @override
@@ -37,5 +41,7 @@ class LoginEntity extends Equatable {
         userUuid,
         userEmail,
         userStatus,
+        accountNotVerified,
+        requiresVerification,
       ];
 }

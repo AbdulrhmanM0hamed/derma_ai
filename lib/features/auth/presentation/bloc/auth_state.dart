@@ -37,6 +37,23 @@ class LoginFailure extends AuthState {
   List<Object?> get props => [messageEn, messageAr];
 }
 
+class AccountNotVerified extends AuthState {
+  final int userId;
+  final String messageEn;
+  final String messageAr;
+  final Map<String, bool>? requiresVerification;
+
+  const AccountNotVerified({
+    required this.userId,
+    required this.messageEn,
+    required this.messageAr,
+    this.requiresVerification,
+  });
+
+  @override
+  List<Object?> get props => [userId, messageEn, messageAr, requiresVerification];
+}
+
 class RegisterSuccess extends AuthState {
   final RegisterEntity entity;
 

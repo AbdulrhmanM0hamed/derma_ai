@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+import '../models/login_model.dart';
+
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/register_entity.dart';
@@ -41,8 +43,33 @@ class AuthRepositoryImpl implements AuthRepository {
         userUuid: response.userUuid,
         userEmail: response.userEmail,
         userStatus: response.userStatus,
+        accountNotVerified: response.accountNotVerified,
+        requiresVerification: response.requiresVerification,
       ));
     } on DioException catch (e) {
+      // Handle 403 status with accountNotVerified as valid response
+      if (e.response?.statusCode == 403 && e.response?.data != null) {
+        final data = e.response!.data;
+        if (data['accountNotVerified'] == true) {
+          // This is a valid response for unverified account
+          final responseModel = LoginResponseModel.fromJson(data);
+          return Right(LoginEntity(
+            success: responseModel.success,
+            messageEn: responseModel.messageEn,
+            messageAr: responseModel.messageAr,
+            accessToken: responseModel.accessToken,
+            refreshToken: responseModel.refreshToken,
+            sessionToken: responseModel.sessionToken,
+            userId: responseModel.userId,
+            userUuid: responseModel.userUuid,
+            userEmail: responseModel.userEmail,
+            userStatus: responseModel.userStatus,
+            accountNotVerified: responseModel.accountNotVerified,
+            requiresVerification: responseModel.requiresVerification,
+          ));
+        }
+      }
+      
       return Left(ServerFailure(
         message: e.response?.data['message_en'] ?? 'Server error occurred',
         messageAr: e.response?.data['message_ar'] ?? 'حدث خطأ في الخادم',

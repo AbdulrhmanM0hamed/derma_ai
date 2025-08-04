@@ -12,6 +12,7 @@ import '../../../features/auth/presentation/pages/register_page.dart';
 import '../../../features/auth/presentation/pages/forgot_password_page.dart';
 import '../../../features/auth/presentation/pages/password_reset_otp_page.dart';
 import '../../../features/auth/presentation/pages/reset_password_page.dart';
+import '../../../features/auth/presentation/pages/otp_verification_page.dart';
 
 // Main App
 import '../../../features/home/presentation/pages/home_page.dart';
@@ -28,6 +29,7 @@ class AppRoutes {
   static const String forgotPassword = '/forgot-password';
   static const String passwordResetOtp = '/password-reset-otp';
   static const String resetPassword = '/reset-password';
+  static const String otpVerification = '/otp-verification';
   static const String home = '/home';
   static const String diagnosis = '/diagnosis';
   static const String doctorDetails = '/doctor-details';
@@ -64,6 +66,14 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
       return _createRoute(ResetPasswordPage(
         email: args['email']!,
         resetToken: args['resetToken']!,
+      ));
+
+    case AppRoutes.otpVerification:
+      final args = settings.arguments as Map<String, dynamic>;
+      return _createRoute(OtpVerificationPage(
+        userId: args['userId'] as int,
+        email: args['email'] as String,
+        phone: args['phone'] as String? ?? '',
       ));
 
     case AppRoutes.home:
