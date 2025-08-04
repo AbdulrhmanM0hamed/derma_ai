@@ -997,6 +997,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Our Services'**
   String get ourServices;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @doctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctors'**
+  String get doctors;
 }
 
 class _AppLocalizationsDelegate

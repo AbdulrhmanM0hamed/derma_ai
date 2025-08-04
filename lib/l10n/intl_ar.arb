@@ -1,22 +1,18 @@
 {
   "@@locale": "ar",
-  
   "appName": "درما أي",
   "appTagline": "رفيق صحة بشرتك",
   "loading": "جاري التحميل...",
-  
   "onboardingTitle1": "تحليل البشرة بالذكاء الاصطناعي",
   "onboardingDesc1": "احصل على تحليل فوري لحالة بشرتك باستخدام تقنيات الذكاء الاصطناعي المتقدمة",
   "onboardingTitle2": "استشارة أطباء الجلد المعتمدين",
   "onboardingDesc2": "تواصل مع أطباء جلدية متخصصين للحصول على نصائح طبية موثوقة",
   "onboardingTitle3": "خطط علاجية مخصصة لبشرتك",
   "onboardingDesc3": "استلم توصيات علاجية مخصصة تناسب نوع بشرتك وحالتها",
-  
   "skip": "تخطي",
   "next": "التالي",
   "previous": "السابق",
   "getStarted": "ابدأ الآن",
-  
   "welcomeBack": "مرحباً بعودتك",
   "signInToContinue": "سجل دخولك للمتابعة إلى درما أي",
   "email": "البريد الإلكتروني",
@@ -33,7 +29,7 @@
   "orContinueWith": "أو تابع باستخدام",
   "dontHaveAccount": "ليس لديك حساب؟",
   "signUp": "إنشاء حساب",
-   "createNewAccount": "إنشاء حساب جديد",
+  "createNewAccount": "إنشاء حساب جديد",
   "welcomeToDermaAI": "انضم إلينا وابدأ رحلتك في العناية بالبشرة",
   "createAccount": "إنشاء حساب",
   "signUpToGetStarted": "سجل للبدء مع درما أي",
@@ -51,20 +47,17 @@
   "pleaseAcceptTerms": "الرجاء الموافقة على الشروط والأحكام",
   "alreadyHaveAccount": "لديك حساب بالفعل؟",
   "signIn": "تسجيل الدخول",
-  
   "forgotPasswordTitle": "نسيت كلمة المرور؟",
   "forgotPasswordSubtitle": "أدخل بريدك الإلكتروني وسنرسل لك رمز التحقق لإعادة تعيين كلمة المرور",
   "sendVerificationCode": "إرسال رمز التحقق",
   "rememberPassword": "تذكرت كلمة المرور؟",
   "backToLogin": "العودة لتسجيل الدخول",
   "resetPasswordTitle": "إعادة تعيين كلمة المرور",
-  
   "verifyCodeTitle": "التحقق من الرمز",
   "enterCodeSentTo": "أدخل رمز التحقق المرسل إلى",
   "verifyCodeButton": "تحقق من الرمز",
   "didNotReceiveCode": "لم تستلم الرمز؟",
   "resendCodeButton": "إعادة الإرسال",
-  
   "createNewPasswordTitle": "إنشاء كلمة مرور جديدة",
   "enterNewPasswordFor": "أدخل كلمة مرور جديدة لحسابك",
   "newPassword": "كلمة المرور الجديدة",
@@ -76,12 +69,10 @@
   "atLeast8Characters": "8 أحرف على الأقل",
   "upperLowerCase": "حرف كبير وحرف صغير",
   "atLeastOneNumber": "رقم واحد على الأقل",
-  
   "phoneNumber": "رقم الهاتف",
   "enterPhoneNumber": "أدخل رقم هاتفك",
   "pleaseEnterPhoneNumber": "يرجى إدخال رقم الهاتف",
   "pleaseEnterValidPhoneNumber": "يرجى إدخال رقم هاتف صحيح",
-  
   "accountVerification": "تأكيد الحساب",
   "verifyOtpCode": "تأكيد رمز التحقق",
   "otpSentToEmail": "تم إرسال رمز التحقق إلى بريدك الإلكتروني",
@@ -91,7 +82,6 @@
   "verifyCode": "تأكيد الرمز",
   "resendCode": "إعادة إرسال الرمز",
   "codeValidFor5Minutes": "الرمز صالح لمدة 5 دقائق فقط",
-  
   "helloUser": "مرحباً، {name}!",
   "howCanWeHelp": "كيف يمكننا مساعدة بشرتك اليوم؟",
   "skinHelpPrompt": "كيف يمكننا مساعدة بشرتك اليوم؟",
@@ -115,26 +105,21 @@
   "date": "التاريخ",
   "time": "الوقت",
   "ok": "موافق",
-  
   "quickAccess": "وصول سريع",
   "findDoctors": "البحث عن أطباء",
   "appointments": "المواعيد",
   "myDiagnoses": "تشخيصاتي",
   "skinTips": "نصائح للبشرة",
-  
   "topDermatologists": "أفضل أطباء الجلدية",
   "seeAll": "عرض الكل",
   "recentDiagnoses": "التشخيصات الأخيرة",
-  
   "description": "الوصف",
   "symptoms": "الأعراض",
   "treatments": "العلاجات",
-  
   "high": "مرتفع",
   "medium": "متوسط",
   "low": "منخفض",
   "unknown": "غير معروف",
-
   "diagnosisDescription": "التقط أو ارفع صورة لحالة بشرتك للحصول على تحليل فوري بالذكاء الاصطناعي وتوصيات العلاج.",
   "aiPoweredSkinDiagnosis": "تشخيص البشرة بالذكاء الاصطناعي",
   "uploadOrTakePhoto": "ارفع أو التقط صورة",
@@ -165,5 +150,9 @@
   "doctorConsultation": "استشارة طبيب",
   "skinCare": "العناية بالبشرة",
   "healthTips": "نصائح صحية",
-  "ourServices": "خدماتنا"
+  "ourServices": "خدماتنا",
+  "home": "الرئيسية",
+  "profile": "الحساب",
+  "appointments": "المواعيد",
+  "doctors": "الأطباء"
 }

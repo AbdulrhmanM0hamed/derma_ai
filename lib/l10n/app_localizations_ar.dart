@@ -467,4 +467,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ourServices => 'خدماتنا';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get profile => 'الحساب';
+
+  @override
+  String get doctors => 'الأطباء';
 }

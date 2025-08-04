@@ -46,7 +46,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "appointmentBooked":
             MessageLookupByLibrary.simpleMessage("تم حجز الموعد"),
         "appointments": MessageLookupByLibrary.simpleMessage("المواعيد"),
+        "atLeast8Characters":
+            MessageLookupByLibrary.simpleMessage("8 أحرف على الأقل"),
+        "atLeastOneNumber":
+            MessageLookupByLibrary.simpleMessage("رقم واحد على الأقل"),
         "available": MessageLookupByLibrary.simpleMessage("متاح"),
+        "backToLogin":
+            MessageLookupByLibrary.simpleMessage("العودة لتسجيل الدخول"),
         "bookAppointment": MessageLookupByLibrary.simpleMessage("حجز موعد"),
         "bookAppointmentWithDermatologist":
             MessageLookupByLibrary.simpleMessage("حجز موعد مع طبيب جلدية"),
@@ -56,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "commonSymptoms":
             MessageLookupByLibrary.simpleMessage("الأعراض الشائعة"),
         "confidence": MessageLookupByLibrary.simpleMessage("الثقة"),
+        "confirmNewPassword":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirmYourPassword":
@@ -63,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "createNewAccount":
             MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+        "createNewPasswordTitle":
+            MessageLookupByLibrary.simpleMessage("إنشاء كلمة مرور جديدة"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
         "diagnosedOn": MessageLookupByLibrary.simpleMessage("تم التشخيص في"),
@@ -72,21 +82,30 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نتيجة التشخيص"),
         "diagnosisSaved":
             MessageLookupByLibrary.simpleMessage("تم حفظ التشخيص في سجلاتك"),
+        "didNotReceiveCode":
+            MessageLookupByLibrary.simpleMessage("لم تستلم الرمز؟"),
         "doctor": MessageLookupByLibrary.simpleMessage("الطبيب"),
         "doctorConsultation":
             MessageLookupByLibrary.simpleMessage("استشارة طبيب"),
+        "doctors": MessageLookupByLibrary.simpleMessage("الأطباء"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "education": MessageLookupByLibrary.simpleMessage("التعليم"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailVerification":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "enterCodeSentTo":
+            MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق المرسل إلى"),
         "enterConfirmPassword":
             MessageLookupByLibrary.simpleMessage("أدخل تأكيد كلمة المرور"),
         "enterEmail":
             MessageLookupByLibrary.simpleMessage("أدخل بريدك الإلكتروني"),
         "enterFullName":
             MessageLookupByLibrary.simpleMessage("أدخل اسمك الكامل"),
+        "enterNewPassword":
+            MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور الجديدة"),
+        "enterNewPasswordFor":
+            MessageLookupByLibrary.simpleMessage("أدخل كلمة مرور جديدة لحسابك"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
         "enterPhoneNumber":
@@ -96,12 +115,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "findYourDoctor": MessageLookupByLibrary.simpleMessage("ابحث عن طبيبك"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "forgotPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+            "أدخل بريدك الإلكتروني وسنرسل لك رمز التحقق لإعادة تعيين كلمة المرور"),
+        "forgotPasswordTitle":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
         "healthTips": MessageLookupByLibrary.simpleMessage("نصائح صحية"),
         "helloUser": m0,
         "high": MessageLookupByLibrary.simpleMessage("مرتفع"),
         "highSeverity": MessageLookupByLibrary.simpleMessage("شدة مرتفعة"),
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "howCanWeHelp": MessageLookupByLibrary.simpleMessage(
             "كيف يمكننا مساعدة بشرتك اليوم؟"),
         "iAgreeToThe": MessageLookupByLibrary.simpleMessage("أوافق على"),
@@ -113,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "medium": MessageLookupByLibrary.simpleMessage("متوسط"),
         "mediumSeverity": MessageLookupByLibrary.simpleMessage("شدة متوسطة"),
         "myDiagnoses": MessageLookupByLibrary.simpleMessage("تشخيصاتي"),
+        "newPassword":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "ok": MessageLookupByLibrary.simpleMessage("موافق"),
         "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
@@ -137,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordMustBe": MessageLookupByLibrary.simpleMessage(
             "يجب أن تكون كلمة المرور 6 أحرف على الأقل"),
+        "passwordRequirements":
+            MessageLookupByLibrary.simpleMessage("متطلبات كلمة المرور:"),
         "passwordsDoNotMatch":
             MessageLookupByLibrary.simpleMessage("كلمات المرور غير متطابقة"),
         "patientReviews":
@@ -165,17 +193,30 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الرجاء اختيار فترة زمنية"),
         "previous": MessageLookupByLibrary.simpleMessage("السابق"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
         "quickAccess": MessageLookupByLibrary.simpleMessage("وصول سريع"),
+        "reEnterPassword":
+            MessageLookupByLibrary.simpleMessage("أعد إدخال كلمة المرور"),
         "recentDiagnoses":
             MessageLookupByLibrary.simpleMessage("التشخيصات الأخيرة"),
         "recommendedTreatments":
             MessageLookupByLibrary.simpleMessage("العلاجات الموصى بها"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+        "rememberPassword":
+            MessageLookupByLibrary.simpleMessage("تذكرت كلمة المرور؟"),
         "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
+        "resendCodeButton":
+            MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
+        "resetPasswordButton":
+            MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
+        "resetPasswordTitle":
+            MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
         "reviews": MessageLookupByLibrary.simpleMessage("تقييمات"),
         "saveToMyRecords":
             MessageLookupByLibrary.simpleMessage("حفظ في سجلاتي"),
         "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+        "sendVerificationCode":
+            MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
         "shareWithDoctor":
             MessageLookupByLibrary.simpleMessage("مشاركة مع طبيب"),
@@ -207,7 +248,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadOrTakePhoto":
             MessageLookupByLibrary.simpleMessage("ارفع أو التقط صورة"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("ارفع صورة"),
+        "upperLowerCase":
+            MessageLookupByLibrary.simpleMessage("حرف كبير وحرف صغير"),
         "verifyCode": MessageLookupByLibrary.simpleMessage("تأكيد الرمز"),
+        "verifyCodeButton":
+            MessageLookupByLibrary.simpleMessage("تحقق من الرمز"),
+        "verifyCodeTitle":
+            MessageLookupByLibrary.simpleMessage("التحقق من الرمز"),
         "verifyOtpCode":
             MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),

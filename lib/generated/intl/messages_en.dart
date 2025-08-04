@@ -46,7 +46,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "appointmentBooked":
             MessageLookupByLibrary.simpleMessage("Appointment Booked"),
         "appointments": MessageLookupByLibrary.simpleMessage("Appointments"),
+        "atLeast8Characters":
+            MessageLookupByLibrary.simpleMessage("At least 8 characters"),
+        "atLeastOneNumber":
+            MessageLookupByLibrary.simpleMessage("At least one number"),
         "available": MessageLookupByLibrary.simpleMessage("Available"),
+        "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
         "bookAppointment":
             MessageLookupByLibrary.simpleMessage("Book Appointment"),
         "bookAppointmentWithDermatologist":
@@ -58,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "commonSymptoms":
             MessageLookupByLibrary.simpleMessage("Common Symptoms"),
         "confidence": MessageLookupByLibrary.simpleMessage("Confidence"),
+        "confirmNewPassword":
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirmYourPassword":
@@ -65,6 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
         "createNewAccount":
             MessageLookupByLibrary.simpleMessage("Create New Account"),
+        "createNewPasswordTitle":
+            MessageLookupByLibrary.simpleMessage("Create New Password"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "diagnosedOn": MessageLookupByLibrary.simpleMessage("Diagnosed on"),
@@ -74,19 +83,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Diagnosis Result"),
         "diagnosisSaved": MessageLookupByLibrary.simpleMessage(
             "Diagnosis saved to your records"),
+        "didNotReceiveCode":
+            MessageLookupByLibrary.simpleMessage("Didn\'t receive the code?"),
         "doctor": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctorConsultation":
             MessageLookupByLibrary.simpleMessage("Doctor Consultation"),
+        "doctors": MessageLookupByLibrary.simpleMessage("Doctors"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailVerification": MessageLookupByLibrary.simpleMessage("Email"),
+        "enterCodeSentTo": MessageLookupByLibrary.simpleMessage(
+            "Enter the verification code sent to"),
         "enterConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Enter confirm password"),
         "enterEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
         "enterFullName":
             MessageLookupByLibrary.simpleMessage("Enter your full name"),
+        "enterNewPassword":
+            MessageLookupByLibrary.simpleMessage("Enter new password"),
+        "enterNewPasswordFor": MessageLookupByLibrary.simpleMessage(
+            "Enter a new password for your account"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
         "enterPhoneNumber":
@@ -97,12 +115,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Find Your Doctor"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "forgotPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+            "Enter your email and we\'ll send you a verification code to reset your password"),
+        "forgotPasswordTitle":
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "healthTips": MessageLookupByLibrary.simpleMessage("Health Tips"),
         "helloUser": m0,
         "high": MessageLookupByLibrary.simpleMessage("High"),
         "highSeverity": MessageLookupByLibrary.simpleMessage("High Severity"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howCanWeHelp": MessageLookupByLibrary.simpleMessage(
             "How can we help your skin today?"),
         "iAgreeToThe": MessageLookupByLibrary.simpleMessage("I agree to the"),
@@ -115,6 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mediumSeverity":
             MessageLookupByLibrary.simpleMessage("Medium Severity"),
         "myDiagnoses": MessageLookupByLibrary.simpleMessage("My Diagnoses"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
@@ -139,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordMustBe": MessageLookupByLibrary.simpleMessage(
             "Password must be at least 6 characters"),
+        "passwordRequirements":
+            MessageLookupByLibrary.simpleMessage("Password Requirements:"),
         "passwordsDoNotMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "patientReviews":
@@ -167,17 +193,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please select a time slot"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "quickAccess": MessageLookupByLibrary.simpleMessage("Quick Access"),
+        "reEnterPassword":
+            MessageLookupByLibrary.simpleMessage("Re-enter password"),
         "recentDiagnoses":
             MessageLookupByLibrary.simpleMessage("Recent Diagnoses"),
         "recommendedTreatments":
             MessageLookupByLibrary.simpleMessage("Recommended Treatments"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+        "rememberPassword":
+            MessageLookupByLibrary.simpleMessage("Remember your password?"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
+        "resendCodeButton": MessageLookupByLibrary.simpleMessage("Resend"),
+        "resetPasswordButton":
+            MessageLookupByLibrary.simpleMessage("Reset Password"),
+        "resetPasswordTitle":
+            MessageLookupByLibrary.simpleMessage("Reset Password"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "saveToMyRecords":
             MessageLookupByLibrary.simpleMessage("Save to My Records"),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
+        "sendVerificationCode":
+            MessageLookupByLibrary.simpleMessage("Send Verification Code"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "shareWithDoctor":
             MessageLookupByLibrary.simpleMessage("Share with Doctor"),
@@ -211,7 +249,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadOrTakePhoto":
             MessageLookupByLibrary.simpleMessage("Upload or Take a Photo"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload Photo"),
+        "upperLowerCase": MessageLookupByLibrary.simpleMessage(
+            "Upper and lower case letters"),
         "verifyCode": MessageLookupByLibrary.simpleMessage("Verify Code"),
+        "verifyCodeButton": MessageLookupByLibrary.simpleMessage("Verify Code"),
+        "verifyCodeTitle": MessageLookupByLibrary.simpleMessage("Verify Code"),
         "verifyOtpCode":
             MessageLookupByLibrary.simpleMessage("Verify OTP Code"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),

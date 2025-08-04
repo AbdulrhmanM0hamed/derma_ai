@@ -159,5 +159,9 @@
     "doctorConsultation": "Doctor Consultation",
     "skinCare": "Skin Care",
     "healthTips": "Health Tips",
-    "ourServices": "Our Services"
+    "ourServices": "Our Services",
+    "home": "Home",
+    "profile": "Profile",
+    "appointments": "Appointments",
+    "doctors": "Doctors"
   }

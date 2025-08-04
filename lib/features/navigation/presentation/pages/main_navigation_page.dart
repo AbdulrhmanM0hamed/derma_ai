@@ -5,6 +5,7 @@ import 'package:derma_ai/features/appointments/presentation/pages/appointments_p
 import 'package:derma_ai/features/doctor_search_and_browse/doctor_search_and_browse.dart';
 import 'package:derma_ai/features/home/presentation/pages/home_page.dart';
 import 'package:derma_ai/features/profile/presentation/pages/profile_page.dart';
+import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -64,28 +65,28 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
               tabs: [
                 TabData(
                   icon: Icons.home,
-                  title: 'الرئيسية',
+                  title: AppLocalizations.of(context)!.home,
                   iconSize: 24,
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
                 TabData(
                   icon: Icons.local_hospital,
-                  title: 'الأطباء',
+                  title: AppLocalizations.of(context)!.doctors,
                   iconSize: 24,
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
                 TabData(
                   icon: Icons.calendar_today,
-                  title: 'المواعيد',
+                  title: AppLocalizations.of(context)!.appointments,
                   iconSize: 24,
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
                 TabData(
                   icon: Icons.person,
-                  title: 'الحساب',
+                  title: AppLocalizations.of(context)!.profile,
                   iconSize: 24,
                   fontSize: 12,
                   fontWeight: FontWeight.w600,

@@ -510,6 +510,226 @@ class S {
     );
   }
 
+  /// `Forgot Password?`
+  String get forgotPasswordTitle {
+    return Intl.message(
+      'Forgot Password?',
+      name: 'forgotPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email and we'll send you a verification code to reset your password`
+  String get forgotPasswordSubtitle {
+    return Intl.message(
+      'Enter your email and we\'ll send you a verification code to reset your password',
+      name: 'forgotPasswordSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Verification Code`
+  String get sendVerificationCode {
+    return Intl.message(
+      'Send Verification Code',
+      name: 'sendVerificationCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remember your password?`
+  String get rememberPassword {
+    return Intl.message(
+      'Remember your password?',
+      name: 'rememberPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Login`
+  String get backToLogin {
+    return Intl.message(
+      'Back to Login',
+      name: 'backToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Password`
+  String get resetPasswordTitle {
+    return Intl.message(
+      'Reset Password',
+      name: 'resetPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Code`
+  String get verifyCodeTitle {
+    return Intl.message(
+      'Verify Code',
+      name: 'verifyCodeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the verification code sent to`
+  String get enterCodeSentTo {
+    return Intl.message(
+      'Enter the verification code sent to',
+      name: 'enterCodeSentTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Code`
+  String get verifyCodeButton {
+    return Intl.message(
+      'Verify Code',
+      name: 'verifyCodeButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't receive the code?`
+  String get didNotReceiveCode {
+    return Intl.message(
+      'Didn\'t receive the code?',
+      name: 'didNotReceiveCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get resendCodeButton {
+    return Intl.message(
+      'Resend',
+      name: 'resendCodeButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create New Password`
+  String get createNewPasswordTitle {
+    return Intl.message(
+      'Create New Password',
+      name: 'createNewPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a new password for your account`
+  String get enterNewPasswordFor {
+    return Intl.message(
+      'Enter a new password for your account',
+      name: 'enterNewPasswordFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newPassword {
+    return Intl.message(
+      'New Password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter new password`
+  String get enterNewPassword {
+    return Intl.message(
+      'Enter new password',
+      name: 'enterNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmNewPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Re-enter password`
+  String get reEnterPassword {
+    return Intl.message(
+      'Re-enter password',
+      name: 'reEnterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Password`
+  String get resetPasswordButton {
+    return Intl.message(
+      'Reset Password',
+      name: 'resetPasswordButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Requirements:`
+  String get passwordRequirements {
+    return Intl.message(
+      'Password Requirements:',
+      name: 'passwordRequirements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 8 characters`
+  String get atLeast8Characters {
+    return Intl.message(
+      'At least 8 characters',
+      name: 'atLeast8Characters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upper and lower case letters`
+  String get upperLowerCase {
+    return Intl.message(
+      'Upper and lower case letters',
+      name: 'upperLowerCase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least one number`
+  String get atLeastOneNumber {
+    return Intl.message(
+      'At least one number',
+      name: 'atLeastOneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Phone Number`
   String get phoneNumber {
     return Intl.message(
@@ -1325,6 +1545,36 @@ class S {
     return Intl.message(
       'Our Services',
       name: 'ourServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doctors`
+  String get doctors {
+    return Intl.message(
+      'Doctors',
+      name: 'doctors',
       desc: '',
       args: [],
     );
