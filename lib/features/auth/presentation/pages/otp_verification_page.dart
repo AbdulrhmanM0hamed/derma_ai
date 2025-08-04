@@ -4,6 +4,7 @@ import 'package:derma_ai/core/utils/helper/on_genrated_routes.dart';
 import 'package:derma_ai/core/widgets/custom_button.dart';
 import 'package:derma_ai/l10n/app_localizations.dart';
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
@@ -36,6 +37,43 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
   final _otpPinFieldController = GlobalKey<OtpPinFieldState>();
   String _otpCode = '';
   bool _isEmailVerification = true;
+  
+  // Timer variables
+  Timer? _resendTimer;
+  int _resendCountdown = 0;
+  bool _canResend = true;
+  
+  @override
+  void initState() {
+    super.initState();
+    _startResendTimer();
+  }
+  
+  @override
+  void dispose() {
+    _resendTimer?.cancel();
+    super.dispose();
+  }
+  
+  void _startResendTimer() {
+    setState(() {
+      _canResend = false;
+      _resendCountdown = 60; // 60 seconds countdown
+    });
+    
+    _resendTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        _resendCountdown--;
+      });
+      
+      if (_resendCountdown <= 0) {
+        setState(() {
+          _canResend = true;
+        });
+        timer.cancel();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -337,17 +375,39 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       BlocBuilder<AuthCubit, AuthState>(
                         builder: (context, state) {
                           final isLoading = state is AuthLoading;
+                          final canTap = !isLoading && _canResend;
 
-                          return TextButton(
-                            onPressed: isLoading ? null : _resendOtp,
-                            child: Text(
-                              AppLocalizations.of(context)!.resendCode,
-                              style: getSemiBoldStyle(
-                                color: AppColors.primary,
-                                fontSize: 14,
-                                fontFamily: FontConstant.cairo,
+                          return Column(
+                            children: [
+                              TextButton(
+                                onPressed: canTap ? _resendOtp : null,
+                                child: Text(
+                                  _canResend
+                                      ? AppLocalizations.of(context)!.resendCode
+                                      : '${AppLocalizations.of(context)!.resendCode} ($_resendCountdown)',
+                                  style: getSemiBoldStyle(
+                                    color: canTap ? AppColors.primary : AppColors.grey,
+                                    fontSize: 14,
+                                    fontFamily: FontConstant.cairo,
+                                  ),
+                                ),
                               ),
-                            ),
+                              if (!_canResend)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: Text(
+                                    Localizations.localeOf(context).languageCode == 'ar'
+                                        ? 'يمكنك إعادة الإرسال خلال $_resendCountdown ثانية'
+                                        : 'You can resend in $_resendCountdown seconds',
+                                    style: getRegularStyle(
+                                      fontFamily: FontConstant.cairo,
+                                      color: AppColors.grey,
+                                      fontSize: 12,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                            ],
                           );
                         },
                       ),
@@ -392,9 +452,12 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
   }
 
   void _resendOtp() {
-    context.read<AuthCubit>().resendOtp(
-      userId: widget.userId,
-      type: _isEmailVerification ? 'email' : 'phone',
-    );
+    if (_canResend) {
+      context.read<AuthCubit>().resendOtp(
+        userId: widget.userId,
+        type: _isEmailVerification ? 'email' : 'phone',
+      );
+      _startResendTimer(); // Start countdown again
+    }
   }
 }

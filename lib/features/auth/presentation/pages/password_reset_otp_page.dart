@@ -1,6 +1,7 @@
 import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
 import 'package:derma_ai/core/utils/common/custom_progress_indicator.dart';
 import 'package:derma_ai/core/utils/widgets/custom_snackbar.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,16 +32,43 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
   String _resetToken = '';
   String _otpCode = '';
   late final AuthCubit _authCubit;
+  
+  // Timer variables
+  Timer? _resendTimer;
+  int _resendCountdown = 0;
+  bool _canResend = true;
 
   @override
   void initState() {
     super.initState();
     _authCubit = sl<AuthCubit>();
+    _startResendTimer();
+  }
+  
+  void _startResendTimer() {
+    setState(() {
+      _canResend = false;
+      _resendCountdown = 60; // 60 seconds countdown
+    });
+    
+    _resendTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        _resendCountdown--;
+      });
+      
+      if (_resendCountdown <= 0) {
+        setState(() {
+          _canResend = true;
+        });
+        timer.cancel();
+      }
+    });
   }
 
   @override
   void dispose() {
     _otpController.dispose();
+    _resendTimer?.cancel();
     _authCubit.close();
     super.dispose();
   }
@@ -61,7 +89,10 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
   }
 
   void _resendOtp() {
-    _authCubit.requestPasswordResetOtp(email: widget.email, type: 'email');
+    if (_canResend) {
+      _authCubit.requestPasswordResetOtp(email: widget.email, type: 'email');
+      _startResendTimer(); // Start countdown again
+    }
   }
 
   @override
@@ -336,34 +367,53 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                         BlocBuilder<AuthCubit, AuthState>(
                           builder: (context, state) {
                             final isLoading = state is AuthLoading;
+                            final canTap = !isLoading && _canResend;
 
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            return Column(
                               children: [
-                                Text(
-                                  '${AppLocalizations.of(context)!.didNotReceiveCode} ',
-                                  style: getRegularStyle(
-                                    fontFamily: FontConstant.cairo,
-                                    color: AppColors.grey,
-                                    fontSize: 14,
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '${AppLocalizations.of(context)!.didNotReceiveCode} ',
+                                      style: getRegularStyle(
+                                        fontFamily: FontConstant.cairo,
+                                        color: AppColors.grey,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: canTap ? _resendOtp : null,
+                                      child: Text(
+                                        _canResend
+                                            ? AppLocalizations.of(context)!.resendCodeButton
+                                            : '${AppLocalizations.of(context)!.resendCodeButton} ($_resendCountdown)',
+                                        style: getSemiBoldStyle(
+                                          fontFamily: FontConstant.cairo,
+                                          color: canTap
+                                              ? AppColors.primary
+                                              : AppColors.grey,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                GestureDetector(
-                                  onTap: isLoading ? null : _resendOtp,
-                                  child: Text(
-                                    AppLocalizations.of(
-                                      context,
-                                    )!.resendCodeButton,
-                                    style: getSemiBoldStyle(
-                                      fontFamily: FontConstant.cairo,
-                                      color:
-                                          isLoading
-                                              ? AppColors.grey
-                                              : AppColors.primary,
-                                      fontSize: 14,
+                                if (!_canResend)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8),
+                                    child: Text(
+                                      Localizations.localeOf(context).languageCode == 'ar'
+                                          ? 'يمكنك إعادة الإرسال خلال $_resendCountdown ثانية'
+                                          : 'You can resend in $_resendCountdown seconds',
+                                      style: getRegularStyle(
+                                        fontFamily: FontConstant.cairo,
+                                        color: AppColors.grey,
+                                        fontSize: 12,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
-                                ),
                               ],
                             );
                           },
