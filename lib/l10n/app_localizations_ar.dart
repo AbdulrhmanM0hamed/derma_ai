@@ -475,5 +475,80 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile => 'الحساب';
 
   @override
+  String get community => 'المجتمع';
+
+  @override
+  String get communityDescription => 'تواصل مع أطباء الجلدية وشارك تجربتك';
+
+  @override
+  String get posts => 'المنشورات';
+
+  @override
+  String get trending => 'الأكثر تداولاً';
+
+  @override
+  String get following => 'المتابعون';
+
+  @override
+  String get communityStats => 'إحصائيات المجتمع';
+
+  @override
+  String get members => 'الأعضاء';
+
+  @override
+  String get comments => 'التعليقات';
+
+  @override
+  String get shares => 'المشاركات';
+
+  @override
+  String get likes => 'الإعجابات';
+
+  @override
+  String get viewMore => 'عرض المزيد';
+
+  @override
+  String get viewLess => 'عرض أقل';
+
+  @override
+  String get savePost => 'حفظ المنشور';
+
+  @override
+  String get reportPost => 'إبلاغ';
+
+  @override
+  String get sharePost => 'مشاركة المنشور';
+
+  @override
+  String get postShared => 'تم مشاركة المنشور';
+
+  @override
+  String get searchCommunity => 'ابحث في المجتمع...';
+
+  @override
+  String get latestPosts => 'أحدث المنشورات';
+
+  @override
+  String get trendingHashtags => 'الأكثر تداولاً';
+
+  @override
+  String get newLabel => 'جديد';
+
+  @override
+  String get verifiedDoctor => 'طبيب معتمد';
+
+  @override
+  String get specialistDoctor => 'متخصص معتمد';
+
+  @override
+  String get today => 'اليوم';
+
+  @override
+  String get thisWeek => 'هذا الأسبوع';
+
+  @override
+  String get thisMonth => 'هذا الشهر';
+
+  @override
   String get doctors => 'الأطباء';
 }

@@ -4,6 +4,7 @@ import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:derma_ai/features/appointments/presentation/pages/appointments_page.dart';
 import 'package:derma_ai/features/doctor_search_and_browse/doctor_search_and_browse.dart';
 import 'package:derma_ai/features/home/presentation/pages/home_page.dart';
+import 'package:derma_ai/features/community/presentation/pages/community_page.dart';
 import 'package:derma_ai/features/profile/presentation/pages/profile_page.dart';
 import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   final List<Widget> _pages = [
     const HomePage(),
     const DoctorSearchAndBrowse(),
+    const CommunityPage(),
     const AppointmentsPage(),
     const ProfilePage(),
   ];
@@ -74,6 +76,13 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                   icon: Icons.local_hospital,
                   title: AppLocalizations.of(context)!.doctors,
                   iconSize: 24,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+                TabData(
+                  icon: Icons.groups_rounded,
+                  title: AppLocalizations.of(context)!.community,
+                  iconSize: 28,
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),

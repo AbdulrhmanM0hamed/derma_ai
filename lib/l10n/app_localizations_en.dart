@@ -476,5 +476,81 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile => 'Profile';
 
   @override
+  String get community => 'Community';
+
+  @override
+  String get communityDescription =>
+      'Connect with dermatologists and share your experience';
+
+  @override
+  String get posts => 'Posts';
+
+  @override
+  String get trending => 'Trending';
+
+  @override
+  String get following => 'Following';
+
+  @override
+  String get communityStats => 'Community Stats';
+
+  @override
+  String get members => 'Members';
+
+  @override
+  String get comments => 'Comments';
+
+  @override
+  String get shares => 'Shares';
+
+  @override
+  String get likes => 'Likes';
+
+  @override
+  String get viewMore => 'View More';
+
+  @override
+  String get viewLess => 'View Less';
+
+  @override
+  String get savePost => 'Save Post';
+
+  @override
+  String get reportPost => 'Report';
+
+  @override
+  String get sharePost => 'Share Post';
+
+  @override
+  String get postShared => 'Post shared';
+
+  @override
+  String get searchCommunity => 'Search community...';
+
+  @override
+  String get latestPosts => 'Latest Posts';
+
+  @override
+  String get trendingHashtags => 'Trending Hashtags';
+
+  @override
+  String get newLabel => 'New';
+
+  @override
+  String get verifiedDoctor => 'Verified Doctor';
+
+  @override
+  String get specialistDoctor => 'Certified Specialist';
+
+  @override
+  String get today => 'Today';
+
+  @override
+  String get thisWeek => 'This Week';
+
+  @override
+  String get thisMonth => 'This Month';
+
+  @override
   String get doctors => 'Doctors';
 }

@@ -1010,6 +1010,156 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profile;
 
+  /// No description provided for @community.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get community;
+
+  /// No description provided for @communityDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with dermatologists and share your experience'**
+  String get communityDescription;
+
+  /// No description provided for @posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts'**
+  String get posts;
+
+  /// No description provided for @trending.
+  ///
+  /// In en, this message translates to:
+  /// **'Trending'**
+  String get trending;
+
+  /// No description provided for @following.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get following;
+
+  /// No description provided for @communityStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Community Stats'**
+  String get communityStats;
+
+  /// No description provided for @members.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get members;
+
+  /// No description provided for @comments.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get comments;
+
+  /// No description provided for @shares.
+  ///
+  /// In en, this message translates to:
+  /// **'Shares'**
+  String get shares;
+
+  /// No description provided for @likes.
+  ///
+  /// In en, this message translates to:
+  /// **'Likes'**
+  String get likes;
+
+  /// No description provided for @viewMore.
+  ///
+  /// In en, this message translates to:
+  /// **'View More'**
+  String get viewMore;
+
+  /// No description provided for @viewLess.
+  ///
+  /// In en, this message translates to:
+  /// **'View Less'**
+  String get viewLess;
+
+  /// No description provided for @savePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Post'**
+  String get savePost;
+
+  /// No description provided for @reportPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get reportPost;
+
+  /// No description provided for @sharePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Post'**
+  String get sharePost;
+
+  /// No description provided for @postShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Post shared'**
+  String get postShared;
+
+  /// No description provided for @searchCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Search community...'**
+  String get searchCommunity;
+
+  /// No description provided for @latestPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest Posts'**
+  String get latestPosts;
+
+  /// No description provided for @trendingHashtags.
+  ///
+  /// In en, this message translates to:
+  /// **'Trending Hashtags'**
+  String get trendingHashtags;
+
+  /// No description provided for @newLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get newLabel;
+
+  /// No description provided for @verifiedDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified Doctor'**
+  String get verifiedDoctor;
+
+  /// No description provided for @specialistDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Certified Specialist'**
+  String get specialistDoctor;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @thisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get thisWeek;
+
+  /// No description provided for @thisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'This Month'**
+  String get thisMonth;
+
   /// No description provided for @doctors.
   ///
   /// In en, this message translates to:

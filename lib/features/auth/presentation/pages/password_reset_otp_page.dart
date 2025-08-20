@@ -29,7 +29,7 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
   final _otpController = TextEditingController();
   final GlobalKey<OtpPinFieldState> _otpPinFieldController =
       GlobalKey<OtpPinFieldState>();
-  String _resetToken = '';
+  String resetToken = '';
   String _otpCode = '';
   late final AuthCubit _authCubit;
   
@@ -112,7 +112,7 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
 
             if (state is VerifyPasswordResetOtpSuccess) {
               //        print('✅ OTP Success - navigating to reset password page');
-              setState(() => _resetToken = state.resetToken);
+              setState(() => resetToken = state.resetToken);
               CustomSnackbar.showSuccess(
                 message: CustomSnackbar.getLocalizedMessage(
                   context: context,
@@ -131,16 +131,11 @@ class _PasswordResetOtpPageState extends State<PasswordResetOtpPage> {
                 },
               );
             } else if (state is VerifyPasswordResetOtpFailure) {
-              //        print('❌ OTP Verification Failed:');
-              //        print('  messageAr: ${state.messageAr}');
-              //        print('  messageEn: ${state.messageEn}');
-
               final errorMessage = CustomSnackbar.getLocalizedMessage(
                 context: context,
                 messageAr: state.messageAr,
                 messageEn: state.messageEn,
               );
-              //     print('  Final message: $errorMessage');
 
               CustomSnackbar.showError(message: errorMessage, context: context);
             } else if (state is RequestPasswordResetOtpSuccess) {
