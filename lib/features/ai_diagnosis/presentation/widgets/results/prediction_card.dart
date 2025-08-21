@@ -67,9 +67,7 @@ class PredictionCard extends StatelessWidget {
                     ),
                     Text(
                       condition,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.textSecondary,
-                          ),
+                    
                     ),
                   ],
                 ),
@@ -89,7 +87,7 @@ class PredictionCard extends StatelessWidget {
 
     switch (severity.toLowerCase()) {
       case 'mild':
-        badgeColor = AppColors.third;
+        badgeColor = AppColors.primary;
         severityArabic = 'خفيف';
         break;
       case 'moderate':

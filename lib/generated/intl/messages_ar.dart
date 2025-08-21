@@ -59,8 +59,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "changePhoto": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),
         "codeValidFor5Minutes":
             MessageLookupByLibrary.simpleMessage("الرمز صالح لمدة 5 دقائق فقط"),
+        "comments": MessageLookupByLibrary.simpleMessage("التعليقات"),
         "commonSymptoms":
             MessageLookupByLibrary.simpleMessage("الأعراض الشائعة"),
+        "community": MessageLookupByLibrary.simpleMessage("المجتمع"),
+        "communityDescription": MessageLookupByLibrary.simpleMessage(
+            "تواصل مع أطباء الجلدية وشارك تجربتك"),
+        "communityStats":
+            MessageLookupByLibrary.simpleMessage("إحصائيات المجتمع"),
         "confidence": MessageLookupByLibrary.simpleMessage("الثقة"),
         "confirmNewPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
@@ -113,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "experience": MessageLookupByLibrary.simpleMessage("الخبرة"),
         "findDoctors": MessageLookupByLibrary.simpleMessage("البحث عن أطباء"),
         "findYourDoctor": MessageLookupByLibrary.simpleMessage("ابحث عن طبيبك"),
+        "following": MessageLookupByLibrary.simpleMessage("المتابعون"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "forgotPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
@@ -130,13 +137,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "كيف يمكننا مساعدة بشرتك اليوم؟"),
         "iAgreeToThe": MessageLookupByLibrary.simpleMessage("أوافق على"),
         "imageAnalysis": MessageLookupByLibrary.simpleMessage("تحليل الصورة"),
+        "latestPosts": MessageLookupByLibrary.simpleMessage("أحدث المنشورات"),
+        "likes": MessageLookupByLibrary.simpleMessage("الإعجابات"),
         "loading": MessageLookupByLibrary.simpleMessage("جاري التحميل..."),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "low": MessageLookupByLibrary.simpleMessage("منخفض"),
         "lowSeverity": MessageLookupByLibrary.simpleMessage("شدة منخفضة"),
         "medium": MessageLookupByLibrary.simpleMessage("متوسط"),
         "mediumSeverity": MessageLookupByLibrary.simpleMessage("شدة متوسطة"),
+        "members": MessageLookupByLibrary.simpleMessage("الأعضاء"),
         "myDiagnoses": MessageLookupByLibrary.simpleMessage("تشخيصاتي"),
+        "newLabel": MessageLookupByLibrary.simpleMessage("جديد"),
         "newPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
@@ -191,6 +202,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم هاتف صحيح"),
         "pleaseSelectTimeSlot":
             MessageLookupByLibrary.simpleMessage("الرجاء اختيار فترة زمنية"),
+        "postShared": MessageLookupByLibrary.simpleMessage("تم مشاركة المنشور"),
+        "posts": MessageLookupByLibrary.simpleMessage("المنشورات"),
         "previous": MessageLookupByLibrary.simpleMessage("السابق"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
@@ -204,6 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
         "rememberPassword":
             MessageLookupByLibrary.simpleMessage("تذكرت كلمة المرور؟"),
+        "reportPost": MessageLookupByLibrary.simpleMessage("إبلاغ"),
         "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
         "resendCodeButton":
             MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
@@ -212,14 +226,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "resetPasswordTitle":
             MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
         "reviews": MessageLookupByLibrary.simpleMessage("تقييمات"),
+        "savePost": MessageLookupByLibrary.simpleMessage("حفظ المنشور"),
         "saveToMyRecords":
             MessageLookupByLibrary.simpleMessage("حفظ في سجلاتي"),
+        "searchCommunity":
+            MessageLookupByLibrary.simpleMessage("ابحث في المجتمع..."),
         "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "sendVerificationCode":
             MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
+        "sharePost": MessageLookupByLibrary.simpleMessage("مشاركة المنشور"),
         "shareWithDoctor":
             MessageLookupByLibrary.simpleMessage("مشاركة مع طبيب"),
+        "shares": MessageLookupByLibrary.simpleMessage("المشاركات"),
         "signInToContinue": MessageLookupByLibrary.simpleMessage(
             "سجل دخولك للمتابعة إلى درما أي"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -231,16 +250,23 @@ class MessageLookup extends MessageLookupByLibrary {
             "كيف يمكننا مساعدة بشرتك اليوم؟"),
         "skinTips": MessageLookupByLibrary.simpleMessage("نصائح للبشرة"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+        "specialistDoctor": MessageLookupByLibrary.simpleMessage("متخصص معتمد"),
         "startDiagnosis": MessageLookupByLibrary.simpleMessage("ابدأ التشخيص"),
         "symptoms": MessageLookupByLibrary.simpleMessage("الأعراض"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("التقط صورة"),
         "takeSkinPhoto": MessageLookupByLibrary.simpleMessage(
             "التقط صورة لحالة بشرتك واحصل على تشخيص فوري بالذكاء الاصطناعي"),
         "termsOfService": MessageLookupByLibrary.simpleMessage("شروط الخدمة"),
+        "thisMonth": MessageLookupByLibrary.simpleMessage("هذا الشهر"),
+        "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الأسبوع"),
         "time": MessageLookupByLibrary.simpleMessage("الوقت"),
+        "today": MessageLookupByLibrary.simpleMessage("اليوم"),
         "topDermatologists":
             MessageLookupByLibrary.simpleMessage("أفضل أطباء الجلدية"),
         "treatments": MessageLookupByLibrary.simpleMessage("العلاجات"),
+        "trending": MessageLookupByLibrary.simpleMessage("الأكثر تداولاً"),
+        "trendingHashtags":
+            MessageLookupByLibrary.simpleMessage("الأكثر تداولاً"),
         "unavailable": MessageLookupByLibrary.simpleMessage("غير متاح"),
         "unknown": MessageLookupByLibrary.simpleMessage("غير معروف"),
         "unknownSeverity":
@@ -250,6 +276,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("ارفع صورة"),
         "upperLowerCase":
             MessageLookupByLibrary.simpleMessage("حرف كبير وحرف صغير"),
+        "verifiedDoctor": MessageLookupByLibrary.simpleMessage("طبيب معتمد"),
         "verifyCode": MessageLookupByLibrary.simpleMessage("تأكيد الرمز"),
         "verifyCodeButton":
             MessageLookupByLibrary.simpleMessage("تحقق من الرمز"),
@@ -258,6 +285,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyOtpCode":
             MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+        "viewLess": MessageLookupByLibrary.simpleMessage("عرض أقل"),
+        "viewMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
         "welcomeToDermaAI": MessageLookupByLibrary.simpleMessage(
             "انضم إلينا وابدأ رحلتك في العناية بالبشرة")

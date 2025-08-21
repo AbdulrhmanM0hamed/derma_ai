@@ -155,7 +155,7 @@ class DiagnosisCard extends StatelessWidget {
                     Text(
                       AppLocalizations.of(context)!.treatments,
                       style: getSemiBoldStyle(
-                        color: AppColors.textPrimary,
+                   
                         fontSize: 14,
                         fontFamily: FontConstant.cairo,
                       ),
@@ -167,7 +167,7 @@ class DiagnosisCard extends StatelessWidget {
                     Text(
                       diagnosis.description,
                       style: getRegularStyle(
-                        color: AppColors.textSecondary,
+                
                         fontFamily: FontConstant.cairo,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -204,16 +204,13 @@ class DiagnosisCard extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl: diagnosis.imageUrl,
             fit: BoxFit.cover,
-            placeholder: (context, url) => Container(
-              color: AppColors.border.withValues(alpha:0.2),
-              child: const Center(
-                child: SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-                  ),
+            placeholder: (context, url) => const Center(
+              child: SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                 ),
               ),
             ),
@@ -255,7 +252,7 @@ class DiagnosisCard extends StatelessWidget {
           Text(
             diagnosis.severityLevel,
             style: getMediumStyle(
-              color: AppColors.textSecondary,
+         
               fontSize: 12,
               fontFamily: FontConstant.cairo,
             ),
@@ -355,7 +352,7 @@ class DiagnosisCard extends StatelessWidget {
       return Text(
         'No treatment information available',
         style: getRegularStyle(
-          color: AppColors.textSecondary,
+       
           fontFamily: FontConstant.cairo,
           fontStyle: FontStyle.italic,
         ),
@@ -380,7 +377,7 @@ class DiagnosisCard extends StatelessWidget {
                 child: Text(
                   treatment,
                   style: getRegularStyle(
-                        color: AppColors.textSecondary,
+                       
                         fontFamily: FontConstant.cairo,
                       ),
                 ),

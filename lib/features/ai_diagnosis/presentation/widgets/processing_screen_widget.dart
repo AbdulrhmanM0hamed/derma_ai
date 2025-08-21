@@ -85,7 +85,7 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
                     child: Center(
                       child: Icon(
                         Icons.psychology_outlined,
-                        color: AppColors.textLight,
+                     
                         size: 48,
                       ),
                     ),
@@ -151,7 +151,7 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
                     Text(
                       'آمن ومشفر بالكامل',
                       style: getRegularStyle(
-                        color: AppColors.third,
+                    
                         fontSize: 12,
                         fontFamily: FontConstant.cairo,
                       ),
@@ -197,7 +197,7 @@ class _ProcessingScreenWidgetState extends State<ProcessingScreenWidget>
                       decoration: BoxDecoration(
                         color:
                             isCompleted
-                                ? AppColors.third
+                                ? AppColors.success
                                 : isActive
                                 ? AppColors.primary
                                 : AppColors.border,

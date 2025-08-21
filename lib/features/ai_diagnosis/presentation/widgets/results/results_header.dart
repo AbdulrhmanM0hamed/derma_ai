@@ -33,16 +33,16 @@ class ResultsHeader extends StatelessWidget {
                 Text(
                   'نتائج التحليل',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.textLight,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: AppColors.textLight,
+                    fontWeight: FontWeight.w600,
+                  ),
                   textDirection: TextDirection.rtl,
                 ),
                 Text(
                   'تم بواسطة الذكاء الاصطناعي',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textLight.withValues(alpha:0.8),
-                      ),
+                    color: AppColors.textLight.withValues(alpha: 0.8),
+                  ),
                   textDirection: TextDirection.rtl,
                 ),
               ],

@@ -10,13 +10,13 @@ import 'package:derma_ai/features/ai_diagnosis/presentation/widgets/results/resu
 class DiagnosisResultsWidget extends StatelessWidget {
   final Map<String, dynamic> analysisResult;
   final VoidCallback onShareResult;
-    final VoidCallback onSaveToHistory;
+  final VoidCallback onSaveToHistory;
 
   const DiagnosisResultsWidget({
     super.key,
     required this.analysisResult,
     required this.onShareResult,
-        required this.onSaveToHistory,
+    required this.onSaveToHistory,
   });
 
   @override
@@ -26,7 +26,7 @@ class DiagnosisResultsWidget extends StatelessWidget {
     final conditionArabic = analysisResult['conditionArabic'] as String;
     final severity = analysisResult['severity'] as String;
     final recommendations = analysisResult['recommendations'] as List<String>;
-   // final otherPredictions = analysisResult['other_predictions'] as List<dynamic>;
+    // final otherPredictions = analysisResult['other_predictions'] as List<dynamic>;
 
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.8,
@@ -49,35 +49,38 @@ class DiagnosisResultsWidget extends StatelessWidget {
               const SizedBox(height: 24),
               Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.04),
+                  horizontal: MediaQuery.of(context).size.width * 0.04,
+                ),
                 child: RecommendationsSection(recommendations: recommendations),
               ),
-                            const SizedBox(height: 24),
+              const SizedBox(height: 24),
               SuggestedDoctorsSection(
-                                suggestedDoctors: [
+                suggestedDoctors: [
                   {
                     "id": 'doc1',
                     "name": "د. سارة إبراهيم",
                     "specialty": "أخصائية جلدية",
                     "rating": 4.9,
-                    "profileImage": "https://randomuser.me/api/portraits/women/44.jpg",
+                    "profileImage":
+                        "https://randomuser.me/api/portraits/women/44.jpg",
                   },
                   {
                     "id": 'doc2',
                     "name": "د. محمد عبدالله",
                     "specialty": "استشاري تجميل",
                     "rating": 4.8,
-                    "profileImage": "https://randomuser.me/api/portraits/men/46.jpg",
+                    "profileImage":
+                        "https://randomuser.me/api/portraits/men/46.jpg",
                   },
                   {
                     "id": 'doc3',
                     "name": "د. فاطمة الزهراء",
                     "specialty": "علاج بالليزر",
                     "rating": 4.7,
-                    "profileImage": "https://randomuser.me/api/portraits/women/65.jpg",
+                    "profileImage":
+                        "https://randomuser.me/api/portraits/women/65.jpg",
                   },
                 ],
-             
               ),
               const SizedBox(height: 32),
               ResultActions(

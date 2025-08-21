@@ -60,8 +60,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "changePhoto": MessageLookupByLibrary.simpleMessage("Change Photo"),
         "codeValidFor5Minutes": MessageLookupByLibrary.simpleMessage(
             "Code is valid for 5 minutes only"),
+        "comments": MessageLookupByLibrary.simpleMessage("Comments"),
         "commonSymptoms":
             MessageLookupByLibrary.simpleMessage("Common Symptoms"),
+        "community": MessageLookupByLibrary.simpleMessage("Community"),
+        "communityDescription": MessageLookupByLibrary.simpleMessage(
+            "Connect with dermatologists and share your experience"),
+        "communityStats":
+            MessageLookupByLibrary.simpleMessage("Community Stats"),
         "confidence": MessageLookupByLibrary.simpleMessage("Confidence"),
         "confirmNewPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
@@ -113,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "findDoctors": MessageLookupByLibrary.simpleMessage("Find Doctors"),
         "findYourDoctor":
             MessageLookupByLibrary.simpleMessage("Find Your Doctor"),
+        "following": MessageLookupByLibrary.simpleMessage("Following"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "forgotPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
@@ -130,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "How can we help your skin today?"),
         "iAgreeToThe": MessageLookupByLibrary.simpleMessage("I agree to the"),
         "imageAnalysis": MessageLookupByLibrary.simpleMessage("Image Analysis"),
+        "latestPosts": MessageLookupByLibrary.simpleMessage("Latest Posts"),
+        "likes": MessageLookupByLibrary.simpleMessage("Likes"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "low": MessageLookupByLibrary.simpleMessage("Low"),
@@ -137,7 +146,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "medium": MessageLookupByLibrary.simpleMessage("Medium"),
         "mediumSeverity":
             MessageLookupByLibrary.simpleMessage("Medium Severity"),
+        "members": MessageLookupByLibrary.simpleMessage("Members"),
         "myDiagnoses": MessageLookupByLibrary.simpleMessage("My Diagnoses"),
+        "newLabel": MessageLookupByLibrary.simpleMessage("New"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
@@ -191,6 +202,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter a valid phone number"),
         "pleaseSelectTimeSlot":
             MessageLookupByLibrary.simpleMessage("Please select a time slot"),
+        "postShared": MessageLookupByLibrary.simpleMessage("Post shared"),
+        "posts": MessageLookupByLibrary.simpleMessage("Posts"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -204,6 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "rememberPassword":
             MessageLookupByLibrary.simpleMessage("Remember your password?"),
+        "reportPost": MessageLookupByLibrary.simpleMessage("Report"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
         "resendCodeButton": MessageLookupByLibrary.simpleMessage("Resend"),
         "resetPasswordButton":
@@ -211,14 +225,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "resetPasswordTitle":
             MessageLookupByLibrary.simpleMessage("Reset Password"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
+        "savePost": MessageLookupByLibrary.simpleMessage("Save Post"),
         "saveToMyRecords":
             MessageLookupByLibrary.simpleMessage("Save to My Records"),
+        "searchCommunity":
+            MessageLookupByLibrary.simpleMessage("Search community..."),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
         "sendVerificationCode":
             MessageLookupByLibrary.simpleMessage("Send Verification Code"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
+        "sharePost": MessageLookupByLibrary.simpleMessage("Share Post"),
         "shareWithDoctor":
             MessageLookupByLibrary.simpleMessage("Share with Doctor"),
+        "shares": MessageLookupByLibrary.simpleMessage("Shares"),
         "signInToContinue": MessageLookupByLibrary.simpleMessage(
             "Sign in to continue to DermaAI"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
@@ -230,6 +249,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "How can we help your skin today?"),
         "skinTips": MessageLookupByLibrary.simpleMessage("Skin Tips"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "specialistDoctor":
+            MessageLookupByLibrary.simpleMessage("Certified Specialist"),
         "startDiagnosis":
             MessageLookupByLibrary.simpleMessage("Start Diagnosis"),
         "symptoms": MessageLookupByLibrary.simpleMessage("Symptoms"),
@@ -238,10 +259,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Take a photo of your skin condition and get an instant AI-powered diagnosis"),
         "termsOfService":
             MessageLookupByLibrary.simpleMessage("Terms of Service"),
+        "thisMonth": MessageLookupByLibrary.simpleMessage("This Month"),
+        "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
         "time": MessageLookupByLibrary.simpleMessage("Time"),
+        "today": MessageLookupByLibrary.simpleMessage("Today"),
         "topDermatologists":
             MessageLookupByLibrary.simpleMessage("Top Dermatologists"),
         "treatments": MessageLookupByLibrary.simpleMessage("Treatments"),
+        "trending": MessageLookupByLibrary.simpleMessage("Trending"),
+        "trendingHashtags":
+            MessageLookupByLibrary.simpleMessage("Trending Hashtags"),
         "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
         "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),
         "unknownSeverity":
@@ -251,12 +278,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload Photo"),
         "upperLowerCase": MessageLookupByLibrary.simpleMessage(
             "Upper and lower case letters"),
+        "verifiedDoctor":
+            MessageLookupByLibrary.simpleMessage("Verified Doctor"),
         "verifyCode": MessageLookupByLibrary.simpleMessage("Verify Code"),
         "verifyCodeButton": MessageLookupByLibrary.simpleMessage("Verify Code"),
         "verifyCodeTitle": MessageLookupByLibrary.simpleMessage("Verify Code"),
         "verifyOtpCode":
             MessageLookupByLibrary.simpleMessage("Verify OTP Code"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
+        "viewLess": MessageLookupByLibrary.simpleMessage("View Less"),
+        "viewMore": MessageLookupByLibrary.simpleMessage("View More"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "welcomeToDermaAI": MessageLookupByLibrary.simpleMessage(
             "join us and start your skin care journey")

@@ -5,6 +5,7 @@ import '../data/community_dummy_data.dart';
 import '../data/models/post_model.dart';
 import 'post_card_widget.dart';
 import 'trending_hashtags_widget.dart';
+import 'create_post_widget.dart';
 
 class CommunityBody extends StatefulWidget {
   const CommunityBody({super.key});
@@ -76,6 +77,14 @@ class _CommunityBodyState extends State<CommunityBody> {
             child: const TrendingHashtagsWidget()
                 .animate()
                 .fadeIn(delay: 200.ms)
+                .slideY(begin: 0.3),
+          ),
+          
+          // Create Post Widget
+          SliverToBoxAdapter(
+            child: const CreatePostWidget()
+                .animate()
+                .fadeIn(delay: 250.ms)
                 .slideY(begin: 0.3),
           ),
           

@@ -1570,6 +1570,256 @@ class S {
     );
   }
 
+  /// `Community`
+  String get community {
+    return Intl.message(
+      'Community',
+      name: 'community',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect with dermatologists and share your experience`
+  String get communityDescription {
+    return Intl.message(
+      'Connect with dermatologists and share your experience',
+      name: 'communityDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Posts`
+  String get posts {
+    return Intl.message(
+      'Posts',
+      name: 'posts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trending`
+  String get trending {
+    return Intl.message(
+      'Trending',
+      name: 'trending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Following`
+  String get following {
+    return Intl.message(
+      'Following',
+      name: 'following',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Community Stats`
+  String get communityStats {
+    return Intl.message(
+      'Community Stats',
+      name: 'communityStats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members`
+  String get members {
+    return Intl.message(
+      'Members',
+      name: 'members',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comments`
+  String get comments {
+    return Intl.message(
+      'Comments',
+      name: 'comments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shares`
+  String get shares {
+    return Intl.message(
+      'Shares',
+      name: 'shares',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Likes`
+  String get likes {
+    return Intl.message(
+      'Likes',
+      name: 'likes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View More`
+  String get viewMore {
+    return Intl.message(
+      'View More',
+      name: 'viewMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Less`
+  String get viewLess {
+    return Intl.message(
+      'View Less',
+      name: 'viewLess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Post`
+  String get savePost {
+    return Intl.message(
+      'Save Post',
+      name: 'savePost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report`
+  String get reportPost {
+    return Intl.message(
+      'Report',
+      name: 'reportPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share Post`
+  String get sharePost {
+    return Intl.message(
+      'Share Post',
+      name: 'sharePost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post shared`
+  String get postShared {
+    return Intl.message(
+      'Post shared',
+      name: 'postShared',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search community...`
+  String get searchCommunity {
+    return Intl.message(
+      'Search community...',
+      name: 'searchCommunity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Latest Posts`
+  String get latestPosts {
+    return Intl.message(
+      'Latest Posts',
+      name: 'latestPosts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trending Hashtags`
+  String get trendingHashtags {
+    return Intl.message(
+      'Trending Hashtags',
+      name: 'trendingHashtags',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New`
+  String get newLabel {
+    return Intl.message(
+      'New',
+      name: 'newLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verified Doctor`
+  String get verifiedDoctor {
+    return Intl.message(
+      'Verified Doctor',
+      name: 'verifiedDoctor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Certified Specialist`
+  String get specialistDoctor {
+    return Intl.message(
+      'Certified Specialist',
+      name: 'specialistDoctor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get today {
+    return Intl.message(
+      'Today',
+      name: 'today',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This Week`
+  String get thisWeek {
+    return Intl.message(
+      'This Week',
+      name: 'thisWeek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This Month`
+  String get thisMonth {
+    return Intl.message(
+      'This Month',
+      name: 'thisMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Doctors`
   String get doctors {
     return Intl.message(
