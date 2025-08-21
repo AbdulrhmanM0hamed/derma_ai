@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/utils/constant/font_manger.dart';
 import '../../core/utils/constant/styles_manger.dart';
 import '../../core/utils/theme/app_colors.dart';
+import '../appointments/presentation/pages/book_appointment_page.dart';
 import './widgets/doctor_about_section_widget.dart';
 import './widgets/doctor_availability_calendar_widget.dart';
 import './widgets/doctor_education_widget.dart';
@@ -185,7 +186,14 @@ class _DoctorProfileState extends State<DoctorProfile> {
   }
 
   void _bookAppointment() {
-    // print("Booking appointment...");
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BookAppointmentPage(
+          doctorData: doctorData,
+        ),
+      ),
+    );
   }
 
   @override
