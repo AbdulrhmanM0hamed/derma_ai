@@ -138,6 +138,10 @@ class _AppointmentTypeCard extends StatelessWidget {
         return Icons.emergency_outlined;
       case AppointmentType.checkup:
         return Icons.health_and_safety_outlined;
+      case AppointmentType.videoCall:
+        return Icons.videocam_outlined;
+      case AppointmentType.chat:
+        return Icons.chat_outlined;
     }
   }
 }

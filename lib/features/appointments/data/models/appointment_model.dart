@@ -146,6 +146,8 @@ enum AppointmentType {
   followUp,
   emergency,
   checkup,
+  videoCall,
+  chat,
 }
 
 extension AppointmentStatusExtension on AppointmentStatus {
@@ -191,6 +193,10 @@ extension AppointmentTypeExtension on AppointmentType {
         return 'طارئ';
       case AppointmentType.checkup:
         return 'فحص دوري';
+      case AppointmentType.videoCall:
+        return 'مكالمة فيديو';
+      case AppointmentType.chat:
+        return 'محادثة نصية';
     }
   }
 
@@ -204,6 +210,10 @@ extension AppointmentTypeExtension on AppointmentType {
         return 'حالة طارئة تحتاج عناية فورية';
       case AppointmentType.checkup:
         return 'فحص دوري للاطمئنان على الصحة';
+      case AppointmentType.videoCall:
+        return 'استشارة طبية عبر مكالمة فيديو';
+      case AppointmentType.chat:
+        return 'استشارة طبية عبر المحادثة النصية';
     }
   }
 }

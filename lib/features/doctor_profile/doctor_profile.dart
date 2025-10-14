@@ -5,8 +5,11 @@ import '../../core/utils/constant/font_manger.dart';
 import '../../core/utils/constant/styles_manger.dart';
 import '../../core/utils/theme/app_colors.dart';
 import '../appointments/presentation/pages/book_appointment_page.dart';
+import '../video_call/presentation/pages/video_call_packages_page.dart';
+import '../chat/presentation/pages/chat_page.dart';
 import './widgets/doctor_about_section_widget.dart';
 import './widgets/doctor_availability_calendar_widget.dart';
+import './widgets/doctor_contact_options_widget.dart';
 import './widgets/doctor_education_widget.dart';
 import './widgets/doctor_hero_section_widget.dart';
 import './widgets/doctor_location_widget.dart';
@@ -196,13 +199,35 @@ class _DoctorProfileState extends State<DoctorProfile> {
     );
   }
 
+  void _bookVideoCall() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VideoCallPackagesPage(
+          doctorData: doctorData,
+        ),
+      ),
+    );
+  }
+
+  void _startChat() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChatPage(
+          doctorData: doctorData,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading ? _buildLoadingState() : _buildContent(context),
       floatingActionButton:
           isLoading ? null : _buildFloatingActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -245,7 +270,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 DoctorEducationWidget(doctorData: doctorData),
                 DoctorWorkingHoursWidget(doctorData: doctorData),
                 DoctorLocationWidget(doctorData: doctorData),
-                //     DoctorContactOptionsWidget(doctorData: doctorData),
+                DoctorContactOptionsWidget(doctorData: doctorData),
                 DoctorAvailabilityCalendarWidget(doctorData: doctorData),
                 DoctorReviewsWidget(doctorData: doctorData),
                 SizedBox(height: screenHeight * 0.12),
@@ -305,27 +330,43 @@ class _DoctorProfileState extends State<DoctorProfile> {
   }
 
   Widget _buildFloatingActionButton(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      width: screenWidth * 0.9,
-      margin: const EdgeInsets.only(bottom: 16),
-      child: FloatingActionButton.extended(
-        onPressed: _bookAppointment,
-        backgroundColor: AppColors.primary,
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(screenWidth * 0.03),
-        ),
-        label: Text(
-          "احجز موعد الآن",
-          style: getBoldStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontFamily: FontConstant.cairo,
-          ),
-        ),
-        icon: const Icon(Icons.calendar_today_outlined, color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.only(right: 16, bottom: 16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+        // Video Call Button
+        FloatingActionButton(
+          onPressed: _bookVideoCall,
+          backgroundColor: Colors.green,
+          heroTag: "video_call",
+          elevation: 6,
+          child: const Icon(Icons.videocam, color: Colors.white),
+        ).animate().scale(duration: 300.ms, delay: 600.ms),
+        
+        const SizedBox(height: 12),
+        
+        // Chat Button
+        FloatingActionButton(
+          onPressed: _startChat,
+          backgroundColor: Colors.blue,
+          heroTag: "chat",
+          elevation: 6,
+          child: const Icon(Icons.chat, color: Colors.white),
+        ).animate().scale(duration: 300.ms, delay: 500.ms),
+        
+        const SizedBox(height: 12),
+        
+        // Regular Appointment Button
+        FloatingActionButton(
+          onPressed: _bookAppointment,
+          backgroundColor: AppColors.primary,
+          heroTag: "appointment",
+          elevation: 6,
+          child: const Icon(Icons.calendar_today_outlined, color: Colors.white),
+        ).animate().scale(duration: 300.ms, delay: 400.ms),
+        ],
       ),
-    ).animate().slideY(begin: 2, duration: 600.ms, delay: 200.ms).fadeIn();
+    );
   }
 }

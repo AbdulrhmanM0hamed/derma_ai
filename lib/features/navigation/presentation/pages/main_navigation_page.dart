@@ -23,7 +23,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   final List<Widget> _pages = [
     const HomePage(),
     const DoctorSearchAndBrowse(),
-    const CommunityPage(),
+   // const CommunityPage(),
     const AppointmentsPage(),
     const ProfilePage(),
   ];
@@ -79,13 +79,13 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
-                TabData(
-                  icon: Icons.groups_rounded,
-                  title: AppLocalizations.of(context)!.community,
-                  iconSize: 28,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
+                // TabData(
+                //   icon: Icons.groups_rounded,
+                //   title: AppLocalizations.of(context)!.community,
+                //   iconSize: 28,
+                //   fontSize: 12,
+                //   fontWeight: FontWeight.w600,
+                // ),
                 TabData(
                   icon: Icons.calendar_today,
                   title: AppLocalizations.of(context)!.appointments,

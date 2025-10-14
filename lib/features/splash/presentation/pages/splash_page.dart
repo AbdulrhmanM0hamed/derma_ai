@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/helper/on_genrated_routes.dart';
-import '../../../../core/services/service_locatores.dart';
-import '../../../../core/services/token_storage_service.dart';
 import '../widgets/splash_logo.dart';
 import '../widgets/splash_app_name.dart';
 import '../widgets/splash_loading_indicator.dart';
@@ -24,18 +22,8 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _navigateToNext() async {
     await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      final storage = sl<TokenStorageService>();
-      
-      if (!storage.isOnboardingCompleted) {
-        // First time user - show onboarding
-        Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
-      } else if (storage.isLoggedIn) {
-        // User is logged in - go to main app
-        Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
-      } else {
-        // User completed onboarding but not logged in - go to login
-        Navigator.pushReplacementNamed(context, AppRoutes.login);
-      }
+      // Skip authentication check and go directly to main navigation page
+      Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
     }
   }
 
