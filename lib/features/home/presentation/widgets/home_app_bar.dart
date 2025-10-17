@@ -4,6 +4,8 @@ import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../notifications/presentation/pages/notifications_page.dart';
+import '../../../notifications/data/datasources/notifications_static_data.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -108,8 +110,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 child: IconButton(
                   onPressed: () {
-                    // Navigate to notifications
                     HapticFeedback.lightImpact();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NotificationsPage(),
+                      ),
+                    );
                   },
                   icon: Stack(
                     children: [
@@ -118,19 +125,20 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                         color: Colors.white,
                         size: 26,
                       ),
-                      Positioned(
-                        right: 2,
-                        top: 2,
-                        child: Container(
-                          width: 10,
-                          height: 10,
-                          decoration: BoxDecoration(
-                            color: AppColors.error,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 1.5),
+                      if (NotificationsStaticData.getUnreadCount() > 0)
+                        Positioned(
+                          right: 2,
+                          top: 2,
+                          child: Container(
+                            width: 10,
+                            height: 10,
+                            decoration: BoxDecoration(
+                              color: AppColors.error,
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.white, width: 1.5),
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ),

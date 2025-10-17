@@ -40,7 +40,7 @@ class DoctorsListView extends StatelessWidget {
             onFavorite: () => onFavoriteToggle(doctor),
             onShare: () => onShareDoctor(doctor),
             onMessage: () => onMessageDoctor(doctor),
-          ).animate().fadeIn(duration: 500.ms, delay: (100 * index).ms).slideX(begin: -0.2, end: 0);
+          ).animate().fadeIn(duration: 600.ms, delay: (80 * index).ms);
         },
       ),
     );

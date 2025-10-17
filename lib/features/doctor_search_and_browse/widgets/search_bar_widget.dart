@@ -20,70 +20,81 @@ class SearchBarWidget extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.04, vertical: screenHeight * 0.02),
+      margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.04, vertical: screenHeight * 0.015),
       child: Row(
         children: [
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors.cardBackground,
-                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.shadowLight,
-                    blurRadius: 8,
-                    offset: Offset(0, 2),
+                    color: Colors.black.withValues(alpha: 0.08),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
                   ),
                 ],
+                border: Border.all(
+                  color: Colors.grey.withValues(alpha: 0.1),
+                  width: 1,
+                ),
               ),
               child: TextField(
                 controller: controller,
                 textDirection: TextDirection.rtl,
                 onChanged: onSearchChanged,
+                style: getRegularStyle(
+                  fontFamily: FontConstant.cairo,
+                  fontSize: 14,
+                  color: Colors.black87,
+                ),
                 decoration: InputDecoration(
-                  hintText: "ابحث عن طبيب...",
+                  hintText: "ابحث عن طبيب أو تخصص...",
                   hintStyle: getRegularStyle(
-                    color: AppColors.textSecondary,
+                    color: Colors.grey[500],
                     fontSize: 14,
                     fontFamily: FontConstant.cairo,
                   ),
                   prefixIcon: Padding(
-                    padding: EdgeInsets.all(screenWidth * 0.04),
+                    padding: EdgeInsets.all(screenWidth * 0.03),
                     child: Icon(
-                      Icons.search,
-                      color: AppColors.textSecondary,
-                      size: screenWidth * 0.06,
+                      Icons.search_rounded,
+                      color: Colors.grey[500],
+                      size: 22,
                     ),
                   ),
                   border: InputBorder.none,
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: screenWidth * 0.04, vertical: screenHeight * 0.02),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.04, 
+                    vertical: screenHeight * 0.018,
+                  ),
                 ),
               ),
             ),
           ),
-          SizedBox(width: screenWidth * 0.04),
+          SizedBox(width: screenWidth * 0.03),
           GestureDetector(
             onTap: onFilterTap,
             child: Container(
-              width: screenWidth * 0.12,
-              height: screenWidth * 0.12,
+              width: screenWidth * 0.13,
+              height: screenWidth * 0.13,
               decoration: BoxDecoration(
                 color: AppColors.primary,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.shadowLight,
-                    blurRadius: 8,
-                    offset: Offset(0, 2),
+                    color: AppColors.primary.withValues(alpha: 0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
               child: Center(
                 child: Icon(
-                  Icons.tune,
+                  Icons.tune_rounded,
                   color: Colors.white,
-                  size: screenWidth * 0.06,
+                  size: 22,
                 ),
               ),
             ),
