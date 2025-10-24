@@ -20,7 +20,7 @@ Future<void> init() async {
   //! Features - Auth
   // Repository
   sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(sl()),
+    () => AuthRepositoryImpl(sl(), sl()),
   );
 
   // Bloc

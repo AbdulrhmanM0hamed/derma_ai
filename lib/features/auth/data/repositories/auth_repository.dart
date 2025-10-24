@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import '../../../../core/error/api_exception.dart';
 import '../../../../core/network/api_service.dart';
 import '../../../../core/network/dio_client.dart';
+import '../../../../core/services/token_storage_service.dart';
 import '../../../../core/utils/constant/api_endpoints.dart';
 import '../models/auth_models.dart';
 
@@ -19,8 +21,9 @@ abstract class AuthRepository {
 class AuthRepositoryImpl implements AuthRepository {
   final ApiService _apiService;
   final DioClient _dioClient = DioClient.instance;
+  final TokenStorageService _tokenStorage;
 
-  AuthRepositoryImpl(this._apiService);
+  AuthRepositoryImpl(this._apiService, this._tokenStorage);
 
   @override
   Future<LoginResponse> login(LoginRequestModel request) async {
@@ -59,11 +62,18 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<BaseResponse> logout() async {
-    final response = await _apiService.post<BaseResponse>(
+    final accessToken = _tokenStorage.accessToken;
+    
+    final response = await _dioClient.post(
       ApiEndpoints.logout,
-      fromJson: (data) => BaseResponse.fromJson(data),
+      options: Options(
+        headers: accessToken != null ? {
+          'Authorization': 'Bearer $accessToken',
+        } : {},
+      ),
     );
-    return response;
+    
+    return BaseResponse.fromJson(response.data);
   }
 
   @override

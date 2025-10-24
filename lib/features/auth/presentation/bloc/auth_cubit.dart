@@ -239,6 +239,17 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     
     try {
+      // إذا لم يكن هناك access token، نقوم بالـ logout محلياً فقط
+      if (_tokenStorage.accessToken == null || _tokenStorage.accessToken!.isEmpty) {
+        await _tokenStorage.clearTokens();
+        emit(LogoutSuccess(
+          messageEn: 'Logged out successfully',
+          messageAr: 'تم تسجيل الخروج بنجاح',
+        ));
+        return;
+      }
+      
+      // محاولة logout من السيرفر
       await _authRepository.logout();
       await _tokenStorage.clearTokens();
       
@@ -247,14 +258,28 @@ class AuthCubit extends Cubit<AuthState> {
         messageAr: 'تم تسجيل الخروج بنجاح',
       ));
     } on ApiException catch (e) {
-      emit(LogoutFailure(
-        messageEn: e.message,
-        messageAr: e.messageAr ?? e.message,
-      ));
+      // حتى لو فشل الـ logout من السيرفر، نقوم بالـ logout محلياً
+      await _tokenStorage.clearTokens();
+      
+      // إذا كان الخطأ 401 (Unauthorized)، نعتبره logout ناجح
+      if (e.statusCode == 401) {
+        emit(LogoutSuccess(
+          messageEn: 'Logged out successfully',
+          messageAr: 'تم تسجيل الخروج بنجاح',
+        ));
+      } else {
+        emit(LogoutFailure(
+          messageEn: e.message,
+          messageAr: e.messageAr ?? e.message,
+        ));
+      }
     } catch (e) {
+      // حتى لو فشل الـ logout من السيرفر، نقوم بالـ logout محلياً
+      await _tokenStorage.clearTokens();
+      
       emit(LogoutFailure(
-        messageEn: 'An unexpected error occurred',
-        messageAr: 'حدث خطأ غير متوقع',
+        messageEn: 'Logout completed locally due to connection error',
+        messageAr: 'تم تسجيل الخروج محلياً بسبب خطأ في الاتصال',
       ));
     }
   }

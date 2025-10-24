@@ -16,17 +16,6 @@ class LogoutConfirmationDialog extends StatelessWidget {
   const LogoutConfirmationDialog({super.key, required this.authCubit});
 
   static Future<void> show(BuildContext context) async {
-    final authCubit = context.read<AuthCubit>();
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return LogoutConfirmationDialog(authCubit: authCubit);
-      },
-    );
-  }
-
-  static Future<void> showWithDI(BuildContext context) async {
     final authCubit = sl<AuthCubit>();
     return showDialog<void>(
       context: context,
