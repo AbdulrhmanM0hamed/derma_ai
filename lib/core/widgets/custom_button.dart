@@ -34,7 +34,6 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       width: width,
       height: height ?? 55,
       decoration: BoxDecoration(
@@ -43,7 +42,7 @@ class CustomButton extends StatelessWidget {
           end: Alignment.centerLeft,
           colors: [
             (backgroundColor ?? AppColors.primary).withValues(alpha: 0.9),
-            backgroundColor ?? AppColors.primary
+            backgroundColor ?? AppColors.primary,
           ],
         ),
         borderRadius: BorderRadius.circular(16),
@@ -71,6 +70,8 @@ class CustomButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        if (icon != null ) icon!,
+        SizedBox(width: 5),
         if (prefix != null) prefix!,
         Text(
           text,
@@ -81,7 +82,6 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         if (suffix != null) suffix!,
-        if (icon != null) icon!,
       ],
     );
   }
