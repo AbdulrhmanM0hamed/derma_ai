@@ -14,19 +14,21 @@ import '../../../../core/utils/common/custom_progress_indicator.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
-import '../bloc/auth_bloc.dart';
+import '../bloc/auth_cubit.dart';
 import '../bloc/auth_state.dart';
 
 class OtpVerificationPage extends StatefulWidget {
   final int userId;
   final String email;
   final String phone;
+  final String type;
 
   const OtpVerificationPage({
     super.key,
     required this.userId,
     required this.email,
     required this.phone,
+    this.type = 'email',
   });
 
   @override
@@ -46,6 +48,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
   @override
   void initState() {
     super.initState();
+    _isEmailVerification = widget.type == 'email';
     _startResendTimer();
   }
   
@@ -97,8 +100,8 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       context: context,
                       message: CustomSnackbar.getLocalizedMessage(
                         context: context,
-                        messageAr: state.entity.messageAr,
-                        messageEn: state.entity.messageEn,
+                        messageAr: state.messageAr,
+                        messageEn: state.messageEn,
                       ),
                     );
                     // Navigate to main app or next step
@@ -446,7 +449,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
       context.read<AuthCubit>().verifyOtp(
         userId: widget.userId,
         otp: _otpCode,
-        type: _isEmailVerification ? 'email' : 'phone',
+        type: widget.type,
       );
     }
   }
@@ -455,7 +458,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
     if (_canResend) {
       context.read<AuthCubit>().resendOtp(
         userId: widget.userId,
-        type: _isEmailVerification ? 'email' : 'phone',
+        type: widget.type,
       );
       _startResendTimer(); // Start countdown again
     }

@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/services/service_locatores.dart' as di;
 import 'core/utils/helper/on_genrated_routes.dart';
 import 'core/utils/theme/app_theme.dart';
-import 'features/auth/presentation/bloc/auth_bloc.dart';
+import 'features/auth/presentation/bloc/auth_cubit.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.mainNavigationPage,
+        initialRoute: AppRoutes.splash,
         onGenerateRoute: onGeneratedRoutes,
         locale: const Locale('ar'),
         supportedLocales: AppLocalizations.supportedLocales,

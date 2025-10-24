@@ -1,160 +1,88 @@
+import 'package:derma_ai/core/utils/constant/font_manger.dart';
+import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-
-enum ButtonType { primary, secondary, outline, text }
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
-  final ButtonType type;
-  final IconData? icon;
-
-  final bool fullWidth;
+  final VoidCallback? onPressed;
+  final bool isLoading;
+  final bool isOutlined;
+  final Color? backgroundColor;
+  final Color? textColor;
   final double? width;
-  final double height;
-  final double borderRadius;
-  final EdgeInsetsGeometry padding;
-  final bool animate;
+  final double? height;
+  final Widget? prefix;
+  final Widget? suffix;
+  final Widget? icon;
 
   const CustomButton({
     super.key,
     required this.text,
-    required this.onPressed,
-    this.type = ButtonType.primary,
-    this.icon,
-
-    this.fullWidth = false,
+    this.onPressed,
+    this.isLoading = false,
+    this.isOutlined = false,
+    this.backgroundColor,
+    this.textColor,
     this.width,
-    this.height = 50,
-    this.borderRadius = 12,
-    this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-    this.animate = true,
+    this.height,
+    this.prefix,
+    this.suffix,
+    this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    
-    Widget buttonWidget;
-    
-    switch (type) {
-      case ButtonType.primary:
-        buttonWidget = _buildElevatedButton(theme);
-        break;
-      case ButtonType.secondary:
-        buttonWidget = _buildSecondaryButton(theme);
-        break;
-      case ButtonType.outline:
-        buttonWidget = _buildOutlinedButton(theme);
-        break;
-      case ButtonType.text:
-        buttonWidget = _buildTextButton(theme);
-        break;
-    }
-    
-    if (animate) {
-      return buttonWidget
-        .animate()
-        .scale(duration: 200.ms, curve: Curves.easeInOut, begin: const Offset(1, 1), end: const Offset(1.05, 1.05))
-        .animate()
-        .scale(duration: 100.ms, curve: Curves.easeInOut, begin: const Offset(1, 1), end: const Offset(0.95, 0.95));
-    }
-    
-    return buttonWidget;
-  }
-
-  Widget _buildElevatedButton(ThemeData theme) {
-    return SizedBox(
-      width: fullWidth ? double.infinity : width,
-      height: height,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          padding: padding,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-          elevation: 0,
+    return Container(
+      
+      width: width,
+      height: height ?? 55,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerRight,
+          end: Alignment.centerLeft,
+          colors: [
+            (backgroundColor ?? AppColors.primary).withValues(alpha: 0.9),
+            backgroundColor ?? AppColors.primary
+          ],
         ),
-        child: _buildButtonContent(Colors.white),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: MaterialButton(
+        onPressed: isLoading ? null : onPressed,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: _buildButtonChild(),
       ),
     );
   }
 
-  Widget _buildSecondaryButton(ThemeData theme) {
-    return SizedBox(
-      width: fullWidth ? double.infinity : width,
-      height: height,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.secondary,
-          foregroundColor: Colors.white,
-          padding: padding,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-          elevation: 0,
+  Widget _buildButtonChild() {
+    if (isLoading) {
+      return const SizedBox(
+        height: 20,
+        width: 20,
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
         ),
-        child: _buildButtonContent(Colors.white),
-      ),
-    );
-  }
-
-  Widget _buildOutlinedButton(ThemeData theme) {
-    return SizedBox(
-      width: fullWidth ? double.infinity : width,
-      height: height,
-      child: OutlinedButton(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primary,
-          side: const BorderSide(color: AppColors.primary, width: 1.5),
-          padding: padding,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-        ),
-        child: _buildButtonContent(AppColors.primary),
-      ),
-    );
-  }
-
-  Widget _buildTextButton(ThemeData theme) {
-    return SizedBox(
-      width: fullWidth ? double.infinity : width,
-      height: height,
-      child: TextButton(
-        onPressed: onPressed,
-        style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary,
-          padding: padding,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-        ),
-        child: _buildButtonContent(AppColors.primary),
-      ),
-    );
-  }
-
-  Widget _buildButtonContent(Color color) {
-
-    if (icon != null) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 20),
-          const SizedBox(width: 8),
-          Text(text),
-        ],
       );
     }
 
-    return Text(text);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (prefix != null) prefix!,
+        Text(
+          text,
+          style: getBoldStyle(
+            fontFamily: FontConstant.cairo,
+            fontSize: FontSize.size18,
+            color: textColor ?? Colors.white,
+          ),
+        ),
+        if (suffix != null) suffix!,
+        if (icon != null) icon!,
+      ],
+    );
   }
 }

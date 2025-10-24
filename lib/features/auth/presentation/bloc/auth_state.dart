@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/entities/login_entity.dart';
-import '../../domain/entities/register_entity.dart';
-import '../../domain/entities/verify_otp_entity.dart';
+import '../../data/models/auth_models.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();
@@ -16,12 +14,18 @@ class AuthInitial extends AuthState {}
 class AuthLoading extends AuthState {}
 
 class LoginSuccess extends AuthState {
-  final LoginEntity entity;
+  final UserModel entity;
+  final String messageEn;
+  final String messageAr;
 
-  const LoginSuccess(this.entity);
+  const LoginSuccess({
+    required this.entity,
+    required this.messageEn,
+    required this.messageAr,
+  });
 
   @override
-  List<Object?> get props => [entity];
+  List<Object?> get props => [entity, messageEn, messageAr];
 }
 
 class LoginFailure extends AuthState {
@@ -55,12 +59,18 @@ class AccountNotVerified extends AuthState {
 }
 
 class RegisterSuccess extends AuthState {
-  final RegisterEntity entity;
+  final UserModel entity;
+  final String messageEn;
+  final String messageAr;
 
-  const RegisterSuccess(this.entity);
+  const RegisterSuccess({
+    required this.entity,
+    required this.messageEn,
+    required this.messageAr,
+  });
 
   @override
-  List<Object?> get props => [entity];
+  List<Object?> get props => [entity, messageEn, messageAr];
 }
 
 class RegisterFailure extends AuthState {
@@ -77,12 +87,18 @@ class RegisterFailure extends AuthState {
 }
 
 class VerifyOtpSuccess extends AuthState {
-  final VerifyOtpEntity entity;
+  final UserModel entity;
+  final String messageEn;
+  final String messageAr;
 
-  const VerifyOtpSuccess(this.entity);
+  const VerifyOtpSuccess({
+    required this.entity,
+    required this.messageEn,
+    required this.messageAr,
+  });
 
   @override
-  List<Object?> get props => [entity];
+  List<Object?> get props => [entity, messageEn, messageAr];
 }
 
 class VerifyOtpFailure extends AuthState {

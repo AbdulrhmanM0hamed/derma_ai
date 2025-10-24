@@ -74,6 +74,7 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
         userId: args['userId'] as int,
         email: args['email'] as String,
         phone: args['phone'] as String? ?? '',
+        type: args['type'] as String? ?? 'email',
       ));
 
     case AppRoutes.home:

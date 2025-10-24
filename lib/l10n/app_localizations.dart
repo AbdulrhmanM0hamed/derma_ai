@@ -98,6 +98,378 @@ abstract class AppLocalizations {
     Locale('ar'),
   ];
 
+  /// No description provided for @error_no_internet_connection.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection'**
+  String get error_no_internet_connection;
+
+  /// No description provided for @error_no_internet_connection_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your internet connection and try again'**
+  String get error_no_internet_connection_desc;
+
+  /// No description provided for @error_connection_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection timeout'**
+  String get error_connection_timeout;
+
+  /// No description provided for @error_connection_timeout_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The connection took too long to establish. Please try again'**
+  String get error_connection_timeout_desc;
+
+  /// No description provided for @error_receive_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive timeout'**
+  String get error_receive_timeout;
+
+  /// No description provided for @error_receive_timeout_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The server took too long to respond. Please try again'**
+  String get error_receive_timeout_desc;
+
+  /// No description provided for @error_send_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Send timeout'**
+  String get error_send_timeout;
+
+  /// No description provided for @error_send_timeout_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to send data to the server. Please try again'**
+  String get error_send_timeout_desc;
+
+  /// No description provided for @error_server_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error'**
+  String get error_server_error;
+
+  /// No description provided for @error_server_error_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong on the server. Please try again later'**
+  String get error_server_error_desc;
+
+  /// No description provided for @error_internal_server_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal server error'**
+  String get error_internal_server_error;
+
+  /// No description provided for @error_internal_server_error_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The server encountered an internal error. Please try again later'**
+  String get error_internal_server_error_desc;
+
+  /// No description provided for @error_bad_gateway.
+  ///
+  /// In en, this message translates to:
+  /// **'Bad gateway'**
+  String get error_bad_gateway;
+
+  /// No description provided for @error_bad_gateway_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The server received an invalid response. Please try again later'**
+  String get error_bad_gateway_desc;
+
+  /// No description provided for @error_service_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Service unavailable'**
+  String get error_service_unavailable;
+
+  /// No description provided for @error_service_unavailable_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The service is temporarily unavailable. Please try again later'**
+  String get error_service_unavailable_desc;
+
+  /// No description provided for @error_gateway_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Gateway timeout'**
+  String get error_gateway_timeout;
+
+  /// No description provided for @error_gateway_timeout_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The gateway timed out. Please try again later'**
+  String get error_gateway_timeout_desc;
+
+  /// No description provided for @error_bad_request.
+  ///
+  /// In en, this message translates to:
+  /// **'Bad request'**
+  String get error_bad_request;
+
+  /// No description provided for @error_bad_request_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The request contains invalid data. Please check your input'**
+  String get error_bad_request_desc;
+
+  /// No description provided for @error_unauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Unauthorized'**
+  String get error_unauthorized;
+
+  /// No description provided for @error_unauthorized_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not authorized to access this resource. Please login again'**
+  String get error_unauthorized_desc;
+
+  /// No description provided for @error_forbidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Access denied'**
+  String get error_forbidden;
+
+  /// No description provided for @error_forbidden_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have permission to access this resource'**
+  String get error_forbidden_desc;
+
+  /// No description provided for @error_not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Not found'**
+  String get error_not_found;
+
+  /// No description provided for @error_not_found_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The requested resource was not found'**
+  String get error_not_found_desc;
+
+  /// No description provided for @error_method_not_allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Method not allowed'**
+  String get error_method_not_allowed;
+
+  /// No description provided for @error_method_not_allowed_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'This method is not allowed for this resource'**
+  String get error_method_not_allowed_desc;
+
+  /// No description provided for @error_not_acceptable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not acceptable'**
+  String get error_not_acceptable;
+
+  /// No description provided for @error_not_acceptable_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The request is not acceptable'**
+  String get error_not_acceptable_desc;
+
+  /// No description provided for @error_request_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Request timeout'**
+  String get error_request_timeout;
+
+  /// No description provided for @error_request_timeout_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The request timed out. Please try again'**
+  String get error_request_timeout_desc;
+
+  /// No description provided for @error_conflict.
+  ///
+  /// In en, this message translates to:
+  /// **'Conflict'**
+  String get error_conflict;
+
+  /// No description provided for @error_conflict_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'There is a conflict with the current state of the resource'**
+  String get error_conflict_desc;
+
+  /// No description provided for @error_gone.
+  ///
+  /// In en, this message translates to:
+  /// **'Resource gone'**
+  String get error_gone;
+
+  /// No description provided for @error_gone_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The requested resource is no longer available'**
+  String get error_gone_desc;
+
+  /// No description provided for @error_length_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Length required'**
+  String get error_length_required;
+
+  /// No description provided for @error_length_required_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The request must specify the content length'**
+  String get error_length_required_desc;
+
+  /// No description provided for @error_precondition_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Precondition failed'**
+  String get error_precondition_failed;
+
+  /// No description provided for @error_precondition_failed_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'One or more preconditions failed'**
+  String get error_precondition_failed_desc;
+
+  /// No description provided for @error_payload_too_large.
+  ///
+  /// In en, this message translates to:
+  /// **'Payload too large'**
+  String get error_payload_too_large;
+
+  /// No description provided for @error_payload_too_large_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The request payload is too large'**
+  String get error_payload_too_large_desc;
+
+  /// No description provided for @error_uri_too_long.
+  ///
+  /// In en, this message translates to:
+  /// **'URI too long'**
+  String get error_uri_too_long;
+
+  /// No description provided for @error_uri_too_long_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The request URI is too long'**
+  String get error_uri_too_long_desc;
+
+  /// No description provided for @error_unsupported_media_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsupported media type'**
+  String get error_unsupported_media_type;
+
+  /// No description provided for @error_unsupported_media_type_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The media type is not supported'**
+  String get error_unsupported_media_type_desc;
+
+  /// No description provided for @error_range_not_satisfiable.
+  ///
+  /// In en, this message translates to:
+  /// **'Range not satisfiable'**
+  String get error_range_not_satisfiable;
+
+  /// No description provided for @error_range_not_satisfiable_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The requested range cannot be satisfied'**
+  String get error_range_not_satisfiable_desc;
+
+  /// No description provided for @error_expectation_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Expectation failed'**
+  String get error_expectation_failed;
+
+  /// No description provided for @error_expectation_failed_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The expectation given in the request header field could not be met'**
+  String get error_expectation_failed_desc;
+
+  /// No description provided for @error_too_many_requests.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many requests'**
+  String get error_too_many_requests;
+
+  /// No description provided for @error_too_many_requests_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'You have sent too many requests. Please try again later'**
+  String get error_too_many_requests_desc;
+
+  /// No description provided for @error_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown error'**
+  String get error_unknown;
+
+  /// No description provided for @error_unknown_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred. Please try again'**
+  String get error_unknown_desc;
+
+  /// No description provided for @error_cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Request cancelled'**
+  String get error_cancelled;
+
+  /// No description provided for @error_cancelled_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The request was cancelled'**
+  String get error_cancelled_desc;
+
+  /// No description provided for @error_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Error occurred'**
+  String get error_other;
+
+  /// No description provided for @error_other_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred. Please try again'**
+  String get error_other_desc;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @contact_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Support'**
+  String get contact_support;
+
+  /// No description provided for @check_connection.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your internet connection'**
+  String get check_connection;
+
+  /// No description provided for @go_back.
+  ///
+  /// In en, this message translates to:
+  /// **'Go back'**
+  String get go_back;
+
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
@@ -1165,6 +1537,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Doctors'**
   String get doctors;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @logoutConfirmationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get logoutConfirmationTitle;
+
+  /// No description provided for @logoutConfirmationMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to logout from your account?'**
+  String get logoutConfirmationMessage;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @logoutSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged out successfully'**
+  String get logoutSuccessMessage;
 }
 
 class _AppLocalizationsDelegate

@@ -79,7 +79,7 @@ class AiFeatureCard extends StatelessWidget {
                           Navigator.pushNamed(context, AppRoutes.diagnosis);
                         },
                       
-                        icon: Icons.camera_alt_outlined,
+                        icon: const Icon(Icons.camera_alt_outlined),
                       ),
                     ],
                   ),

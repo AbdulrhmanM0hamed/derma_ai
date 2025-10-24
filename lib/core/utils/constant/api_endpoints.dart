@@ -1,5 +1,5 @@
 class ApiEndpoints {
-  static const String baseUrl = 'https://node-backend-railway-bashraai-production.up.railway.app/api/';
+  static const String baseUrl = 'https://api.bashraai.com/api/';
   
   // Auth endpoints
   static const String register = 'auth-user/register';

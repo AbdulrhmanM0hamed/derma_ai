@@ -119,4 +119,18 @@ class TokenStorageService {
   Future<void> updateAccessToken(String newAccessToken) async {
     await _prefs.setString(_accessTokenKey, newAccessToken);
   }
+
+  // Save access token only
+  Future<void> saveAccessToken(String accessToken) async {
+    await _prefs.setString(_accessTokenKey, accessToken);
+  }
+
+  // Clear tokens (for logout)
+  Future<void> clearTokens() async {
+    await Future.wait([
+      _prefs.remove(_accessTokenKey),
+      _prefs.remove(_refreshTokenKey),
+      _prefs.remove(_sessionTokenKey),
+    ]);
+  }
 }

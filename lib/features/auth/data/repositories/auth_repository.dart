@@ -1,79 +1,128 @@
-// import 'package:dio/dio.dart';
+import '../../../../core/error/api_exception.dart';
+import '../../../../core/network/api_service.dart';
+import '../../../../core/network/dio_client.dart';
+import '../../../../core/utils/constant/api_endpoints.dart';
+import '../models/auth_models.dart';
 
-// import '../../../../core/services/dio_service.dart';
-// import '../../../../core/utils/constant/api_endpoints.dart';
-// import '../models/register_request_model.dart';
-// import '../models/register_response_model.dart';
-// import '../models/verify_otp_model.dart';
+abstract class AuthRepository {
+  Future<LoginResponse> login(LoginRequestModel request);
+  Future<RegisterResponse> register(SignupRequestModel request);
+  Future<BaseResponse> logout();
+  Future<BaseResponse> forgetPassword(ForgetPasswordRequestModel request);
+  Future<BaseResponse> checkOtp(CheckOtpRequestModel request);
+  Future<BaseResponse> changePassword(ChangePasswordRequestModel request);
+  Future<Map<String, dynamic>> refreshToken();
+  Future<BaseResponse> resendVerificationEmail(String email);
+  Future<BaseResponse> resendOtp(ResendOtpRequestModel request);
+}
 
-// class AuthRepository {
-//   final DioService _dioService = DioService.instance;
+class AuthRepositoryImpl implements AuthRepository {
+  final ApiService _apiService;
+  final DioClient _dioClient = DioClient.instance;
 
-//   // Register user
-//   Future<RegisterResponseModel> register(RegisterRequestModel request) async {
-//     try {
-//       final response = await _dioService.post(
-//         ApiEndpoints.register,
-//         data: request.toJson(),
-//       );
+  AuthRepositoryImpl(this._apiService);
 
-//       return RegisterResponseModel.fromJson(response.data);
-//     } on DioException catch (e) {
-//       final errorData = DioService.handleError(e);
-//       return RegisterResponseModel.fromJson(errorData);
-//     } catch (e) {
-//       return RegisterResponseModel(
-//         success: false,
-//         messageEn: 'An unexpected error occurred',
-//         messageAr: 'حدث خطأ غير متوقع',
-//       );
-//     }
-//   }
+  @override
+  Future<LoginResponse> login(LoginRequestModel request) async {
+    try {
+      final response = await _dioClient.post(
+        ApiEndpoints.login,
+        data: request.toJson(),
+      );
 
-//   // Verify OTP
-//   Future<VerifyOtpResponseModel> verifyOtp(VerifyOtpRequestModel request) async {
-//     try {
-//       final response = await _dioService.post(
-//         ApiEndpoints.verifyOtp,
-//         data: request.toJson(),
-//       );
+      return LoginResponse.fromJson(response.data);
+    } on ApiException catch (e) {
+      // التحقق من أن الخطأ 403 ويحتوي على accountNotVerified
+      if (e.statusCode == 403 && e.response?.data != null) {
+        final data = e.response!.data;
+        
+        if (data is Map<String, dynamic> && data.containsKey('accountNotVerified')) {
+          // تحويل الـ error response إلى LoginResponse
+          return LoginResponse.fromJson(data);
+        }
+      }
+      
+      // إعادة رمي الخطأ إذا لم يكن account not verified
+      rethrow;
+    }
+  }
 
-//       return VerifyOtpResponseModel.fromJson(response.data);
-//     } on DioException catch (e) {
-//       final errorData = DioService.handleError(e);
-//       return VerifyOtpResponseModel.fromJson(errorData);
-//     } catch (e) {
-//       return VerifyOtpResponseModel(
-//         success: false,
-//         messageEn: 'An unexpected error occurred',
-//         messageAr: 'حدث خطأ غير متوقع',
-//       );
-//     }
-//   }
+  @override
+  Future<RegisterResponse> register(SignupRequestModel request) async {
+    final response = await _apiService.post<RegisterResponse>(
+      ApiEndpoints.register,
+      data: request.toJson(),
+      fromJson: (data) => RegisterResponse.fromJson(data),
+    );
+    return response;
+  }
 
-//   // Resend OTP
-//   Future<Map<String, dynamic>> resendOtp({
-//     required int userId,
-//     required String type,
-//   }) async {
-//     try {
-//       final response = await _dioService.post(
-//         ApiEndpoints.resendOtp,
-//         data: {
-//           'userId': userId,
-//           'type': type,
-//         },
-//       );
+  @override
+  Future<BaseResponse> logout() async {
+    final response = await _apiService.post<BaseResponse>(
+      ApiEndpoints.logout,
+      fromJson: (data) => BaseResponse.fromJson(data),
+    );
+    return response;
+  }
 
-//       return response.data;
-//     } on DioException catch (e) {
-//       return DioService.handleError(e);
-//     } catch (e) {
-//       return {
-//         'success': false,
-//         'message_en': 'An unexpected error occurred',
-//         'message_ar': 'حدث خطأ غير متوقع',
-//       };
-//     }
-//   }
-// }
+  @override
+  Future<BaseResponse> forgetPassword(ForgetPasswordRequestModel request) async {
+    final response = await _apiService.post<BaseResponse>(
+      ApiEndpoints.requestPasswordResetOtp,
+      data: request.toJson(),
+      fromJson: (data) => BaseResponse.fromJson(data),
+    );
+    return response;
+  }
+
+  @override
+  Future<BaseResponse> checkOtp(CheckOtpRequestModel request) async {
+    final response = await _apiService.post<BaseResponse>(
+      ApiEndpoints.verifyOtp,
+      data: request.toJson(),
+      fromJson: (data) => BaseResponse.fromJson(data),
+    );
+    return response;
+  }
+
+  @override
+  Future<BaseResponse> changePassword(ChangePasswordRequestModel request) async {
+    final response = await _apiService.post<BaseResponse>(
+      ApiEndpoints.resetPassword,
+      data: request.toJson(),
+      fromJson: (data) => BaseResponse.fromJson(data),
+    );
+    return response;
+  }
+
+  @override
+  Future<Map<String, dynamic>> refreshToken() async {
+    final response = await _apiService.post<RefreshTokenResponse>(
+      'auth-user/refresh-token', // Add this endpoint if needed
+      fromJson: (data) => RefreshTokenResponse.fromJson(data),
+    );
+
+    return response.data.toJson();
+  }
+
+  @override
+  Future<BaseResponse> resendVerificationEmail(String email) async {
+    final response = await _apiService.post<BaseResponse>(
+      'auth-user/resend-verify-email', // Add this endpoint if needed
+      data: {'email': email},
+      fromJson: (data) => BaseResponse.fromJson(data),
+    );
+    return response;
+  }
+
+  @override
+  Future<BaseResponse> resendOtp(ResendOtpRequestModel request) async {
+    final response = await _apiService.post<BaseResponse>(
+      ApiEndpoints.resendOtp,
+      data: request.toJson(),
+      fromJson: (data) => BaseResponse.fromJson(data),
+    );
+    return response;
+  }
+}

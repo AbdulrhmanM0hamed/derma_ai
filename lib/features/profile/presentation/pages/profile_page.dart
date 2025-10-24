@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/widgets/logout_confirmation_dialog.dart';
 import 'settings_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -20,7 +21,7 @@ class ProfilePage extends StatelessWidget {
             _buildRecentAppointments(context),
             _buildMenuItems(context),
             _buildLogoutButton(context),
-            const SizedBox(height: 100), // Space for bottom navigation
+            const SizedBox(height: 20), // Space for bottom navigation
           ],
         ),
       ),
@@ -552,7 +553,7 @@ class ProfilePage extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          // Handle logout
+          LogoutConfirmationDialog.show(context);
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,

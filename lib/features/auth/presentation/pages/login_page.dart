@@ -15,7 +15,7 @@ import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/services/service_locatores.dart';
 import '../../../../core/services/token_storage_service.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../bloc/auth_bloc.dart';
+import '../bloc/auth_cubit.dart';
 import '../bloc/auth_state.dart';
 import '../widgets/social_auth_section.dart';
 
@@ -119,18 +119,22 @@ class _LoginPageState extends State<LoginPage> {
                       context: context,
                       message: CustomSnackbar.getLocalizedMessage(
                         context: context,
-                        messageAr: state.entity.messageAr,
-                        messageEn: state.entity.messageEn,
+                        messageAr: state.messageAr,
+                        messageEn: state.messageEn,
                       ),
                     );
-                    // Navigate to main page
-                    Navigator.pushReplacementNamed(
-                      context,
-                      AppRoutes.mainNavigationPage,
-                    );
+                    // Add a small delay before navigation to show success message
+                    Future.delayed(const Duration(milliseconds: 1500), () {
+                      if (mounted) {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          AppRoutes.mainNavigationPage,
+                        );
+                      }
+                    });
                   } else if (state is AccountNotVerified) {
                     // Show message about account verification
-                    CustomSnackbar.showSuccess(
+                    CustomSnackbar.showWarning(
                       context: context,
                       message: CustomSnackbar.getLocalizedMessage(
                         context: context,
@@ -139,6 +143,16 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     );
                     // Navigate to OTP verification page
+                    // Determine verification type based on requiresVerification
+                    String verificationType = 'email'; // default
+                    if (state.requiresVerification != null) {
+                      if (state.requiresVerification!['email'] == true) {
+                        verificationType = 'email';
+                      } else if (state.requiresVerification!['phone'] == true) {
+                        verificationType = 'phone';
+                      }
+                    }
+                    
                     Navigator.pushNamed(
                       context,
                       AppRoutes.otpVerification,
@@ -146,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                         'userId': state.userId,
                         'email': _emailController.text.trim(),
                         'phone': '', // Phone not available from login
-                        'type': 'email', // Based on requiresVerification
+                        'type': verificationType,
                       },
                     );
                   } else if (state is LoginFailure) {
@@ -332,7 +346,6 @@ class _LoginPageState extends State<LoginPage> {
           child: CustomButton(
             text: AppLocalizations.of(context)!.login,
             onPressed: isLoading ? () {} : () => _login(),
-            type: ButtonType.primary,
             width: double.infinity,
           ),
         );

@@ -12,7 +12,7 @@ import '../../../../core/utils/validators/form_validators.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../bloc/auth_bloc.dart';
+import '../bloc/auth_cubit.dart';
 import '../bloc/auth_state.dart';
 import '../widgets/social_auth_section.dart';
 import 'otp_verification_page.dart';
@@ -78,8 +78,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       context: context,
                       message: CustomSnackbar.getLocalizedMessage(
                         context: context,
-                        messageAr: state.entity.messageAr,
-                        messageEn: state.entity.messageEn,
+                        messageAr: state.messageAr,
+                        messageEn: state.messageEn,
                       ),
                     );
                     // Navigate to OTP verification
@@ -88,9 +88,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       MaterialPageRoute(
                         builder:
                             (context) => OtpVerificationPage(
-                              userId: state.entity.userId!,
+                              userId: state.entity.id,
                               email: _emailController.text.trim(),
                               phone: _phoneController.text.trim(),
+                              type: 'email', // Default to email for registration
                             ),
                       ),
                     );
@@ -347,7 +348,6 @@ class _RegisterPageState extends State<RegisterPage> {
           child: CustomButton(
             text: AppLocalizations.of(context)!.createAccount,
             onPressed: isLoading ? () {} : () => _register(),
-            type: ButtonType.primary,
             width: double.infinity,
           ),
         );

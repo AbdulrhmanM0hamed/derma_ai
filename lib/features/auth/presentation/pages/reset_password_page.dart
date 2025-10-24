@@ -13,7 +13,7 @@ import '../../../../core/services/service_locatores.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../bloc/auth_bloc.dart';
+import '../bloc/auth_cubit.dart';
 import '../bloc/auth_state.dart';
 
 class ResetPasswordPage extends StatefulWidget {

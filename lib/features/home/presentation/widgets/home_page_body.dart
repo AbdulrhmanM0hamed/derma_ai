@@ -4,8 +4,7 @@ import 'ai_feature_card.dart';
 import 'home_features_section.dart';
 import 'home_top_doctors_section.dart';
 import 'home_recent_diagnoses_section.dart';
-import '../../../notifications/presentation/widgets/notification_summary_card.dart';
-import '../../../notifications/presentation/pages/notifications_page.dart';
+
 
 class HomePageBody extends StatelessWidget {
   final ScrollController scrollController;
@@ -26,16 +25,16 @@ class HomePageBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const AiFeatureCard(),
-                NotificationSummaryCard(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const NotificationsPage(),
-                      ),
-                    );
-                  },
-                ),
+                // NotificationSummaryCard(
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (context) => const NotificationsPage(),
+                //       ),
+                //     );
+                //   },
+                // ),
                 const SizedBox(height: 24),
                 const HomeFeaturesSection(),
                 const SizedBox(height: 32),

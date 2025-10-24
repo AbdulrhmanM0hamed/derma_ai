@@ -13,7 +13,7 @@ import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../bloc/auth_bloc.dart';
+import '../bloc/auth_cubit.dart';
 import '../bloc/auth_state.dart';
 
 class PasswordResetOtpPage extends StatefulWidget {

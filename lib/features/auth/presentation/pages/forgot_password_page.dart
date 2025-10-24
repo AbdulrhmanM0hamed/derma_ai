@@ -12,7 +12,7 @@ import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/utils/widgets/custom_snackbar.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../bloc/auth_bloc.dart';
+import '../bloc/auth_cubit.dart';
 import '../bloc/auth_state.dart';
 
 class ForgotPasswordPage extends StatefulWidget {

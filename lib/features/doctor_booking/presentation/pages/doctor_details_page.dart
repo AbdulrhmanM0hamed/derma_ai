@@ -139,7 +139,6 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
                 CustomButton(
                   text: 'Done',
                   onPressed: () => Navigator.of(context).pop(),
-                  type: ButtonType.primary,
                 ),
               ],
             ),
@@ -719,7 +718,6 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage>
             child: CustomButton(
               text: 'Book Appointment',
               onPressed: _bookAppointment,
-              type: ButtonType.primary,
             ),
           ),
         ],

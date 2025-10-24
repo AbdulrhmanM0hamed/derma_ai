@@ -6,7 +6,7 @@ import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:derma_ai/core/utils/widgets/custom_snackbar.dart';
 import 'package:derma_ai/core/widgets/custom_button.dart';
-import 'package:derma_ai/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:derma_ai/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:derma_ai/features/auth/presentation/bloc/auth_state.dart';
 import 'package:derma_ai/features/profile/presentation/widgets/profile_header_widget.dart';
 import 'package:derma_ai/features/profile/presentation/widgets/profile_menu_item_widget.dart';
@@ -122,10 +122,9 @@ class ProfilePageBody extends StatelessWidget {
       child: CustomButton(
         text: 'تسجيل الخروج',
         onPressed: () => _showLogoutDialog(context),
-        type: ButtonType.outline,
         width: double.infinity,
         height: 56,
-        icon: Icons.logout,
+        icon: const Icon(Icons.logout),
       ),
     ).animate(effects: fadeIn(duration: 300.ms, delay: 500.ms));
   }
