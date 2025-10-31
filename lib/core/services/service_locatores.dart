@@ -22,12 +22,12 @@ Future<void> init() async {
   //! Features - Auth
   // Repository
   sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(sl(), sl()),
+    () => AuthRepositoryImpl(sl()),
   );
 
   // Doctor Repository
   sl.registerLazySingleton<DoctorAuthRepository>(
-    () => DoctorAuthRepositoryImpl(sl(), sl()),
+    () => DoctorAuthRepositoryImpl(sl()),
   );
 
   // Bloc
@@ -38,7 +38,7 @@ Future<void> init() async {
 
   // Doctor Bloc
   sl.registerFactory(() => DoctorAuthCubit(
-        authRepository: sl(),
+        authRepository: sl<DoctorAuthRepository>(),
         tokenStorage: sl(),
       ));
 }

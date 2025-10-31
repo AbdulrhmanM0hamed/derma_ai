@@ -72,12 +72,8 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
         _animationController.reverse();
       }
 
-      // Clear form when switching
-      _nameController.clear();
-      _emailController.clear();
-      _phoneController.clear();
-      _passwordController.clear();
-      _confirmPasswordController.clear();
+      // لا نقوم بمسح البيانات المدخلة عند التبديل
+      // البيانات ستبقى في الـ TextEditingController
     }
   }
 

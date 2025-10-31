@@ -89,10 +89,9 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
       } else {
         _animationController.reverse();
       }
-
-      // Clear form when switching
-      _emailController.clear();
-      _passwordController.clear();
+      
+      // لا نقوم بمسح البيانات المدخلة عند التبديل
+      // البيانات ستبقى في الـ TextEditingController
     }
   }
 
@@ -159,7 +158,8 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             messageEn: state.messageEn,
                           ),
                         );
-                        // TODO: Navigate to user dashboard
+                        // Navigate to main navigation page
+                        Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
                       } else if (state is LoginFailure) {
                         CustomSnackbar.showError(
                           context: context,
@@ -184,7 +184,8 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             messageEn: state.messageEn,
                           ),
                         );
-                        // TODO: Navigate to doctor dashboard
+                        // Navigate to main navigation page (doctors will have different navigation logic)
+                        Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
                       } else if (state is DoctorLoginFailure) {
                         CustomSnackbar.showError(
                           context: context,

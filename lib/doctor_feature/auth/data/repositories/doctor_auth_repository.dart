@@ -1,8 +1,4 @@
-import 'package:dio/dio.dart';
-import '../../../../core/error/api_exception.dart';
 import '../../../../core/network/api_service.dart';
-import '../../../../core/network/dio_client.dart';
-import '../../../../core/services/token_storage_service.dart';
 import '../../../../core/utils/constant/api_endpoints.dart';
 import '../../../../user_features/auth/data/models/auth_models.dart';
 
@@ -20,34 +16,18 @@ abstract class DoctorAuthRepository {
 
 class DoctorAuthRepositoryImpl implements DoctorAuthRepository {
   final ApiService _apiService;
-  final DioClient _dioClient = DioClient.instance;
-  final TokenStorageService _tokenStorage;
 
-  DoctorAuthRepositoryImpl(this._apiService, this._tokenStorage);
+  DoctorAuthRepositoryImpl(this._apiService);
 
   @override
   Future<LoginResponse> login(LoginRequestModel request) async {
-    try {
-      final response = await _dioClient.post(
-        ApiEndpoints.loginDoctor,
-        data: request.toJson(),
-      );
+    final response = await _apiService.post<LoginResponse>(
+      ApiEndpoints.loginDoctor,
+      data: request.toJson(),
+      fromJson: (data) => LoginResponse.fromJson(data),
+    );
 
-      return LoginResponse.fromJson(response.data);
-    } on ApiException catch (e) {
-      // التحقق من أن الخطأ 403 ويحتوي على accountNotVerified
-      if (e.statusCode == 403 && e.response?.data != null) {
-        final data = e.response!.data;
-        
-        if (data is Map<String, dynamic> && data.containsKey('accountNotVerified')) {
-          // تحويل الـ error response إلى LoginResponse
-          return LoginResponse.fromJson(data);
-        }
-      }
-      
-      // إعادة رمي الخطأ إذا لم يكن account not verified
-      rethrow;
-    }
+    return response;
   }
 
   @override
@@ -62,18 +42,11 @@ class DoctorAuthRepositoryImpl implements DoctorAuthRepository {
 
   @override
   Future<BaseResponse> logout() async {
-    final accessToken = _tokenStorage.accessToken;
-    
-    final response = await _dioClient.post(
+    final response = await _apiService.post<BaseResponse>(
       ApiEndpoints.logoutDoctor,
-      options: Options(
-        headers: accessToken != null ? {
-          'Authorization': 'Bearer $accessToken',
-        } : {},
-      ),
+      fromJson: (data) => BaseResponse.fromJson(data),
     );
-    
-    return BaseResponse.fromJson(response.data);
+    return response;
   }
 
   @override
