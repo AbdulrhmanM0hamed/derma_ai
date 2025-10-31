@@ -254,5 +254,12 @@
     "logoutConfirmationTitle": "Are you sure?",
     "logoutConfirmationMessage": "Do you want to logout from your account?",
     "cancel": "Cancel",
-    "logoutSuccessMessage": "Logged out successfully"
+    "logoutSuccessMessage": "Logged out successfully",
+    "userLogin": "User Login",
+    "doctorLogin": "Doctor Login",
+    "userWelcome": "Welcome to DermaAI",
+    "doctorWelcome": "Welcome to Doctors Platform",
+    "user": "User",
+    "rememberMeError": "An error occurred while saving remember me data",
+  "doctorTitle": "Doctor"
 }

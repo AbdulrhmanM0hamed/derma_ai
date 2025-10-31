@@ -777,4 +777,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logoutSuccessMessage => 'Logged out successfully';
+
+  @override
+  String get userLogin => 'User Login';
+
+  @override
+  String get doctorLogin => 'Doctor Login';
+
+  @override
+  String get userWelcome => 'Welcome to DermaAI';
+
+  @override
+  String get doctorWelcome => 'Welcome to Doctors Platform';
+
+  @override
+  String get user => 'User';
+
+  @override
+  String get rememberMeError =>
+      'An error occurred while saving remember me data';
+
+  @override
+  String get doctorTitle => 'Doctor';
 }

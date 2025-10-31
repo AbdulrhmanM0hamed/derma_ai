@@ -1,24 +1,23 @@
-import 'package:derma_ai/features/doctor_profile/doctor_profile.dart';
-import 'package:derma_ai/features/navigation/presentation/pages/main_navigation_page.dart';
+import 'package:derma_ai/user_features/doctor_profile/doctor_profile.dart';
+import 'package:derma_ai/user_features/navigation/presentation/pages/main_navigation_page.dart';
 import 'package:flutter/material.dart';
 
 // Splash and Onboarding
-import '../../../features/splash/presentation/pages/splash_page.dart';
-import '../../../features/onboarding/presentation/pages/onboarding_page.dart';
+import '../../../user_features/splash/presentation/pages/splash_page.dart';
+import '../../../user_features/onboarding/presentation/pages/onboarding_page.dart';
 
 // Auth
-import '../../../features/auth/presentation/pages/login_page.dart';
-import '../../../features/auth/presentation/pages/register_page.dart';
-import '../../../features/auth/presentation/pages/forgot_password_page.dart';
-import '../../../features/auth/presentation/pages/password_reset_otp_page.dart';
-import '../../../features/auth/presentation/pages/reset_password_page.dart';
-import '../../../features/auth/presentation/pages/otp_verification_page.dart';
-
+import '../../../core/auth/presentation/pages/unified_login_page.dart';
+import '../../../core/auth/presentation/pages/unified_register_page.dart';
+import '../../../user_features/auth/presentation/pages/forgot_password_page.dart';
+import '../../../user_features/auth/presentation/pages/password_reset_otp_page.dart';
+import '../../../user_features/auth/presentation/pages/reset_password_page.dart';
+import '../../../user_features/auth/presentation/pages/otp_verification_page.dart';
 // Main App
-import '../../../features/home/presentation/pages/home_page.dart';
-import '../../../features/ai_diagnosis/presentation/pages/ai_diagnosis_page.dart';
-import '../../../features/doctor_booking/presentation/pages/doctor_details_page.dart';
-import '../../../features/profile/presentation/pages/profile_page.dart';
+import '../../../user_features/home/presentation/pages/home_page.dart';
+import '../../../user_features/ai_diagnosis/presentation/pages/ai_diagnosis_page.dart';
+import '../../../user_features/doctor_booking/presentation/pages/doctor_details_page.dart';
+import '../../../user_features/profile/presentation/pages/profile_page.dart';
 
 class AppRoutes {
   // Route names
@@ -26,6 +25,7 @@ class AppRoutes {
   static const String onboarding = '/onboarding';
   static const String login = '/login';
   static const String register = '/register';
+  static const String doctorLogin = '/doctor-login';
   static const String forgotPassword = '/forgot-password';
   static const String passwordResetOtp = '/password-reset-otp';
   static const String resetPassword = '/reset-password';
@@ -49,10 +49,13 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
       return _createRoute(const OnboardingPage());
 
     case AppRoutes.login:
-      return _createRoute(const LoginPage());
+      return _createRoute(const UnifiedLoginPage());
 
     case AppRoutes.register:
-      return _createRoute(const RegisterPage());
+      return _createRoute(const UnifiedRegisterPage());
+
+    case AppRoutes.doctorLogin:
+      return _createRoute(const UnifiedLoginPage());
 
     case AppRoutes.forgotPassword:
       return _createRoute(const ForgotPasswordPage());

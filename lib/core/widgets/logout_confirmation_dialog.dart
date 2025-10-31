@@ -5,8 +5,8 @@ import '../utils/helper/on_genrated_routes.dart';
 import '../utils/common/custom_progress_indicator.dart';
 import '../utils/constant/font_manger.dart';
 import '../utils/constant/styles_manger.dart';
-import '../../features/auth/presentation/bloc/auth_cubit.dart';
-import '../../features/auth/presentation/bloc/auth_state.dart';
+import '../../user_features/auth/presentation/bloc/auth_cubit.dart';
+import '../../user_features/auth/presentation/bloc/auth_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../services/service_locatores.dart';
 

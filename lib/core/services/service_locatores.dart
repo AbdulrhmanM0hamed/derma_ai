@@ -1,8 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../features/auth/data/repositories/auth_repository.dart';
-import '../../features/auth/presentation/bloc/auth_cubit.dart';
+import '../../user_features/auth/data/repositories/auth_user_repository.dart';
+import '../../../user_features/auth/presentation/bloc/auth_cubit.dart';
+import '../../../doctor_feature/auth/data/repositories/doctor_auth_repository.dart';
+import '../../../doctor_feature/auth/presentation/bloc/doctor_auth_cubit.dart';
 import '../network/api_service.dart';
 import '../services/token_storage_service.dart';
 
@@ -23,8 +25,19 @@ Future<void> init() async {
     () => AuthRepositoryImpl(sl(), sl()),
   );
 
+  // Doctor Repository
+  sl.registerLazySingleton<DoctorAuthRepository>(
+    () => DoctorAuthRepositoryImpl(sl(), sl()),
+  );
+
   // Bloc
   sl.registerFactory(() => AuthCubit(
+        authRepository: sl(),
+        tokenStorage: sl(),
+      ));
+
+  // Doctor Bloc
+  sl.registerFactory(() => DoctorAuthCubit(
         authRepository: sl(),
         tokenStorage: sl(),
       ));

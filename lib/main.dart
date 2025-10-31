@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'core/services/service_locatores.dart' as di;
 import 'core/utils/helper/on_genrated_routes.dart';
 import 'core/utils/theme/app_theme.dart';
-import 'features/auth/presentation/bloc/auth_cubit.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -32,11 +31,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<AuthCubit>(create: (context) => di.sl<AuthCubit>()),
-      ],
-      child: MaterialApp(
+    return MaterialApp(
         title: 'DermaAI',
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
@@ -52,7 +47,6 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-      ),
     );
   }
 }

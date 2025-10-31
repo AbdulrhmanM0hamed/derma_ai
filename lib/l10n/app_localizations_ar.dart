@@ -767,4 +767,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get logoutSuccessMessage => 'تم تسجيل الخروج بنجاح';
+
+  @override
+  String get userLogin => 'تسجيل دخول المستخدم';
+
+  @override
+  String get doctorLogin => 'تسجيل دخول الطبيب';
+
+  @override
+  String get userWelcome => 'مرحباً بك في DermaAI';
+
+  @override
+  String get doctorWelcome => 'مرحباً بك في منصة الأطباء';
+
+  @override
+  String get user => 'مستخدم';
+
+  @override
+  String get rememberMeError => 'حدث خطأ أثناء حفظ بيانات الذاكرة';
+
+  @override
+  String get doctorTitle => 'دكتور';
 }

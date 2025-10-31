@@ -246,5 +246,12 @@
   "logoutConfirmationTitle": "هل أنت متأكد؟",
   "logoutConfirmationMessage": "هل تريد تسجيل الخروج من حسابك؟",
   "cancel": "إلغاء",
-  "logoutSuccessMessage": "تم تسجيل الخروج بنجاح"
+  "logoutSuccessMessage": "تم تسجيل الخروج بنجاح",
+  "userLogin": "تسجيل دخول المستخدم",
+  "doctorLogin": "تسجيل دخول الطبيب",
+  "userWelcome": "مرحباً بك في DermaAI",
+  "doctorWelcome": "مرحباً بك في منصة الأطباء",
+  "user": "مستخدم",
+  "rememberMeError": "حدث خطأ أثناء حفظ بيانات الذاكرة",
+  "doctorTitle": "دكتور"
 }

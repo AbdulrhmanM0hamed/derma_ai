@@ -1567,6 +1567,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Logged out successfully'**
   String get logoutSuccessMessage;
+
+  /// No description provided for @userLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'User Login'**
+  String get userLogin;
+
+  /// No description provided for @doctorLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor Login'**
+  String get doctorLogin;
+
+  /// No description provided for @userWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to DermaAI'**
+  String get userWelcome;
+
+  /// No description provided for @doctorWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Doctors Platform'**
+  String get doctorWelcome;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
+
+  /// No description provided for @rememberMeError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while saving remember me data'**
+  String get rememberMeError;
+
+  /// No description provided for @doctorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor'**
+  String get doctorTitle;
 }
 
 class _AppLocalizationsDelegate
