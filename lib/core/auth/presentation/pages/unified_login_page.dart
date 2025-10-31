@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../services/service_locatores.dart';
 import '../../../services/token_storage_service.dart';
+import '../../../utils/common/custom_progress_indicator.dart';
 import '../../../utils/constant/font_manger.dart';
 import '../../../utils/constant/styles_manger.dart';
 import '../../../utils/helper/on_genrated_routes.dart';
@@ -105,6 +106,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
         await sl<TokenStorageService>().setRememberMe(
           remember: _rememberMe,
           email: _rememberMe ? email : null,
+          password: _rememberMe ? password : null,
         );
 
         // Call appropriate login method based on user type
@@ -448,99 +450,135 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                 (_selectedUserType == UserType.doctor &&
                     doctorState is DoctorAuthLoading);
 
-            return Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.15),
-                    blurRadius: 30,
-                    offset: const Offset(0, 10),
-                    spreadRadius: 0,
+            return Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(24),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    CustomTextField(
-                      controller: _emailController,
-                      labelText: AppLocalizations.of(context)!.email,
-                      hintText: AppLocalizations.of(context)!.enterEmail,
-                      prefixIcon: Icons.email_outlined,
-                      keyboardType: TextInputType.emailAddress,
-                      validator:
-                          (value) =>
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 20),
+                        CustomTextField(
+                          controller: _emailController,
+                          labelText: AppLocalizations.of(context)!.email,
+                          hintText: AppLocalizations.of(context)!.enterEmail,
+                          prefixIcon: Icons.email_outlined,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) =>
                               FormValidators.validateEmail(value, context),
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextField(
-                      controller: _passwordController,
-                      labelText: AppLocalizations.of(context)!.password,
-                      hintText: AppLocalizations.of(context)!.enterPassword,
-                      prefixIcon: Icons.lock_outline,
-                      obscureText: _obscurePassword,
-                      suffixIcon:
-                          _obscurePassword
+                        ),
+                        const SizedBox(height: 20),
+                        CustomTextField(
+                          controller: _passwordController,
+                          labelText: AppLocalizations.of(context)!.password,
+                          hintText: AppLocalizations.of(context)!.enterPassword,
+                          prefixIcon: Icons.lock_outline,
+                          obscureText: _obscurePassword,
+                          suffixIcon: _obscurePassword
                               ? Icons.visibility_off
                               : Icons.visibility,
-                      onSuffixIconTap: () {
-                        setState(() {
-                          _obscurePassword = !_obscurePassword;
-                        });
-                      },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppLocalizations.of(context)!.pleaseEnterPassword;
-                        }
-                        if (value.length < 6) {
-                          return AppLocalizations.of(context)!.passwordMustBe;
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    _buildRememberMeAndForgotPassword(),
-                    const SizedBox(height: 28),
-                    CustomButton(
-                      text: AppLocalizations.of(context)!.login,
-                      onPressed: isLoading ? null : () => _handleLogin(context),
-                      isLoading: isLoading,
-                      backgroundColor: AppColors.primary,
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.dontHaveAccount,
-                          style: getRegularStyle(
-                            color: AppColors.textSecondary,
-                            fontSize: 14,
-                            fontFamily: FontConstant.cairo,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, AppRoutes.register);
+                          onSuffixIconTap: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
                           },
-                          child: Text(
-                            AppLocalizations.of(context)!.createNewAccount,
-                            style: getMediumStyle(
-                              color: AppColors.primary,
-                              fontSize: 14,
-                              fontFamily: FontConstant.cairo,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(context)!.pleaseEnterPassword;
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: _rememberMe,
+                              onChanged: (value) {
+                                setState(() {
+                                  _rememberMe = value ?? false;
+                                });
+                              },
+                              activeColor: AppColors.primary,
                             ),
-                          ),
+                            Text(
+                              AppLocalizations.of(context)!.rememberMe,
+                              style: getRegularStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 14,
+                                fontFamily: FontConstant.cairo,
+                              ),
+                            ),
+                            const Spacer(),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/forgot-password');
+                              },
+                              child: Text(
+                                AppLocalizations.of(context)!.forgotPassword,
+                                style: getMediumStyle(
+                                  color: AppColors.primary,
+                                  fontSize: 14,
+                                  fontFamily: FontConstant.cairo,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 28),
+                        CustomButton(
+                          text: AppLocalizations.of(context)!.login,
+                          onPressed: isLoading ? null : () => _handleLogin(context),
+                          isLoading: false, // إزالة loading من الزر
+                          backgroundColor: AppColors.primary,
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.dontHaveAccount,
+                              style: getRegularStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 14,
+                                fontFamily: FontConstant.cairo,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushReplacementNamed(context, '/register');
+                              },
+                              child: Text(
+                                AppLocalizations.of(context)!.signUp,
+                                style: getMediumStyle(
+                                  color: AppColors.primary,
+                                  fontSize: 14,
+                                  fontFamily: FontConstant.cairo,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+                // إظهار الـ loading في منتصف الصفحة
+                if (isLoading)
+                  const CustomProgressIndicator(),
+              ],
             );
           },
         );
@@ -548,48 +586,4 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
     );
   }
 
-  Widget _buildRememberMeAndForgotPassword() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Checkbox(
-              value: _rememberMe,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value ?? false;
-                });
-              },
-              activeColor: AppColors.primary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-            Text(
-              AppLocalizations.of(context)!.rememberMe,
-              style: getRegularStyle(
-                fontFamily: FontConstant.cairo,
-                color: AppColors.textSecondary,
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.forgotPassword);
-          },
-          child: Text(
-            AppLocalizations.of(context)!.forgotPassword,
-            style: getMediumStyle(
-              color: AppColors.primary,
-              fontFamily: FontConstant.cairo,
-              fontSize: 14,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 }

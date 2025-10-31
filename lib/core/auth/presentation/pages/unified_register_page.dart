@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../services/service_locatores.dart';
+import '../../../utils/common/custom_progress_indicator.dart';
 import '../../../utils/constant/font_manger.dart';
 import '../../../utils/constant/styles_manger.dart';
 import '../../../utils/helper/on_genrated_routes.dart';
@@ -404,21 +405,23 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
             final isLoading = userState is AuthLoading ||
                 doctorState is DoctorAuthLoading;
 
-            return Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.15),
-                    blurRadius: 30,
-                    offset: const Offset(0, 10),
-                    spreadRadius: 0,
+            return Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(24),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.15),
+                        blurRadius: 30,
+                        offset: const Offset(0, 10),
+                        spreadRadius: 0,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: Form(
+                  child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
@@ -543,12 +546,16 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                   ],
                 ),
               ),
+                // إظهار الـ loading في منتصف الصفحة
+                ),if (isLoading)
+                  const CustomProgressIndicator(),
+              ],
             );
           },
         );
       },
-    );
-  }
+   
+  );}
 
   Widget _buildTermsAndConditions() {
     return Row(
