@@ -788,4 +788,94 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get doctorTitle => 'دكتور';
+
+  @override
+  String get dashboard => 'لوحة التحكم';
+
+  @override
+  String get statistics => 'الإحصائيات';
+
+  @override
+  String get totalAppointments => 'إجمالي المواعيد';
+
+  @override
+  String get newPatients => 'مرضى جدد';
+
+  @override
+  String get returnPatients => 'مرضى عائدون';
+
+  @override
+  String get averageRating => 'متوسط التقييم';
+
+  @override
+  String get analytics => 'التحليلات';
+
+  @override
+  String get appointmentsStatus => 'حالة المواعيد';
+
+  @override
+  String get consultationsGrowth => 'نمو الاستشارات';
+
+  @override
+  String get skinConditionsDistribution => 'توزيع حالات الجلد';
+
+  @override
+  String get upcomingAppointments => 'المواعيد القادمة';
+
+  @override
+  String get patients => 'المرضى';
+
+  @override
+  String get upcoming => 'قادمة';
+
+  @override
+  String get completed => 'مكتملة';
+
+  @override
+  String get canceled => 'ملغاة';
+
+  @override
+  String get completedAppointments => 'المواعيد المكتملة';
+
+  @override
+  String get canceledAppointments => 'المواعيد الملغاة';
+
+  @override
+  String get searchPatients => 'البحث عن المرضى';
+
+  @override
+  String get personalInformation => 'المعلومات الشخصية';
+
+  @override
+  String get professionalInformation => 'المعلومات المهنية';
+
+  @override
+  String get accountSettings => 'إعدادات الحساب';
+
+  @override
+  String get notifications => 'الإشعارات';
+
+  @override
+  String get privacySecurity => 'الخصوصية والأمان';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get helpSupport => 'المساعدة والدعم';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get speciality => 'التخصص';
+
+  @override
+  String get phone => 'الهاتف';
+
+  @override
+  String get languages => 'اللغات';
+
+  @override
+  String get clinicLocation => 'موقع العيادة';
 }

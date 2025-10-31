@@ -18,6 +18,16 @@ import '../../../user_features/home/presentation/pages/home_page.dart';
 import '../../../user_features/ai_diagnosis/presentation/pages/ai_diagnosis_page.dart';
 import '../../../user_features/doctor_booking/presentation/pages/doctor_details_page.dart';
 import '../../../user_features/profile/presentation/pages/profile_page.dart';
+// Doctor Features
+import '../../../doctor_feature/navigation/presentation/pages/doctor_navigation_page.dart';
+import '../../../doctor_feature/home/presentation/pages/doctor_home_page.dart';
+import '../../../doctor_feature/ai_diagnosis/presentation/pages/doctor_ai_diagnosis_page.dart';
+import '../../../doctor_feature/prescriptions/presentation/pages/prescriptions_page.dart';
+import '../../../doctor_feature/reports/presentation/pages/reports_page.dart';
+import '../../../doctor_feature/patients/presentation/pages/advanced_patients_page.dart';
+import '../../../doctor_feature/appointments/presentation/pages/advanced_appointments_page.dart';
+import '../../../doctor_feature/settings/presentation/pages/doctor_settings_page.dart';
+import '../../../doctor_feature/analytics/presentation/pages/analytics_dashboard_page.dart';
 
 class AppRoutes {
   // Route names
@@ -36,6 +46,17 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String mainNavigationPage = '/main-navigation-page';
   static const String doctorProfile = '/doctor-profile';
+  static const String doctorNavigation = '/doctor-navigation';
+  
+  // Doctor Feature Routes
+  static const String doctorHome = '/doctor-home';
+  static const String doctorAiDiagnosis = '/doctor-ai-diagnosis';
+  static const String prescriptions = '/prescriptions';
+  static const String reports = '/reports';
+  static const String advancedPatients = '/advanced-patients';
+  static const String advancedAppointments = '/advanced-appointments';
+  static const String doctorSettings = '/doctor-settings';
+  static const String analyticsDashboard = '/analytics-dashboard';
 }
 
 Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
@@ -93,6 +114,33 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
       return _createRoute(const ProfilePage());
     case AppRoutes.doctorProfile:
       return _createRoute(const DoctorProfile());
+    case AppRoutes.doctorNavigation:
+      return _createRoute(const DoctorNavigationPage());
+
+    // Doctor Feature Routes
+    case AppRoutes.doctorHome:
+      return _createRoute(const DoctorHomePage());
+      
+    case AppRoutes.doctorAiDiagnosis:
+      return _createRoute(const DoctorAiDiagnosisPage());
+      
+    case AppRoutes.prescriptions:
+      return _createRoute(const PrescriptionsPage());
+      
+    case AppRoutes.reports:
+      return _createRoute(const ReportsPage());
+      
+    case AppRoutes.advancedPatients:
+      return _createRoute(const AdvancedPatientsPage());
+      
+    case AppRoutes.advancedAppointments:
+      return _createRoute(const AdvancedAppointmentsPage());
+      
+    case AppRoutes.doctorSettings:
+      return _createRoute(const DoctorSettingsPage());
+      
+    case AppRoutes.analyticsDashboard:
+      return _createRoute(const AnalyticsDashboardPage());
 
     default:
       return _createRoute(const SplashPage());

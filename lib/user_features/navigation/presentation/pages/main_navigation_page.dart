@@ -4,7 +4,6 @@ import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:derma_ai/user_features/appointments/presentation/pages/appointments_page.dart';
 import 'package:derma_ai/user_features/doctor_search_and_browse/doctor_search_and_browse.dart';
 import 'package:derma_ai/user_features/home/presentation/pages/home_page.dart';
-import 'package:derma_ai/user_features/community/presentation/pages/community_page.dart';
 import 'package:derma_ai/user_features/profile/presentation/pages/profile_page.dart';
 import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

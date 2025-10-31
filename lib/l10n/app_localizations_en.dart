@@ -799,4 +799,94 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get doctorTitle => 'Doctor';
+
+  @override
+  String get dashboard => 'Dashboard';
+
+  @override
+  String get statistics => 'Statistics';
+
+  @override
+  String get totalAppointments => 'Total Appointments';
+
+  @override
+  String get newPatients => 'New Patients';
+
+  @override
+  String get returnPatients => 'Return Patients';
+
+  @override
+  String get averageRating => 'Average Rating';
+
+  @override
+  String get analytics => 'Analytics';
+
+  @override
+  String get appointmentsStatus => 'Appointments Status';
+
+  @override
+  String get consultationsGrowth => 'Consultations Growth';
+
+  @override
+  String get skinConditionsDistribution => 'Skin Conditions Distribution';
+
+  @override
+  String get upcomingAppointments => 'Upcoming Appointments';
+
+  @override
+  String get patients => 'Patients';
+
+  @override
+  String get upcoming => 'Upcoming';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get canceled => 'Canceled';
+
+  @override
+  String get completedAppointments => 'Completed Appointments';
+
+  @override
+  String get canceledAppointments => 'Canceled Appointments';
+
+  @override
+  String get searchPatients => 'Search patients';
+
+  @override
+  String get personalInformation => 'Personal Information';
+
+  @override
+  String get professionalInformation => 'Professional Information';
+
+  @override
+  String get accountSettings => 'Account Settings';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get privacySecurity => 'Privacy & Security';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get helpSupport => 'Help & Support';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get speciality => 'Speciality';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get languages => 'Languages';
+
+  @override
+  String get clinicLocation => 'Clinic Location';
 }

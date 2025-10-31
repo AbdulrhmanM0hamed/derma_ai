@@ -80,7 +80,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
 
   void _handleRegister(BuildContext context) {
     if (!_formKey.currentState!.validate()) return;
-    
+
     if (!_acceptTerms) {
       CustomSnackbar.showError(
         context: context,
@@ -117,9 +117,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthCubit>(
-          create: (context) => sl<AuthCubit>(),
-        ),
+        BlocProvider<AuthCubit>(create: (context) => sl<AuthCubit>()),
         BlocProvider<DoctorAuthCubit>(
           create: (context) => sl<DoctorAuthCubit>(),
         ),
@@ -130,7 +128,10 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
             BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is RegisterSuccess) {
-                  Navigator.pushReplacementNamed(context, AppRoutes.otpVerification);
+                  Navigator.pushReplacementNamed(
+                    context,
+                    AppRoutes.otpVerification,
+                  );
                 } else if (state is RegisterFailure) {
                   CustomSnackbar.showError(
                     context: context,
@@ -146,7 +147,10 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
             BlocListener<DoctorAuthCubit, DoctorAuthState>(
               listener: (context, state) {
                 if (state is DoctorRegisterSuccess) {
-                  Navigator.pushReplacementNamed(context, AppRoutes.otpVerification);
+                  Navigator.pushReplacementNamed(
+                    context,
+                    AppRoutes.otpVerification,
+                  );
                 } else if (state is DoctorRegisterFailure) {
                   CustomSnackbar.showError(
                     context: context,
@@ -161,9 +165,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
             ),
           ],
           child: Container(
-            decoration: BoxDecoration(
-              
-            ),
+            decoration: BoxDecoration(),
             child: SafeArea(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24),
@@ -218,7 +220,6 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                 : 'assets/images/user_login.svg',
             width: 60,
             height: 60,
-         
           ),
         ),
         const SizedBox(height: 24),
@@ -322,12 +323,13 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                         AnimatedContainer(
                           duration: const Duration(milliseconds: 600),
                           curve: Curves.easeInOut,
-                          child:Icon(
+                          child: Icon(
                             Icons.person_outline,
                             size: 20,
-                            color: _selectedUserType == UserType.user
-                                ? Colors.black
-                                : AppColors.textSecondary,
+                            color:
+                                _selectedUserType == UserType.user
+                                    ? Colors.black
+                                    : AppColors.textSecondary,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -366,9 +368,10 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                           child: Icon(
                             Icons.medical_services_outlined,
                             size: 20,
-                            color: _selectedUserType == UserType.doctor
-                                ? Colors.black
-                                : AppColors.textSecondary,
+                            color:
+                                _selectedUserType == UserType.doctor
+                                    ? Colors.black
+                                    : AppColors.textSecondary,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -402,8 +405,8 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
       builder: (context, userState) {
         return BlocBuilder<DoctorAuthCubit, DoctorAuthState>(
           builder: (context, doctorState) {
-            final isLoading = userState is AuthLoading ||
-                doctorState is DoctorAuthLoading;
+            final isLoading =
+                userState is AuthLoading || doctorState is DoctorAuthLoading;
 
             return Stack(
               children: [
@@ -422,140 +425,161 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                     ],
                   ),
                   child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    CustomTextField(
-                      controller: _nameController,
-                      labelText: AppLocalizations.of(context)!.fullName,
-                      hintText: AppLocalizations.of(context)!.enterFullName,
-                      prefixIcon: Icons.person_outline,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppLocalizations.of(context)!.pleaseEnterName;
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextField(
-                      controller: _emailController,
-                      labelText: AppLocalizations.of(context)!.email,
-                      hintText: AppLocalizations.of(context)!.enterEmail,
-                      prefixIcon: Icons.email_outlined,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) =>
-                          FormValidators.validateEmail(value, context),
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextField(
-                      controller: _phoneController,
-                      labelText: AppLocalizations.of(context)!.phoneNumber,
-                      hintText: AppLocalizations.of(context)!.enterPhoneNumber,
-                      prefixIcon: Icons.phone_outlined,
-                      keyboardType: TextInputType.phone,
-                      validator: (value) =>
-                          FormValidators.validatePhoneNumber(value, context),
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextField(
-                      controller: _passwordController,
-                      labelText: AppLocalizations.of(context)!.password,
-                      hintText: AppLocalizations.of(context)!.enterPassword,
-                      prefixIcon: Icons.lock_outline,
-                      obscureText: _obscurePassword,
-                      suffixIcon: _obscurePassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      onSuffixIconTap: () {
-                        setState(() {
-                          _obscurePassword = !_obscurePassword;
-                        });
-                      },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppLocalizations.of(context)!.pleaseEnterPassword;
-                        }
-                        if (value.length < 6) {
-                          return AppLocalizations.of(context)!.passwordMustBe;
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextField(
-                      controller: _confirmPasswordController,
-                      labelText: AppLocalizations.of(context)!.confirmPassword,
-                      hintText: AppLocalizations.of(context)!.confirmYourPassword,
-                      prefixIcon: Icons.lock_outline,
-                      obscureText: _obscureConfirmPassword,
-                      suffixIcon: _obscureConfirmPassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      onSuffixIconTap: () {
-                        setState(() {
-                          _obscureConfirmPassword = !_obscureConfirmPassword;
-                        });
-                      },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppLocalizations.of(context)!.pleaseConfirmPassword;
-                        }
-                        if (value != _passwordController.text) {
-                          return AppLocalizations.of(context)!.passwordsDoNotMatch;
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    _buildTermsAndConditions(),
-                    const SizedBox(height: 28),
-                    CustomButton(
-                      text: AppLocalizations.of(context)!.createAccount,
-                      onPressed: isLoading ? null : () => _handleRegister(context),
-                      isLoading: isLoading,
-                      backgroundColor: AppColors.primary,
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    key: _formKey,
+                    child: Column(
                       children: [
-                        Text(
-                          AppLocalizations.of(context)!.alreadyHaveAccount,
-                          style: getRegularStyle(
-                            color: AppColors.textSecondary,
-                            fontSize: 14,
-                            fontFamily: FontConstant.cairo,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
+                        CustomTextField(
+                          controller: _nameController,
+                          labelText: AppLocalizations.of(context)!.fullName,
+                          hintText: AppLocalizations.of(context)!.enterFullName,
+                          prefixIcon: Icons.person_outline,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(
+                                context,
+                              )!.pleaseEnterName;
+                            }
+                            return null;
                           },
-                          child: Text(
-                            AppLocalizations.of(context)!.login,
-                            style: getMediumStyle(
-                              color: AppColors.primary,
-                              fontSize: 14,
-                              fontFamily: FontConstant.cairo,
+                        ),
+                        const SizedBox(height: 20),
+                        CustomTextField(
+                          controller: _emailController,
+                          labelText: AppLocalizations.of(context)!.email,
+                          hintText: AppLocalizations.of(context)!.enterEmail,
+                          prefixIcon: Icons.email_outlined,
+                          keyboardType: TextInputType.emailAddress,
+                          validator:
+                              (value) =>
+                                  FormValidators.validateEmail(value, context),
+                        ),
+                        const SizedBox(height: 20),
+                        CustomTextField(
+                          controller: _phoneController,
+                          labelText: AppLocalizations.of(context)!.phoneNumber,
+                          hintText:
+                              AppLocalizations.of(context)!.enterPhoneNumber,
+                          prefixIcon: Icons.phone_outlined,
+                          keyboardType: TextInputType.phone,
+                          validator:
+                              (value) => FormValidators.validatePhoneNumber(
+                                value,
+                                context,
+                              ),
+                        ),
+                        const SizedBox(height: 20),
+                        CustomTextField(
+                          controller: _passwordController,
+                          labelText: AppLocalizations.of(context)!.password,
+                          hintText: AppLocalizations.of(context)!.enterPassword,
+                          prefixIcon: Icons.lock_outline,
+                          obscureText: _obscurePassword,
+                          suffixIcon:
+                              _obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                          onSuffixIconTap: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(
+                                context,
+                              )!.pleaseEnterPassword;
+                            }
+                            if (value.length < 6) {
+                              return AppLocalizations.of(
+                                context,
+                              )!.passwordMustBe;
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        CustomTextField(
+                          controller: _confirmPasswordController,
+                          labelText:
+                              AppLocalizations.of(context)!.confirmPassword,
+                          hintText:
+                              AppLocalizations.of(context)!.confirmYourPassword,
+                          prefixIcon: Icons.lock_outline,
+                          obscureText: _obscureConfirmPassword,
+                          suffixIcon:
+                              _obscureConfirmPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                          onSuffixIconTap: () {
+                            setState(() {
+                              _obscureConfirmPassword =
+                                  !_obscureConfirmPassword;
+                            });
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(
+                                context,
+                              )!.pleaseConfirmPassword;
+                            }
+                            if (value != _passwordController.text) {
+                              return AppLocalizations.of(
+                                context,
+                              )!.passwordsDoNotMatch;
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        _buildTermsAndConditions(),
+                        const SizedBox(height: 28),
+                        CustomButton(
+                          text: AppLocalizations.of(context)!.createAccount,
+                          onPressed:
+                              isLoading ? null : () => _handleRegister(context),
+                          isLoading: isLoading,
+                          backgroundColor: AppColors.primary,
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.alreadyHaveAccount,
+                              style: getRegularStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 14,
+                                fontFamily: FontConstant.cairo,
+                              ),
                             ),
-                          ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                AppLocalizations.of(context)!.login,
+                                style: getMediumStyle(
+                                  color: AppColors.primary,
+                                  fontSize: 14,
+                                  fontFamily: FontConstant.cairo,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
+                  // إظهار الـ loading في منتصف الصفحة
                 ),
-              ),
-                // إظهار الـ loading في منتصف الصفحة
-                ),if (isLoading)
-                  const CustomProgressIndicator(),
+                if (isLoading) const CustomProgressIndicator(),
               ],
             );
           },
         );
       },
-   
-  );}
+    );
+  }
 
   Widget _buildTermsAndConditions() {
     return Row(
@@ -568,9 +592,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
             });
           },
           activeColor: AppColors.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
         Expanded(
           child: Wrap(

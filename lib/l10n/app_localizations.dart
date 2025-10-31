@@ -1609,6 +1609,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Doctor'**
   String get doctorTitle;
+
+  /// No description provided for @dashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get dashboard;
+
+  /// No description provided for @statistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statistics;
+
+  /// No description provided for @totalAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Appointments'**
+  String get totalAppointments;
+
+  /// No description provided for @newPatients.
+  ///
+  /// In en, this message translates to:
+  /// **'New Patients'**
+  String get newPatients;
+
+  /// No description provided for @returnPatients.
+  ///
+  /// In en, this message translates to:
+  /// **'Return Patients'**
+  String get returnPatients;
+
+  /// No description provided for @averageRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Rating'**
+  String get averageRating;
+
+  /// No description provided for @analytics.
+  ///
+  /// In en, this message translates to:
+  /// **'Analytics'**
+  String get analytics;
+
+  /// No description provided for @appointmentsStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointments Status'**
+  String get appointmentsStatus;
+
+  /// No description provided for @consultationsGrowth.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultations Growth'**
+  String get consultationsGrowth;
+
+  /// No description provided for @skinConditionsDistribution.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin Conditions Distribution'**
+  String get skinConditionsDistribution;
+
+  /// No description provided for @upcomingAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming Appointments'**
+  String get upcomingAppointments;
+
+  /// No description provided for @patients.
+  ///
+  /// In en, this message translates to:
+  /// **'Patients'**
+  String get patients;
+
+  /// No description provided for @upcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get upcoming;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @canceled.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceled'**
+  String get canceled;
+
+  /// No description provided for @completedAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed Appointments'**
+  String get completedAppointments;
+
+  /// No description provided for @canceledAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceled Appointments'**
+  String get canceledAppointments;
+
+  /// No description provided for @searchPatients.
+  ///
+  /// In en, this message translates to:
+  /// **'Search patients'**
+  String get searchPatients;
+
+  /// No description provided for @personalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInformation;
+
+  /// No description provided for @professionalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Professional Information'**
+  String get professionalInformation;
+
+  /// No description provided for @accountSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Settings'**
+  String get accountSettings;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @privacySecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Security'**
+  String get privacySecurity;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @helpSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpSupport;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @speciality.
+  ///
+  /// In en, this message translates to:
+  /// **'Speciality'**
+  String get speciality;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Languages'**
+  String get languages;
+
+  /// No description provided for @clinicLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic Location'**
+  String get clinicLocation;
 }
 
 class _AppLocalizationsDelegate

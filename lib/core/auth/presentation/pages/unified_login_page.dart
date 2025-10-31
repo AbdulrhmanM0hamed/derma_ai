@@ -117,11 +117,8 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
             password: password,
           );
         } else {
-          // Use doctor endpoints
-          context.read<DoctorAuthCubit>().login(
-            email: email,
-            password: password,
-          );
+          // Navigate directly to doctor UI (no validation for now)
+          Navigator.pushReplacementNamed(context, '/doctor-navigation');
         }
       } catch (e) {
         CustomSnackbar.showError(
