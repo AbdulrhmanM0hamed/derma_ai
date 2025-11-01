@@ -5,6 +5,8 @@ import '../../user_features/auth/data/repositories/auth_user_repository.dart';
 import '../../../user_features/auth/presentation/bloc/auth_cubit.dart';
 import '../../../doctor_feature/auth/data/repositories/doctor_auth_repository.dart';
 import '../../../doctor_feature/auth/presentation/bloc/doctor_auth_cubit.dart';
+import '../../user_features/health_tips/data/repositories/health_tips_repository_new.dart';
+import '../../user_features/health_tips/presentation/bloc/health_tips_cubit.dart';
 import '../network/api_service.dart';
 import '../services/token_storage_service.dart';
 
@@ -41,4 +43,13 @@ Future<void> init() async {
         authRepository: sl<DoctorAuthRepository>(),
         tokenStorage: sl(),
       ));
+
+  //! Features - Health Tips
+  // Repository
+  sl.registerLazySingleton<HealthTipsRepository>(
+    () => HealthTipsRepositoryImpl(sl()),
+  );
+
+  // Cubit
+  sl.registerFactory(() => HealthTipsCubit(sl()));
 }

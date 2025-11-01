@@ -3,9 +3,17 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
+import '../../data/models/health_tip_model.dart';
 
 class DailyTipCard extends StatefulWidget {
-  const DailyTipCard({super.key});
+  final HealthTipModel? tip;
+  final String? heroTag; // إضافة heroTag اختياري
+
+  const DailyTipCard({
+    super.key, 
+    this.tip,
+    this.heroTag,
+  });
 
   @override
   State<DailyTipCard> createState() => _DailyTipCardState();
@@ -57,7 +65,6 @@ class _DailyTipCardState extends State<DailyTipCard>
               end: Alignment.bottomRight,
               stops: const [0.0, 0.7, 1.0],
             ),
-          
           ),
           child: Stack(
             children: [
@@ -123,7 +130,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                     Row(
                       children: [
                         Hero(
-                          tag: 'daily_tip_icon',
+                          tag: widget.heroTag ?? 'daily_tip_icon_${widget.tip?.id ?? UniqueKey().toString()}',
                           child: Container(
                             width: 60,
                             height: 60,
@@ -235,7 +242,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                'حماية من أشعة الشمس',
+                                widget.tip?.title ?? 'حماية من أشعة الشمس',
                                 style: getBoldStyle(
                                   color: AppColors.primary,
                                   fontSize: 16,
@@ -245,24 +252,16 @@ class _DailyTipCardState extends State<DailyTipCard>
                             ],
                           ),
                           const SizedBox(height: 12),
-                          Text(
-                            'استخدم واقي الشمس يومياً حتى في الأيام الغائمة. الأشعة فوق البنفسجية تخترق الغيوم وتسبب أضراراً للبشرة.',
-                            style: getRegularStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: 15,
-                              fontFamily: FontConstant.cairo,
-                              height: 1.6,
-                            ),
-                          ),
+
                           if (_isExpanded) ...[
                             const SizedBox(height: 12),
                             Text(
-                              'اختر واقي شمس بعامل حماية SPF 30 أو أعلى، وأعد تطبيقه كل ساعتين للحصول على أفضل حماية.',
+                              widget.tip?.description ?? '',
                               style: getRegularStyle(
-                                color: AppColors.textSecondary,
-                                fontSize: 14,
+                                color: AppColors.textPrimary,
+                                fontSize: 15,
                                 fontFamily: FontConstant.cairo,
-                                height: 1.5,
+                                height: 1.6,
                               ),
                             ),
                           ],

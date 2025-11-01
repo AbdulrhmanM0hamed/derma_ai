@@ -29,5 +29,7 @@ class ApiEndpoints {
       'auth-doctor/verify-password-reset-otp';
   static const String resetPasswordDoctor = 'auth-doctor/reset-password';
 
-  //
+  // Health Tips endpoints
+  static const String dailyTipsActive = 'health-tips/daily-tips/active';
+  static const String dailyTipsLatest = 'health-tips/daily-tips/latest';
 }

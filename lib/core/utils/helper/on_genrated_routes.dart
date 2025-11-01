@@ -29,6 +29,7 @@ import '../../../doctor_feature/appointments/presentation/pages/advanced_appoint
 import '../../../doctor_feature/settings/presentation/pages/doctor_settings_page.dart';
 import '../../../doctor_feature/analytics/presentation/pages/analytics_dashboard_page.dart';
 import '../../../doctor_feature/auth/presentation/pages/doctor_otp_verification_page.dart';
+import '../../../user_features/health_tips/presentation/pages/all_health_tips_page.dart';
 
 class AppRoutes {
   // Route names
@@ -59,6 +60,7 @@ class AppRoutes {
   static const String doctorSettings = '/doctor-settings';
   static const String analyticsDashboard = '/analytics-dashboard';
   static const String doctorOtpVerification = '/doctor-otp-verification';
+  static const String allHealthTips = '/all-health-tips';
 }
 
 Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
@@ -152,6 +154,9 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
         phone: args['phone'] as String? ?? '',
         type: args['type'] as String? ?? 'email',
       ));
+
+    case AppRoutes.allHealthTips:
+      return _createRoute(const AllHealthTipsPage());
 
     default:
       return _createRoute(const SplashPage());

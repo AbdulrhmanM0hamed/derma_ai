@@ -1,18 +1,30 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+import '../../services/token_storage_service.dart';
+import '../../services/service_locatores.dart';
 
 class LanguageInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // الحصول على اللغة الحالية من النظام
-    final currentLocale = _getCurrentLocale();
-    
-    // إضافة header اللغة
-    options.headers['lang'] = currentLocale.languageCode;
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    // إضافة header اللغة العربية (ثابت للتطبيق العربي)
+    options.headers['lang'] = 'ar';
     
     // يمكن أيضاً إضافة Accept-Language header
-    options.headers['Accept-Language'] = currentLocale.languageCode;
+    options.headers['Accept-Language'] = 'ar';
+    
+    // إضافة Authorization header إذا كان متاحاً
+    try {
+      final tokenStorage = sl<TokenStorageService>();
+      final accessToken = tokenStorage.accessToken;
+      
+      if (accessToken != null && accessToken.isNotEmpty) {
+        options.headers['Authorization'] = 'Bearer $accessToken';
+      }
+    } catch (e) {
+      // في حالة عدم توفر TokenStorageService أو خطأ في الحصول على التوكن
+      print('Error getting access token: $e');
+    }
     
     super.onRequest(options, handler);
   }
