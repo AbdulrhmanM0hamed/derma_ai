@@ -105,7 +105,7 @@ class _AiAnalysisWidgetState extends State<AiAnalysisWidget>
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withOpacity(0.1),
+            color: AppColors.primary.withValues(alpha:0.1),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -125,8 +125,8 @@ class _AiAnalysisWidgetState extends State<AiAnalysisWidget>
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
                       colors: [
-                        AppColors.primary.withOpacity(0.8),
-                        AppColors.primary.withOpacity(0.3),
+                        AppColors.primary.withValues(alpha:0.8),
+                        AppColors.primary.withValues(alpha:0.3),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(40),
@@ -197,10 +197,10 @@ class _AiAnalysisWidgetState extends State<AiAnalysisWidget>
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.05),
+              color: AppColors.primary.withValues(alpha:0.05),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColors.primary.withOpacity(0.2),
+                color: AppColors.primary.withValues(alpha:0.2),
                 width: 1,
               ),
             ),

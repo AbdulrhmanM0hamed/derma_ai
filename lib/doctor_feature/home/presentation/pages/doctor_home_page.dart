@@ -98,7 +98,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
         background: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [AppColors.primary, AppColors.primary.withOpacity(0.8)],
+              colors: [AppColors.primary, AppColors.primary.withValues(alpha:0.8)],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -134,7 +134,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha:0.2),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Row(
@@ -166,7 +166,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                         child: Text(
                           "دكتور أمراض جلدية • 4.9 ⭐",
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha:0.9),
                             fontSize: 12,
                           ),
                         ),
@@ -470,7 +470,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                     dotData: const FlDotData(show: false),
                     belowBarData: BarAreaData(
                       show: true,
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha:0.1),
                     ),
                   ),
                 ],
@@ -971,7 +971,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
           gradient: LinearGradient(
             colors: [
               AppColors.primary,
-              AppColors.primary.withOpacity(0.8),
+              AppColors.primary.withValues(alpha:0.8),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -1006,7 +1006,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                   Text(
                     'طبيب أمراض جلدية',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white.withValues(alpha:0.9),
                       fontSize: 14,
                     ),
                   ),
@@ -1014,7 +1014,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha:0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -1210,7 +1210,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.primary.withOpacity(0.1) : Colors.transparent,
+        color: isSelected ? AppColors.primary.withValues(alpha:0.1) : Colors.transparent,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
@@ -1218,8 +1218,8 @@ class _DoctorHomePageState extends State<DoctorHomePage>
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: isSelected 
-                ? AppColors.primary.withOpacity(0.2) 
-                : Colors.grey.withOpacity(0.1),
+                ? AppColors.primary.withValues(alpha:0.2) 
+                : Colors.grey.withValues(alpha:0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
@@ -1344,10 +1344,10 @@ class _DoctorHomePageState extends State<DoctorHomePage>
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha:0.1),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: color.withOpacity(0.3),
+            color: color.withValues(alpha:0.3),
             width: 1,
           ),
         ),
@@ -1356,7 +1356,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.2),
+                color: color.withValues(alpha:0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(

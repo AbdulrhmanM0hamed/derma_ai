@@ -95,7 +95,7 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha:0.05),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -120,7 +120,7 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withOpacity(0.1),
+                    color: AppColors.primary.withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
@@ -203,7 +203,7 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha:0.05),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -376,10 +376,10 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.05),
+        color: color.withValues(alpha:0.05),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: color.withOpacity(0.2),
+          color: color.withValues(alpha:0.2),
           width: 1,
         ),
       ),
@@ -388,7 +388,7 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withValues(alpha:0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
@@ -476,7 +476,7 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                   Navigator.pop(context);
                 },
               ),
-            ).toList(),
+            ),
           ],
         ),
       ),

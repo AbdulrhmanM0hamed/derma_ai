@@ -28,6 +28,7 @@ import '../../../doctor_feature/patients/presentation/pages/advanced_patients_pa
 import '../../../doctor_feature/appointments/presentation/pages/advanced_appointments_page.dart';
 import '../../../doctor_feature/settings/presentation/pages/doctor_settings_page.dart';
 import '../../../doctor_feature/analytics/presentation/pages/analytics_dashboard_page.dart';
+import '../../../doctor_feature/auth/presentation/pages/doctor_otp_verification_page.dart';
 
 class AppRoutes {
   // Route names
@@ -57,6 +58,7 @@ class AppRoutes {
   static const String advancedAppointments = '/advanced-appointments';
   static const String doctorSettings = '/doctor-settings';
   static const String analyticsDashboard = '/analytics-dashboard';
+  static const String doctorOtpVerification = '/doctor-otp-verification';
 }
 
 Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
@@ -141,6 +143,15 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
       
     case AppRoutes.analyticsDashboard:
       return _createRoute(const AnalyticsDashboardPage());
+
+    case AppRoutes.doctorOtpVerification:
+      final args = settings.arguments as Map<String, dynamic>;
+      return _createRoute(DoctorOtpVerificationPage(
+        userId: args['userId'] as int,
+        email: args['email'] as String,
+        phone: args['phone'] as String? ?? '',
+        type: args['type'] as String? ?? 'email',
+      ));
 
     default:
       return _createRoute(const SplashPage());

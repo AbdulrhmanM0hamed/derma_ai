@@ -39,7 +39,7 @@ class AppointmentCardAdvanced extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha:0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -59,7 +59,7 @@ class AppointmentCardAdvanced extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
-                    color: _getTimeColor().withOpacity(0.1),
+                    color: _getTimeColor().withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -143,10 +143,10 @@ class AppointmentCardAdvanced extends StatelessWidget {
                       width: double.infinity,
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.05),
+                        color: Colors.blue.withValues(alpha:0.05),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: Colors.blue.withOpacity(0.2),
+                          color: Colors.blue.withValues(alpha:0.2),
                           width: 1,
                         ),
                       ),
@@ -216,7 +216,7 @@ class AppointmentCardAdvanced extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -312,7 +312,7 @@ class AppointmentCardAdvanced extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: countdownColor.withOpacity(0.1),
+        color: countdownColor.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -443,14 +443,14 @@ class AppointmentCardAdvanced extends StatelessWidget {
   }
 
   Color _getBorderColor() {
-    if (isCancelled) return Colors.red.withOpacity(0.3);
-    if (isCompleted) return Colors.green.withOpacity(0.3);
+    if (isCancelled) return Colors.red.withValues(alpha:0.3);
+    if (isCompleted) return Colors.green.withValues(alpha:0.3);
     
     switch (appointment['status']) {
       case 'جاري':
-        return Colors.orange.withOpacity(0.3);
+        return Colors.orange.withValues(alpha:0.3);
       case 'قادم':
-        return Colors.blue.withOpacity(0.3);
+        return Colors.blue.withValues(alpha:0.3);
       default:
         return Colors.grey.shade200;
     }

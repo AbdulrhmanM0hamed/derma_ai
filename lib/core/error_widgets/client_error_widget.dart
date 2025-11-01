@@ -50,7 +50,7 @@ class ClientErrorWidget extends BaseErrorWidget {
         break;
       case ApiErrorType.forbidden:
         title = l10n!.error_forbidden;
-        description = l10n!.error_forbidden_desc;
+        description = l10n.error_forbidden_desc;
         iconData = Icons.block;
         color = Colors.red;
         showRetry = false;
@@ -69,7 +69,7 @@ class ClientErrorWidget extends BaseErrorWidget {
         break;
       case ApiErrorType.notAcceptable:
         title = l10n!.error_not_acceptable;
-        description = l10n!.error_not_acceptable_desc;
+        description = l10n.error_not_acceptable_desc;
         iconData = Icons.cancel;
         showRetry = false;
         break;
@@ -147,7 +147,7 @@ class ClientErrorWidget extends BaseErrorWidget {
       icon: iconData,
       onRetry: showRetry ? onRetry : null,
       onSecondaryAction: onSecondaryAction,
-      secondaryActionText: l10n!.go_back,
+      secondaryActionText: l10n.go_back,
       primaryColor: color,
     );
   }

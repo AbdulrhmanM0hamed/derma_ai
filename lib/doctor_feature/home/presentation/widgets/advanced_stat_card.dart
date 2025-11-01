@@ -37,7 +37,7 @@ class AdvancedStatCard extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Colors.white,
-              iconColor.withOpacity(0.02),
+              iconColor.withValues(alpha:0.02),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -45,13 +45,13 @@ class AdvancedStatCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: iconColor.withOpacity(0.1),
+              color: iconColor.withValues(alpha:0.1),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
           ],
           border: Border.all(
-            color: iconColor.withOpacity(0.1),
+            color: iconColor.withValues(alpha:0.1),
             width: 1,
           ),
         ),
@@ -64,7 +64,7 @@ class AdvancedStatCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: iconColor.withOpacity(0.1),
+                    color: iconColor.withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
@@ -76,7 +76,7 @@ class AdvancedStatCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: isPositiveTrend ? Colors.green.withOpacity(0.1) : Colors.red.withOpacity(0.1),
+                    color: isPositiveTrend ? Colors.green.withValues(alpha:0.1) : Colors.red.withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -157,12 +157,12 @@ class MiniChartPainter extends CustomPainter {
     if (data.isEmpty) return;
 
     final paint = Paint()
-      ..color = color.withOpacity(0.3)
+      ..color = color.withValues(alpha:0.3)
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 
     final fillPaint = Paint()
-      ..color = color.withOpacity(0.1)
+      ..color = color.withValues(alpha:0.1)
       ..style = PaintingStyle.fill;
 
     final path = Path();

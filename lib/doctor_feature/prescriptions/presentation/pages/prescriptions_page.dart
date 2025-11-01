@@ -212,7 +212,7 @@ class _PrescriptionsPageState extends State<PrescriptionsPage>
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -226,7 +226,7 @@ class _PrescriptionsPageState extends State<PrescriptionsPage>
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _getCategoryColor(medication['category']).withOpacity(0.1),
+                  color: _getCategoryColor(medication['category']).withValues(alpha:0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -261,7 +261,7 @@ class _PrescriptionsPageState extends State<PrescriptionsPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: _getCategoryColor(medication['category']).withOpacity(0.1),
+                  color: _getCategoryColor(medication['category']).withValues(alpha:0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
@@ -296,7 +296,7 @@ class _PrescriptionsPageState extends State<PrescriptionsPage>
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.orange.withOpacity(0.1),
+                color: Colors.orange.withValues(alpha:0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(

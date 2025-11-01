@@ -1,5 +1,4 @@
 import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
-
 import 'package:derma_ai/core/utils/helper/on_genrated_routes.dart';
 import 'package:derma_ai/core/widgets/custom_button.dart';
 import 'package:derma_ai/l10n/app_localizations.dart';
@@ -14,6 +13,7 @@ import '../../../../core/utils/common/custom_progress_indicator.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/services/service_locatores.dart';
 import '../bloc/auth_cubit.dart';
 import '../bloc/auth_state.dart';
 
@@ -36,6 +36,38 @@ class OtpVerificationPage extends StatefulWidget {
 }
 
 class _OtpVerificationPageState extends State<OtpVerificationPage> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<AuthCubit>(
+      create: (context) => sl<AuthCubit>(),
+      child: _OtpVerificationContent(
+        userId: widget.userId,
+        email: widget.email,
+        phone: widget.phone,
+        type: widget.type,
+      ),
+    );
+  }
+}
+
+class _OtpVerificationContent extends StatefulWidget {
+  final int userId;
+  final String email;
+  final String phone;
+  final String type;
+
+  const _OtpVerificationContent({
+    required this.userId,
+    required this.email,
+    required this.phone,
+    required this.type,
+  });
+
+  @override
+  State<_OtpVerificationContent> createState() => _OtpVerificationContentState();
+}
+
+class _OtpVerificationContentState extends State<_OtpVerificationContent> {
   final _otpPinFieldController = GlobalKey<OtpPinFieldState>();
   String _otpCode = '';
   bool _isEmailVerification = true;
@@ -51,30 +83,28 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
     _isEmailVerification = widget.type == 'email';
     _startResendTimer();
   }
-  
+
   @override
   void dispose() {
     _resendTimer?.cancel();
     super.dispose();
   }
-  
+
   void _startResendTimer() {
     setState(() {
       _canResend = false;
-      _resendCountdown = 60; // 60 seconds countdown
+      _resendCountdown = 60;
     });
     
     _resendTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        _resendCountdown--;
-      });
-      
-      if (_resendCountdown <= 0) {
-        setState(() {
+        if (_resendCountdown > 0) {
+          _resendCountdown--;
+        } else {
           _canResend = true;
-        });
-        timer.cancel();
-      }
+          timer.cancel();
+        }
+      });
     });
   }
 

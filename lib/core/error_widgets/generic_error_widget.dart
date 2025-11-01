@@ -45,7 +45,7 @@ class GenericErrorWidget extends BaseErrorWidget {
         break;
       case ApiErrorType.other:
         title = l10n!.error_other;
-        description = l10n!.error_other_desc;
+        description = l10n.error_other_desc;
         iconData = Icons.error_outline;
         break;
       default:

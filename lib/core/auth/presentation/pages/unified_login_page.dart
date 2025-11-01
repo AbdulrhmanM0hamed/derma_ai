@@ -90,7 +90,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
       } else {
         _animationController.reverse();
       }
-      
+
       // لا نقوم بمسح البيانات المدخلة عند التبديل
       // البيانات ستبقى في الـ TextEditingController
     }
@@ -102,7 +102,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
         // Save remember me preference
         final email = _emailController.text.trim();
         final password = _passwordController.text.trim();
-        
+
         await sl<TokenStorageService>().setRememberMe(
           remember: _rememberMe,
           email: _rememberMe ? email : null,
@@ -112,10 +112,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
         // Call appropriate login method based on user type
         if (_selectedUserType == UserType.user) {
           // Use user endpoints
-          context.read<AuthCubit>().login(
-            email: email,
-            password: password,
-          );
+          context.read<AuthCubit>().login(email: email, password: password);
         } else {
           // Navigate directly to doctor UI (no validation for now)
           Navigator.pushReplacementNamed(context, '/doctor-navigation');
@@ -158,7 +155,10 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                           ),
                         );
                         // Navigate to main navigation page
-                        Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          AppRoutes.mainNavigationPage,
+                        );
                       } else if (state is LoginFailure) {
                         CustomSnackbar.showError(
                           context: context,
@@ -184,7 +184,10 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                           ),
                         );
                         // Navigate to main navigation page (doctors will have different navigation logic)
-                        Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          AppRoutes.mainNavigationPage,
+                        );
                       } else if (state is DoctorLoginFailure) {
                         CustomSnackbar.showError(
                           context: context,
@@ -199,9 +202,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                   ),
                 ],
                 child: Container(
-                  decoration: BoxDecoration(
-                    
-                  ),
+                  decoration: BoxDecoration(),
                   child: SafeArea(
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.all(24),
@@ -257,7 +258,6 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                 : 'assets/images/user_login.svg',
             width: 60,
             height: 60,
-         
           ),
         ),
         const SizedBox(height: 24),
@@ -308,12 +308,12 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
         color: Colors.white,
         borderRadius: BorderRadius.circular(28),
         border: Border.all(
-          color: AppColors.secondary.withOpacity(0.3),
+          color: AppColors.secondary.withValues(alpha:0.3),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -361,12 +361,13 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                         AnimatedContainer(
                           duration: const Duration(milliseconds: 600),
                           curve: Curves.easeInOut,
-                          child:Icon(
+                          child: Icon(
                             Icons.person_outline,
                             size: 20,
-                            color: _selectedUserType == UserType.user
-                                ? Colors.black
-                                : AppColors.textSecondary,
+                            color:
+                                _selectedUserType == UserType.user
+                                    ? Colors.black
+                                    : AppColors.textSecondary,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -405,9 +406,10 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                           child: Icon(
                             Icons.medical_services_outlined,
                             size: 20,
-                            color: _selectedUserType == UserType.doctor
-                                ? Colors.black
-                                : AppColors.textSecondary,
+                            color:
+                                _selectedUserType == UserType.doctor
+                                    ? Colors.black
+                                    : AppColors.textSecondary,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -417,7 +419,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                           style: getMediumStyle(
                             color:
                                 _selectedUserType == UserType.doctor
-                                      ? AppColors.black
+                                    ? AppColors.black
                                     : AppColors.textSecondary,
                             fontSize: 14,
                             fontFamily: FontConstant.cairo,
@@ -456,7 +458,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                     borderRadius: BorderRadius.circular(24),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withValues(alpha:0.1),
                         blurRadius: 10,
                         offset: const Offset(0, 5),
                       ),
@@ -473,8 +475,9 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                           hintText: AppLocalizations.of(context)!.enterEmail,
                           prefixIcon: Icons.email_outlined,
                           keyboardType: TextInputType.emailAddress,
-                          validator: (value) =>
-                              FormValidators.validateEmail(value, context),
+                          validator:
+                              (value) =>
+                                  FormValidators.validateEmail(value, context),
                         ),
                         const SizedBox(height: 20),
                         CustomTextField(
@@ -483,9 +486,10 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                           hintText: AppLocalizations.of(context)!.enterPassword,
                           prefixIcon: Icons.lock_outline,
                           obscureText: _obscurePassword,
-                          suffixIcon: _obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
+                          suffixIcon:
+                              _obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                           onSuffixIconTap: () {
                             setState(() {
                               _obscurePassword = !_obscurePassword;
@@ -493,7 +497,9 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return AppLocalizations.of(context)!.pleaseEnterPassword;
+                              return AppLocalizations.of(
+                                context,
+                              )!.pleaseEnterPassword;
                             }
                             return null;
                           },
@@ -521,7 +527,10 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             const Spacer(),
                             TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/forgot-password');
+                                Navigator.pushNamed(
+                                  context,
+                                  '/forgot-password',
+                                );
                               },
                               child: Text(
                                 AppLocalizations.of(context)!.forgotPassword,
@@ -537,7 +546,8 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                         const SizedBox(height: 28),
                         CustomButton(
                           text: AppLocalizations.of(context)!.login,
-                          onPressed: isLoading ? null : () => _handleLogin(context),
+                          onPressed:
+                              isLoading ? null : () => _handleLogin(context),
                           isLoading: false, // إزالة loading من الزر
                           backgroundColor: AppColors.primary,
                         ),
@@ -555,7 +565,10 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.pushReplacementNamed(context, '/register');
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/register',
+                                );
                               },
                               child: Text(
                                 AppLocalizations.of(context)!.signUp,
@@ -573,8 +586,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                   ),
                 ),
                 // إظهار الـ loading في منتصف الصفحة
-                if (isLoading)
-                  const CustomProgressIndicator(),
+                if (isLoading) const CustomProgressIndicator(),
               ],
             );
           },
@@ -582,5 +594,4 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
       },
     );
   }
-
 }

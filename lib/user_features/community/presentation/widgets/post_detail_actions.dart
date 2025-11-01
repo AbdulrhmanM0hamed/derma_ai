@@ -75,7 +75,7 @@ class PostDetailActions extends StatelessWidget {
               const Spacer(),
               
               // Comments Count
-              if (post.comments.length > 0)
+              if (post.comments.isNotEmpty)
                 GestureDetector(
                   onTap: () {
                     // Scroll to comments
@@ -92,7 +92,7 @@ class PostDetailActions extends StatelessWidget {
             ],
           ),
           
-          if (post.likes > 0 || post.comments.length > 0) ...[
+          if (post.likes > 0 || post.comments.isNotEmpty) ...[
             const SizedBox(height: 16),
             Divider(
               color: Theme.of(context).dividerColor.withValues(alpha: 0.3),

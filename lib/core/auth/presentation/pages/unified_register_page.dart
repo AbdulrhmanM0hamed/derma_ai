@@ -131,6 +131,12 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                   Navigator.pushReplacementNamed(
                     context,
                     AppRoutes.otpVerification,
+                    arguments: {
+                      'userId': state.entity.id,
+                      'email': _emailController.text.trim(),
+                      'phone': _phoneController.text.trim(),
+                      'type': 'email',
+                    },
                   );
                 } else if (state is RegisterFailure) {
                   CustomSnackbar.showError(
@@ -149,7 +155,13 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                 if (state is DoctorRegisterSuccess) {
                   Navigator.pushReplacementNamed(
                     context,
-                    AppRoutes.otpVerification,
+                    AppRoutes.doctorOtpVerification,
+                    arguments: {
+                      'userId': state.entity.id,
+                      'email': _emailController.text.trim(),
+                      'phone': _phoneController.text.trim(),
+                      'type': 'email',
+                    },
                   );
                 } else if (state is DoctorRegisterFailure) {
                   CustomSnackbar.showError(
@@ -270,12 +282,12 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
         color: Colors.white,
         borderRadius: BorderRadius.circular(28),
         border: Border.all(
-          color: AppColors.secondary.withOpacity(0.3),
+          color: AppColors.secondary.withValues(alpha:0.3),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -535,9 +547,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                         const SizedBox(height: 28),
                         CustomButton(
                           text: AppLocalizations.of(context)!.createAccount,
-                          onPressed:
-                              isLoading ? null : () => _handleRegister(context),
-                          isLoading: isLoading,
+                          onPressed: () => _handleRegister(context),
                           backgroundColor: AppColors.primary,
                         ),
                         const SizedBox(height: 16),

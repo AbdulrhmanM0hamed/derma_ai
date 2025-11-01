@@ -81,7 +81,7 @@ class AuthCubit extends Cubit<AuthState> {
         messageEn: response.messageEn,
         messageAr: response.messageAr,
       ));
-    } on DioException catch (e) {
+    } on DioException {
       emit(LoginFailure(
         messageEn: 'Login failed',
         messageAr: 'فشل تسجيل الدخول',

@@ -35,7 +35,7 @@ class PatientDetailCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha:0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -56,7 +56,7 @@ class PatientDetailCard extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 30,
-                      backgroundColor: _getAvatarColor().withOpacity(0.1),
+                      backgroundColor: _getAvatarColor().withValues(alpha:0.1),
                       child: Text(
                         patient['name'][0],
                         style: TextStyle(
@@ -144,6 +144,7 @@ class PatientDetailCard extends StatelessWidget {
                   icon: const Icon(Icons.more_vert),
                   itemBuilder: (context) => [
                     PopupMenuItem(
+                      onTap: onTap,
                       child: const Row(
                         children: [
                           Icon(Icons.visibility, size: 16),
@@ -151,9 +152,9 @@ class PatientDetailCard extends StatelessWidget {
                           Text('عرض التفاصيل'),
                         ],
                       ),
-                      onTap: onTap,
                     ),
                     PopupMenuItem(
+                      onTap: onEdit,
                       child: const Row(
                         children: [
                           Icon(Icons.edit, size: 16),
@@ -161,9 +162,9 @@ class PatientDetailCard extends StatelessWidget {
                           Text('تعديل'),
                         ],
                       ),
-                      onTap: onEdit,
                     ),
                     PopupMenuItem(
+                      onTap: onViewHistory,
                       child: const Row(
                         children: [
                           Icon(Icons.history, size: 16),
@@ -171,7 +172,6 @@ class PatientDetailCard extends StatelessWidget {
                           Text('التاريخ المرضي'),
                         ],
                       ),
-                      onTap: onViewHistory,
                     ),
                     const PopupMenuItem(
                       child: Row(
@@ -223,10 +223,10 @@ class PatientDetailCard extends StatelessWidget {
                       width: double.infinity,
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.05),
+                        color: Colors.blue.withValues(alpha:0.05),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: Colors.blue.withOpacity(0.2),
+                          color: Colors.blue.withValues(alpha:0.2),
                           width: 1,
                         ),
                       ),
@@ -320,7 +320,7 @@ class PatientDetailCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
@@ -377,8 +377,8 @@ class PatientDetailCard extends StatelessWidget {
   }
 
   Color _getBorderColor() {
-    if (showUrgentBadge) return Colors.red.withOpacity(0.3);
-    if (isCompleted) return Colors.blue.withOpacity(0.3);
+    if (showUrgentBadge) return Colors.red.withValues(alpha:0.3);
+    if (isCompleted) return Colors.blue.withValues(alpha:0.3);
     return Colors.grey.shade200;
   }
 

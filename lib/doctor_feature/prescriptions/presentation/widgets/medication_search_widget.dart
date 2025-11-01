@@ -20,7 +20,7 @@ class MedicationSearchWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -53,7 +53,7 @@ class MedicationSearchWidget extends StatelessWidget {
                 onPressed: onFilter,
                 icon: const Icon(Icons.filter_list),
                 style: IconButton.styleFrom(
-                  backgroundColor: AppColors.primary.withOpacity(0.1),
+                  backgroundColor: AppColors.primary.withValues(alpha:0.1),
                   foregroundColor: AppColors.primary,
                 ),
               ),
@@ -86,7 +86,7 @@ class MedicationSearchWidget extends StatelessWidget {
       label: Text(label),
       selected: isSelected,
       onSelected: (selected) {},
-      selectedColor: AppColors.primary.withOpacity(0.2),
+      selectedColor: AppColors.primary.withValues(alpha:0.2),
       checkmarkColor: AppColors.primary,
       labelStyle: TextStyle(
         color: isSelected ? AppColors.primary : AppColors.textSecondary,

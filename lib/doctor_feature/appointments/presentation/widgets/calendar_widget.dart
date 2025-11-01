@@ -32,7 +32,7 @@ class CalendarWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
+              color: AppColors.primary.withValues(alpha:0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -79,7 +79,7 @@ class CalendarWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 todayDecoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.5),
+                  color: AppColors.primary.withValues(alpha:0.5),
                   shape: BoxShape.circle,
                 ),
                 markerDecoration: const BoxDecoration(
@@ -139,7 +139,7 @@ class CalendarWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _buildLegendItem('اليوم', AppColors.primary.withOpacity(0.5)),
+                    _buildLegendItem('اليوم', AppColors.primary.withValues(alpha:0.5)),
                     _buildLegendItem('محدد', AppColors.primary),
                     _buildLegendItem('مواعيد', Colors.orange),
                     _buildLegendItem('عطلة', Colors.red.shade400),
@@ -160,7 +160,7 @@ class CalendarWidget extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: AppColors.primary.withOpacity(0.2),
+                  color: AppColors.primary.withValues(alpha:0.2),
                   width: 1,
                 ),
               ),
@@ -181,7 +181,7 @@ class CalendarWidget extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 8),
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.05),
+                        color: AppColors.primary.withValues(alpha:0.05),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
@@ -227,7 +227,7 @@ class CalendarWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ).toList(),
+                  ),
                 ],
               ),
             ),

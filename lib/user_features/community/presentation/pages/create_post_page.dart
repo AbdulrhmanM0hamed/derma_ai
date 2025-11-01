@@ -27,8 +27,8 @@ class _CreatePostPageState extends State<CreatePostPage>
   late Animation<Offset> _slideAnimation;
 
   String? _selectedSpecialization;
-  List<String> _selectedHashtags = [];
-  List<File> _selectedImages = [];
+  final List<String> _selectedHashtags = [];
+  final List<File> _selectedImages = [];
   bool _isLoading = false;
   bool _allowComments = true;
   bool _isPublic = true;
@@ -346,9 +346,9 @@ class _CreatePostPageState extends State<CreatePostPage>
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.blue.withOpacity(0.1),
+                      color: Colors.blue.withValues(alpha:0.1),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                      border: Border.all(color: Colors.blue.withValues(alpha:0.3)),
                     ),
                     child: Column(
                       children: [
@@ -411,9 +411,9 @@ class _CreatePostPageState extends State<CreatePostPage>
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(0.1),
+                      color: Colors.green.withValues(alpha:0.1),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.green.withOpacity(0.3)),
+                      border: Border.all(color: Colors.green.withValues(alpha:0.3)),
                     ),
                     child: Column(
                       children: [
@@ -464,7 +464,7 @@ class _CreatePostPageState extends State<CreatePostPage>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -560,7 +560,7 @@ class _CreatePostPageState extends State<CreatePostPage>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -597,7 +597,7 @@ class _CreatePostPageState extends State<CreatePostPage>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -617,7 +617,7 @@ class _CreatePostPageState extends State<CreatePostPage>
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 120,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -676,7 +676,7 @@ class _CreatePostPageState extends State<CreatePostPage>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -695,7 +695,7 @@ class _CreatePostPageState extends State<CreatePostPage>
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<String>(
-            value: _selectedSpecialization,
+            initialValue: _selectedSpecialization,
             decoration: InputDecoration(
               hintText: 'اختر التخصص',
               border: OutlineInputBorder(
@@ -739,7 +739,7 @@ class _CreatePostPageState extends State<CreatePostPage>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -770,10 +770,10 @@ class _CreatePostPageState extends State<CreatePostPage>
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withOpacity(0.1),
+                    color: AppColors.primary.withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: AppColors.primary.withOpacity(0.3),
+                      color: AppColors.primary.withValues(alpha:0.3),
                     ),
                   ),
                   child: Row(
@@ -866,12 +866,12 @@ class _CreatePostPageState extends State<CreatePostPage>
                   ),
                   decoration: BoxDecoration(
                     color: isSelected 
-                        ? AppColors.primary.withOpacity(0.1)
+                        ? AppColors.primary.withValues(alpha:0.1)
                         : Colors.grey[100],
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color: isSelected 
-                          ? AppColors.primary.withOpacity(0.3)
+                          ? AppColors.primary.withValues(alpha:0.3)
                           : Colors.grey[300]!,
                     ),
                   ),
@@ -900,7 +900,7 @@ class _CreatePostPageState extends State<CreatePostPage>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -968,9 +968,9 @@ class _CreatePostPageState extends State<CreatePostPage>
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha:0.1),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withOpacity(0.3)),
+          border: Border.all(color: color.withValues(alpha:0.3)),
         ),
         child: Column(
           children: [
@@ -998,7 +998,7 @@ class _CreatePostPageState extends State<CreatePostPage>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -1032,7 +1032,7 @@ class _CreatePostPageState extends State<CreatePostPage>
                 _allowComments = value;
               });
             },
-            activeColor: AppColors.primary,
+            activeThumbColor: AppColors.primary,
             contentPadding: EdgeInsets.zero,
           ),
           
@@ -1059,7 +1059,7 @@ class _CreatePostPageState extends State<CreatePostPage>
                 _isPublic = value;
               });
             },
-            activeColor: AppColors.primary,
+            activeThumbColor: AppColors.primary,
             contentPadding: EdgeInsets.zero,
           ),
         ],

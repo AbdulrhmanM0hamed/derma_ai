@@ -443,7 +443,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-          )).toList(),
+          )),
         ],
       ),
     ).animate().fadeIn(duration: 600.ms, delay: 400.ms).slideX(begin: 0.3);

@@ -28,7 +28,7 @@ class AdvancedChartWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
@@ -200,7 +200,7 @@ class AdvancedChartWidget extends StatelessWidget {
             gradient: LinearGradient(
               colors: [
                 AppColors.primary,
-                AppColors.primary.withOpacity(0.7),
+                AppColors.primary.withValues(alpha:0.7),
               ],
             ),
             barWidth: 3,
@@ -220,8 +220,8 @@ class AdvancedChartWidget extends StatelessWidget {
               show: true,
               gradient: LinearGradient(
                 colors: [
-                  AppColors.primary.withOpacity(0.3),
-                  AppColors.primary.withOpacity(0.1),
+                  AppColors.primary.withValues(alpha:0.3),
+                  AppColors.primary.withValues(alpha:0.1),
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -345,7 +345,7 @@ class AdvancedChartWidget extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [
                     AppColors.primary,
-                    AppColors.primary.withOpacity(0.7),
+                    AppColors.primary.withValues(alpha:0.7),
                   ],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,

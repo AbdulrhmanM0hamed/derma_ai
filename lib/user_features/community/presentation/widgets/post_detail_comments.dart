@@ -114,7 +114,7 @@ class PostDetailComments extends StatelessWidget {
                             .fadeIn()
                             .slideX(begin: 0.5),
                       ),
-                    ).toList(),
+                    ),
                 ],
               );
             },

@@ -17,10 +17,10 @@ class _DoctorSettingsPageState extends State<DoctorSettingsPage> {
   bool _notificationsEnabled = true;
   bool _emailNotifications = true;
   bool _smsNotifications = false;
-  bool _darkMode = false;
+  final bool _darkMode = false;
   bool _autoBackup = true;
-  String _selectedLanguage = 'العربية';
-  String _selectedTheme = 'فاتح';
+  final String _selectedLanguage = 'العربية';
+  final String _selectedTheme = 'فاتح';
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +146,7 @@ class _DoctorSettingsPageState extends State<DoctorSettingsPage> {
                               _notificationsEnabled = value;
                             });
                           },
-                          activeColor: AppColors.primary,
+                          activeThumbColor: AppColors.primary,
                         ),
                       ),
                       SettingsItem(
@@ -160,7 +160,7 @@ class _DoctorSettingsPageState extends State<DoctorSettingsPage> {
                               _emailNotifications = value;
                             });
                           },
-                          activeColor: AppColors.primary,
+                          activeThumbColor: AppColors.primary,
                         ),
                       ),
                       SettingsItem(
@@ -174,7 +174,7 @@ class _DoctorSettingsPageState extends State<DoctorSettingsPage> {
                               _smsNotifications = value;
                             });
                           },
-                          activeColor: AppColors.primary,
+                          activeThumbColor: AppColors.primary,
                         ),
                       ),
                       SettingsItem(
@@ -216,7 +216,7 @@ class _DoctorSettingsPageState extends State<DoctorSettingsPage> {
                               _autoBackup = value;
                             });
                           },
-                          activeColor: AppColors.primary,
+                          activeThumbColor: AppColors.primary,
                         ),
                       ),
                       SettingsItem(

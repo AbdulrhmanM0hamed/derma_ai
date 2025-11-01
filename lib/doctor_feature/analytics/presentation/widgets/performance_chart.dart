@@ -25,7 +25,7 @@ class PerformanceChart extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
@@ -173,7 +173,7 @@ class PerformanceChart extends StatelessWidget {
               ),
               belowBarData: BarAreaData(
                 show: true,
-                color: Colors.blue.withOpacity(0.1),
+                color: Colors.blue.withValues(alpha:0.1),
               ),
             ),
             // Satisfaction line (scaled)

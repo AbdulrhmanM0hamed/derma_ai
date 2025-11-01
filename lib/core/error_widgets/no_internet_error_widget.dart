@@ -26,7 +26,7 @@ class NoInternetErrorWidget extends BaseErrorWidget {
       icon: Icons.wifi_off,
       onRetry: onRetry,
       onSecondaryAction: onSecondaryAction,
-      secondaryActionText: l10n!.check_connection,
+      secondaryActionText: l10n.check_connection,
       primaryColor: Colors.orange,
     );
   }

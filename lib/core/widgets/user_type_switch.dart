@@ -68,7 +68,7 @@ class _UserTypeSwitchState extends State<UserTypeSwitch>
   Widget build(BuildContext context) {
     final primaryColor = widget.isDarkMode ? Colors.white : AppColors.primary;
     final backgroundColor = widget.isDarkMode 
-        ? Colors.white.withOpacity(0.1) 
+        ? Colors.white.withValues(alpha:0.1) 
         : Colors.grey.shade100;
     final textColor = widget.isDarkMode ? Colors.white : AppColors.black;
     final selectedTextColor = widget.isDarkMode ? AppColors.primary : Colors.white;
@@ -79,7 +79,7 @@ class _UserTypeSwitchState extends State<UserTypeSwitch>
         color: backgroundColor,
         borderRadius: BorderRadius.circular(28),
         border: Border.all(
-          color: primaryColor.withOpacity(0.2),
+          color: primaryColor.withValues(alpha:0.2),
           width: 1,
         ),
       ),
@@ -100,7 +100,7 @@ class _UserTypeSwitchState extends State<UserTypeSwitch>
                     borderRadius: BorderRadius.circular(24),
                     boxShadow: [
                       BoxShadow(
-                        color: primaryColor.withOpacity(0.3),
+                        color: primaryColor.withValues(alpha:0.3),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),
@@ -129,7 +129,7 @@ class _UserTypeSwitchState extends State<UserTypeSwitch>
                           size: 20,
                           color: widget.selectedType == UserType.user
                               ? selectedTextColor
-                              : textColor.withOpacity(0.6),
+                              : textColor.withValues(alpha:0.6),
                         ),
                         const SizedBox(width: 8),
                         Text(
@@ -138,7 +138,7 @@ class _UserTypeSwitchState extends State<UserTypeSwitch>
                             fontFamily: FontConstant.cairo,
                             color: widget.selectedType == UserType.user
                                 ? selectedTextColor
-                                : textColor.withOpacity(0.6),
+                                : textColor.withValues(alpha:0.6),
                             fontSize: FontSize.size14,
                           ),
                         ),
@@ -163,7 +163,7 @@ class _UserTypeSwitchState extends State<UserTypeSwitch>
                           size: 20,
                           color: widget.selectedType == UserType.doctor
                               ? selectedTextColor
-                              : textColor.withOpacity(0.6),
+                              : textColor.withValues(alpha:0.6),
                         ),
                         const SizedBox(width: 8),
                         Text(
@@ -172,7 +172,7 @@ class _UserTypeSwitchState extends State<UserTypeSwitch>
                             fontFamily: FontConstant.cairo,
                             color: widget.selectedType == UserType.doctor
                                 ? selectedTextColor
-                                : textColor.withOpacity(0.6),
+                                : textColor.withValues(alpha:0.6),
                             fontSize: FontSize.size14,
                           ),
                         ),
@@ -209,7 +209,7 @@ class CompactUserTypeSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = isDarkMode ? Colors.white : AppColors.primary;
     final backgroundColor = isDarkMode 
-        ? Colors.white.withOpacity(0.1) 
+        ? Colors.white.withValues(alpha:0.1) 
         : Colors.grey.shade100;
 
     return Container(
@@ -218,7 +218,7 @@ class CompactUserTypeSwitch extends StatelessWidget {
         color: backgroundColor,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: primaryColor.withOpacity(0.2),
+          color: primaryColor.withValues(alpha:0.2),
           width: 1,
         ),
       ),
@@ -263,7 +263,7 @@ class CompactUserTypeSwitch extends StatelessWidget {
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: primaryColor.withOpacity(0.3),
+                    color: primaryColor.withValues(alpha:0.3),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),
@@ -278,7 +278,7 @@ class CompactUserTypeSwitch extends StatelessWidget {
               size: 16,
               color: isSelected
                   ? Colors.white
-                  : (isDarkMode ? Colors.white.withOpacity(0.6) : AppColors.grey),
+                  : (isDarkMode ? Colors.white.withValues(alpha:0.6) : AppColors.grey),
             ),
             const SizedBox(width: 6),
             Text(
@@ -287,7 +287,7 @@ class CompactUserTypeSwitch extends StatelessWidget {
                 fontFamily: FontConstant.cairo,
                 color: isSelected
                     ? Colors.white
-                    : (isDarkMode ? Colors.white.withOpacity(0.6) : AppColors.grey),
+                    : (isDarkMode ? Colors.white.withValues(alpha:0.6) : AppColors.grey),
                 fontSize: FontSize.size12,
               ),
             ),

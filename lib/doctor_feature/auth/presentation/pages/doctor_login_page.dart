@@ -76,7 +76,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                   end: Alignment.bottomCenter,
                   colors: [
                     AppColors.primary,
-                    AppColors.primary.withOpacity(0.8),
+                    AppColors.primary.withValues(alpha:0.8),
                   ],
                 ),
               ),
@@ -109,7 +109,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
           width: 120,
           height: 120,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
+            color: Colors.white.withValues(alpha:0.2),
             shape: BoxShape.circle,
           ),
           child: const Icon(
@@ -131,7 +131,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
         Text(
           'مرحباً بك في منصة الأطباء',
           style: getRegularStyle(
-            color: Colors.white.withOpacity(0.9),
+            color: Colors.white.withValues(alpha:0.9),
             fontSize: 16,
             fontFamily: FontConstant.cairo,
           ),
@@ -148,7 +148,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha:0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),

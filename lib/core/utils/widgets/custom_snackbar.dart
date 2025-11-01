@@ -9,7 +9,7 @@ class CustomSnackbar {
   static void showSuccess({
     required BuildContext context,
     required String message,
-    Duration duration = const Duration(milliseconds: 1400),
+    Duration duration = const Duration(milliseconds: 1500),
   }) {
     _showSnackbar(
       context: context,

@@ -91,7 +91,7 @@ class DoctorConsultationFeeWidget extends StatelessWidget {
                       onChanged: (value) {
                         // Handle emergency toggle
                       },
-                      activeColor: Colors.red,
+                      activeThumbColor: Colors.red,
                     ),
                   ],
                 ),

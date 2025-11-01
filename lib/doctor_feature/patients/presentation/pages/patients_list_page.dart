@@ -111,7 +111,7 @@ class _PatientsListPageState extends State<PatientsListPage> {
           ),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: AppColors.primary.withOpacity(0.1),
+              backgroundColor: AppColors.primary.withValues(alpha:0.1),
               child: Text(
                 patientNames[index].substring(0, 1),
                 style: const TextStyle(

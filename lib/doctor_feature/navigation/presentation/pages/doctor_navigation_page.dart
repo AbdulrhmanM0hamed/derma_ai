@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../appointments/presentation/pages/doctor_appointments_page.dart';
 import '../../../home/presentation/pages/doctor_home_page.dart';
-import '../../../patients/presentation/pages/patients_list_page.dart';
 import '../../../profile/presentation/pages/doctor_profile_page.dart';
 
 class DoctorNavigationPage extends StatefulWidget {
@@ -21,8 +19,8 @@ class _DoctorNavigationPageState extends State<DoctorNavigationPage> {
 
   final List<Widget> _pages = [
     const DoctorHomePage(),
-    const DoctorAppointmentsPage(),
-    const PatientsListPage(),
+    // const DoctorAppointmentsPage(),
+    // const PatientsListPage(),
     const DoctorProfilePage(),
   ];
 
@@ -45,7 +43,7 @@ class _DoctorNavigationPageState extends State<DoctorNavigationPage> {
         ),
         bottomNavigationBar: Material(
           elevation: 8.0,
-          shadowColor: Colors.black.withOpacity(0.1),
+          shadowColor: Colors.black.withValues(alpha:0.1),
           child: SafeArea(
             child: CircleBottomNavigation(
               initialSelection: currentPage,
@@ -70,20 +68,20 @@ class _DoctorNavigationPageState extends State<DoctorNavigationPage> {
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
-                TabData(
-                  icon: Icons.calendar_month_rounded,
-                  title: AppLocalizations.of(context)!.appointments,
-                  iconSize: 24,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
-                TabData(
-                  icon: Icons.people_alt_rounded,
-                  title: AppLocalizations.of(context)!.patients,
-                  iconSize: 24,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
+                // TabData(
+                //   icon: Icons.calendar_month_rounded,
+                //   title: AppLocalizations.of(context)!.appointments,
+                //   iconSize: 24,
+                //   fontSize: 12,
+                //   fontWeight: FontWeight.w600,
+                // ),
+                // TabData(
+                //   icon: Icons.people_alt_rounded,
+                //   title: AppLocalizations.of(context)!.patients,
+                //   iconSize: 24,
+                //   fontSize: 12,
+                //   fontWeight: FontWeight.w600,
+                // ),
                 TabData(
                   icon: Icons.person_rounded,
                   title: AppLocalizations.of(context)!.profile,

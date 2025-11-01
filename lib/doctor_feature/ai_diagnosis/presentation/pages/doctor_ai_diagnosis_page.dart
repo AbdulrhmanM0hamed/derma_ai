@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/utils/animations/app_animations.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../widgets/diagnosis_result_card.dart';
 import '../widgets/patient_history_card.dart';
-import '../widgets/ai_analysis_widget.dart';
 
 class DoctorAiDiagnosisPage extends StatefulWidget {
   const DoctorAiDiagnosisPage({super.key});
@@ -92,7 +90,7 @@ class _DoctorAiDiagnosisPageState extends State<DoctorAiDiagnosisPage>
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha:0.05),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -120,7 +118,7 @@ class _DoctorAiDiagnosisPageState extends State<DoctorAiDiagnosisPage>
                     children: [
                       CircleAvatar(
                         radius: 25,
-                        backgroundColor: AppColors.primary.withOpacity(0.1),
+                        backgroundColor: AppColors.primary.withValues(alpha:0.1),
                         child: const Icon(
                           Icons.person,
                           color: AppColors.primary,
@@ -169,7 +167,7 @@ class _DoctorAiDiagnosisPageState extends State<DoctorAiDiagnosisPage>
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha:0.05),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -192,12 +190,12 @@ class _DoctorAiDiagnosisPageState extends State<DoctorAiDiagnosisPage>
                   width: double.infinity,
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: AppColors.primary.withOpacity(0.3),
+                      color: AppColors.primary.withValues(alpha:0.3),
                       width: 2,
                       style: BorderStyle.solid,
                     ),
                     borderRadius: BorderRadius.circular(12),
-                    color: AppColors.primary.withOpacity(0.05),
+                    color: AppColors.primary.withValues(alpha:0.05),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -275,7 +273,7 @@ class _DoctorAiDiagnosisPageState extends State<DoctorAiDiagnosisPage>
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha:0.05),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),

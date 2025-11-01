@@ -74,7 +74,7 @@ class _UserTypeSelectorState extends State<UserTypeSelector>
         color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(25),
         border: Border.all(
-          color: AppColors.primary.withOpacity(0.2),
+          color: AppColors.primary.withValues(alpha:0.2),
           width: 1,
         ),
       ),
@@ -95,7 +95,7 @@ class _UserTypeSelectorState extends State<UserTypeSelector>
                     borderRadius: BorderRadius.circular(22),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.primary.withOpacity(0.3),
+                        color: AppColors.primary.withValues(alpha:0.3),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),

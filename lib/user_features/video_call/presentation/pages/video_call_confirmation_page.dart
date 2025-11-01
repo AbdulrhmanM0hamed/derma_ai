@@ -322,7 +322,7 @@ class VideoCallConfirmationPage extends StatelessWidget {
                 ),
               ],
             ),
-          )).toList(),
+          )),
         ],
       ),
     ).animate().fadeIn(duration: 600.ms, delay: 400.ms).slideY(begin: 0.3);

@@ -111,9 +111,9 @@ class TimeSlotWidget extends StatelessWidget {
     final bool isAvailable = timeSlot['available'] ?? false;
     
     if (isAvailable) {
-      return Colors.green.withOpacity(0.1);
+      return Colors.green.withValues(alpha:0.1);
     } else {
-      return Colors.red.withOpacity(0.1);
+      return Colors.red.withValues(alpha:0.1);
     }
   }
 
@@ -121,9 +121,9 @@ class TimeSlotWidget extends StatelessWidget {
     final bool isAvailable = timeSlot['available'] ?? false;
     
     if (isAvailable) {
-      return Colors.green.withOpacity(0.3);
+      return Colors.green.withValues(alpha:0.3);
     } else {
-      return Colors.red.withOpacity(0.3);
+      return Colors.red.withValues(alpha:0.3);
     }
   }
 

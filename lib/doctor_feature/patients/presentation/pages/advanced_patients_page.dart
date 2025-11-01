@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/utils/theme/app_colors.dart';
-import '../../../../core/utils/animations/app_animations.dart';
 import '../widgets/patient_detail_card.dart';
 import '../widgets/medical_history_widget.dart';
 import '../widgets/treatment_plan_widget.dart';
@@ -102,7 +100,7 @@ class _AdvancedPatientsPageState extends State<AdvancedPatientsPage>
                   child: Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha:0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
@@ -278,7 +276,7 @@ class _AdvancedPatientsPageState extends State<AdvancedPatientsPage>
                   children: [
                     CircleAvatar(
                       radius: 30,
-                      backgroundColor: AppColors.primary.withOpacity(0.1),
+                      backgroundColor: AppColors.primary.withValues(alpha:0.1),
                       child: Text(
                         patient['name'][0],
                         style: TextStyle(

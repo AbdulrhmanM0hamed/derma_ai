@@ -253,7 +253,7 @@ class VideoCallPackageCard extends StatelessWidget {
               ),
             ],
           ),
-        )).toList(),
+        )),
       ],
     );
   }
