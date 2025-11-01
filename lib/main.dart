@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/services/service_locatores.dart' as di;
 import 'core/utils/helper/on_genrated_routes.dart';
 import 'core/utils/theme/app_theme.dart';
+import 'core/network/interceptors/language_interceptor.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -37,9 +38,10 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
+        navigatorKey: NavigatorKey.key, // إضافة NavigatorKey
         initialRoute: AppRoutes.splash,
         onGenerateRoute: onGeneratedRoutes,
-        locale: const Locale('ar'),
+        locale: const Locale('en'),
         supportedLocales: AppLocalizations.supportedLocales,
         localizationsDelegates: const [
           AppLocalizations.delegate,

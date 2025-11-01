@@ -7,11 +7,14 @@ import '../../services/service_locatores.dart';
 class LanguageInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    // إضافة header اللغة العربية (ثابت للتطبيق العربي)
-    options.headers['lang'] = 'ar';
+    // الحصول على اللغة الحالية من النظام
+    final currentLocale = _getCurrentLocale();
+    
+    // إضافة header اللغة حسب لغة التطبيق
+    options.headers['lang'] = currentLocale.languageCode;
     
     // يمكن أيضاً إضافة Accept-Language header
-    options.headers['Accept-Language'] = 'ar';
+    options.headers['Accept-Language'] = currentLocale.languageCode;
     
     // إضافة Authorization header إذا كان متاحاً
     try {
@@ -34,10 +37,15 @@ class LanguageInterceptor extends Interceptor {
     try {
       final context = _getContext();
       if (context != null) {
-        return Localizations.localeOf(context);
+        final locale = Localizations.localeOf(context);
+        // التأكد من أن اللغة مدعومة
+        if (locale.languageCode == 'ar' || locale.languageCode == 'en') {
+          return locale;
+        }
       }
     } catch (e) {
       // في حالة عدم توفر context
+      print('Error getting locale from context: $e');
     }
     
     // الرجوع إلى اللغة الافتراضية من النظام
@@ -47,7 +55,7 @@ class LanguageInterceptor extends Interceptor {
     if (systemLocale.languageCode == 'ar') {
       return const Locale('ar');
     } else {
-      return const Locale('en');
+      return const Locale('en'); // افتراضي إنجليزي
     }
   }
   
