@@ -270,7 +270,7 @@ class _ReportsPageState extends State<ReportsPage>
             crossAxisCount: 2,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            childAspectRatio: 1.2,
+            childAspectRatio: 1.0,
             children: [
               ReportCard(
                 title: 'الإيرادات الشهرية',

@@ -32,4 +32,10 @@ class ApiEndpoints {
   // Health Tips endpoints
   static const String dailyTipsActive = 'health-tips/daily-tips/active';
   static const String dailyTipsLatest = 'health-tips/daily-tips/latest';
+
+  //article
+  static const String medicalArticlesActive =
+      "health-tips/medical-articles/active";
+  static String medicalArticlesActiveByID( int id) =>
+      "health-tips/medical-articles/$id";
 }

@@ -1,13 +1,15 @@
+import 'package:derma_ai/user_features/health_tips/data/dummy_health_tips_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
-import '../../data/dummy_health_tips_data.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../data/models/medical_article_model.dart';
 
 class ArticleCard extends StatefulWidget {
-  final Article article;
+  final MedicalArticleModel article;
   final int index;
 
   const ArticleCard({super.key, required this.article, required this.index});
@@ -174,7 +176,7 @@ class _ArticleCardState extends State<ArticleCard>
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Text(
-                                      'مقال طبي',
+                                      AppLocalizations.of(context)!.medicalArticles,
                                       style: getBoldStyle(
                                         color: Colors.white,
                                         fontSize: 10,
@@ -199,7 +201,7 @@ class _ArticleCardState extends State<ArticleCard>
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                widget.article.source,
+                                widget.article.subTitle,
                                 style: getRegularStyle(
                                   color: AppColors.textSecondary,
                                   fontSize: 14,
@@ -254,7 +256,7 @@ class _ArticleCardState extends State<ArticleCard>
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'مقال طبي شامل يحتوي على معلومات مفيدة وموثقة من مصادر طبية معتمدة لمساعدتك في فهم الموضوع بشكل أفضل.',
+                            widget.article.description,
                             style: getRegularStyle(
                               color: AppColors.textPrimary,
                               fontSize: 15,
@@ -285,7 +287,7 @@ class _ArticleCardState extends State<ArticleCard>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  _isExpanded ? 'عرض أقل' : 'اقرأ المزيد',
+                                  _isExpanded ? AppLocalizations.of(context)!.readLess : AppLocalizations.of(context)!.readMore,
                                   style: getSemiBoldStyle(
                                     color: AppColors.primary,
                                     fontSize: 14,

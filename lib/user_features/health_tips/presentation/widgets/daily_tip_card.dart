@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/models/health_tip_model.dart';
 
 class DailyTipCard extends StatefulWidget {
@@ -50,6 +51,7 @@ class _DailyTipCardState extends State<DailyTipCard>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
           margin: EdgeInsets.zero,
@@ -177,7 +179,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Text(
-                                      'جديد',
+                                      l10n.newLabel,
                                       style: getBoldStyle(
                                         color: Colors.white,
                                         fontSize: 10,
@@ -187,7 +189,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
-                                    'نصيحة اليوم',
+                                    l10n.dailyTip,
                                     style: getBoldStyle(
                                       color: colorScheme.primary,
                                       fontSize: 20,
@@ -242,7 +244,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                widget.tip?.title ?? 'حماية من أشعة الشمس',
+                                widget.tip?.title ?? l10n.sunProtection,
                                 style: getBoldStyle(
                                   color: AppColors.primary,
                                   fontSize: 16,
@@ -256,7 +258,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                           if (_isExpanded) ...[
                             const SizedBox(height: 12),
                             Text(
-                              widget.tip?.description ?? '',
+                              widget.tip?.description ?? l10n.defaultTipDescription,
                               style: getRegularStyle(
                                 color: AppColors.textPrimary,
                                 fontSize: 15,
@@ -276,7 +278,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  _isExpanded ? 'عرض أقل' : 'اقرأ المزيد',
+                                  _isExpanded ? l10n.readLess : l10n.readMore,
                                   style: getSemiBoldStyle(
                                     color: AppColors.primary,
                                     fontSize: 14,
@@ -330,7 +332,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      'دقيقة واحدة',
+                                      l10n.today,
                                       style: getSemiBoldStyle(
                                         color: AppColors.primary,
                                         fontSize: 12,
@@ -353,7 +355,7 @@ class _DailyTipCardState extends State<DailyTipCard>
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: Text(
-                                  'اليوم',
+                                  l10n.today,
                                   style: getRegularStyle(
                                     color: AppColors.secondary,
                                     fontSize: 11,

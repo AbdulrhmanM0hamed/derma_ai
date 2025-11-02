@@ -6,6 +6,7 @@ import '../../../../core/services/service_locatores.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../bloc/health_tips_cubit.dart';
 import '../bloc/health_tips_state.dart';
 import '../widgets/daily_tip_card.dart';
@@ -81,8 +82,10 @@ class _AllHealthTipsContentState extends State<_AllHealthTipsContent> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
-      appBar: CustomAppBar(title: 'جميع النصائح الصحية'),
+      appBar: CustomAppBar(title: l10n.allHealthTips),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
         controller: _scrollController,
@@ -116,8 +119,7 @@ class _AllHealthTipsContentState extends State<_AllHealthTipsContent> {
                 }
 
                 return SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
+                  delegate: SliverChildBuilderDelegate((context, index) {
                     if (index < tips.length) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(
@@ -144,7 +146,7 @@ class _AllHealthTipsContentState extends State<_AllHealthTipsContent> {
                                           .loadMoreTips();
                                     },
                                     child: Text(
-                                      'تحميل المزيد',
+                                      l10n.loadMore,
                                       style: getMediumStyle(
                                         color: AppColors.primary,
                                         fontSize: 16,
@@ -171,7 +173,7 @@ class _AllHealthTipsContentState extends State<_AllHealthTipsContent> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'خطأ في تحميل النصائح',
+                          l10n.errorLoadingTips,
                           style: getBoldStyle(
                             color: Colors.red.shade700,
                             fontSize: 18,
@@ -213,8 +215,8 @@ class _AllHealthTipsContentState extends State<_AllHealthTipsContent> {
                 );
               }
 
-              return const SliverFillRemaining(
-                child: Center(child: Text('لا توجد نصائح متاحة')),
+              return SliverFillRemaining(
+                child: Center(child: Text(l10n.noTipsAvailable)),
               );
             },
           ),

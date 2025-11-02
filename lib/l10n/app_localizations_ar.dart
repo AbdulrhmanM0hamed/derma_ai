@@ -878,4 +878,95 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get clinicLocation => 'موقع العيادة';
+
+  @override
+  String get dailyTip => 'نصيحة اليوم';
+
+  @override
+  String get allHealthTips => 'جميع النصائح الصحية';
+
+  @override
+  String get medicalArticles => 'مقالات طبية';
+
+  @override
+  String get diseaseInformation => 'معلومات الأمراض';
+
+  @override
+  String get loadMore => 'تحميل المزيد';
+
+  @override
+  String get errorLoadingTips => 'خطأ في تحميل النصائح';
+
+  @override
+  String get noTipsAvailable => 'لا توجد نصائح متاحة';
+
+  @override
+  String get readMore => 'اقرأ المزيد';
+
+  @override
+  String get readLess => 'اقرأ أقل';
+
+  @override
+  String get bookmark => 'حفظ';
+
+  @override
+  String get bookmarked => 'محفوظ';
+
+  @override
+  String get share => 'مشاركة';
+
+  @override
+  String get tipShared => 'تم مشاركة النصيحة';
+
+  @override
+  String get sunProtection => 'حماية من أشعة الشمس';
+
+  @override
+  String get defaultTipDescription =>
+      'استخدم واقي الشمس يومياً حتى في الأيام الغائمة. الأشعة فوق البنفسجية تخترق الغيوم وتسبب أضراراً للبشرة.';
+
+  @override
+  String get skinCareRoutine => 'روتين العناية بالبشرة';
+
+  @override
+  String get hydration => 'الترطيب';
+
+  @override
+  String get nutrition => 'التغذية';
+
+  @override
+  String get sleepAndSkin => 'النوم والبشرة';
+
+  @override
+  String get stressManagement => 'إدارة التوتر';
+
+  @override
+  String get exerciseAndSkin => 'الرياضة والبشرة';
+
+  @override
+  String get skinProtection => 'حماية البشرة';
+
+  @override
+  String get naturalRemedies => 'العلاجات الطبيعية';
+
+  @override
+  String get skinTypes => 'أنواع البشرة';
+
+  @override
+  String get commonSkinProblems => 'مشاكل البشرة الشائعة';
+
+  @override
+  String get seasonalSkinCare => 'العناية الموسمية بالبشرة';
+
+  @override
+  String get antiAging => 'مكافحة الشيخوخة';
+
+  @override
+  String get acneTreatment => 'علاج حب الشباب';
+
+  @override
+  String get sensitiveSkiCare => 'العناية بالبشرة الحساسة';
+
+  @override
+  String get skinHygiene => 'نظافة البشرة';
 }

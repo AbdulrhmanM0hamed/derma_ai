@@ -1,4 +1,5 @@
 import 'package:derma_ai/user_features/doctor_profile/doctor_profile.dart';
+import 'package:derma_ai/user_features/health_tips/presentation/pages/all_medical_articles_page.dart';
 import 'package:derma_ai/user_features/navigation/presentation/pages/main_navigation_page.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +50,7 @@ class AppRoutes {
   static const String mainNavigationPage = '/main-navigation-page';
   static const String doctorProfile = '/doctor-profile';
   static const String doctorNavigation = '/doctor-navigation';
-  
+
   // Doctor Feature Routes
   static const String doctorHome = '/doctor-home';
   static const String doctorAiDiagnosis = '/doctor-ai-diagnosis';
@@ -91,19 +92,23 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
 
     case AppRoutes.resetPassword:
       final args = settings.arguments as Map<String, String>;
-      return _createRoute(ResetPasswordPage(
-        email: args['email']!,
-        resetToken: args['resetToken']!,
-      ));
+      return _createRoute(
+        ResetPasswordPage(
+          email: args['email']!,
+          resetToken: args['resetToken']!,
+        ),
+      );
 
     case AppRoutes.otpVerification:
       final args = settings.arguments as Map<String, dynamic>;
-      return _createRoute(OtpVerificationPage(
-        userId: args['userId'] as int,
-        email: args['email'] as String,
-        phone: args['phone'] as String? ?? '',
-        type: args['type'] as String? ?? 'email',
-      ));
+      return _createRoute(
+        OtpVerificationPage(
+          userId: args['userId'] as int,
+          email: args['email'] as String,
+          phone: args['phone'] as String? ?? '',
+          type: args['type'] as String? ?? 'email',
+        ),
+      );
 
     case AppRoutes.home:
       return _createRoute(const HomePage());
@@ -124,36 +129,41 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
     // Doctor Feature Routes
     case AppRoutes.doctorHome:
       return _createRoute(const DoctorHomePage());
-      
+
     case AppRoutes.doctorAiDiagnosis:
       return _createRoute(const DoctorAiDiagnosisPage());
-      
+
     case AppRoutes.prescriptions:
       return _createRoute(const PrescriptionsPage());
-      
+
+    case AllMedicalArticlesPage.routeName:
+      return _createRoute(const AllMedicalArticlesPage());
+
     case AppRoutes.reports:
       return _createRoute(const ReportsPage());
-      
+
     case AppRoutes.advancedPatients:
       return _createRoute(const AdvancedPatientsPage());
-      
+
     case AppRoutes.advancedAppointments:
       return _createRoute(const AdvancedAppointmentsPage());
-      
+
     case AppRoutes.doctorSettings:
       return _createRoute(const DoctorSettingsPage());
-      
+
     case AppRoutes.analyticsDashboard:
       return _createRoute(const AnalyticsDashboardPage());
 
     case AppRoutes.doctorOtpVerification:
       final args = settings.arguments as Map<String, dynamic>;
-      return _createRoute(DoctorOtpVerificationPage(
-        userId: args['userId'] as int,
-        email: args['email'] as String,
-        phone: args['phone'] as String? ?? '',
-        type: args['type'] as String? ?? 'email',
-      ));
+      return _createRoute(
+        DoctorOtpVerificationPage(
+          userId: args['userId'] as int,
+          email: args['email'] as String,
+          phone: args['phone'] as String? ?? '',
+          type: args['type'] as String? ?? 'email',
+        ),
+      );
 
     case AppRoutes.allHealthTips:
       return _createRoute(const AllHealthTipsPage());

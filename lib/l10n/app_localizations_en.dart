@@ -889,4 +889,95 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get clinicLocation => 'Clinic Location';
+
+  @override
+  String get dailyTip => 'Daily Tip';
+
+  @override
+  String get allHealthTips => 'All Health Tips';
+
+  @override
+  String get medicalArticles => 'Medical Articles';
+
+  @override
+  String get diseaseInformation => 'Disease Information';
+
+  @override
+  String get loadMore => 'Load More';
+
+  @override
+  String get errorLoadingTips => 'Error loading tips';
+
+  @override
+  String get noTipsAvailable => 'No tips available';
+
+  @override
+  String get readMore => 'Read More';
+
+  @override
+  String get readLess => 'Read Less';
+
+  @override
+  String get bookmark => 'Bookmark';
+
+  @override
+  String get bookmarked => 'Bookmarked';
+
+  @override
+  String get share => 'Share';
+
+  @override
+  String get tipShared => 'Tip shared';
+
+  @override
+  String get sunProtection => 'Sun Protection';
+
+  @override
+  String get defaultTipDescription =>
+      'Use sunscreen daily even on cloudy days. UV rays penetrate clouds and cause skin damage.';
+
+  @override
+  String get skinCareRoutine => 'Skin Care Routine';
+
+  @override
+  String get hydration => 'Hydration';
+
+  @override
+  String get nutrition => 'Nutrition';
+
+  @override
+  String get sleepAndSkin => 'Sleep and Skin';
+
+  @override
+  String get stressManagement => 'Stress Management';
+
+  @override
+  String get exerciseAndSkin => 'Exercise and Skin';
+
+  @override
+  String get skinProtection => 'Skin Protection';
+
+  @override
+  String get naturalRemedies => 'Natural Remedies';
+
+  @override
+  String get skinTypes => 'Skin Types';
+
+  @override
+  String get commonSkinProblems => 'Common Skin Problems';
+
+  @override
+  String get seasonalSkinCare => 'Seasonal Skin Care';
+
+  @override
+  String get antiAging => 'Anti-Aging';
+
+  @override
+  String get acneTreatment => 'Acne Treatment';
+
+  @override
+  String get sensitiveSkiCare => 'Sensitive Skin Care';
+
+  @override
+  String get skinHygiene => 'Skin Hygiene';
 }

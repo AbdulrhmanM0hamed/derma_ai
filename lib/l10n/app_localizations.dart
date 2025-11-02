@@ -1789,6 +1789,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clinic Location'**
   String get clinicLocation;
+
+  /// No description provided for @dailyTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Tip'**
+  String get dailyTip;
+
+  /// No description provided for @allHealthTips.
+  ///
+  /// In en, this message translates to:
+  /// **'All Health Tips'**
+  String get allHealthTips;
+
+  /// No description provided for @medicalArticles.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Articles'**
+  String get medicalArticles;
+
+  /// No description provided for @diseaseInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Disease Information'**
+  String get diseaseInformation;
+
+  /// No description provided for @loadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Load More'**
+  String get loadMore;
+
+  /// No description provided for @errorLoadingTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading tips'**
+  String get errorLoadingTips;
+
+  /// No description provided for @noTipsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No tips available'**
+  String get noTipsAvailable;
+
+  /// No description provided for @readMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Read More'**
+  String get readMore;
+
+  /// No description provided for @readLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Less'**
+  String get readLess;
+
+  /// No description provided for @bookmark.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark'**
+  String get bookmark;
+
+  /// No description provided for @bookmarked.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarked'**
+  String get bookmarked;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @tipShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip shared'**
+  String get tipShared;
+
+  /// No description provided for @sunProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun Protection'**
+  String get sunProtection;
+
+  /// No description provided for @defaultTipDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Use sunscreen daily even on cloudy days. UV rays penetrate clouds and cause skin damage.'**
+  String get defaultTipDescription;
+
+  /// No description provided for @skinCareRoutine.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin Care Routine'**
+  String get skinCareRoutine;
+
+  /// No description provided for @hydration.
+  ///
+  /// In en, this message translates to:
+  /// **'Hydration'**
+  String get hydration;
+
+  /// No description provided for @nutrition.
+  ///
+  /// In en, this message translates to:
+  /// **'Nutrition'**
+  String get nutrition;
+
+  /// No description provided for @sleepAndSkin.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep and Skin'**
+  String get sleepAndSkin;
+
+  /// No description provided for @stressManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Stress Management'**
+  String get stressManagement;
+
+  /// No description provided for @exerciseAndSkin.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise and Skin'**
+  String get exerciseAndSkin;
+
+  /// No description provided for @skinProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin Protection'**
+  String get skinProtection;
+
+  /// No description provided for @naturalRemedies.
+  ///
+  /// In en, this message translates to:
+  /// **'Natural Remedies'**
+  String get naturalRemedies;
+
+  /// No description provided for @skinTypes.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin Types'**
+  String get skinTypes;
+
+  /// No description provided for @commonSkinProblems.
+  ///
+  /// In en, this message translates to:
+  /// **'Common Skin Problems'**
+  String get commonSkinProblems;
+
+  /// No description provided for @seasonalSkinCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Seasonal Skin Care'**
+  String get seasonalSkinCare;
+
+  /// No description provided for @antiAging.
+  ///
+  /// In en, this message translates to:
+  /// **'Anti-Aging'**
+  String get antiAging;
+
+  /// No description provided for @acneTreatment.
+  ///
+  /// In en, this message translates to:
+  /// **'Acne Treatment'**
+  String get acneTreatment;
+
+  /// No description provided for @sensitiveSkiCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensitive Skin Care'**
+  String get sensitiveSkiCare;
+
+  /// No description provided for @skinHygiene.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin Hygiene'**
+  String get skinHygiene;
 }
 
 class _AppLocalizationsDelegate
