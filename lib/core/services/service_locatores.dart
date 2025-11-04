@@ -7,7 +7,10 @@ import '../../../doctor_feature/auth/data/repositories/doctor_auth_repository.da
 import '../../../doctor_feature/auth/presentation/bloc/doctor_auth_cubit.dart';
 import '../../user_features/health_tips/data/repositories/health_tips_repository_new.dart';
 import '../../user_features/health_tips/presentation/bloc/health_tips_cubit.dart';
+import '../../user_features/profile/data/repositories/profile_repository.dart';
+import '../../user_features/profile/presentation/bloc/profile_cubit.dart';
 import '../network/api_service.dart';
+import '../network/dio_client.dart';
 import '../services/token_storage_service.dart';
 
 final sl = GetIt.instance;
@@ -20,6 +23,9 @@ Future<void> init() async {
   //! Core Services
   sl.registerLazySingleton(() => TokenStorageService(sl()));
   sl.registerLazySingleton(() => ApiService());
+  
+  // Initialize DioClient with Auth Interceptor
+  DioClient.instance.initializeAuth(sl<TokenStorageService>());
 
   //! Features - Auth
   // Repository
@@ -52,4 +58,13 @@ Future<void> init() async {
 
   // Cubit
   sl.registerFactory(() => HealthTipsCubit(sl()));
+
+  //! Features - Profile
+  // Repository
+  sl.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(sl()),
+  );
+
+  // Cubit - Changed to singleton to maintain state across navigation
+  sl.registerLazySingleton(() => ProfileCubit(sl()));
 }

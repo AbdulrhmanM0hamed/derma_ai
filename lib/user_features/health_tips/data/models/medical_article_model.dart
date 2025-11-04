@@ -2,12 +2,9 @@ import 'package:equatable/equatable.dart';
 
 class MedicalArticleModel extends Equatable {
   final int id;
-  final String titleAr;
-  final String? titleEn;
-  final String subTitleAr;
-  final String? subTitleEn;
-  final String descriptionAr;
-  final String? descriptionEn;
+  final String title;
+  final String subTitle;
+  final String description;
   final int createdBy;
   final int updatedBy;
   final DateTime createdAt;
@@ -16,12 +13,9 @@ class MedicalArticleModel extends Equatable {
 
   const MedicalArticleModel({
     required this.id,
-    required this.titleAr,
-    this.titleEn,
-    required this.subTitleAr,
-    this.subTitleEn,
-    required this.descriptionAr,
-    this.descriptionEn,
+    required this.title,
+    required this.subTitle,
+    required this.description,
     required this.createdBy,
     required this.updatedBy,
     required this.createdAt,
@@ -29,20 +23,12 @@ class MedicalArticleModel extends Equatable {
     required this.isActive,
   });
 
-  // Getters for localized content
-  String get title => titleEn ?? titleAr;
-  String get subTitle => subTitleEn ?? subTitleAr;
-  String get description => descriptionEn ?? descriptionAr;
-
   factory MedicalArticleModel.fromJson(Map<String, dynamic> json) {
     return MedicalArticleModel(
       id: json['id'] as int,
-      titleAr: json['title_ar'] as String,
-      titleEn: json['title_en'] as String?,
-      subTitleAr: json['sub_title_ar'] as String,
-      subTitleEn: json['sub_title_en'] as String?,
-      descriptionAr: json['description_ar'] as String,
-      descriptionEn: json['description_en'] as String?,
+      title: json['title'] as String,
+      subTitle: json['sub_title'] as String,
+      description: json['description'] as String,
       createdBy: json['created_by'] as int,
       updatedBy: json['updated_by'] as int,
       createdAt: DateTime.parse(json['created_at'] as String),
@@ -54,12 +40,9 @@ class MedicalArticleModel extends Equatable {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'title_ar': titleAr,
-      'title_en': titleEn,
-      'sub_title_ar': subTitleAr,
-      'sub_title_en': subTitleEn,
-      'description_ar': descriptionAr,
-      'description_en': descriptionEn,
+      'title': title,
+      'sub_title': subTitle,
+      'description': description,
       'created_by': createdBy,
       'updated_by': updatedBy,
       'created_at': createdAt.toIso8601String(),
@@ -71,12 +54,9 @@ class MedicalArticleModel extends Equatable {
   @override
   List<Object?> get props => [
         id,
-        titleAr,
-        titleEn,
-        subTitleAr,
-        subTitleEn,
-        descriptionAr,
-        descriptionEn,
+        title,
+        subTitle,
+        description,
         createdBy,
         updatedBy,
         createdAt,

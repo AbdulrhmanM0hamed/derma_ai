@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         navigatorKey: NavigatorKey.key, // إضافة NavigatorKey
         initialRoute: AppRoutes.splash,
         onGenerateRoute: onGeneratedRoutes,
-        locale: const Locale('ar'),
+        locale: const Locale('en'),
         supportedLocales: AppLocalizations.supportedLocales,
         localizationsDelegates: const [
           AppLocalizations.delegate,

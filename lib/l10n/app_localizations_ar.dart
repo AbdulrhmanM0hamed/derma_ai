@@ -424,10 +424,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enterPhoneNumber => 'أدخل رقم هاتفك';
 
   @override
-  String get pleaseEnterPhoneNumber => 'يرجى إدخال رقم الهاتف';
+  String get pleaseEnterPhoneNumber => 'الرجاء إدخال رقم الهاتف';
 
   @override
-  String get pleaseEnterValidPhoneNumber => 'يرجى إدخال رقم هاتف صحيح';
+  String get pleaseEnterValidPhoneNumber => 'الرجاء إدخال رقم هاتف صحيح';
 
   @override
   String get welcomeToDermaAI => 'انضم إلينا وابدأ رحلتك في العناية بالبشرة';
@@ -969,4 +969,118 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get skinHygiene => 'نظافة البشرة';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get contactInformation => 'معلومات الاتصال';
+
+  @override
+  String get emergencyContact => 'جهة الاتصال في حالات الطوارئ';
+
+  @override
+  String get preferences => 'التفضيلات';
+
+  @override
+  String get dateOfBirth => 'تاريخ الميلاد';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get male => 'ذكر';
+
+  @override
+  String get female => 'أنثى';
+
+  @override
+  String get other => 'آخر';
+
+  @override
+  String get nationality => 'الجنسية';
+
+  @override
+  String get emergencyContactName => 'اسم جهة الاتصال في حالات الطوارئ';
+
+  @override
+  String get emergencyContactPhone => 'رقم جهة الاتصال في حالات الطوارئ';
+
+  @override
+  String get emergencyContactRelationship => 'العلاقة';
+
+  @override
+  String get timezone => 'المنطقة الزمنية';
+
+  @override
+  String get languagePreference => 'اللغة المفضلة';
+
+  @override
+  String get arabic => 'العربية';
+
+  @override
+  String get english => 'الإنجليزية';
+
+  @override
+  String get saveChanges => 'حفظ التغييرات';
+
+  @override
+  String get profileUpdateFailed => 'فشل تحديث الملف الشخصي';
+
+  @override
+  String get profileUpdatedSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
+
+  @override
+  String get changeProfilePicture => 'تغيير الصورة الشخصية';
+
+  @override
+  String get uploadPicture => 'رفع صورة';
+
+  @override
+  String get deletePicture => 'حذف الصورة';
+
+  @override
+  String get chooseImageSource => 'اختر مصدر الصورة';
+
+  @override
+  String get camera => 'الكاميرا';
+
+  @override
+  String get gallery => 'المعرض';
+
+  @override
+  String get pictureUploadedSuccessfully => 'تم رفع الصورة بنجاح';
+
+  @override
+  String get pictureDeletedSuccessfully => 'تم حذف الصورة بنجاح';
+
+  @override
+  String get pictureUploadFailed => 'فشل رفع الصورة';
+
+  @override
+  String get pictureDeleteFailed => 'فشل حذف الصورة';
+
+  @override
+  String get confirmDeletePicture => 'هل تريد حذف الصورة الشخصية؟';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get pleaseSelectDateOfBirth => 'الرجاء اختيار تاريخ الميلاد';
+
+  @override
+  String get pleaseSelectGender => 'الرجاء اختيار الجنس';
+
+  @override
+  String get selectDate => 'اختر التاريخ';
+
+  @override
+  String get selectGender => 'اختر الجنس';
+
+  @override
+  String get optional => 'اختياري';
+
+  @override
+  String get required => 'مطلوب';
 }

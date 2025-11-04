@@ -9,6 +9,7 @@ class TokenStorageService {
   static const String _userUuidKey = 'user_uuid';
   static const String _userEmailKey = 'user_email';
   static const String _userStatusKey = 'user_status';
+  static const String _entityTypeKey = 'entity_type';
   static const String _onboardingCompletedKey = 'onboarding_completed';
   static const String _rememberMeKey = 'remember_me';
   static const String _rememberedEmailKey = 'remembered_email';
@@ -56,6 +57,17 @@ class TokenStorageService {
   String? get userUuid => _prefs.getString(_userUuidKey);
   String? get userEmail => _prefs.getString(_userEmailKey);
   String? get userStatus => _prefs.getString(_userStatusKey);
+  String? get entityType => _prefs.getString(_entityTypeKey);
+
+  // Save entity type (user or doctor)
+  Future<void> saveEntityType(String type) async {
+    await _prefs.setString(_entityTypeKey, type);
+  }
+
+  // Save refresh token
+  Future<void> saveRefreshToken(String token) async {
+    await _prefs.setString(_refreshTokenKey, token);
+  }
 
   // Check if user is logged in
   bool get isLoggedIn => accessToken != null && accessToken!.isNotEmpty;

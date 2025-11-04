@@ -1,6 +1,8 @@
 import 'package:derma_ai/core/error/dio_exception_handler.dart';
 import 'package:dio/dio.dart';
+import '../services/token_storage_service.dart';
 import '../utils/constant/api_endpoints.dart';
+import 'interceptors/auth_interceptor.dart';
 import 'interceptors/language_interceptor.dart';
 import 'interceptors/retry_interceptor.dart';
 import 'interceptors/logging_interceptor.dart';
@@ -24,6 +26,14 @@ class DioClient {
   
   Dio get dio => _dio;
   
+  // Initialize with token storage for auth interceptor
+  void initializeAuth(TokenStorageService tokenStorage) {
+    // Remove old auth interceptor if exists
+    _dio.interceptors.removeWhere((interceptor) => interceptor is AuthInterceptor);
+    // Add new auth interceptor at the beginning
+    _dio.interceptors.insert(0, AuthInterceptor(tokenStorage, _dio));
+  }
+  
   void _setupDio() {
     // Base options
     _dio.options = BaseOptions(
@@ -39,6 +49,7 @@ class DioClient {
     
     // Add interceptors
     _dio.interceptors.clear();
+    // Note: AuthInterceptor will be added via initializeAuth()
     _dio.interceptors.add(LanguageInterceptor());
     _dio.interceptors.add(RetryInterceptor());
     _dio.interceptors.add(LoggingInterceptor());

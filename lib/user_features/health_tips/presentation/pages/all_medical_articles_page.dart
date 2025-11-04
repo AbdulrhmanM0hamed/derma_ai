@@ -1,3 +1,4 @@
+import 'package:derma_ai/core/utils/common/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/services/service_locatores.dart';
@@ -84,32 +85,15 @@ class _AllMedicalArticlesContentState extends State<_AllMedicalArticlesContent> 
     final l10n = AppLocalizations.of(context)!;
     
     return Scaffold(
+      appBar: CustomAppBar(
+        title: l10n.medicalArticles,
+      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
           // App Bar مثل الصفحة الأصلية
-          SliverAppBar(
-            expandedHeight: 120,
-            floating: false,
-            pinned: true,
-            backgroundColor: AppColors.primary,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                l10n.medicalArticles,
-                style: getBoldStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontFamily: FontConstant.cairo,
-                ),
-              ),
-              centerTitle: true,
-            ),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
+          
           BlocBuilder<HealthTipsCubit, HealthTipsState>(
             builder: (context, state) {
               if (state is MedicalArticlesLoading) {

@@ -38,4 +38,8 @@ class ApiEndpoints {
       "health-tips/medical-articles/active";
   static String medicalArticlesActiveByID( int id) =>
       "health-tips/medical-articles/$id";
+
+  // Profile endpoints
+  static const String profileBasic = '/profile-user/basic';
+  static const String profilePicture = '/profile-user/picture';
 }

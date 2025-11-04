@@ -70,6 +70,9 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
         );
       }
 
+      // Save entity type for refresh token mechanism
+      await _tokenStorage.saveEntityType('doctor');
+
       // If we reach here, login was successful
       emit(DoctorLoginSuccess(
         entity: response.user ?? UserModel(

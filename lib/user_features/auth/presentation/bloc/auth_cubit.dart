@@ -70,6 +70,9 @@ class AuthCubit extends Cubit<AuthState> {
         );
       }
 
+      // Save entity type for refresh token mechanism
+      await _tokenStorage.saveEntityType('user');
+
       // If we reach here, login was successful
       emit(LoginSuccess(
         entity: response.user ?? UserModel(

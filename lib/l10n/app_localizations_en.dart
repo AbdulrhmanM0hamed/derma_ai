@@ -431,7 +431,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterPhoneNumber => 'Enter your phone number';
 
   @override
-  String get pleaseEnterPhoneNumber => 'Please enter your phone number';
+  String get pleaseEnterPhoneNumber => 'Please enter phone number';
 
   @override
   String get pleaseEnterValidPhoneNumber => 'Please enter a valid phone number';
@@ -980,4 +980,119 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get skinHygiene => 'Skin Hygiene';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get contactInformation => 'Contact Information';
+
+  @override
+  String get emergencyContact => 'Emergency Contact';
+
+  @override
+  String get preferences => 'Preferences';
+
+  @override
+  String get dateOfBirth => 'Date of Birth';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get nationality => 'Nationality';
+
+  @override
+  String get emergencyContactName => 'Emergency Contact Name';
+
+  @override
+  String get emergencyContactPhone => 'Emergency Contact Phone';
+
+  @override
+  String get emergencyContactRelationship => 'Relationship';
+
+  @override
+  String get timezone => 'Timezone';
+
+  @override
+  String get languagePreference => 'Language Preference';
+
+  @override
+  String get arabic => 'Arabic';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get saveChanges => 'Save Changes';
+
+  @override
+  String get profileUpdateFailed => 'Profile update failed';
+
+  @override
+  String get profileUpdatedSuccessfully => 'Profile updated successfully';
+
+  @override
+  String get changeProfilePicture => 'Change Profile Picture';
+
+  @override
+  String get uploadPicture => 'Upload Picture';
+
+  @override
+  String get deletePicture => 'Delete Picture';
+
+  @override
+  String get chooseImageSource => 'Choose Image Source';
+
+  @override
+  String get camera => 'Camera';
+
+  @override
+  String get gallery => 'Gallery';
+
+  @override
+  String get pictureUploadedSuccessfully => 'Picture uploaded successfully';
+
+  @override
+  String get pictureDeletedSuccessfully => 'Picture deleted successfully';
+
+  @override
+  String get pictureUploadFailed => 'Picture upload failed';
+
+  @override
+  String get pictureDeleteFailed => 'Picture delete failed';
+
+  @override
+  String get confirmDeletePicture =>
+      'Do you want to delete your profile picture?';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get pleaseSelectDateOfBirth => 'Please select date of birth';
+
+  @override
+  String get pleaseSelectGender => 'Please select gender';
+
+  @override
+  String get selectDate => 'Select Date';
+
+  @override
+  String get selectGender => 'Select Gender';
+
+  @override
+  String get optional => 'Optional';
+
+  @override
+  String get required => 'Required';
 }

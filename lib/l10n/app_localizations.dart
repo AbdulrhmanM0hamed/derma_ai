@@ -893,7 +893,7 @@ abstract class AppLocalizations {
   /// No description provided for @pleaseEnterPhoneNumber.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your phone number'**
+  /// **'Please enter phone number'**
   String get pleaseEnterPhoneNumber;
 
   /// No description provided for @pleaseEnterValidPhoneNumber.
@@ -1969,6 +1969,234 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Skin Hygiene'**
   String get skinHygiene;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @contactInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Information'**
+  String get contactInformation;
+
+  /// No description provided for @emergencyContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Contact'**
+  String get emergencyContact;
+
+  /// No description provided for @preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferences;
+
+  /// No description provided for @dateOfBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of Birth'**
+  String get dateOfBirth;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// No description provided for @nationality.
+  ///
+  /// In en, this message translates to:
+  /// **'Nationality'**
+  String get nationality;
+
+  /// No description provided for @emergencyContactName.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Contact Name'**
+  String get emergencyContactName;
+
+  /// No description provided for @emergencyContactPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Contact Phone'**
+  String get emergencyContactPhone;
+
+  /// No description provided for @emergencyContactRelationship.
+  ///
+  /// In en, this message translates to:
+  /// **'Relationship'**
+  String get emergencyContactRelationship;
+
+  /// No description provided for @timezone.
+  ///
+  /// In en, this message translates to:
+  /// **'Timezone'**
+  String get timezone;
+
+  /// No description provided for @languagePreference.
+  ///
+  /// In en, this message translates to:
+  /// **'Language Preference'**
+  String get languagePreference;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabic;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
+
+  /// No description provided for @profileUpdateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile update failed'**
+  String get profileUpdateFailed;
+
+  /// No description provided for @profileUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully'**
+  String get profileUpdatedSuccessfully;
+
+  /// No description provided for @changeProfilePicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Profile Picture'**
+  String get changeProfilePicture;
+
+  /// No description provided for @uploadPicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Picture'**
+  String get uploadPicture;
+
+  /// No description provided for @deletePicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Picture'**
+  String get deletePicture;
+
+  /// No description provided for @chooseImageSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Image Source'**
+  String get chooseImageSource;
+
+  /// No description provided for @camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get camera;
+
+  /// No description provided for @gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get gallery;
+
+  /// No description provided for @pictureUploadedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Picture uploaded successfully'**
+  String get pictureUploadedSuccessfully;
+
+  /// No description provided for @pictureDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Picture deleted successfully'**
+  String get pictureDeletedSuccessfully;
+
+  /// No description provided for @pictureUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Picture upload failed'**
+  String get pictureUploadFailed;
+
+  /// No description provided for @pictureDeleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Picture delete failed'**
+  String get pictureDeleteFailed;
+
+  /// No description provided for @confirmDeletePicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to delete your profile picture?'**
+  String get confirmDeletePicture;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @pleaseSelectDateOfBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select date of birth'**
+  String get pleaseSelectDateOfBirth;
+
+  /// No description provided for @pleaseSelectGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select gender'**
+  String get pleaseSelectGender;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date'**
+  String get selectDate;
+
+  /// No description provided for @selectGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Gender'**
+  String get selectGender;
+
+  /// No description provided for @optional.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get optional;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
 }
 
 class _AppLocalizationsDelegate
