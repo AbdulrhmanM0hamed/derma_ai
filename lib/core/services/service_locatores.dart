@@ -9,6 +9,8 @@ import '../../user_features/health_tips/data/repositories/health_tips_repository
 import '../../user_features/health_tips/presentation/bloc/health_tips_cubit.dart';
 import '../../user_features/profile/data/repositories/profile_repository.dart';
 import '../../user_features/profile/presentation/bloc/profile_cubit.dart';
+import '../../user_features/location/data/repositories/location_repository.dart';
+import '../../user_features/location/presentation/bloc/location_cubit.dart';
 import '../network/api_service.dart';
 import '../network/dio_client.dart';
 import '../services/token_storage_service.dart';
@@ -23,15 +25,13 @@ Future<void> init() async {
   //! Core Services
   sl.registerLazySingleton(() => TokenStorageService(sl()));
   sl.registerLazySingleton(() => ApiService());
-  
+
   // Initialize DioClient with Auth Interceptor
   DioClient.instance.initializeAuth(sl<TokenStorageService>());
 
   //! Features - Auth
   // Repository
-  sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(sl()),
-  );
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
 
   // Doctor Repository
   sl.registerLazySingleton<DoctorAuthRepository>(
@@ -39,16 +39,15 @@ Future<void> init() async {
   );
 
   // Bloc
-  sl.registerFactory(() => AuthCubit(
-        authRepository: sl(),
-        tokenStorage: sl(),
-      ));
+  sl.registerFactory(() => AuthCubit(authRepository: sl(), tokenStorage: sl()));
 
   // Doctor Bloc
-  sl.registerFactory(() => DoctorAuthCubit(
-        authRepository: sl<DoctorAuthRepository>(),
-        tokenStorage: sl(),
-      ));
+  sl.registerFactory(
+    () => DoctorAuthCubit(
+      authRepository: sl<DoctorAuthRepository>(),
+      tokenStorage: sl(),
+    ),
+  );
 
   //! Features - Health Tips
   // Repository
@@ -67,4 +66,13 @@ Future<void> init() async {
 
   // Cubit - Changed to singleton to maintain state across navigation
   sl.registerLazySingleton(() => ProfileCubit(sl()));
+
+  //! Features - Location
+  // Repository
+  sl.registerLazySingleton<LocationRepository>(
+    () => LocationRepositoryImpl(sl()),
+  );
+
+  // Cubit
+  sl.registerFactory(() => LocationCubit(sl(), sl()));
 }

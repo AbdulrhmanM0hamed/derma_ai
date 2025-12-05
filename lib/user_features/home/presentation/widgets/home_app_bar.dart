@@ -4,6 +4,10 @@ import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../user_features/location/presentation/bloc/location_cubit.dart';
+import '../../../../user_features/location/presentation/bloc/location_state.dart';
+import '../../../../user_features/location/presentation/widgets/location_selection_sheet.dart';
 import '../../../notifications/presentation/pages/notifications_page.dart';
 import '../../../notifications/data/datasources/notifications_static_data.dart';
 
@@ -42,7 +46,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: Row(
             children: [
               // Profile Avatar with elegant design
@@ -95,6 +99,54 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                         fontFamily: FontConstant.cairo,
                       ),
                     ),
+                    const SizedBox(height: 4),
+                    // Location Selector
+                    GestureDetector(
+                      onTap: () {
+                        HapticFeedback.lightImpact();
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) => const LocationSelectionSheet(),
+                        );
+                      },
+                      child: BlocBuilder<LocationCubit, LocationState>(
+                        builder: (context, state) {
+                          String locationText = 'Select Location';
+                          if (state is LocationSelectionUpdated) {
+                            locationText = state.displayLocation;
+                          }
+                          return Row(
+                            children: [
+                              const Icon(
+                                Icons.location_on,
+                                color: Colors.white,
+                                size: 14,
+                              ),
+                              const SizedBox(width: 4),
+                              Flexible(
+                                child: Text(
+                                  locationText,
+                                  style: getMediumStyle(
+                                    color: Colors.white.withValues(alpha: 0.9),
+                                    fontSize: 12,
+                                    fontFamily: FontConstant.cairo,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              const Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Colors.white,
+                                size: 14,
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -135,7 +187,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                             decoration: BoxDecoration(
                               color: AppColors.error,
                               shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white, width: 1.5),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 1.5,
+                              ),
                             ),
                           ),
                         ),

@@ -36,10 +36,15 @@ class ApiEndpoints {
   //article
   static const String medicalArticlesActive =
       "health-tips/medical-articles/active";
-  static String medicalArticlesActiveByID( int id) =>
+  static String medicalArticlesActiveByID(int id) =>
       "health-tips/medical-articles/$id";
 
   // Profile endpoints
   static const String profileBasic = '/profile-user/basic';
   static const String profilePicture = '/profile-user/picture';
+
+  // Location endpoints
+  static const String countries = 'countries-cities/countries';
+  static String cities(int countryId) => 'countries-cities/cities/$countryId';
+  static String regions(int cityId) => 'countries-cities/regions/$cityId';
 }

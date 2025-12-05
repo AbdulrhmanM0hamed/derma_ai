@@ -1,7 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TokenStorageService {
-  
   static const String _accessTokenKey = 'access_token';
   static const String _refreshTokenKey = 'refresh_token';
   static const String _sessionTokenKey = 'session_token';
@@ -77,13 +76,14 @@ class TokenStorageService {
     await _prefs.setBool(_onboardingCompletedKey, completed);
   }
 
-  bool get isOnboardingCompleted => _prefs.getBool(_onboardingCompletedKey) ?? false;
+  bool get isOnboardingCompleted =>
+      _prefs.getBool(_onboardingCompletedKey) ?? false;
 
   // Remember me functionality
   Future<void> setRememberMe({
-    required bool remember, 
-    String? email, 
-    String? password
+    required bool remember,
+    String? email,
+    String? password,
   }) async {
     await _prefs.setBool(_rememberMeKey, remember);
     if (remember) {
@@ -143,6 +143,44 @@ class TokenStorageService {
       _prefs.remove(_accessTokenKey),
       _prefs.remove(_refreshTokenKey),
       _prefs.remove(_sessionTokenKey),
+    ]);
+  }
+
+  // --- Location Persistence ---
+  static const String _selectedCountryKey = 'selected_country';
+  static const String _selectedCityKey = 'selected_city';
+  static const String _selectedRegionKey = 'selected_region';
+
+  // Save selected location (stores full JSON string or just IDs - storing JSON is better for restoring model)
+  // For simplicity and avoiding model dependency here, we will store individual fields or a JSON string if we passed model.
+  // Actually, let's store the ID and Name for each level to easily reconstruction or display.
+  // But to keep it clean, let's just store the JSON string of the object.
+  // We need to valid JSON string.
+
+  // Actually, to avoid circular deps or complexity, let's just store the keys here and handle encoding in Cubit,
+  // OR add specific methods for Country/City/Regional storage.
+
+  Future<void> saveSelectedLocation({
+    String? countryJson,
+    String? cityJson,
+    String? regionJson,
+  }) async {
+    if (countryJson != null)
+      await _prefs.setString(_selectedCountryKey, countryJson);
+    if (cityJson != null) await _prefs.setString(_selectedCityKey, cityJson);
+    if (regionJson != null)
+      await _prefs.setString(_selectedRegionKey, regionJson);
+  }
+
+  String? get savedCountry => _prefs.getString(_selectedCountryKey);
+  String? get savedCity => _prefs.getString(_selectedCityKey);
+  String? get savedRegion => _prefs.getString(_selectedRegionKey);
+
+  Future<void> clearSavedLocation() async {
+    await Future.wait([
+      _prefs.remove(_selectedCountryKey),
+      _prefs.remove(_selectedCityKey),
+      _prefs.remove(_selectedRegionKey),
     ]);
   }
 }
