@@ -1,6 +1,8 @@
 import 'package:derma_ai/user_features/doctor_profile/doctor_profile.dart';
 import 'package:derma_ai/user_features/health_tips/presentation/pages/all_medical_articles_page.dart';
 import 'package:derma_ai/user_features/navigation/presentation/pages/main_navigation_page.dart';
+import 'package:derma_ai/user_features/profile/data/models/user_profile_model.dart';
+import 'package:derma_ai/user_features/profile/presentation/pages/edit_profile_page.dart';
 import 'package:flutter/material.dart';
 
 // Splash and Onboarding
@@ -62,6 +64,7 @@ class AppRoutes {
   static const String analyticsDashboard = '/analytics-dashboard';
   static const String doctorOtpVerification = '/doctor-otp-verification';
   static const String allHealthTips = '/all-health-tips';
+  static const String editProfile = '/edit-profile';
 }
 
 Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
@@ -79,6 +82,16 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
 
     case AppRoutes.register:
       return _createRoute(const UnifiedRegisterPage());
+
+    case AppRoutes.editProfile:
+      // Expect userProfile as argument
+      if (settings.arguments != null &&
+          settings.arguments is UserProfileModel) {
+        final userProfile = settings.arguments as UserProfileModel;
+        return _createRoute(EditProfilePage(userProfile: userProfile));
+      }
+      // Fallback to profile page if no argument provided
+      return _createRoute(const ProfilePage());
 
     case AppRoutes.doctorLogin:
       return _createRoute(const UnifiedLoginPage());

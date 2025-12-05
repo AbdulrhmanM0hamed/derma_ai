@@ -1019,7 +1019,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get arabic => 'العربية';
 
   @override
-  String get english => 'الإنجليزية';
+  String get english => 'English';
 
   @override
   String get saveChanges => 'حفظ التغييرات';
@@ -1154,4 +1154,125 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ratingsCount => 'التقييمات';
+
+  @override
+  String get settingsTitle => 'الإعدادات';
+
+  @override
+  String get accountSection => 'الحساب';
+
+  @override
+  String get editProfileSubtitle => 'تحديث معلوماتك الشخصية';
+
+  @override
+  String get changePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get changePasswordSubtitle => 'تحديث كلمة المرور الخاصة بك';
+
+  @override
+  String get changeEmail => 'تغيير البريد الإلكتروني';
+
+  @override
+  String get changeEmailSubtitle => 'تحديث عنوان البريد الإلكتروني';
+
+  @override
+  String get securitySection => 'الأمان والخصوصية';
+
+  @override
+  String get biometricAuth => 'المصادقة البيومترية';
+
+  @override
+  String get biometricAuthSubtitle => 'استخدام بصمة الإصبع أو الوجه';
+
+  @override
+  String get locationServices => 'خدمات الموقع';
+
+  @override
+  String get locationServicesSubtitle => 'السماح بالوصول لموقعك';
+
+  @override
+  String get privacyPolicySubtitle => 'اقرأ سياسة الخصوصية';
+
+  @override
+  String get termsOfUse => 'شروط الاستخدام';
+
+  @override
+  String get termsOfUseSubtitle => 'مراجعة شروط وأحكام الاستخدام';
+
+  @override
+  String get appearanceSection => 'المظهر واللغة';
+
+  @override
+  String get languageSubtitle => 'اختر لغة التطبيق';
+
+  @override
+  String get themeSubtitle => 'اختر مظهر التطبيق';
+
+  @override
+  String get fontSize => 'حجم الخط';
+
+  @override
+  String get fontSizeSubtitle => 'تخصيص حجم النص';
+
+  @override
+  String get supportSection => 'الدعم والمساعدة';
+
+  @override
+  String get helpCenter => 'مركز المساعدة';
+
+  @override
+  String get helpCenterSubtitle => 'الأسئلة الشائعة والمساعدة';
+
+  @override
+  String get contactUs => 'تواصل معنا';
+
+  @override
+  String get contactUsSubtitle => 'احصل على المساعدة من فريق الدعم';
+
+  @override
+  String get reportProblem => 'الإبلاغ عن مشكلة';
+
+  @override
+  String get reportProblemSubtitle => 'أخبرنا عن أي مشاكل تواجهها';
+
+  @override
+  String get rateApp => 'تقييم التطبيق';
+
+  @override
+  String get rateAppSubtitle => 'قيم تجربتك مع التطبيق';
+
+  @override
+  String get aboutSection => 'حول التطبيق';
+
+  @override
+  String get appInfo => 'معلومات التطبيق';
+
+  @override
+  String get appVersion => 'الإصدار 1.0.0';
+
+  @override
+  String get updatesTitle => 'التحديثات';
+
+  @override
+  String get updatesSubtitle => 'البحث عن تحديثات جديدة';
+
+  @override
+  String get themeLight => 'فاتح';
+
+  @override
+  String get themeDark => 'داكن';
+
+  @override
+  String get themeSystem => 'تلقائي';
+
+  @override
+  String get logoutDialogTitle => 'تسجيل الخروج';
+
+  @override
+  String get logoutDialogMessage =>
+      'هل أنت متأكد من أنك تريد تسجيل الخروج من حسابك؟';
+
+  @override
+  String get theme => 'المظهر';
 }

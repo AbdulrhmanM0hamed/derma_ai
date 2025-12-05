@@ -1027,7 +1027,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languagePreference => 'Language Preference';
 
   @override
-  String get arabic => 'Arabic';
+  String get arabic => 'العربية';
 
   @override
   String get english => 'English';
@@ -1166,4 +1166,125 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ratingsCount => 'Ratings';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get accountSection => 'Account';
+
+  @override
+  String get editProfileSubtitle => 'Update your personal information';
+
+  @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get changePasswordSubtitle => 'Update your password';
+
+  @override
+  String get changeEmail => 'Change Email';
+
+  @override
+  String get changeEmailSubtitle => 'Update your email address';
+
+  @override
+  String get securitySection => 'Security & Privacy';
+
+  @override
+  String get biometricAuth => 'Biometric Authentication';
+
+  @override
+  String get biometricAuthSubtitle => 'Use fingerprint or face recognition';
+
+  @override
+  String get locationServices => 'Location Services';
+
+  @override
+  String get locationServicesSubtitle => 'Allow access to your location';
+
+  @override
+  String get privacyPolicySubtitle => 'Read our privacy policy';
+
+  @override
+  String get termsOfUse => 'Terms of Use';
+
+  @override
+  String get termsOfUseSubtitle => 'Review terms and conditions';
+
+  @override
+  String get appearanceSection => 'Appearance & Language';
+
+  @override
+  String get languageSubtitle => 'Choose app language';
+
+  @override
+  String get themeSubtitle => 'Choose app theme';
+
+  @override
+  String get fontSize => 'Font Size';
+
+  @override
+  String get fontSizeSubtitle => 'Customize text size';
+
+  @override
+  String get supportSection => 'Support & Help';
+
+  @override
+  String get helpCenter => 'Help Center';
+
+  @override
+  String get helpCenterSubtitle => 'FAQs and help';
+
+  @override
+  String get contactUs => 'Contact Us';
+
+  @override
+  String get contactUsSubtitle => 'Get help from support team';
+
+  @override
+  String get reportProblem => 'Report a Problem';
+
+  @override
+  String get reportProblemSubtitle => 'Tell us about any issues';
+
+  @override
+  String get rateApp => 'Rate App';
+
+  @override
+  String get rateAppSubtitle => 'Rate your experience';
+
+  @override
+  String get aboutSection => 'About App';
+
+  @override
+  String get appInfo => 'App Information';
+
+  @override
+  String get appVersion => 'Version 1.0.0';
+
+  @override
+  String get updatesTitle => 'Updates';
+
+  @override
+  String get updatesSubtitle => 'Check for new updates';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get logoutDialogTitle => 'Logout';
+
+  @override
+  String get logoutDialogMessage =>
+      'Are you sure you want to logout from your account?';
+
+  @override
+  String get theme => 'Theme';
 }

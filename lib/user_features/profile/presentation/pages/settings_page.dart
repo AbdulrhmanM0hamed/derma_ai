@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/cubit/locale/locale_cubit.dart';
+import '../../../../core/cubit/theme/theme_cubit.dart';
+import '../../../../core/services/service_locatores.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../bloc/profile_cubit.dart';
+import '../bloc/profile_state.dart';
+import 'edit_profile_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -15,29 +23,27 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _notificationsEnabled = true;
   bool _biometricEnabled = false;
   bool _locationEnabled = true;
-  String _selectedLanguage = 'العربية';
-  String _selectedTheme = 'فاتح';
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(l10n),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            _buildAccountSection(),
+            _buildAccountSection(l10n),
             const SizedBox(height: 16),
-            _buildNotificationSection(),
+            _buildSecuritySection(l10n),
             const SizedBox(height: 16),
-            _buildSecuritySection(),
+            _buildAppearanceSection(l10n),
             const SizedBox(height: 16),
-            _buildAppearanceSection(),
+            _buildSupportSection(l10n),
             const SizedBox(height: 16),
-            _buildSupportSection(),
-            const SizedBox(height: 16),
-            _buildAboutSection(),
+            _buildAboutSection(l10n),
             const SizedBox(height: 100),
           ],
         ),
@@ -45,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  PreferredSizeWidget _buildAppBar() {
+  PreferredSizeWidget _buildAppBar(AppLocalizations l10n) {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
@@ -54,7 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
         onPressed: () => Navigator.pop(context),
       ),
       title: Text(
-        'الإعدادات',
+        l10n.settingsTitle,
         style: getBoldStyle(
           fontFamily: FontConstant.cairo,
           fontSize: 18,
@@ -65,29 +71,52 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _buildAccountSection() {
+  Widget _buildAccountSection(AppLocalizations l10n) {
     return _buildSection(
-      title: 'الحساب',
+      title: l10n.accountSection,
       icon: Icons.person_outline,
       children: [
         _buildSettingItem(
           icon: Icons.edit_outlined,
-          title: 'تعديل الملف الشخصي',
-          subtitle: 'تحديث معلوماتك الشخصية',
-          onTap: () {},
+          title: l10n.editProfile,
+          subtitle: l10n.editProfileSubtitle,
+          onTap: () async {
+            // Get ProfileCubit and fetch user data
+            final profileCubit = sl<ProfileCubit>();
+
+            // Fetch profile if not already loaded
+            if (profileCubit.state is! ProfileSuccess) {
+              await profileCubit.getUserProfile();
+            }
+
+            // Navigate only if we have valid data
+            if (profileCubit.state is ProfileSuccess && mounted) {
+              final state = profileCubit.state as ProfileSuccess;
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (_) => BlocProvider.value(
+                        value: profileCubit,
+                        child: EditProfilePage(userProfile: state.userProfile),
+                      ),
+                ),
+              );
+            }
+          },
           showArrow: true,
         ),
         _buildSettingItem(
           icon: Icons.lock_outline,
-          title: 'تغيير كلمة المرور',
-          subtitle: 'تحديث كلمة المرور الخاصة بك',
+          title: l10n.changePassword,
+          subtitle: l10n.changePasswordSubtitle,
           onTap: () {},
           showArrow: true,
         ),
         _buildSettingItem(
           icon: Icons.email_outlined,
-          title: 'تغيير البريد الإلكتروني',
-          subtitle: 'تحديث عنوان البريد الإلكتروني',
+          title: l10n.changeEmail,
+          subtitle: l10n.changeEmailSubtitle,
           onTap: () {},
           showArrow: true,
         ),
@@ -95,49 +124,15 @@ class _SettingsPageState extends State<SettingsPage> {
     ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.3);
   }
 
-  Widget _buildNotificationSection() {
+  Widget _buildSecuritySection(AppLocalizations l10n) {
     return _buildSection(
-      title: 'الإشعارات',
-      icon: Icons.notifications_outlined,
-      children: [
-        _buildSwitchItem(
-          icon: Icons.notifications_active_outlined,
-          title: 'إشعارات التطبيق',
-          subtitle: 'تلقي إشعارات حول المواعيد والتذكيرات',
-          value: _notificationsEnabled,
-          onChanged: (value) {
-            setState(() {
-              _notificationsEnabled = value;
-            });
-          },
-        ),
-        _buildSettingItem(
-          icon: Icons.schedule_outlined,
-          title: 'تذكيرات المواعيد',
-          subtitle: 'إدارة تذكيرات المواعيد',
-          onTap: () {},
-          showArrow: true,
-        ),
-        _buildSettingItem(
-          icon: Icons.medical_services_outlined,
-          title: 'تذكيرات الأدوية',
-          subtitle: 'إعداد تذكيرات تناول الأدوية',
-          onTap: () {},
-          showArrow: true,
-        ),
-      ],
-    ).animate().fadeIn(duration: 600.ms, delay: 200.ms).slideY(begin: 0.3);
-  }
-
-  Widget _buildSecuritySection() {
-    return _buildSection(
-      title: 'الأمان والخصوصية',
+      title: l10n.securitySection,
       icon: Icons.security_outlined,
       children: [
         _buildSwitchItem(
           icon: Icons.fingerprint_outlined,
-          title: 'المصادقة البيومترية',
-          subtitle: 'استخدام بصمة الإصبع أو الوجه',
+          title: l10n.biometricAuth,
+          subtitle: l10n.biometricAuthSubtitle,
           value: _biometricEnabled,
           onChanged: (value) {
             setState(() {
@@ -147,8 +142,8 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         _buildSwitchItem(
           icon: Icons.location_on_outlined,
-          title: 'خدمات الموقع',
-          subtitle: 'السماح بالوصول لموقعك',
+          title: l10n.locationServices,
+          subtitle: l10n.locationServicesSubtitle,
           value: _locationEnabled,
           onChanged: (value) {
             setState(() {
@@ -158,15 +153,15 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         _buildSettingItem(
           icon: Icons.privacy_tip_outlined,
-          title: 'سياسة الخصوصية',
-          subtitle: 'اقرأ سياسة الخصوصية',
+          title: l10n.privacyPolicy,
+          subtitle: l10n.privacyPolicySubtitle,
           onTap: () {},
           showArrow: true,
         ),
         _buildSettingItem(
           icon: Icons.description_outlined,
-          title: 'شروط الاستخدام',
-          subtitle: 'مراجعة شروط وأحكام الاستخدام',
+          title: l10n.termsOfUse,
+          subtitle: l10n.termsOfUseSubtitle,
           onTap: () {},
           showArrow: true,
         ),
@@ -174,39 +169,71 @@ class _SettingsPageState extends State<SettingsPage> {
     ).animate().fadeIn(duration: 600.ms, delay: 400.ms).slideY(begin: 0.3);
   }
 
-  Widget _buildAppearanceSection() {
+  Widget _buildAppearanceSection(AppLocalizations l10n) {
     return _buildSection(
-      title: 'المظهر واللغة',
+      title: l10n.appearanceSection,
       icon: Icons.palette_outlined,
       children: [
-        _buildDropdownItem(
-          icon: Icons.language_outlined,
-          title: 'اللغة',
-          subtitle: 'اختر لغة التطبيق',
-          value: _selectedLanguage,
-          items: ['العربية', 'English'],
-          onChanged: (value) {
-            setState(() {
-              _selectedLanguage = value!;
-            });
+        // Language selector with LocaleCubit
+        BlocBuilder<LocaleCubit, LocaleState>(
+          builder: (context, state) {
+            return _buildDropdownItem(
+              icon: Icons.language_outlined,
+              title: l10n.language,
+              subtitle: l10n.languageSubtitle,
+              value:
+                  state.locale.languageCode == 'ar'
+                      ? l10n.arabic
+                      : l10n.english,
+              items: [l10n.arabic, l10n.english],
+              onChanged: (value) {
+                final newLocale =
+                    value == l10n.arabic
+                        ? const Locale('ar')
+                        : const Locale('en');
+                context.read<LocaleCubit>().changeLocale(newLocale);
+              },
+            );
           },
         ),
-        _buildDropdownItem(
-          icon: Icons.brightness_6_outlined,
-          title: 'المظهر',
-          subtitle: 'اختر مظهر التطبيق',
-          value: _selectedTheme,
-          items: ['فاتح', 'داكن', 'تلقائي'],
-          onChanged: (value) {
-            setState(() {
-              _selectedTheme = value!;
-            });
+        // Theme selector with ThemeCubit
+        BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            String getThemeName(ThemeMode mode) {
+              switch (mode) {
+                case ThemeMode.light:
+                  return l10n.themeLight;
+                case ThemeMode.dark:
+                  return l10n.themeDark;
+                case ThemeMode.system:
+                  return l10n.themeSystem;
+              }
+            }
+
+            return _buildDropdownItem(
+              icon: Icons.brightness_6_outlined,
+              title: l10n.theme,
+              subtitle: l10n.themeSubtitle,
+              value: getThemeName(state.themeMode),
+              items: [l10n.themeLight, l10n.themeDark, l10n.themeSystem],
+              onChanged: (value) {
+                ThemeMode newMode;
+                if (value == l10n.themeLight) {
+                  newMode = ThemeMode.light;
+                } else if (value == l10n.themeDark) {
+                  newMode = ThemeMode.dark;
+                } else {
+                  newMode = ThemeMode.system;
+                }
+                context.read<ThemeCubit>().changeTheme(newMode);
+              },
+            );
           },
         ),
         _buildSettingItem(
           icon: Icons.text_fields_outlined,
-          title: 'حجم الخط',
-          subtitle: 'تخصيص حجم النص',
+          title: l10n.fontSize,
+          subtitle: l10n.fontSizeSubtitle,
           onTap: () {},
           showArrow: true,
         ),
@@ -214,36 +241,36 @@ class _SettingsPageState extends State<SettingsPage> {
     ).animate().fadeIn(duration: 600.ms, delay: 600.ms).slideY(begin: 0.3);
   }
 
-  Widget _buildSupportSection() {
+  Widget _buildSupportSection(AppLocalizations l10n) {
     return _buildSection(
-      title: 'الدعم والمساعدة',
+      title: l10n.supportSection,
       icon: Icons.help_outline,
       children: [
         _buildSettingItem(
           icon: Icons.help_center_outlined,
-          title: 'مركز المساعدة',
-          subtitle: 'الأسئلة الشائعة والمساعدة',
+          title: l10n.helpCenter,
+          subtitle: l10n.helpCenterSubtitle,
           onTap: () {},
           showArrow: true,
         ),
         _buildSettingItem(
           icon: Icons.contact_support_outlined,
-          title: 'تواصل معنا',
-          subtitle: 'احصل على المساعدة من فريق الدعم',
+          title: l10n.contactUs,
+          subtitle: l10n.contactUsSubtitle,
           onTap: () {},
           showArrow: true,
         ),
         _buildSettingItem(
           icon: Icons.bug_report_outlined,
-          title: 'الإبلاغ عن مشكلة',
-          subtitle: 'أخبرنا عن أي مشاكل تواجهها',
+          title: l10n.reportProblem,
+          subtitle: l10n.reportProblemSubtitle,
           onTap: () {},
           showArrow: true,
         ),
         _buildSettingItem(
           icon: Icons.star_outline,
-          title: 'تقييم التطبيق',
-          subtitle: 'قيم تجربتك مع التطبيق',
+          title: l10n.rateApp,
+          subtitle: l10n.rateAppSubtitle,
           onTap: () {},
           showArrow: true,
         ),
@@ -251,30 +278,30 @@ class _SettingsPageState extends State<SettingsPage> {
     ).animate().fadeIn(duration: 600.ms, delay: 800.ms).slideY(begin: 0.3);
   }
 
-  Widget _buildAboutSection() {
+  Widget _buildAboutSection(AppLocalizations l10n) {
     return _buildSection(
-      title: 'حول التطبيق',
+      title: l10n.aboutSection,
       icon: Icons.info_outline,
       children: [
         _buildSettingItem(
           icon: Icons.info_outlined,
-          title: 'معلومات التطبيق',
-          subtitle: 'الإصدار 1.0.0',
+          title: l10n.appInfo,
+          subtitle: l10n.appVersion,
           onTap: () {},
           showArrow: true,
         ),
         _buildSettingItem(
           icon: Icons.update_outlined,
-          title: 'التحديثات',
-          subtitle: 'البحث عن تحديثات جديدة',
+          title: l10n.updatesTitle,
+          subtitle: l10n.updatesSubtitle,
           onTap: () {},
           showArrow: true,
         ),
         _buildSettingItem(
           icon: Icons.logout,
-          title: 'تسجيل الخروج',
-          subtitle: 'الخروج من الحساب الحالي',
-          onTap: () => _showLogoutDialog(),
+          title: l10n.logout,
+          subtitle: l10n.logoutDialogMessage,
+          onTap: () => _showLogoutDialog(l10n),
           showArrow: false,
           titleColor: Colors.red,
           iconColor: Colors.red,
@@ -313,11 +340,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     color: AppColors.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Icon(
-                    icon,
-                    color: AppColors.primary,
-                    size: 20,
-                  ),
+                  child: Icon(icon, color: AppColors.primary, size: 20),
                 ),
                 const SizedBox(width: 12),
                 Text(
@@ -348,9 +371,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(color: Colors.grey[200]!, width: 0.5),
-        ),
+        border: Border(top: BorderSide(color: Colors.grey[200]!, width: 0.5)),
       ),
       child: ListTile(
         leading: Container(
@@ -359,11 +380,7 @@ class _SettingsPageState extends State<SettingsPage> {
             color: (iconColor ?? Colors.grey[600])!.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(
-            icon,
-            color: iconColor ?? Colors.grey[600],
-            size: 20,
-          ),
+          child: Icon(icon, color: iconColor ?? Colors.grey[600], size: 20),
         ),
         title: Text(
           title,
@@ -381,13 +398,14 @@ class _SettingsPageState extends State<SettingsPage> {
             color: Colors.grey[600],
           ),
         ),
-        trailing: showArrow
-            ? Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: Colors.grey[400],
-              )
-            : null,
+        trailing:
+            showArrow
+                ? Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16,
+                  color: Colors.grey[400],
+                )
+                : null,
         onTap: onTap,
       ),
     );
@@ -402,9 +420,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(color: Colors.grey[200]!, width: 0.5),
-        ),
+        border: Border(top: BorderSide(color: Colors.grey[200]!, width: 0.5)),
       ),
       child: ListTile(
         leading: Container(
@@ -413,11 +429,7 @@ class _SettingsPageState extends State<SettingsPage> {
             color: Colors.grey[600]!.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(
-            icon,
-            color: Colors.grey[600],
-            size: 20,
-          ),
+          child: Icon(icon, color: Colors.grey[600], size: 20),
         ),
         title: Text(
           title,
@@ -438,7 +450,7 @@ class _SettingsPageState extends State<SettingsPage> {
         trailing: Switch(
           value: value,
           onChanged: onChanged,
-          activeThumbColor: AppColors.primary,
+          activeColor: AppColors.primary,
         ),
       ),
     );
@@ -454,9 +466,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(color: Colors.grey[200]!, width: 0.5),
-        ),
+        border: Border(top: BorderSide(color: Colors.grey[200]!, width: 0.5)),
       ),
       child: ListTile(
         leading: Container(
@@ -465,11 +475,7 @@ class _SettingsPageState extends State<SettingsPage> {
             color: Colors.grey[600]!.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(
-            icon,
-            color: Colors.grey[600],
-            size: 20,
-          ),
+          child: Icon(icon, color: Colors.grey[600], size: 20),
         ),
         title: Text(
           title,
@@ -490,26 +496,27 @@ class _SettingsPageState extends State<SettingsPage> {
         trailing: DropdownButton<String>(
           value: value,
           underline: const SizedBox(),
-          items: items.map((String item) {
-            return DropdownMenuItem<String>(
-              value: item,
-              child: Text(
-                item,
-                style: getRegularStyle(
-                  fontFamily: FontConstant.cairo,
-                  fontSize: 12,
-                  color: Colors.black87,
-                ),
-              ),
-            );
-          }).toList(),
+          items:
+              items.map((String item) {
+                return DropdownMenuItem<String>(
+                  value: item,
+                  child: Text(
+                    item,
+                    style: getRegularStyle(
+                      fontFamily: FontConstant.cairo,
+                      fontSize: 12,
+                      color: Colors.black87,
+                    ),
+                  ),
+                );
+              }).toList(),
           onChanged: onChanged,
         ),
       ),
     );
   }
 
-  void _showLogoutDialog() {
+  void _showLogoutDialog(AppLocalizations l10n) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -518,7 +525,7 @@ class _SettingsPageState extends State<SettingsPage> {
             borderRadius: BorderRadius.circular(16),
           ),
           title: Text(
-            'تسجيل الخروج',
+            l10n.logoutDialogTitle,
             style: getBoldStyle(
               fontFamily: FontConstant.cairo,
               fontSize: 16,
@@ -526,7 +533,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           content: Text(
-            'هل أنت متأكد من أنك تريد تسجيل الخروج من حسابك؟',
+            l10n.logoutDialogMessage,
             style: getRegularStyle(
               fontFamily: FontConstant.cairo,
               fontSize: 14,
@@ -537,7 +544,7 @@ class _SettingsPageState extends State<SettingsPage> {
             TextButton(
               onPressed: () => Navigator.pop(context),
               child: Text(
-                'إلغاء',
+                l10n.cancel,
                 style: getSemiBoldStyle(
                   fontFamily: FontConstant.cairo,
                   fontSize: 14,
@@ -551,7 +558,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 // Handle logout logic here
               },
               child: Text(
-                'تسجيل الخروج',
+                l10n.logout,
                 style: getSemiBoldStyle(
                   fontFamily: FontConstant.cairo,
                   fontSize: 14,
