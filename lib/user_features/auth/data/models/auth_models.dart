@@ -3,16 +3,10 @@ class LoginRequestModel {
   final String email;
   final String password;
 
-  LoginRequestModel({
-    required this.email,
-    required this.password,
-  });
+  LoginRequestModel({required this.email, required this.password});
 
   Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'password': password,
-    };
+    return {'email': email, 'password': password};
   }
 }
 
@@ -21,21 +15,30 @@ class SignupRequestModel {
   final String phone;
   final String password;
   final String fullName;
+  final String? licenseNumber; // رقم ترخيص مزاولة المهنة للدكتور
 
   SignupRequestModel({
     required this.email,
     required this.phone,
     required this.password,
     required this.fullName,
+    this.licenseNumber,
   });
 
   Map<String, dynamic> toJson() {
-    return {
+    final map = {
       'email': email,
       'phone': phone,
       'password': password,
       'full_name': fullName,
     };
+
+    // Add license number only if provided (for doctors)
+    if (licenseNumber != null && licenseNumber!.isNotEmpty) {
+      map['license_number'] = licenseNumber!;
+    }
+
+    return map;
   }
 }
 
@@ -43,16 +46,10 @@ class ForgetPasswordRequestModel {
   final String email;
   final String type;
 
-  ForgetPasswordRequestModel({
-    required this.email,
-    required this.type,
-  });
+  ForgetPasswordRequestModel({required this.email, required this.type});
 
   Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'type': type,
-    };
+    return {'email': email, 'type': type};
   }
 }
 
@@ -68,11 +65,7 @@ class CheckOtpRequestModel {
   });
 
   Map<String, dynamic> toJson() {
-    return {
-      'userId': userId,
-      'otp': otp,
-      'type': type,
-    };
+    return {'userId': userId, 'otp': otp, 'type': type};
   }
 }
 
@@ -80,16 +73,10 @@ class ChangePasswordRequestModel {
   final String token;
   final String newPassword;
 
-  ChangePasswordRequestModel({
-    required this.token,
-    required this.newPassword,
-  });
+  ChangePasswordRequestModel({required this.token, required this.newPassword});
 
   Map<String, dynamic> toJson() {
-    return {
-      'token': token,
-      'new_password': newPassword,
-    };
+    return {'token': token, 'new_password': newPassword};
   }
 }
 
@@ -97,16 +84,10 @@ class ResendOtpRequestModel {
   final int userId;
   final String type;
 
-  ResendOtpRequestModel({
-    required this.userId,
-    required this.type,
-  });
+  ResendOtpRequestModel({required this.userId, required this.type});
 
   Map<String, dynamic> toJson() {
-    return {
-      'userId': userId,
-      'type': type,
-    };
+    return {'userId': userId, 'type': type};
   }
 }
 
@@ -166,12 +147,14 @@ class LoginResponse {
       messageEn: json['message_en'] ?? json['message'] ?? '',
       messageAr: json['message_ar'] ?? json['message'] ?? '',
       user: json['user'] != null ? UserModel.fromJson(json['user']) : null,
-      tokens: json['tokens'] != null ? TokensModel.fromJson(json['tokens']) : null,
+      tokens:
+          json['tokens'] != null ? TokensModel.fromJson(json['tokens']) : null,
       accountNotVerified: json['accountNotVerified'],
       userId: json['userId'],
-      requiresVerification: json['requiresVerification'] != null 
-          ? Map<String, bool>.from(json['requiresVerification'])
-          : null,
+      requiresVerification:
+          json['requiresVerification'] != null
+              ? Map<String, bool>.from(json['requiresVerification'])
+              : null,
     );
   }
 }
@@ -249,10 +232,7 @@ class TokenData {
   final String accessToken;
   final String refreshToken;
 
-  TokenData({
-    required this.accessToken,
-    required this.refreshToken,
-  });
+  TokenData({required this.accessToken, required this.refreshToken});
 
   factory TokenData.fromJson(Map<String, dynamic> json) {
     return TokenData(
@@ -262,10 +242,7 @@ class TokenData {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'access_token': accessToken,
-      'refresh_token': refreshToken,
-    };
+    return {'access_token': accessToken, 'refresh_token': refreshToken};
   }
 }
 

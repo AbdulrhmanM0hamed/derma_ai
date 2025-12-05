@@ -1083,4 +1083,75 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get required => 'مطلوب';
+
+  @override
+  String get medicalLicenseNumber => 'رقم ترخيص مزاولة المهنة';
+
+  @override
+  String get enterMedicalLicenseNumber => 'أدخل رقم ترخيص مزاولة المهنة';
+
+  @override
+  String get pleaseEnterMedicalLicenseNumber =>
+      'الرجاء إدخال رقم ترخيص مزاولة المهنة';
+
+  @override
+  String get invalidLicenseFormat => 'صيغة غير صحيحة. استخدم: MED-12345-2025';
+
+  @override
+  String get licenseYearCannotBeFuture =>
+      'سنة الترخيص لا يمكن أن تكون في المستقبل';
+
+  @override
+  String get licenseTooOld => 'الترخيص قديم جداً';
+
+  @override
+  String get loadingData => 'جاري التحميل...';
+
+  @override
+  String get settings => 'الإعدادات';
+
+  @override
+  String get dataLoadError => 'خطأ في تحميل البيانات';
+
+  @override
+  String get retryButton => 'إعادة المحاولة';
+
+  @override
+  String get patientId => 'رقم المريض';
+
+  @override
+  String get location => 'الموقع';
+
+  @override
+  String get notSpecified => 'غير محدد';
+
+  @override
+  String get notAvailable => 'غير متوفر';
+
+  @override
+  String get recentAppointments => 'المواعيد الأخيرة';
+
+  @override
+  String get viewAllButton => 'عرض الكل';
+
+  @override
+  String get videoCall => 'مكالمة فيديو';
+
+  @override
+  String get clinicVisit => 'زيارة عيادة';
+
+  @override
+  String get personalInfo => 'المعلومات الشخصية';
+
+  @override
+  String get myAppointments => 'مواعيدي';
+
+  @override
+  String get savedDoctors => 'الأطباء المحفوظون';
+
+  @override
+  String get appointmentsCount => 'المواعيد';
+
+  @override
+  String get ratingsCount => 'التقييمات';
 }

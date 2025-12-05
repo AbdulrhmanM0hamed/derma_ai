@@ -1095,4 +1095,75 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get required => 'Required';
+
+  @override
+  String get medicalLicenseNumber => 'Medical License Number';
+
+  @override
+  String get enterMedicalLicenseNumber => 'Enter medical license number';
+
+  @override
+  String get pleaseEnterMedicalLicenseNumber =>
+      'Please enter medical license number';
+
+  @override
+  String get invalidLicenseFormat => 'Invalid format. Use: MED-12345-2025';
+
+  @override
+  String get licenseYearCannotBeFuture =>
+      'License year cannot be in the future';
+
+  @override
+  String get licenseTooOld => 'License is too old';
+
+  @override
+  String get loadingData => 'Loading...';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get dataLoadError => 'Error loading data';
+
+  @override
+  String get retryButton => 'Retry';
+
+  @override
+  String get patientId => 'Patient ID';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get notSpecified => 'Not Specified';
+
+  @override
+  String get notAvailable => 'Not Available';
+
+  @override
+  String get recentAppointments => 'Recent Appointments';
+
+  @override
+  String get viewAllButton => 'View All';
+
+  @override
+  String get videoCall => 'Video Call';
+
+  @override
+  String get clinicVisit => 'Clinic Visit';
+
+  @override
+  String get personalInfo => 'Personal Information';
+
+  @override
+  String get myAppointments => 'My Appointments';
+
+  @override
+  String get savedDoctors => 'Saved Doctors';
+
+  @override
+  String get appointmentsCount => 'Appointments';
+
+  @override
+  String get ratingsCount => 'Ratings';
 }

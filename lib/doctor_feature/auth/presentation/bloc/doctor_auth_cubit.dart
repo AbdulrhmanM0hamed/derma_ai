@@ -14,40 +14,39 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
   DoctorAuthCubit({
     required DoctorAuthRepository authRepository,
     required TokenStorageService tokenStorage,
-  })  : _authRepository = authRepository,
-        _tokenStorage = tokenStorage,
-        super(DoctorAuthInitial());
+  }) : _authRepository = authRepository,
+       _tokenStorage = tokenStorage,
+       super(DoctorAuthInitial());
 
-  Future<void> login({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> login({required String email, required String password}) async {
     emit(DoctorAuthLoading());
 
     try {
-      final request = LoginRequestModel(
-        email: email,
-        password: password,
-      );
+      final request = LoginRequestModel(email: email, password: password);
 
       final response = await _authRepository.login(request);
-      
+
       // Check if account is not verified FIRST (before checking success)
       if (response.accountNotVerified == true) {
-        emit(DoctorAccountNotVerified(
-          userId: response.userId ?? 0,
-          messageEn: response.messageEn,
-          messageAr: response.messageAr,
-          requiresVerification: response.requiresVerification ?? {'email': true},
-        ));
+        emit(
+          DoctorAccountNotVerified(
+            userId: response.userId ?? 0,
+            messageEn: response.messageEn,
+            messageAr: response.messageAr,
+            requiresVerification:
+                response.requiresVerification ?? {'email': true},
+          ),
+        );
         return;
       }
-      
+
       if (!response.success) {
-        emit(DoctorLoginFailure(
-          messageEn: response.messageEn,
-          messageAr: response.messageAr,
-        ));
+        emit(
+          DoctorLoginFailure(
+            messageEn: response.messageEn,
+            messageAr: response.messageAr,
+          ),
+        );
         return;
       }
 
@@ -74,31 +73,41 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
       await _tokenStorage.saveEntityType('doctor');
 
       // If we reach here, login was successful
-      emit(DoctorLoginSuccess(
-        entity: response.user ?? UserModel(
-          id: response.userId ?? 0,
-          uuid: '',
-          email: '',
-          status: '',
+      emit(
+        DoctorLoginSuccess(
+          entity:
+              response.user ??
+              UserModel(
+                id: response.userId ?? 0,
+                uuid: '',
+                email: '',
+                status: '',
+              ),
+          messageEn: response.messageEn,
+          messageAr: response.messageAr,
         ),
-        messageEn: response.messageEn,
-        messageAr: response.messageAr,
-      ));
+      );
     } on DioException catch (_) {
-      emit(DoctorLoginFailure(
-        messageEn: 'Login failed',
-        messageAr: 'فشل تسجيل الدخول',
-      ));
+      emit(
+        DoctorLoginFailure(
+          messageEn: 'Login failed',
+          messageAr: 'فشل تسجيل الدخول',
+        ),
+      );
     } on ApiException catch (e) {
-      emit(DoctorLoginFailure(
-        messageEn: e.message,
-        messageAr: e.messageAr ?? e.message,
-      ));
+      emit(
+        DoctorLoginFailure(
+          messageEn: e.message,
+          messageAr: e.messageAr ?? e.message,
+        ),
+      );
     } catch (e) {
-      emit(DoctorLoginFailure(
-        messageEn: 'An unexpected error occurred',
-        messageAr: 'حدث خطأ غير متوقع',
-      ));
+      emit(
+        DoctorLoginFailure(
+          messageEn: 'An unexpected error occurred',
+          messageAr: 'حدث خطأ غير متوقع',
+        ),
+      );
     }
   }
 
@@ -118,38 +127,49 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
         email: email,
         phone: phone,
         password: password,
+        licenseNumber: licenseNumber,
       );
 
       final response = await _authRepository.register(request);
-      
+
       if (!response.success) {
-        emit(DoctorRegisterFailure(
-          messageEn: response.messageEn,
-          messageAr: response.messageAr,
-        ));
+        emit(
+          DoctorRegisterFailure(
+            messageEn: response.messageEn,
+            messageAr: response.messageAr,
+          ),
+        );
         return;
       }
 
-      emit(DoctorRegisterSuccess(
-        entity: response.user ?? UserModel(
-          id: response.userId ?? 0,
-          uuid: '',
-          email: '',
-          status: 'pending_verification',
+      emit(
+        DoctorRegisterSuccess(
+          entity:
+              response.user ??
+              UserModel(
+                id: response.userId ?? 0,
+                uuid: '',
+                email: '',
+                status: 'pending_verification',
+              ),
+          messageEn: response.messageEn,
+          messageAr: response.messageAr,
         ),
-        messageEn: response.messageEn,
-        messageAr: response.messageAr,
-      ));
+      );
     } on ApiException catch (e) {
-      emit(DoctorRegisterFailure(
-        messageEn: e.message,
-        messageAr: e.messageAr ?? e.message,
-      ));
+      emit(
+        DoctorRegisterFailure(
+          messageEn: e.message,
+          messageAr: e.messageAr ?? e.message,
+        ),
+      );
     } catch (e) {
-      emit(DoctorRegisterFailure(
-        messageEn: 'An unexpected error occurred',
-        messageAr: 'حدث خطأ غير متوقع',
-      ));
+      emit(
+        DoctorRegisterFailure(
+          messageEn: 'An unexpected error occurred',
+          messageAr: 'حدث خطأ غير متوقع',
+        ),
+      );
     }
   }
 
@@ -158,47 +178,58 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
 
     try {
       // إذا لم يكن هناك access token، نقوم بالـ logout محلياً فقط
-      if (_tokenStorage.accessToken == null || _tokenStorage.accessToken!.isEmpty) {
+      if (_tokenStorage.accessToken == null ||
+          _tokenStorage.accessToken!.isEmpty) {
         await _tokenStorage.clearTokens();
-        emit(DoctorLogoutSuccess(
-          messageEn: 'Logged out successfully',
-          messageAr: 'تم تسجيل الخروج بنجاح',
-        ));
+        emit(
+          DoctorLogoutSuccess(
+            messageEn: 'Logged out successfully',
+            messageAr: 'تم تسجيل الخروج بنجاح',
+          ),
+        );
         return;
       }
-      
+
       // محاولة logout من السيرفر
       await _authRepository.logout();
       await _tokenStorage.clearTokens();
-      
-      emit(DoctorLogoutSuccess(
-        messageEn: 'Logged out successfully',
-        messageAr: 'تم تسجيل الخروج بنجاح',
-      ));
+
+      emit(
+        DoctorLogoutSuccess(
+          messageEn: 'Logged out successfully',
+          messageAr: 'تم تسجيل الخروج بنجاح',
+        ),
+      );
     } on ApiException catch (e) {
       // حتى لو فشل الـ logout من السيرفر، نقوم بالـ logout محلياً
       await _tokenStorage.clearTokens();
-      
+
       // إذا كان الخطأ 401 (Unauthorized)، نعتبره logout ناجح
       if (e.statusCode == 401) {
-        emit(DoctorLogoutSuccess(
-          messageEn: 'Logged out successfully',
-          messageAr: 'تم تسجيل الخروج بنجاح',
-        ));
+        emit(
+          DoctorLogoutSuccess(
+            messageEn: 'Logged out successfully',
+            messageAr: 'تم تسجيل الخروج بنجاح',
+          ),
+        );
       } else {
-        emit(DoctorLogoutFailure(
-          messageEn: e.message,
-          messageAr: e.messageAr ?? e.message,
-        ));
+        emit(
+          DoctorLogoutFailure(
+            messageEn: e.message,
+            messageAr: e.messageAr ?? e.message,
+          ),
+        );
       }
     } catch (e) {
       // حتى لو فشل الـ logout من السيرفر، نقوم بالـ logout محلياً
       await _tokenStorage.clearTokens();
-      
-      emit(DoctorLogoutFailure(
-        messageEn: 'Logout completed locally due to connection error',
-        messageAr: 'تم تسجيل الخروج محلياً بسبب خطأ في الاتصال',
-      ));
+
+      emit(
+        DoctorLogoutFailure(
+          messageEn: 'Logout completed locally due to connection error',
+          messageAr: 'تم تسجيل الخروج محلياً بسبب خطأ في الاتصال',
+        ),
+      );
     }
   }
 
@@ -217,75 +248,85 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
       );
 
       final response = await _authRepository.checkOtp(request);
-      
+
       if (!response.success) {
-        emit(DoctorVerifyOtpFailure(
-          messageEn: response.messageEn,
-          messageAr: response.messageAr,
-        ));
+        emit(
+          DoctorVerifyOtpFailure(
+            messageEn: response.messageEn,
+            messageAr: response.messageAr,
+          ),
+        );
         return;
       }
 
-      emit(DoctorVerifyOtpSuccess(
-        entity: UserModel(
-          id: userId,
-          uuid: '',
-          email: '',
-          status: 'verified',
-          emailVerifiedAt: DateTime.now().toIso8601String(),
+      emit(
+        DoctorVerifyOtpSuccess(
+          entity: UserModel(
+            id: userId,
+            uuid: '',
+            email: '',
+            status: 'verified',
+            emailVerifiedAt: DateTime.now().toIso8601String(),
+          ),
+          messageEn: response.messageEn,
+          messageAr: response.messageAr,
         ),
-        messageEn: response.messageEn,
-        messageAr: response.messageAr,
-      ));
+      );
     } on ApiException catch (e) {
-      emit(DoctorVerifyOtpFailure(
-        messageEn: e.message,
-        messageAr: e.messageAr ?? e.message,
-      ));
+      emit(
+        DoctorVerifyOtpFailure(
+          messageEn: e.message,
+          messageAr: e.messageAr ?? e.message,
+        ),
+      );
     } catch (e) {
-      emit(DoctorVerifyOtpFailure(
-        messageEn: 'An unexpected error occurred',
-        messageAr: 'حدث خطأ غير متوقع',
-      ));
+      emit(
+        DoctorVerifyOtpFailure(
+          messageEn: 'An unexpected error occurred',
+          messageAr: 'حدث خطأ غير متوقع',
+        ),
+      );
     }
   }
 
-  Future<void> resendOtp({
-    required int userId,
-    required String type,
-  }) async {
+  Future<void> resendOtp({required int userId, required String type}) async {
     emit(DoctorAuthLoading());
 
     try {
-      final request = ResendOtpRequestModel(
-        userId: userId,
-        type: type,
-      );
+      final request = ResendOtpRequestModel(userId: userId, type: type);
 
       final response = await _authRepository.resendOtp(request);
-      
+
       if (!response.success) {
-        emit(DoctorResendOtpFailure(
-          messageEn: response.messageEn,
-          messageAr: response.messageAr,
-        ));
+        emit(
+          DoctorResendOtpFailure(
+            messageEn: response.messageEn,
+            messageAr: response.messageAr,
+          ),
+        );
         return;
       }
 
-      emit(DoctorResendOtpSuccess(
-        messageEn: response.messageEn,
-        messageAr: response.messageAr,
-      ));
+      emit(
+        DoctorResendOtpSuccess(
+          messageEn: response.messageEn,
+          messageAr: response.messageAr,
+        ),
+      );
     } on ApiException catch (e) {
-      emit(DoctorResendOtpFailure(
-        messageEn: e.message,
-        messageAr: e.messageAr ?? e.message,
-      ));
+      emit(
+        DoctorResendOtpFailure(
+          messageEn: e.message,
+          messageAr: e.messageAr ?? e.message,
+        ),
+      );
     } catch (e) {
-      emit(DoctorResendOtpFailure(
-        messageEn: 'An unexpected error occurred',
-        messageAr: 'حدث خطأ غير متوقع',
-      ));
+      emit(
+        DoctorResendOtpFailure(
+          messageEn: 'An unexpected error occurred',
+          messageAr: 'حدث خطأ غير متوقع',
+        ),
+      );
     }
   }
 
@@ -294,37 +335,42 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
     required String type,
   }) async {
     emit(DoctorAuthLoading());
-    
+
     try {
-      final request = ForgetPasswordRequestModel(
-        email: email,
-        type: type,
-      );
+      final request = ForgetPasswordRequestModel(email: email, type: type);
 
       final response = await _authRepository.forgetPassword(request);
-      
+
       if (!response.success) {
-        emit(DoctorRequestPasswordResetOtpFailure(
-          messageEn: response.messageEn,
-          messageAr: response.messageAr,
-        ));
+        emit(
+          DoctorRequestPasswordResetOtpFailure(
+            messageEn: response.messageEn,
+            messageAr: response.messageAr,
+          ),
+        );
         return;
       }
 
-      emit(DoctorRequestPasswordResetOtpSuccess(
-        messageEn: response.messageEn,
-        messageAr: response.messageAr,
-      ));
+      emit(
+        DoctorRequestPasswordResetOtpSuccess(
+          messageEn: response.messageEn,
+          messageAr: response.messageAr,
+        ),
+      );
     } on ApiException catch (e) {
-      emit(DoctorRequestPasswordResetOtpFailure(
-        messageEn: e.message,
-        messageAr: e.messageAr ?? e.message,
-      ));
+      emit(
+        DoctorRequestPasswordResetOtpFailure(
+          messageEn: e.message,
+          messageAr: e.messageAr ?? e.message,
+        ),
+      );
     } catch (e) {
-      emit(DoctorRequestPasswordResetOtpFailure(
-        messageEn: 'An unexpected error occurred',
-        messageAr: 'حدث خطأ غير متوقع',
-      ));
+      emit(
+        DoctorRequestPasswordResetOtpFailure(
+          messageEn: 'An unexpected error occurred',
+          messageAr: 'حدث خطأ غير متوقع',
+        ),
+      );
     }
   }
 
@@ -333,7 +379,7 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
     required String otp,
   }) async {
     emit(DoctorAuthLoading());
-    
+
     try {
       final request = CheckOtpRequestModel(
         userId: 0,
@@ -342,30 +388,38 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
       );
 
       final response = await _authRepository.checkOtp(request);
-      
+
       if (!response.success) {
-        emit(DoctorVerifyPasswordResetOtpFailure(
-          messageEn: response.messageEn,
-          messageAr: response.messageAr,
-        ));
+        emit(
+          DoctorVerifyPasswordResetOtpFailure(
+            messageEn: response.messageEn,
+            messageAr: response.messageAr,
+          ),
+        );
         return;
       }
 
-      emit(DoctorVerifyPasswordResetOtpSuccess(
-        messageEn: response.messageEn,
-        messageAr: response.messageAr,
-        resetToken: otp,
-      ));
+      emit(
+        DoctorVerifyPasswordResetOtpSuccess(
+          messageEn: response.messageEn,
+          messageAr: response.messageAr,
+          resetToken: otp,
+        ),
+      );
     } on ApiException catch (e) {
-      emit(DoctorVerifyPasswordResetOtpFailure(
-        messageEn: e.message,
-        messageAr: e.messageAr ?? e.message,
-      ));
+      emit(
+        DoctorVerifyPasswordResetOtpFailure(
+          messageEn: e.message,
+          messageAr: e.messageAr ?? e.message,
+        ),
+      );
     } catch (e) {
-      emit(DoctorVerifyPasswordResetOtpFailure(
-        messageEn: 'An unexpected error occurred',
-        messageAr: 'حدث خطأ غير متوقع',
-      ));
+      emit(
+        DoctorVerifyPasswordResetOtpFailure(
+          messageEn: 'An unexpected error occurred',
+          messageAr: 'حدث خطأ غير متوقع',
+        ),
+      );
     }
   }
 
@@ -374,7 +428,7 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
     required String newPassword,
   }) async {
     emit(DoctorAuthLoading());
-    
+
     try {
       final request = ChangePasswordRequestModel(
         token: token,
@@ -382,29 +436,37 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
       );
 
       final response = await _authRepository.changePassword(request);
-      
+
       if (!response.success) {
-        emit(DoctorResetPasswordFailure(
-          messageEn: response.messageEn,
-          messageAr: response.messageAr,
-        ));
+        emit(
+          DoctorResetPasswordFailure(
+            messageEn: response.messageEn,
+            messageAr: response.messageAr,
+          ),
+        );
         return;
       }
 
-      emit(DoctorResetPasswordSuccess(
-        messageEn: response.messageEn,
-        messageAr: response.messageAr,
-      ));
+      emit(
+        DoctorResetPasswordSuccess(
+          messageEn: response.messageEn,
+          messageAr: response.messageAr,
+        ),
+      );
     } on ApiException catch (e) {
-      emit(DoctorResetPasswordFailure(
-        messageEn: e.message,
-        messageAr: e.messageAr ?? e.message,
-      ));
+      emit(
+        DoctorResetPasswordFailure(
+          messageEn: e.message,
+          messageAr: e.messageAr ?? e.message,
+        ),
+      );
     } catch (e) {
-      emit(DoctorResetPasswordFailure(
-        messageEn: 'An unexpected error occurred',
-        messageAr: 'حدث خطأ غير متوقع',
-      ));
+      emit(
+        DoctorResetPasswordFailure(
+          messageEn: 'An unexpected error occurred',
+          messageAr: 'حدث خطأ غير متوقع',
+        ),
+      );
     }
   }
 }

@@ -2197,6 +2197,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Required'**
   String get required;
+
+  /// No description provided for @medicalLicenseNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical License Number'**
+  String get medicalLicenseNumber;
+
+  /// No description provided for @enterMedicalLicenseNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter medical license number'**
+  String get enterMedicalLicenseNumber;
+
+  /// No description provided for @pleaseEnterMedicalLicenseNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter medical license number'**
+  String get pleaseEnterMedicalLicenseNumber;
+
+  /// No description provided for @invalidLicenseFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid format. Use: MED-12345-2025'**
+  String get invalidLicenseFormat;
+
+  /// No description provided for @licenseYearCannotBeFuture.
+  ///
+  /// In en, this message translates to:
+  /// **'License year cannot be in the future'**
+  String get licenseYearCannotBeFuture;
+
+  /// No description provided for @licenseTooOld.
+  ///
+  /// In en, this message translates to:
+  /// **'License is too old'**
+  String get licenseTooOld;
+
+  /// No description provided for @loadingData.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loadingData;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @dataLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading data'**
+  String get dataLoadError;
+
+  /// No description provided for @retryButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retryButton;
+
+  /// No description provided for @patientId.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient ID'**
+  String get patientId;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @notSpecified.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Specified'**
+  String get notSpecified;
+
+  /// No description provided for @notAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Available'**
+  String get notAvailable;
+
+  /// No description provided for @recentAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Appointments'**
+  String get recentAppointments;
+
+  /// No description provided for @viewAllButton.
+  ///
+  /// In en, this message translates to:
+  /// **'View All'**
+  String get viewAllButton;
+
+  /// No description provided for @videoCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Video Call'**
+  String get videoCall;
+
+  /// No description provided for @clinicVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic Visit'**
+  String get clinicVisit;
+
+  /// No description provided for @personalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInfo;
+
+  /// No description provided for @myAppointments.
+  ///
+  /// In en, this message translates to:
+  /// **'My Appointments'**
+  String get myAppointments;
+
+  /// No description provided for @savedDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Doctors'**
+  String get savedDoctors;
+
+  /// No description provided for @appointmentsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointments'**
+  String get appointmentsCount;
+
+  /// No description provided for @ratingsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Ratings'**
+  String get ratingsCount;
 }
 
 class _AppLocalizationsDelegate

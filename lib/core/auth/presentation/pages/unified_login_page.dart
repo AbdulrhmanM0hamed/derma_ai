@@ -285,8 +285,8 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
           style: getRegularStyle(
             color:
                 _selectedUserType == UserType.doctor
-                    ? AppColors.textSecondary
-                    : AppColors.textSecondary,
+                    ? AppColors.black
+                    : AppColors.black,
             fontSize: 15,
             fontFamily: FontConstant.cairo,
           ),
@@ -301,55 +301,60 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
   }
 
   Widget _buildUserTypeSelector() {
-    return Container(
-      height: 56,
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(
-          color: AppColors.secondary.withValues(alpha:0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
+    return GestureDetector(
+      onTap: () {
+        // Toggle between user types
+        _handleUserTypeChange(
+          _selectedUserType == UserType.user ? UserType.doctor : UserType.user,
+        );
+      },
+      child: Container(
+        height: 56,
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(28),
+          border: Border.all(
+            color: AppColors.secondary.withValues(alpha: 0.3),
+            width: 1.5,
           ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          // Animated background slider
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 5000),
-            curve: Curves.easeInOutCubic,
-            right: _selectedUserType == UserType.user ? 4 : null,
-            left: _selectedUserType == UserType.doctor ? 4 : null,
-            top: 4,
-            bottom: 4,
-            child: Container(
-              width: (MediaQuery.of(context).size.width - 48 - 40) / 2,
-              decoration: BoxDecoration(
-                color: AppColors.secondary,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.secondary.withValues(alpha: 0.4),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            // Animated background slider
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOutCubic,
+              left: _selectedUserType == UserType.user ? 4 : null,
+              right: _selectedUserType == UserType.doctor ? 4 : null,
+              top: 4,
+              bottom: 4,
+              child: Container(
+                width: (MediaQuery.of(context).size.width - 48 - 40) / 2,
+                decoration: BoxDecoration(
+                  color: AppColors.secondary,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.secondary.withValues(alpha: 0.4),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          // User and Doctor buttons
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () => _handleUserTypeChange(UserType.user),
+            // User and Doctor labels (non-interactive)
+            Row(
+              children: [
+                Expanded(
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -359,7 +364,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AnimatedContainer(
-                          duration: const Duration(milliseconds: 600),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           child: Icon(
                             Icons.person_outline,
@@ -367,31 +372,28 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             color:
                                 _selectedUserType == UserType.user
                                     ? Colors.black
-                                    : AppColors.textSecondary,
+                                    : AppColors.black,
                           ),
                         ),
                         const SizedBox(width: 8),
                         AnimatedDefaultTextStyle(
-                          duration: const Duration(milliseconds: 600),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           style: getMediumStyle(
                             color:
                                 _selectedUserType == UserType.user
                                     ? AppColors.black
-                                    : AppColors.textSecondary,
+                                    : AppColors.black,
                             fontSize: 14,
                             fontFamily: FontConstant.cairo,
                           ),
-                          child: const Text('مستخدم'),
+                          child: Text(AppLocalizations.of(context)!.user),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () => _handleUserTypeChange(UserType.doctor),
+                Expanded(
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -401,7 +403,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AnimatedContainer(
-                          duration: const Duration(milliseconds: 600),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           child: Icon(
                             Icons.medical_services_outlined,
@@ -409,31 +411,31 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             color:
                                 _selectedUserType == UserType.doctor
                                     ? Colors.black
-                                    : AppColors.textSecondary,
+                                    : AppColors.black,
                           ),
                         ),
                         const SizedBox(width: 8),
                         AnimatedDefaultTextStyle(
-                          duration: const Duration(milliseconds: 600),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           style: getMediumStyle(
                             color:
                                 _selectedUserType == UserType.doctor
                                     ? AppColors.black
-                                    : AppColors.textSecondary,
+                                    : AppColors.black,
                             fontSize: 14,
                             fontFamily: FontConstant.cairo,
                           ),
-                          child: const Text('دكتور'),
+                          child: Text(AppLocalizations.of(context)!.doctor),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -458,7 +460,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                     borderRadius: BorderRadius.circular(24),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha:0.1),
+                        color: Colors.black.withValues(alpha: 0.1),
                         blurRadius: 10,
                         offset: const Offset(0, 5),
                       ),
@@ -519,7 +521,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             Text(
                               AppLocalizations.of(context)!.rememberMe,
                               style: getRegularStyle(
-                                color: AppColors.textSecondary,
+                                color: AppColors.black,
                                 fontSize: 14,
                                 fontFamily: FontConstant.cairo,
                               ),
@@ -558,7 +560,7 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             Text(
                               AppLocalizations.of(context)!.dontHaveAccount,
                               style: getRegularStyle(
-                                color: AppColors.textSecondary,
+                                color: AppColors.black,
                                 fontSize: 14,
                                 fontFamily: FontConstant.cairo,
                               ),

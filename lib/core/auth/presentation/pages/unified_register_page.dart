@@ -34,6 +34,8 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _licenseNumberController =
+      TextEditingController(); // رقم الترخيص للدكتور
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   bool _acceptTerms = false;
@@ -57,6 +59,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
     _phoneController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+    _licenseNumberController.dispose();
     _animationController.dispose();
     super.dispose();
   }
@@ -93,6 +96,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
     final email = _emailController.text.trim();
     final phone = _phoneController.text.trim();
     final password = _passwordController.text.trim();
+    final licenseNumber = _licenseNumberController.text.trim();
 
     if (_selectedUserType == UserType.user) {
       context.read<AuthCubit>().register(
@@ -108,7 +112,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
         phone: phone,
         password: password,
         specialization: 'General', // Default value
-        licenseNumber: '000000', // Default value
+        licenseNumber: licenseNumber.toUpperCase(), // رقم الترخيص بأحرف كبيرة
       );
     }
   }
@@ -242,7 +246,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
             color:
                 _selectedUserType == UserType.doctor
                     ? AppColors.black
-                    : AppColors.textPrimary,
+                    : AppColors.black,
             fontSize: 24,
             fontFamily: FontConstant.cairo,
           ),
@@ -259,8 +263,8 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
           style: getRegularStyle(
             color:
                 _selectedUserType == UserType.doctor
-                    ? AppColors.textSecondary
-                    : AppColors.textSecondary,
+                    ? AppColors.black
+                    : AppColors.black,
             fontSize: 15,
             fontFamily: FontConstant.cairo,
           ),
@@ -275,55 +279,60 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
   }
 
   Widget _buildUserTypeSelector() {
-    return Container(
-      height: 56,
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(
-          color: AppColors.secondary.withValues(alpha:0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha:0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
+    return GestureDetector(
+      onTap: () {
+        // Toggle between user types
+        _handleUserTypeChange(
+          _selectedUserType == UserType.user ? UserType.doctor : UserType.user,
+        );
+      },
+      child: Container(
+        height: 56,
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(28),
+          border: Border.all(
+            color: AppColors.secondary.withValues(alpha: 0.3),
+            width: 1.5,
           ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          // Animated background slider
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.easeInOutCubic,
-            right: _selectedUserType == UserType.user ? 4 : null,
-            left: _selectedUserType == UserType.doctor ? 4 : null,
-            top: 4,
-            bottom: 4,
-            child: Container(
-              width: (MediaQuery.of(context).size.width - 48 - 40) / 2,
-              decoration: BoxDecoration(
-                color: AppColors.secondary,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.secondary.withValues(alpha: 0.4),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            // Animated background slider
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOutCubic,
+              left: _selectedUserType == UserType.user ? 4 : null,
+              right: _selectedUserType == UserType.doctor ? 4 : null,
+              top: 4,
+              bottom: 4,
+              child: Container(
+                width: (MediaQuery.of(context).size.width - 48 - 40) / 2,
+                decoration: BoxDecoration(
+                  color: AppColors.secondary,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.secondary.withValues(alpha: 0.4),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          // User and Doctor buttons
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () => _handleUserTypeChange(UserType.user),
+            // User and Doctor labels (non-interactive)
+            Row(
+              children: [
+                Expanded(
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -333,7 +342,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AnimatedContainer(
-                          duration: const Duration(milliseconds: 600),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           child: Icon(
                             Icons.person_outline,
@@ -341,31 +350,28 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                             color:
                                 _selectedUserType == UserType.user
                                     ? Colors.black
-                                    : AppColors.textSecondary,
+                                    : AppColors.black,
                           ),
                         ),
                         const SizedBox(width: 8),
                         AnimatedDefaultTextStyle(
-                          duration: const Duration(milliseconds: 600),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           style: getMediumStyle(
                             color:
                                 _selectedUserType == UserType.user
-                                    ? Colors.black
-                                    : AppColors.textSecondary,
+                                    ? AppColors.black
+                                    : AppColors.black,
                             fontSize: 14,
                             fontFamily: FontConstant.cairo,
                           ),
-                          child: const Text('مستخدم'),
+                          child: Text(AppLocalizations.of(context)!.user),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () => _handleUserTypeChange(UserType.doctor),
+                Expanded(
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -375,7 +381,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AnimatedContainer(
-                          duration: const Duration(milliseconds: 600),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           child: Icon(
                             Icons.medical_services_outlined,
@@ -383,31 +389,31 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                             color:
                                 _selectedUserType == UserType.doctor
                                     ? Colors.black
-                                    : AppColors.textSecondary,
+                                    : AppColors.black,
                           ),
                         ),
                         const SizedBox(width: 8),
                         AnimatedDefaultTextStyle(
-                          duration: const Duration(milliseconds: 600),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           style: getMediumStyle(
                             color:
                                 _selectedUserType == UserType.doctor
-                                    ? Colors.black
-                                    : AppColors.textSecondary,
+                                    ? AppColors.black
+                                    : AppColors.black,
                             fontSize: 14,
                             fontFamily: FontConstant.cairo,
                           ),
-                          child: const Text('دكتور'),
+                          child: Text(AppLocalizations.of(context)!.doctor),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -543,6 +549,30 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                           },
                         ),
                         const SizedBox(height: 20),
+                        // حقل رقم الترخيص - يظهر فقط للدكتور
+                        if (_selectedUserType == UserType.doctor) ...[
+                          CustomTextField(
+                            controller: _licenseNumberController,
+                            labelText:
+                                AppLocalizations.of(
+                                  context,
+                                )!.medicalLicenseNumber,
+                            hintText:
+                                AppLocalizations.of(
+                                  context,
+                                )!.enterMedicalLicenseNumber,
+                            prefixIcon: Icons.badge_outlined,
+                            keyboardType: TextInputType.text,
+                            textCapitalization: TextCapitalization.characters,
+                            validator:
+                                (value) =>
+                                    FormValidators.validateMedicalLicenseNumber(
+                                      value,
+                                      context,
+                                    ),
+                          ),
+                          const SizedBox(height: 20),
+                        ],
                         _buildTermsAndConditions(),
                         const SizedBox(height: 28),
                         CustomButton(
@@ -564,7 +594,7 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.pop(context);
+                                Navigator.pushNamed(context, AppRoutes.login);
                               },
                               child: Text(
                                 AppLocalizations.of(context)!.login,
