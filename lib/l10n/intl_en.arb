@@ -433,6 +433,15 @@
   "logoutDialogMessage": "Are you sure you want to logout from your account?",
   "arabic": "العربية",
   "english": "English",
-  "theme": "Theme"
-
+  "theme": "Theme",
+  "doctorAccountVerification": "Doctor Account Verification",
+  "verifyDoctorAccount": "Verify Your Account",
+  "otpSentToEmailDoctor": "Verification code sent to",
+  "resendOtp": "Resend",
+  "resendOtpIn": "Resend in",
+  "seconds": "seconds",
+  "canResendIn": "You can resend in",
+  "codeValidForMinutes": "Code is valid for 5 minutes only",
+  "otpVerificationSuccess": "Account verified successfully",
+  "otpResendSuccess": "Verification code sent successfully"
 }

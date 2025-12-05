@@ -2575,6 +2575,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Theme'**
   String get theme;
+
+  /// No description provided for @doctorAccountVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor Account Verification'**
+  String get doctorAccountVerification;
+
+  /// No description provided for @verifyDoctorAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Your Account'**
+  String get verifyDoctorAccount;
+
+  /// No description provided for @otpSentToEmailDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code sent to'**
+  String get otpSentToEmailDoctor;
+
+  /// No description provided for @resendOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resendOtp;
+
+  /// No description provided for @resendOtpIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend in'**
+  String get resendOtpIn;
+
+  /// No description provided for @seconds.
+  ///
+  /// In en, this message translates to:
+  /// **'seconds'**
+  String get seconds;
+
+  /// No description provided for @canResendIn.
+  ///
+  /// In en, this message translates to:
+  /// **'You can resend in'**
+  String get canResendIn;
+
+  /// No description provided for @codeValidForMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Code is valid for 5 minutes only'**
+  String get codeValidForMinutes;
+
+  /// No description provided for @otpVerificationSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Account verified successfully'**
+  String get otpVerificationSuccess;
+
+  /// No description provided for @otpResendSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code sent successfully'**
+  String get otpResendSuccess;
 }
 
 class _AppLocalizationsDelegate

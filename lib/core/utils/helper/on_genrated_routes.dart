@@ -16,6 +16,7 @@ import '../../../user_features/auth/presentation/pages/forgot_password_page.dart
 import '../../../user_features/auth/presentation/pages/password_reset_otp_page.dart';
 import '../../../user_features/auth/presentation/pages/reset_password_page.dart';
 import '../../../user_features/auth/presentation/pages/otp_verification_page.dart';
+import '../../../doctor_feature/auth/presentation/pages/doctor_otp_verification_page.dart';
 // Main App
 import '../../../user_features/home/presentation/pages/home_page.dart';
 import '../../../user_features/ai_diagnosis/presentation/pages/ai_diagnosis_page.dart';
@@ -116,6 +117,17 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
       final args = settings.arguments as Map<String, dynamic>;
       return _createRoute(
         OtpVerificationPage(
+          userId: args['userId'] as int,
+          email: args['email'] as String,
+          phone: args['phone'] as String? ?? '',
+          type: args['type'] as String? ?? 'email',
+        ),
+      );
+
+    case AppRoutes.doctorOtpVerification:
+      final args = settings.arguments as Map<String, dynamic>;
+      return _createRoute(
+        DoctorOtpVerificationPage(
           userId: args['userId'] as int,
           email: args['email'] as String,
           phone: args['phone'] as String? ?? '',

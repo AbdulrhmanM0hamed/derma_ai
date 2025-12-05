@@ -20,14 +20,22 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
 
   Future<void> login({required String email, required String password}) async {
     emit(DoctorAuthLoading());
+    //print('🟢 DoctorAuthCubit.login called with email: $email');
 
     try {
       final request = LoginRequestModel(email: email, password: password);
 
       final response = await _authRepository.login(request);
+      //print('🟢 API Response received');
+      //print('🟢 success: ${response.success}');
+      //print('🟢 accountNotVerified: ${response.accountNotVerified}');
+      //print('🟢 userId: ${response.userId}');
+      //print('🟢 messageAr: ${response.messageAr}');
+      //print('🟢 messageEn: ${response.messageEn}');
 
       // Check if account is not verified FIRST (before checking success)
       if (response.accountNotVerified == true) {
+        //print('🟢 Emitting DoctorAccountNotVerified state...');
         emit(
           DoctorAccountNotVerified(
             userId: response.userId ?? 0,
@@ -37,10 +45,12 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
                 response.requiresVerification ?? {'email': true},
           ),
         );
+        //print('🟢 DoctorAccountNotVerified state emitted');
         return;
       }
 
       if (!response.success) {
+        //print('🟢 Emitting DoctorLoginFailure (not successful)...');
         emit(
           DoctorLoginFailure(
             messageEn: response.messageEn,
@@ -73,6 +83,7 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
       await _tokenStorage.saveEntityType('doctor');
 
       // If we reach here, login was successful
+      //print('🟢 Emitting DoctorLoginSuccess...');
       emit(
         DoctorLoginSuccess(
           entity:
@@ -87,7 +98,32 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
           messageAr: response.messageAr,
         ),
       );
-    } on DioException catch (_) {
+    } on DioException catch (e) {
+      //print('🟢 DioException caught: ${e.message}');
+      //print('🟢 Response data: ${e.response?.data}');
+
+      // Check if error response contains accountNotVerified
+      if (e.response?.data != null && e.response?.data is Map) {
+        final errorData = e.response!.data as Map<String, dynamic>;
+        if (errorData['accountNotVerified'] == true) {
+          //print('🟢 Account not verified detected in error response');
+          emit(
+            DoctorAccountNotVerified(
+              userId: errorData['userId'] ?? 0,
+              messageEn: errorData['message_en'] ?? 'Account not verified',
+              messageAr: errorData['message_ar'] ?? 'الحساب غير مفعل',
+              requiresVerification:
+                  errorData['requiresVerification'] != null
+                      ? Map<String, bool>.from(
+                        errorData['requiresVerification'],
+                      )
+                      : {'email': true},
+            ),
+          );
+          return;
+        }
+      }
+
       emit(
         DoctorLoginFailure(
           messageEn: 'Login failed',
@@ -95,6 +131,37 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
         ),
       );
     } on ApiException catch (e) {
+      //print('🟢 ApiException caught: ${e.message}');
+
+      // Check if ApiException has response data with accountNotVerified
+      // e.response is dynamic, but it holds the Dio Response object
+      if (e.response != null && e.response is Response) {
+        final response = e.response as Response;
+        if (response.data != null && response.data is Map) {
+          final errorData = response.data as Map<String, dynamic>;
+
+          if (errorData['accountNotVerified'] == true) {
+            //print(
+            //   '🟢 Account not verified detected in ApiException response data',
+            // );
+            emit(
+              DoctorAccountNotVerified(
+                userId: errorData['userId'] ?? 0,
+                messageEn: errorData['message_en'] ?? e.message,
+                messageAr: errorData['message_ar'] ?? e.messageAr ?? e.message,
+                requiresVerification:
+                    errorData['requiresVerification'] != null
+                        ? Map<String, bool>.from(
+                          errorData['requiresVerification'],
+                        )
+                        : {'email': true},
+              ),
+            );
+            return;
+          }
+        }
+      }
+
       emit(
         DoctorLoginFailure(
           messageEn: e.message,

@@ -427,5 +427,15 @@
   "logoutDialogMessage": "هل أنت متأكد من أنك تريد تسجيل الخروج من حسابك؟",
   "arabic": "العربية",
   "english": "English",
-  "theme": "المظهر"
+  "theme": "المظهر",
+  "doctorAccountVerification": "تأكيد حساب الطبيب",
+  "verifyDoctorAccount": "تأكيد حسابك",
+  "otpSentToEmailDoctor": "تم إرسال رمز التحقق إلى",
+  "resendOtp": "إعادة الإرسال",
+  "resendOtpIn": "إعادة الإرسال خلال",
+  "seconds": "ثانية",
+  "canResendIn": "يمكنك إعادة الإرسال خلال",
+  "codeValidForMinutes": "الرمز صالح لمدة 5 دقائق فقط",
+  "otpVerificationSuccess": "تم التحقق من الحساب بنجاح",
+  "otpResendSuccess": "تم إرسال رمز التحقق بنجاح"
 }

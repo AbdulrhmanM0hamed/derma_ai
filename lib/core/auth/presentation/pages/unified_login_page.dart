@@ -114,8 +114,11 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
           // Use user endpoints
           context.read<AuthCubit>().login(email: email, password: password);
         } else {
-          // Navigate directly to doctor UI (no validation for now)
-          Navigator.pushReplacementNamed(context, '/doctor-navigation');
+          // Use doctor endpoints
+          context.read<DoctorAuthCubit>().login(
+            email: email,
+            password: password,
+          );
         }
       } catch (e) {
         CustomSnackbar.showError(
@@ -159,6 +162,39 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                           context,
                           AppRoutes.mainNavigationPage,
                         );
+                      } else if (state is AccountNotVerified) {
+                        // Show message then navigate to OTP page
+                        CustomSnackbar.showWarning(
+                          context: context,
+                          message: CustomSnackbar.getLocalizedMessage(
+                            context: context,
+                            messageAr: state.messageAr,
+                            messageEn: state.messageEn,
+                          ),
+                        );
+
+                        // Auto navigate to OTP verification
+                        final userId = state.userId;
+                        final email = _emailController.text.trim();
+                        final verificationType =
+                            state.requiresVerification?['email'] == true
+                                ? 'email'
+                                : 'phone';
+
+                        Future.delayed(const Duration(milliseconds: 800), () {
+                          if (context.mounted) {
+                            Navigator.pushNamed(
+                              context,
+                              AppRoutes.otpVerification,
+                              arguments: {
+                                'userId': userId,
+                                'email': email,
+                                'phone': '',
+                                'type': verificationType,
+                              },
+                            );
+                          }
+                        });
                       } else if (state is LoginFailure) {
                         CustomSnackbar.showError(
                           context: context,
@@ -183,11 +219,64 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                             messageEn: state.messageEn,
                           ),
                         );
-                        // Navigate to main navigation page (doctors will have different navigation logic)
+                        // Navigate to doctor navigation page
                         Navigator.pushReplacementNamed(
                           context,
-                          AppRoutes.mainNavigationPage,
+                          AppRoutes.doctorNavigation,
                         );
+                      } else if (state is DoctorAccountNotVerified) {
+                        // Show message then navigate to doctor OTP page
+                        //print('🔴 DoctorAccountNotVerified state received');
+                        //print('🔴 UserId: ${state.userId}');
+                        //print('🔴 Email: ${_emailController.text.trim()}');
+
+                        CustomSnackbar.showWarning(
+                          context: context,
+                          message: CustomSnackbar.getLocalizedMessage(
+                            context: context,
+                            messageAr: state.messageAr,
+                            messageEn: state.messageEn,
+                          ),
+                        );
+
+                        // Auto navigate to doctor OTP verification
+                        final userId = state.userId;
+                        final email = _emailController.text.trim();
+                        final verificationType =
+                            state.requiresVerification?['email'] == true
+                                ? 'email'
+                                : 'phone';
+
+                        //print(
+                        //   '🔴 Scheduling navigation with userId: $userId, email: $email',
+                        // );
+
+                        Future.delayed(const Duration(milliseconds: 800), () {
+                          //print(
+                          //   '🔴 Delay completed, context.mounted: ${context.mounted}',
+                          // );
+                          if (context.mounted) {
+                            //print('🔴 Navigating to doctorOtpVerification...');
+                            Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.doctorOtpVerification,
+                                  arguments: {
+                                    'userId': userId,
+                                    'email': email,
+                                    'phone': '',
+                                    'type': verificationType,
+                                  },
+                                )
+                                .then((_) {
+                                  //print('🔴 Navigation completed');
+                                })
+                                .catchError((error) {
+                                  //print('🔴 Navigation error: $error');
+                                });
+                          } else {
+                            //print('🔴 Context not mounted, navigation skipped');
+                          }
+                        });
                       } else if (state is DoctorLoginFailure) {
                         CustomSnackbar.showError(
                           context: context,
@@ -329,15 +418,16 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
         child: Stack(
           children: [
             // Animated background slider
-            AnimatedPositioned(
+            AnimatedAlign(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOutCubic,
-              left: _selectedUserType == UserType.user ? 4 : null,
-              right: _selectedUserType == UserType.doctor ? 4 : null,
-              top: 4,
-              bottom: 4,
+              alignment:
+                  _selectedUserType == UserType.user
+                      ? AlignmentDirectional.centerStart
+                      : AlignmentDirectional.centerEnd,
               child: Container(
                 width: (MediaQuery.of(context).size.width - 48 - 40) / 2,
+                margin: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   color: AppColors.secondary,
                   borderRadius: BorderRadius.circular(24),

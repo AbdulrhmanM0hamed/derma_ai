@@ -64,19 +64,20 @@ class _OtpVerificationContent extends StatefulWidget {
   });
 
   @override
-  State<_OtpVerificationContent> createState() => _OtpVerificationContentState();
+  State<_OtpVerificationContent> createState() =>
+      _OtpVerificationContentState();
 }
 
 class _OtpVerificationContentState extends State<_OtpVerificationContent> {
   final _otpPinFieldController = GlobalKey<OtpPinFieldState>();
   String _otpCode = '';
   bool _isEmailVerification = true;
-  
+
   // Timer variables
   Timer? _resendTimer;
   int _resendCountdown = 0;
   bool _canResend = true;
-  
+
   @override
   void initState() {
     super.initState();
@@ -95,7 +96,7 @@ class _OtpVerificationContentState extends State<_OtpVerificationContent> {
       _canResend = false;
       _resendCountdown = 60;
     });
-    
+
     _resendTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (_resendCountdown > 0) {
@@ -135,10 +136,7 @@ class _OtpVerificationContentState extends State<_OtpVerificationContent> {
                       ),
                     );
                     // Navigate to main app or next step
-                    Navigator.pushReplacementNamed(
-                      context,
-                      AppRoutes.login,
-                    );
+                    Navigator.pushReplacementNamed(context, AppRoutes.login);
                   } else if (state is VerifyOtpFailure) {
                     CustomSnackbar.showError(
                       context: context,
@@ -217,113 +215,112 @@ class _OtpVerificationContentState extends State<_OtpVerificationContent> {
                         textAlign: TextAlign.center,
                       ),
 
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 8),
 
                       // Verification Type Toggle
-                      Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: AppColors.primary.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _isEmailVerification = true;
-                                  });
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 12,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color:
-                                        _isEmailVerification
-                                            ? AppColors.primary
-                                            : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.email_outlined,
-                                        size: 20,
-                                        color:
-                                            _isEmailVerification
-                                                ? Colors.white
-                                                : AppColors.textSecondary,
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Text(
-                                        AppLocalizations.of(context)!.emailVerification,
-                                        style: getSemiBoldStyle(
-                                          color:
-                                              _isEmailVerification
-                                                  ? Colors.white
-                                                  : AppColors.textSecondary,
-                                          fontSize: 14,
-                                          fontFamily: FontConstant.cairo,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _isEmailVerification = false;
-                                  });
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 12,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color:
-                                        !_isEmailVerification
-                                            ? AppColors.primary
-                                            : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.phone_outlined,
-                                        size: 20,
-                                        color:
-                                            !_isEmailVerification
-                                                ? Colors.white
-                                                : AppColors.textSecondary,
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Text(
-                                        AppLocalizations.of(context)!.phoneVerification,
-                                        style: getSemiBoldStyle(
-                                          color:
-                                              !_isEmailVerification
-                                                  ? Colors.white
-                                                  : AppColors.textSecondary,
-                                          fontSize: 14,
-                                          fontFamily: FontConstant.cairo,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
+                      // Container(
+                      //   padding: const EdgeInsets.all(4),
+                      //   decoration: BoxDecoration(
+                      //     color: AppColors.primary.withValues(alpha: 0.1),
+                      //     borderRadius: BorderRadius.circular(12),
+                      //   ),
+                      //   child: Row(
+                      //     children: [
+                      //       Expanded(
+                      //         child: GestureDetector(
+                      //           onTap: () {
+                      //             setState(() {
+                      //               _isEmailVerification = true;
+                      //             });
+                      //           },
+                      //           child: Container(
+                      //             padding: const EdgeInsets.symmetric(
+                      //               vertical: 12,
+                      //             ),
+                      //             decoration: BoxDecoration(
+                      //               color:
+                      //                   _isEmailVerification
+                      //                       ? AppColors.primary
+                      //                       : Colors.transparent,
+                      //               borderRadius: BorderRadius.circular(8),
+                      //             ),
+                      //             child: Row(
+                      //               mainAxisAlignment: MainAxisAlignment.center,
+                      //               children: [
+                      //                 Icon(
+                      //                   Icons.email_outlined,
+                      //                   size: 20,
+                      //                   color:
+                      //                       _isEmailVerification
+                      //                           ? Colors.white
+                      //                           : AppColors.textSecondary,
+                      //                 ),
+                      //                 const SizedBox(width: 8),
+                      //                 Text(
+                      //                   AppLocalizations.of(context)!.emailVerification,
+                      //                   style: getSemiBoldStyle(
+                      //                     color:
+                      //                         _isEmailVerification
+                      //                             ? Colors.white
+                      //                             : AppColors.textSecondary,
+                      //                     fontSize: 14,
+                      //                     fontFamily: FontConstant.cairo,
+                      //                   ),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       Expanded(
+                      //         child: GestureDetector(
+                      //           onTap: () {
+                      //             setState(() {
+                      //               _isEmailVerification = false;
+                      //             });
+                      //           },
+                      //           child: Container(
+                      //             padding: const EdgeInsets.symmetric(
+                      //               vertical: 12,
+                      //             ),
+                      //             decoration: BoxDecoration(
+                      //               color:
+                      //                   !_isEmailVerification
+                      //                       ? AppColors.primary
+                      //                       : Colors.transparent,
+                      //               borderRadius: BorderRadius.circular(8),
+                      //             ),
+                      //             child: Row(
+                      //               mainAxisAlignment: MainAxisAlignment.center,
+                      //               children: [
+                      //                 Icon(
+                      //                   Icons.phone_outlined,
+                      //                   size: 20,
+                      //                   color:
+                      //                       !_isEmailVerification
+                      //                           ? Colors.white
+                      //                           : AppColors.textSecondary,
+                      //                 ),
+                      //                 const SizedBox(width: 8),
+                      //                 Text(
+                      //                   AppLocalizations.of(context)!.phoneVerification,
+                      //                   style: getSemiBoldStyle(
+                      //                     color:
+                      //                         !_isEmailVerification
+                      //                             ? Colors.white
+                      //                             : AppColors.textSecondary,
+                      //                     fontSize: 14,
+                      //                     fontFamily: FontConstant.cairo,
+                      //                   ),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       const SizedBox(height: 40),
 
                       // OTP Input Field
@@ -419,7 +416,10 @@ class _OtpVerificationContentState extends State<_OtpVerificationContent> {
                                       ? AppLocalizations.of(context)!.resendCode
                                       : '${AppLocalizations.of(context)!.resendCode} ($_resendCountdown)',
                                   style: getSemiBoldStyle(
-                                    color: canTap ? AppColors.primary : AppColors.grey,
+                                    color:
+                                        canTap
+                                            ? AppColors.primary
+                                            : AppColors.grey,
                                     fontSize: 14,
                                     fontFamily: FontConstant.cairo,
                                   ),
@@ -429,7 +429,10 @@ class _OtpVerificationContentState extends State<_OtpVerificationContent> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 4),
                                   child: Text(
-                                    Localizations.localeOf(context).languageCode == 'ar'
+                                    Localizations.localeOf(
+                                              context,
+                                            ).languageCode ==
+                                            'ar'
                                         ? 'يمكنك إعادة الإرسال خلال $_resendCountdown ثانية'
                                         : 'You can resend in $_resendCountdown seconds',
                                     style: getRegularStyle(

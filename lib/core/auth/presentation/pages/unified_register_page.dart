@@ -307,15 +307,16 @@ class _UnifiedRegisterPageState extends State<UnifiedRegisterPage>
         child: Stack(
           children: [
             // Animated background slider
-            AnimatedPositioned(
+            AnimatedAlign(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOutCubic,
-              left: _selectedUserType == UserType.user ? 4 : null,
-              right: _selectedUserType == UserType.doctor ? 4 : null,
-              top: 4,
-              bottom: 4,
+              alignment:
+                  _selectedUserType == UserType.user
+                      ? AlignmentDirectional.centerStart
+                      : AlignmentDirectional.centerEnd,
               child: Container(
                 width: (MediaQuery.of(context).size.width - 48 - 40) / 2,
+                margin: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   color: AppColors.secondary,
                   borderRadius: BorderRadius.circular(24),

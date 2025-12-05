@@ -1275,4 +1275,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get theme => 'المظهر';
+
+  @override
+  String get doctorAccountVerification => 'تأكيد حساب الطبيب';
+
+  @override
+  String get verifyDoctorAccount => 'تأكيد حسابك';
+
+  @override
+  String get otpSentToEmailDoctor => 'تم إرسال رمز التحقق إلى';
+
+  @override
+  String get resendOtp => 'إعادة الإرسال';
+
+  @override
+  String get resendOtpIn => 'إعادة الإرسال خلال';
+
+  @override
+  String get seconds => 'ثانية';
+
+  @override
+  String get canResendIn => 'يمكنك إعادة الإرسال خلال';
+
+  @override
+  String get codeValidForMinutes => 'الرمز صالح لمدة 5 دقائق فقط';
+
+  @override
+  String get otpVerificationSuccess => 'تم التحقق من الحساب بنجاح';
+
+  @override
+  String get otpResendSuccess => 'تم إرسال رمز التحقق بنجاح';
 }

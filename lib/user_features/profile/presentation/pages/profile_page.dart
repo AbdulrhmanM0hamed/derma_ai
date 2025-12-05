@@ -47,7 +47,6 @@ class _ProfilePageState extends State<ProfilePage> {
           // Listener for state changes - UI rebuilds automatically
         },
         child: Scaffold(
-          backgroundColor: Colors.grey[50],
           body: BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
               return RefreshIndicator(

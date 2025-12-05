@@ -1287,4 +1287,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get theme => 'Theme';
+
+  @override
+  String get doctorAccountVerification => 'Doctor Account Verification';
+
+  @override
+  String get verifyDoctorAccount => 'Verify Your Account';
+
+  @override
+  String get otpSentToEmailDoctor => 'Verification code sent to';
+
+  @override
+  String get resendOtp => 'Resend';
+
+  @override
+  String get resendOtpIn => 'Resend in';
+
+  @override
+  String get seconds => 'seconds';
+
+  @override
+  String get canResendIn => 'You can resend in';
+
+  @override
+  String get codeValidForMinutes => 'Code is valid for 5 minutes only';
+
+  @override
+  String get otpVerificationSuccess => 'Account verified successfully';
+
+  @override
+  String get otpResendSuccess => 'Verification code sent successfully';
 }

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:derma_ai/core/widgets/custom_button.dart';
 import 'package:derma_ai/user_features/profile/presentation/bloc/profile_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -25,7 +26,7 @@ class ProfileHeader extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return SizedBox(
-      height: 360,
+      height: 340,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -41,33 +42,25 @@ class ProfileHeader extends StatelessWidget {
 
           // Profile card
           Positioned(
-            top: 140,
+            top: 145,
             left: 16,
             right: 16,
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.1),
-                    blurRadius: 20,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      _buildAvatar(context),
-                      const SizedBox(width: 16),
-                      _buildUserInfo(context, l10n),
-                    ],
-                  ),
-                  _buildStats(l10n),
-                ],
+            child: Card(
+              margin: EdgeInsets.zero,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        _buildAvatar(context),
+                        const SizedBox(width: 16),
+                        _buildUserInfo(context, l10n),
+                      ],
+                    ),
+                    _buildStats(l10n),
+                  ],
+                ),
               ),
             ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.3),
           ),
@@ -206,11 +199,7 @@ class ProfileHeader extends StatelessWidget {
                 : state is ProfileLoading
                 ? l10n.loadingData
                 : l10n.user,
-            style: getBoldStyle(
-              fontFamily: FontConstant.cairo,
-              fontSize: 18,
-              color: Colors.black87,
-            ),
+            style: getBoldStyle(fontFamily: FontConstant.cairo, fontSize: 18),
           ),
           const SizedBox(height: 4),
           Text(
@@ -224,26 +213,11 @@ class ProfileHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          ElevatedButton(
+          CustomButton(
+            width: 130,
+            height: 30,
             onPressed: state is ProfileSuccess ? onEditProfileTap : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              foregroundColor: AppColors.primary,
-              side: BorderSide(color: AppColors.primary),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              minimumSize: const Size(0, 32),
-            ),
-            child: Text(
-              l10n.editProfile,
-              style: getSemiBoldStyle(
-                fontFamily: FontConstant.cairo,
-                fontSize: 11,
-                color: AppColors.primary,
-              ),
-            ),
+            text: l10n.editProfile,
           ),
         ],
       ),
@@ -273,19 +247,15 @@ class ProfileHeader extends StatelessWidget {
       children: [
         Text(
           value,
-          style: getBoldStyle(
-            fontFamily: FontConstant.cairo,
-            fontSize: 18,
-            color: Colors.black87,
-          ),
+          style: getBoldStyle(fontFamily: FontConstant.cairo, fontSize: 18),
         ),
         const SizedBox(height: 4),
         Text(
           label,
-          style: getRegularStyle(
+          style: getMediumStyle(
             fontFamily: FontConstant.cairo,
-            fontSize: 11,
-            color: Colors.grey[600],
+            fontSize: 12,
+            color: Colors.grey[650],
           ),
         ),
       ],
