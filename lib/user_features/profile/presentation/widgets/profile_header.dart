@@ -46,6 +46,7 @@ class ProfileHeader extends StatelessWidget {
             left: 16,
             right: 16,
             child: Card(
+              //shadowColor: Colors.black.withValues(alpha: 0.5),
               margin: EdgeInsets.zero,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -214,8 +215,9 @@ class ProfileHeader extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           CustomButton(
-            width: 130,
+            width: 160,
             height: 30,
+            size: 12,
             onPressed: state is ProfileSuccess ? onEditProfileTap : null,
             text: l10n.editProfile,
           ),

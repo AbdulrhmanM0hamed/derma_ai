@@ -113,10 +113,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       },
                       child: BlocBuilder<LocationCubit, LocationState>(
                         builder: (context, state) {
-                          String locationText = 'Select Location';
-                          if (state is LocationSelectionUpdated) {
-                            locationText = state.displayLocation;
-                          }
+                          final locationText =
+                              context
+                                  .read<LocationCubit>()
+                                  .currentDisplayLocation;
                           return Row(
                             children: [
                               const Icon(

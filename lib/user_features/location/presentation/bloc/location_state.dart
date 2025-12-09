@@ -13,7 +13,8 @@ class CountriesLoaded extends LocationState {
 
 class CitiesLoaded extends LocationState {
   final List<LocationModel> cities;
-  CitiesLoaded(this.cities);
+  final List<LocationModel> countries;
+  CitiesLoaded(this.cities, this.countries);
 }
 
 class RegionsLoaded extends LocationState {

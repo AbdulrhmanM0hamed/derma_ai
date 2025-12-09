@@ -12,6 +12,7 @@ class LocationCubit extends Cubit<LocationState> {
   LocationModel? _selectedCountry;
   LocationModel? _selectedCity;
   LocationModel? _selectedRegion;
+  List<LocationModel> _cachedCountries = [];
 
   LocationCubit(this._repository, this._tokenStorage)
     : super(LocationInitial()) {
@@ -51,12 +52,46 @@ class LocationCubit extends Cubit<LocationState> {
   LocationModel? get selectedCity => _selectedCity;
   LocationModel? get selectedRegion => _selectedRegion;
 
+  String get currentDisplayLocation {
+    if (_selectedCountry != null) {
+      if (_selectedCity != null) {
+        if (_selectedRegion != null) {
+          return '${_selectedCity!.name}, ${_selectedRegion!.name}';
+        }
+        return '${_selectedCountry!.name}, ${_selectedCity!.name}';
+      }
+      return _selectedCountry!.name;
+    }
+    return 'Select Location';
+  }
+
   // Initial load
   Future<void> loadCountries() async {
     emit(LocationLoading());
     try {
       final countries = await _repository.getCountries();
+      _cachedCountries = countries;
       emit(CountriesLoaded(countries));
+    } catch (e) {
+      emit(LocationError(e.toString()));
+    }
+  }
+
+  // Initialize selection for sheet (preserves existing selection)
+  Future<void> initLocationSelection() async {
+    emit(LocationLoading());
+    try {
+      // 1. Fetch countries if not already cached, or refresh them
+      final countries = await _repository.getCountries();
+      _cachedCountries = countries;
+
+      // 2. If we have a selected country, we must also show its cities
+      if (_selectedCountry != null) {
+        final cities = await _repository.getCities(_selectedCountry!.id);
+        emit(CitiesLoaded(cities, _cachedCountries));
+      } else {
+        emit(CountriesLoaded(_cachedCountries));
+      }
     } catch (e) {
       emit(LocationError(e.toString()));
     }
@@ -71,7 +106,7 @@ class LocationCubit extends Cubit<LocationState> {
     emit(LocationLoading());
     try {
       final cities = await _repository.getCities(country.id);
-      emit(CitiesLoaded(cities));
+      emit(CitiesLoaded(cities, _cachedCountries));
     } catch (e) {
       emit(LocationError(e.toString()));
     }

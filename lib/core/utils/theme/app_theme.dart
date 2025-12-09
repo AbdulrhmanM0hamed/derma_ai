@@ -36,11 +36,11 @@ class AppTheme {
       error: AppColors.error,
     ),
     cardColor: Colors.white,
-    shadowColor: Colors.grey.withValues(alpha: 0.15),
+    shadowColor: Colors.grey.withValues(alpha: 0.5),
     dividerColor: Colors.grey.shade200,
-    cardTheme: const CardThemeData(
+    cardTheme: CardThemeData(
       elevation: 8,
-      shadowColor: Colors.grey,
+      shadowColor: Colors.black.withValues(alpha: 0.5),
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -74,7 +74,7 @@ class AppTheme {
       error: AppColors.error,
     ),
     cardColor: const Color(0xFF2A2A2A),
-    shadowColor: Colors.black.withValues(alpha:0.3),
+    shadowColor: Colors.black.withValues(alpha: 0.3),
     dividerColor: Colors.grey.shade800,
     cardTheme: const CardThemeData(
       elevation: 8,

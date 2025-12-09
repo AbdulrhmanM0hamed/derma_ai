@@ -5,6 +5,7 @@ class LocationModel {
   final String name;
   final String levelType;
   final int? parentId;
+  final String? image;
 
   const LocationModel({
     required this.id,
@@ -13,6 +14,7 @@ class LocationModel {
     required this.name,
     required this.levelType,
     this.parentId,
+    this.image,
   });
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class LocationModel {
       name: json['name'] as String,
       levelType: json['level_type'] as String,
       parentId: json['parent_id'] as int?,
+      image: json['image'] as String?,
     );
   }
 
@@ -34,6 +37,7 @@ class LocationModel {
       'name': name,
       'level_type': levelType,
       'parent_id': parentId,
+      'image': image,
     };
   }
 }

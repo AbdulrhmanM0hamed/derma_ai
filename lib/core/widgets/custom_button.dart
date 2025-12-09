@@ -15,6 +15,7 @@ class CustomButton extends StatelessWidget {
   final Widget? prefix;
   final Widget? suffix;
   final Widget? icon;
+  final double size;
 
   const CustomButton({
     super.key,
@@ -29,6 +30,7 @@ class CustomButton extends StatelessWidget {
     this.prefix,
     this.suffix,
     this.icon,
+    this.size = 18,
   });
 
   @override
@@ -50,12 +52,12 @@ class CustomButton extends StatelessWidget {
       child: MaterialButton(
         onPressed: isLoading ? null : onPressed,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: _buildButtonChild(),
+        child: _buildButtonChild(size),
       ),
     );
   }
 
-  Widget _buildButtonChild() {
+  Widget _buildButtonChild(double size) {
     if (isLoading) {
       return const SizedBox(
         height: 20,
@@ -70,14 +72,14 @@ class CustomButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (icon != null ) icon!,
+        if (icon != null) icon!,
         SizedBox(width: 5),
         if (prefix != null) prefix!,
         Text(
           text,
           style: getBoldStyle(
             fontFamily: FontConstant.cairo,
-            fontSize: FontSize.size18,
+            fontSize: size,
             color: textColor ?? Colors.white,
           ),
         ),
