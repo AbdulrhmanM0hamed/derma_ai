@@ -1317,4 +1317,62 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get otpResendSuccess => 'Verification code sent successfully';
+
+  @override
+  String get selectLocation => 'Select Location';
+
+  @override
+  String get selectYourLocation => 'Select Your Location';
+
+  @override
+  String get selectCountry => 'Select Country';
+
+  @override
+  String get selectCity => 'Select City';
+
+  @override
+  String get selectRegion => 'Select Region';
+
+  @override
+  String get allRegions => 'All Regions';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get noCitiesAvailable => 'No cities available';
+
+  @override
+  String get noRegionsAvailable => 'No regions available';
+
+  @override
+  String get clear => 'Clear';
+
+  @override
+  String get setYourLocation => 'Set Your Location';
+
+  @override
+  String get locationDescription =>
+      'We need to know your location to show you the best doctors and clinics near you';
+
+  @override
+  String get nearbyDoctors => 'Nearby Doctors';
+
+  @override
+  String get nearbyDoctorsDesc => 'We show you doctors based on your location';
+
+  @override
+  String get quickBooking => 'Quick Booking';
+
+  @override
+  String get quickBookingDesc => 'Book your appointment easily and quickly';
+
+  @override
+  String get bestRatings => 'Best Ratings';
+
+  @override
+  String get bestRatingsDesc => 'View patient reviews';
+
+  @override
+  String get setLocation => 'Set Location';
 }

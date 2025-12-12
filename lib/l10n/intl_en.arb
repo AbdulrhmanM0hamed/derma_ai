@@ -443,5 +443,25 @@
   "canResendIn": "You can resend in",
   "codeValidForMinutes": "Code is valid for 5 minutes only",
   "otpVerificationSuccess": "Account verified successfully",
-  "otpResendSuccess": "Verification code sent successfully"
+  "otpResendSuccess": "Verification code sent successfully",
+
+  "selectLocation": "Select Location",
+  "selectYourLocation": "Select Your Location",
+  "selectCountry": "Select Country",
+  "selectCity": "Select City",
+  "selectRegion": "Select Region",
+  "allRegions": "All Regions",
+  "all": "All",
+  "noCitiesAvailable": "No cities available",
+  "noRegionsAvailable": "No regions available",
+  "clear": "Clear",
+  "setYourLocation": "Set Your Location",
+  "locationDescription": "We need to know your location to show you the best doctors and clinics near you",
+  "nearbyDoctors": "Nearby Doctors",
+  "nearbyDoctorsDesc": "We show you doctors based on your location",
+  "quickBooking": "Quick Booking",
+  "quickBookingDesc": "Book your appointment easily and quickly",
+  "bestRatings": "Best Ratings",
+  "bestRatingsDesc": "View patient reviews",
+  "setLocation": "Set Location"
 }

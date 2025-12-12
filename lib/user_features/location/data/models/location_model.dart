@@ -17,6 +17,11 @@ class LocationModel {
     this.image,
   });
 
+  /// Returns the localized name based on the provided locale
+  String getLocalizedName(String locale) {
+    return locale == 'ar' ? nameAr : nameEn;
+  }
+
   factory LocationModel.fromJson(Map<String, dynamic> json) {
     return LocationModel(
       id: json['countries_cities_id'] as int,

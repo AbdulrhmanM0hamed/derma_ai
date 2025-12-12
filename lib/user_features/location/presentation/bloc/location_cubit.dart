@@ -52,6 +52,9 @@ class LocationCubit extends Cubit<LocationState> {
   LocationModel? get selectedCity => _selectedCity;
   LocationModel? get selectedRegion => _selectedRegion;
 
+  /// Check if a location has been saved (at least country and city)
+  bool get hasLocationSaved => _selectedCountry != null && _selectedCity != null;
+
   String get currentDisplayLocation {
     if (_selectedCountry != null) {
       if (_selectedCity != null) {
@@ -63,6 +66,20 @@ class LocationCubit extends Cubit<LocationState> {
       return _selectedCountry!.name;
     }
     return 'Select Location';
+  }
+
+  /// Returns the current display location with localized names based on locale
+  String getLocalizedDisplayLocation(String locale) {
+    if (_selectedCountry != null) {
+      if (_selectedCity != null) {
+        if (_selectedRegion != null) {
+          return '${_selectedCity!.getLocalizedName(locale)}, ${_selectedRegion!.getLocalizedName(locale)}';
+        }
+        return '${_selectedCountry!.getLocalizedName(locale)}, ${_selectedCity!.getLocalizedName(locale)}';
+      }
+      return _selectedCountry!.getLocalizedName(locale);
+    }
+    return locale == 'ar' ? 'اختر الموقع' : 'Select Location';
   }
 
   // Initial load

@@ -1305,4 +1305,62 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get otpResendSuccess => 'تم إرسال رمز التحقق بنجاح';
+
+  @override
+  String get selectLocation => 'اختر الموقع';
+
+  @override
+  String get selectYourLocation => 'اختر موقعك';
+
+  @override
+  String get selectCountry => 'اختر الدولة';
+
+  @override
+  String get selectCity => 'اختر المدينة';
+
+  @override
+  String get selectRegion => 'اختر المنطقة';
+
+  @override
+  String get allRegions => 'كل المناطق';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get noCitiesAvailable => 'لا توجد مدن متاحة';
+
+  @override
+  String get noRegionsAvailable => 'لا توجد مناطق متاحة';
+
+  @override
+  String get clear => 'مسح';
+
+  @override
+  String get setYourLocation => 'حدد موقعك';
+
+  @override
+  String get locationDescription =>
+      'نحتاج إلى معرفة موقعك لنعرض لك أفضل الأطباء والعيادات القريبة منك';
+
+  @override
+  String get nearbyDoctors => 'أطباء قريبون منك';
+
+  @override
+  String get nearbyDoctorsDesc => 'نعرض لك الأطباء حسب موقعك';
+
+  @override
+  String get quickBooking => 'حجز سريع';
+
+  @override
+  String get quickBookingDesc => 'احجز موعدك بسهولة وسرعة';
+
+  @override
+  String get bestRatings => 'أفضل التقييمات';
+
+  @override
+  String get bestRatingsDesc => 'اطلع على تقييمات المرضى';
+
+  @override
+  String get setLocation => 'تحديد الموقع';
 }

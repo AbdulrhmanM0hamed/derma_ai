@@ -49,19 +49,27 @@ class DioExceptionHandler {
 
     // استخراج رسالة الخطأ من الـ server response
     final errorMessages = _extractErrorMessages(dioException, errorType);
-    String errorMessage = errorMessages['messageEn'] ?? _getDefaultErrorMessage(errorType);
+
+    // تحديد ما إذا كانت الرسالة من الـ server
+    final hasServerMessage =
+        errorMessages['messageEn'] != null ||
+        errorMessages['messageAr'] != null;
+
+    // استخدام رسالة الـ server إذا كانت موجودة، وإلا استخدم مفتاح الترجمة
+    String errorMessage =
+        hasServerMessage
+            ? (errorMessages['messageEn'] ?? _getDefaultErrorMessage(errorType))
+            : _getDefaultErrorMessage(errorType);
     String? errorMessageAr = errorMessages['messageAr'];
 
-    // تحديد ما إذا كانت الرسالة من الـ server أم مفتاح ترجمة
-    final isServerMessage = _isServerMessage(dioException, errorMessage);
-    
     return ApiException(
       errorType: errorType,
       message: errorMessage,
       messageAr: errorMessageAr,
       statusCode: statusCode,
       response: dioException.response,
-      isTranslationKey: !isServerMessage, // إذا لم تكن من الـ server، فهي مفتاح ترجمة
+      isTranslationKey:
+          !hasServerMessage, // إذا لم تكن من الـ server، فهي مفتاح ترجمة
     );
   }
 
@@ -102,7 +110,8 @@ class DioExceptionHandler {
       case 417:
         return ApiErrorType.expectationFailed;
       case 422:
-        return ApiErrorType.badRequest; // Unprocessable Entity - validation errors
+        return ApiErrorType
+            .badRequest; // Unprocessable Entity - validation errors
       case 429:
         return ApiErrorType.tooManyRequests;
       case 500:
@@ -123,33 +132,39 @@ class DioExceptionHandler {
   }
 
   /// استخراج رسائل الخطأ من الـ server response (عربي وإنجليزي)
-  static Map<String, String?> _extractErrorMessages(DioException dioException, ApiErrorType errorType) {
+  static Map<String, String?> _extractErrorMessages(
+    DioException dioException,
+    ApiErrorType errorType,
+  ) {
     Map<String, String?> messages = {'messageEn': null, 'messageAr': null};
-    
+
     try {
       final response = dioException.response;
       if (response?.data != null && response!.data is Map<String, dynamic>) {
         final data = response.data as Map<String, dynamic>;
-        
+
         // استخراج الرسائل من الـ API الجديد
         if (data.containsKey('message_en') && data['message_en'] != null) {
           messages['messageEn'] = data['message_en'].toString();
         }
-        
+
         if (data.containsKey('message_ar') && data['message_ar'] != null) {
           messages['messageAr'] = data['message_ar'].toString();
         }
-        
+
         // إذا لم نجد الرسائل الجديدة، نحاول الـ API القديم
-        if (messages['messageEn'] == null && data.containsKey('message') && data['message'] != null) {
+        if (messages['messageEn'] == null &&
+            data.containsKey('message') &&
+            data['message'] != null) {
           String message = data['message'].toString();
-          
+
           // تنظيف الرسالة من النص الإضافي
           if (message.contains('(and ') && message.contains(' more errors)')) {
-            if (data.containsKey('errors') && data['errors'] is Map<String, dynamic>) {
+            if (data.containsKey('errors') &&
+                data['errors'] is Map<String, dynamic>) {
               final errors = data['errors'] as Map<String, dynamic>;
               List<String> errorMessages = [];
-              
+
               errors.forEach((field, fieldErrors) {
                 if (fieldErrors is List) {
                   for (var error in fieldErrors) {
@@ -157,97 +172,98 @@ class DioExceptionHandler {
                   }
                 }
               });
-              
+
               if (errorMessages.isNotEmpty) {
                 messages['messageEn'] = errorMessages.join('\n');
                 return messages;
               }
             }
-            
+
             final cleanMessage = message.split('(and ')[0].trim();
             if (cleanMessage.isNotEmpty) {
               messages['messageEn'] = cleanMessage;
               return messages;
             }
           }
-          
+
           messages['messageEn'] = message;
         }
-        
+
         // محاولة استخراج من حقل error
-        if (messages['messageEn'] == null && data.containsKey('error') && data['error'] != null) {
+        if (messages['messageEn'] == null &&
+            data.containsKey('error') &&
+            data['error'] != null) {
           messages['messageEn'] = data['error'].toString();
         }
       }
     } catch (e) {
       // في حالة الخطأ، نترك الرسائل null
     }
-    
+
     return messages;
   }
 
-
-  /// الحصول على رسالة الخطأ المترجمة حسب نوع الخطأ
+  /// الحصول على مفتاح الترجمة حسب نوع الخطأ
   static String _getDefaultErrorMessage(ApiErrorType errorType) {
     switch (errorType) {
       case ApiErrorType.noInternetConnection:
-        return 'No internet connection available';
+        return 'error_no_internet_connection';
       case ApiErrorType.connectionTimeout:
-        return 'Connection timeout occurred';
+        return 'error_connection_timeout';
       case ApiErrorType.receiveTimeout:
-        return 'Response timeout occurred';
+        return 'error_receive_timeout';
       case ApiErrorType.sendTimeout:
-        return 'Request timeout occurred';
+        return 'error_send_timeout';
       case ApiErrorType.serverError:
-        return 'Server error occurred';
+        return 'error_server_error';
       case ApiErrorType.internalServerError:
-        return 'Internal server error';
+        return 'error_internal_server_error';
       case ApiErrorType.badGateway:
-        return 'Bad gateway error';
+        return 'error_bad_gateway';
       case ApiErrorType.serviceUnavailable:
-        return 'Service temporarily unavailable';
+        return 'error_service_unavailable';
       case ApiErrorType.gatewayTimeout:
-        return 'Gateway timeout error';
+        return 'error_gateway_timeout';
       case ApiErrorType.badRequest:
-        return 'Invalid request data';
+        return 'error_bad_request';
       case ApiErrorType.unauthorized:
-        return 'Authentication required';
+        return 'error_unauthorized';
       case ApiErrorType.forbidden:
-        return 'Access denied';
+        return 'error_forbidden';
       case ApiErrorType.notFound:
-        return 'Resource not found';
+        return 'error_not_found';
       case ApiErrorType.methodNotAllowed:
-        return 'Method not allowed';
+        return 'error_method_not_allowed';
       case ApiErrorType.notAcceptable:
-        return 'Request not acceptable';
+        return 'error_not_acceptable';
       case ApiErrorType.requestTimeout:
-        return 'Request timeout';
+        return 'error_request_timeout';
       case ApiErrorType.conflict:
-        return 'Request conflict';
+        return 'error_conflict';
       case ApiErrorType.gone:
-        return 'Resource no longer available';
+        return 'error_gone';
       case ApiErrorType.lengthRequired:
-        return 'Content length required';
+        return 'error_length_required';
       case ApiErrorType.preconditionFailed:
-        return 'Precondition failed';
+        return 'error_precondition_failed';
       case ApiErrorType.payloadTooLarge:
-        return 'Request payload too large';
+        return 'error_payload_too_large';
       case ApiErrorType.uriTooLong:
-        return 'Request URI too long';
+        return 'error_uri_too_long';
       case ApiErrorType.unsupportedMediaType:
-        return 'Unsupported media type';
+        return 'error_unsupported_media_type';
       case ApiErrorType.rangeNotSatisfiable:
-        return 'Range not satisfiable';
+        return 'error_range_not_satisfiable';
       case ApiErrorType.expectationFailed:
-        return 'Expectation failed';
+        return 'error_expectation_failed';
       case ApiErrorType.tooManyRequests:
-        return 'Too many requests';
+        return 'error_too_many_requests';
       case ApiErrorType.unknown:
-        return 'An unexpected error occurred';
+        return 'error_unknown';
       case ApiErrorType.cancelled:
-        return 'Request was cancelled';
+        return 'error_cancelled';
       case ApiErrorType.other:
-        return 'An error occurred';
+        return 'error_other';
     }
   }
 
@@ -257,29 +273,30 @@ class DioExceptionHandler {
       final response = dioException.response;
       if (response?.data != null && response!.data is Map<String, dynamic>) {
         final data = response.data as Map<String, dynamic>;
-        
+
         // التحقق من الـ API الجديد أولاً
         if (data.containsKey('message_en') && data['message_en'] != null) {
           if (message == data['message_en'].toString()) {
             return true;
           }
         }
-        
+
         if (data.containsKey('message_ar') && data['message_ar'] != null) {
           if (message == data['message_ar'].toString()) {
             return true;
           }
         }
-        
+
         // التحقق من الـ API القديم
         if (data.containsKey('message') && data['message'] != null) {
           final serverMessage = data['message'].toString();
           // التحقق من أن الرسالة تطابق رسالة الـ server (مع تنظيف النص الإضافي)
-          if (message == serverMessage || message == serverMessage.split('(and ')[0].trim()) {
+          if (message == serverMessage ||
+              message == serverMessage.split('(and ')[0].trim()) {
             return true;
           }
         }
-        
+
         // التحقق من حقل error أيضاً
         if (data.containsKey('error') && data['error'] != null) {
           if (message == data['error'].toString()) {
@@ -290,8 +307,7 @@ class DioExceptionHandler {
     } catch (e) {
       // في حالة الخطأ، نفترض أنها ليست من الـ server
     }
-    
+
     return false; // الرسالة مفتاح ترجمة
   }
-
 }

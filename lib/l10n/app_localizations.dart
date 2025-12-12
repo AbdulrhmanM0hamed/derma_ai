@@ -2635,6 +2635,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Verification code sent successfully'**
   String get otpResendSuccess;
+
+  /// No description provided for @selectLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Location'**
+  String get selectLocation;
+
+  /// No description provided for @selectYourLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Your Location'**
+  String get selectYourLocation;
+
+  /// No description provided for @selectCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Country'**
+  String get selectCountry;
+
+  /// No description provided for @selectCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Select City'**
+  String get selectCity;
+
+  /// No description provided for @selectRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Region'**
+  String get selectRegion;
+
+  /// No description provided for @allRegions.
+  ///
+  /// In en, this message translates to:
+  /// **'All Regions'**
+  String get allRegions;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @noCitiesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No cities available'**
+  String get noCitiesAvailable;
+
+  /// No description provided for @noRegionsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No regions available'**
+  String get noRegionsAvailable;
+
+  /// No description provided for @clear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clear;
+
+  /// No description provided for @setYourLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Your Location'**
+  String get setYourLocation;
+
+  /// No description provided for @locationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'We need to know your location to show you the best doctors and clinics near you'**
+  String get locationDescription;
+
+  /// No description provided for @nearbyDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby Doctors'**
+  String get nearbyDoctors;
+
+  /// No description provided for @nearbyDoctorsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'We show you doctors based on your location'**
+  String get nearbyDoctorsDesc;
+
+  /// No description provided for @quickBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Booking'**
+  String get quickBooking;
+
+  /// No description provided for @quickBookingDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Book your appointment easily and quickly'**
+  String get quickBookingDesc;
+
+  /// No description provided for @bestRatings.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Ratings'**
+  String get bestRatings;
+
+  /// No description provided for @bestRatingsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'View patient reviews'**
+  String get bestRatingsDesc;
+
+  /// No description provided for @setLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Location'**
+  String get setLocation;
 }
 
 class _AppLocalizationsDelegate

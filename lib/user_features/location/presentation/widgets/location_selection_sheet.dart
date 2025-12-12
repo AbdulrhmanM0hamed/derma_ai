@@ -2,6 +2,7 @@ import 'package:derma_ai/core/utils/common/custom_progress_indicator.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
+import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -119,7 +120,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
                   vertical: 16,
                 ),
                 child: Text(
-                  'اختر الدولة',
+                  AppLocalizations.of(context)!.selectCountry,
                   style: getBoldStyle(
                     fontFamily: FontConstant.cairo,
                     fontSize: FontSize.size16,
@@ -225,7 +226,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        country.name,
+                                        country.getLocalizedName(Localizations.localeOf(context).languageCode),
                                         style: getBoldStyle(
                                           fontFamily: FontConstant.cairo,
                                           fontSize: FontSize.size12,
@@ -274,7 +275,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
                     vertical: 16,
                   ),
                   child: Text(
-                    'اختر المدينة',
+                    AppLocalizations.of(context)!.selectCity,
                     style: getBoldStyle(
                       fontFamily: FontConstant.cairo,
                       fontSize: FontSize.size16,
@@ -291,7 +292,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: Text(
-                      'لا توجد مدن متاحة',
+                      AppLocalizations.of(context)!.noCitiesAvailable,
                       style: getMediumStyle(
                         fontFamily: FontConstant.cairo,
                         fontSize: FontSize.size14,
@@ -413,7 +414,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          city.name,
+                                          city.getLocalizedName(Localizations.localeOf(context).languageCode),
                                           style: getBoldStyle(
                                             fontFamily: FontConstant.cairo,
                                             fontSize: FontSize.size16,
@@ -462,7 +463,8 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
   Widget _buildHeader() {
     return BlocBuilder<LocationCubit, LocationState>(
       builder: (context, state) {
-        String title = _currentStep == 0 ? 'اختر الموقع' : 'اختر المنطقة';
+        final l10n = AppLocalizations.of(context)!;
+        String title = _currentStep == 0 ? l10n.selectLocation : l10n.selectRegion;
         final cubit = context.read<LocationCubit>();
         final region = cubit.selectedRegion;
         final city = cubit.selectedCity;
@@ -541,7 +543,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
                     // User snippet had `// Clear selection logic`.
                   },
                   child: Text(
-                    'مسح',
+                    l10n.clear,
                     style: getMediumStyle(
                       fontFamily: FontConstant.cairo,
                       fontSize: FontSize.size14,
@@ -557,6 +559,9 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
   }
 
   Widget _buildRegionsView(List<LocationModel> regions) {
+    final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).languageCode;
+    
     if (regions.isEmpty) {
       return Center(
         child: Column(
@@ -565,7 +570,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
             Icon(Icons.map_outlined, size: 48, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
-              'لا توجد مناطق متاحة',
+              l10n.noRegionsAvailable,
               style: getMediumStyle(
                 fontFamily: FontConstant.cairo,
                 fontSize: FontSize.size16,
@@ -633,7 +638,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
                   ),
                   Center(
                     child: Text(
-                      'الكل',
+                      l10n.all,
                       style: getBoldStyle(
                         fontFamily: FontConstant.cairo,
                         fontSize: FontSize.size18,
@@ -752,7 +757,7 @@ class _LocationSelectionSheetState extends State<LocationSelectionSheet> {
                       children: [
                         Expanded(
                           child: Text(
-                            region.name,
+                            region.getLocalizedName(locale),
                             style: getBoldStyle(
                               fontFamily: FontConstant.cairo,
                               fontSize: FontSize.size16,

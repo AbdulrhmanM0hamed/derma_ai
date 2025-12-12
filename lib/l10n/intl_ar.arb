@@ -437,5 +437,25 @@
   "canResendIn": "يمكنك إعادة الإرسال خلال",
   "codeValidForMinutes": "الرمز صالح لمدة 5 دقائق فقط",
   "otpVerificationSuccess": "تم التحقق من الحساب بنجاح",
-  "otpResendSuccess": "تم إرسال رمز التحقق بنجاح"
+  "otpResendSuccess": "تم إرسال رمز التحقق بنجاح",
+
+  "selectLocation": "اختر الموقع",
+  "selectYourLocation": "اختر موقعك",
+  "selectCountry": "اختر الدولة",
+  "selectCity": "اختر المدينة",
+  "selectRegion": "اختر المنطقة",
+  "allRegions": "كل المناطق",
+  "all": "الكل",
+  "noCitiesAvailable": "لا توجد مدن متاحة",
+  "noRegionsAvailable": "لا توجد مناطق متاحة",
+  "clear": "مسح",
+  "setYourLocation": "حدد موقعك",
+  "locationDescription": "نحتاج إلى معرفة موقعك لنعرض لك أفضل الأطباء والعيادات القريبة منك",
+  "nearbyDoctors": "أطباء قريبون منك",
+  "nearbyDoctorsDesc": "نعرض لك الأطباء حسب موقعك",
+  "quickBooking": "حجز سريع",
+  "quickBookingDesc": "احجز موعدك بسهولة وسرعة",
+  "bestRatings": "أفضل التقييمات",
+  "bestRatingsDesc": "اطلع على تقييمات المرضى",
+  "setLocation": "تحديد الموقع"
 }

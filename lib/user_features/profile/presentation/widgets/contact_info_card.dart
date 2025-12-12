@@ -26,7 +26,7 @@ class ContactInfoCard extends StatelessWidget {
               style: getBoldStyle(
                 fontFamily: FontConstant.cairo,
                 fontSize: 16,
-                color: Colors.black87,
+         
               ),
             ),
             const SizedBox(height: 16),

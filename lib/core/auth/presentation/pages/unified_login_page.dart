@@ -1,13 +1,10 @@
 import 'package:derma_ai/core/utils/validators/form_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../services/service_locatores.dart';
 import '../../../services/token_storage_service.dart';
 import '../../../utils/common/custom_progress_indicator.dart';
-import '../../../utils/constant/font_manger.dart';
-import '../../../utils/constant/styles_manger.dart';
 import '../../../utils/helper/on_genrated_routes.dart';
 import '../../../utils/theme/app_colors.dart';
 import '../../../utils/widgets/custom_snackbar.dart';
@@ -17,8 +14,10 @@ import '../../../../user_features/auth/presentation/bloc/auth_cubit.dart';
 import '../../../../user_features/auth/presentation/bloc/auth_state.dart';
 import '../../../../doctor_feature/auth/presentation/bloc/doctor_auth_cubit.dart';
 import '../../../../doctor_feature/auth/presentation/bloc/doctor_auth_state.dart';
+import '../widgets/auth_widgets.dart';
 
-enum UserType { user, doctor }
+// Re-export UserType from auth_header.dart for backward compatibility
+export '../widgets/auth_header.dart' show UserType;
 
 class UnifiedLoginPage extends StatefulWidget {
   const UnifiedLoginPage({super.key});
@@ -316,368 +315,107 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
   }
 
   Widget _buildHeader() {
-    return Column(
-      children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 600),
-          curve: Curves.bounceOut,
-          width: 150,
-          height: 150,
-          decoration: BoxDecoration(
-            color:
-                _selectedUserType == UserType.doctor
-                    ? AppColors.primary.withValues(alpha: 0.1)
-                    : AppColors.primary.withValues(alpha: 0.1),
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color:
-                    _selectedUserType == UserType.doctor
-                        ? AppColors.primary.withValues(alpha: 0.2)
-                        : AppColors.primary.withValues(alpha: 0.2),
-                blurRadius: 20,
-                offset: const Offset(0, 8),
-                spreadRadius: 2,
-              ),
-            ],
-          ),
-          child: SvgPicture.asset(
-            _selectedUserType == UserType.doctor
-                ? 'assets/images/doctor_login.svg'
-                : 'assets/images/user_login.svg',
-            width: 60,
-            height: 60,
-          ),
-        ),
-        const SizedBox(height: 24),
-        AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-          style: getBoldStyle(
-            color:
-                _selectedUserType == UserType.doctor
-                    ? AppColors.black
-                    : AppColors.textPrimary,
-            fontSize: 24,
-            fontFamily: FontConstant.cairo,
-          ),
-          child: Text(
-            _selectedUserType == UserType.doctor
-                ? AppLocalizations.of(context)!.login
-                : AppLocalizations.of(context)!.login,
-          ),
-        ),
-        const SizedBox(height: 12),
-        AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-          style: getRegularStyle(
-            color:
-                _selectedUserType == UserType.doctor
-                    ? AppColors.black
-                    : AppColors.black,
-            fontSize: 15,
-            fontFamily: FontConstant.cairo,
-          ),
-          child: Text(
-            _selectedUserType == UserType.doctor
-                ? AppLocalizations.of(context)!.welcomeBack
-                : AppLocalizations.of(context)!.welcomeBack,
-          ),
-        ),
-      ],
+    final l10n = AppLocalizations.of(context)!;
+    return AuthHeader(
+      selectedUserType: _selectedUserType,
+      title: l10n.login,
+      subtitle: l10n.welcomeBack,
     );
   }
 
   Widget _buildUserTypeSelector() {
-    return GestureDetector(
-      onTap: () {
-        // Toggle between user types
-        _handleUserTypeChange(
-          _selectedUserType == UserType.user ? UserType.doctor : UserType.user,
-        );
-      },
-      child: Container(
-        height: 56,
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(28),
-          border: Border.all(
-            color: AppColors.secondary.withValues(alpha: 0.3),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Stack(
-          children: [
-            // Animated background slider
-            AnimatedAlign(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOutCubic,
-              alignment:
-                  _selectedUserType == UserType.user
-                      ? AlignmentDirectional.centerStart
-                      : AlignmentDirectional.centerEnd,
-              child: Container(
-                width: (MediaQuery.of(context).size.width - 48 - 40) / 2,
-                margin: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: AppColors.secondary,
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.secondary.withValues(alpha: 0.4),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            // User and Doctor labels (non-interactive)
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                          child: Icon(
-                            Icons.person_outline,
-                            size: 20,
-                            color:
-                                _selectedUserType == UserType.user
-                                    ? Colors.black
-                                    : AppColors.black,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        AnimatedDefaultTextStyle(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                          style: getMediumStyle(
-                            color:
-                                _selectedUserType == UserType.user
-                                    ? AppColors.black
-                                    : AppColors.black,
-                            fontSize: 14,
-                            fontFamily: FontConstant.cairo,
-                          ),
-                          child: Text(AppLocalizations.of(context)!.user),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                          child: Icon(
-                            Icons.medical_services_outlined,
-                            size: 20,
-                            color:
-                                _selectedUserType == UserType.doctor
-                                    ? Colors.black
-                                    : AppColors.black,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        AnimatedDefaultTextStyle(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                          style: getMediumStyle(
-                            color:
-                                _selectedUserType == UserType.doctor
-                                    ? AppColors.black
-                                    : AppColors.black,
-                            fontSize: 14,
-                            fontFamily: FontConstant.cairo,
-                          ),
-                          child: Text(AppLocalizations.of(context)!.doctor),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+    final l10n = AppLocalizations.of(context)!;
+    return UserTypeSelector(
+      selectedUserType: _selectedUserType,
+      userLabel: l10n.user,
+      doctorLabel: l10n.doctor,
+      onUserTypeChanged: _handleUserTypeChange,
     );
   }
 
   Widget _buildLoginForm() {
+    final l10n = AppLocalizations.of(context)!;
+    
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, userState) {
         return BlocBuilder<DoctorAuthCubit, DoctorAuthState>(
           builder: (context, doctorState) {
             final isLoading =
-                (_selectedUserType == UserType.user &&
-                    userState is AuthLoading) ||
-                (_selectedUserType == UserType.doctor &&
-                    doctorState is DoctorAuthLoading);
+                (_selectedUserType == UserType.user && userState is AuthLoading) ||
+                (_selectedUserType == UserType.doctor && doctorState is DoctorAuthLoading);
 
             return Stack(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
+                AuthFormCard(
                   child: Form(
                     key: _formKey,
                     child: Column(
                       children: [
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 8),
                         CustomTextField(
                           controller: _emailController,
-                          labelText: AppLocalizations.of(context)!.email,
-                          hintText: AppLocalizations.of(context)!.enterEmail,
-                          prefixIcon: Icons.email_outlined,
+                          labelText: l10n.email,
+                          hintText: l10n.enterEmail,
+                          prefixIcon: Icons.email_rounded,
                           keyboardType: TextInputType.emailAddress,
-                          validator:
-                              (value) =>
-                                  FormValidators.validateEmail(value, context),
+                          validator: (value) => FormValidators.validateEmail(value, context),
                         ),
                         const SizedBox(height: 20),
                         CustomTextField(
                           controller: _passwordController,
-                          labelText: AppLocalizations.of(context)!.password,
-                          hintText: AppLocalizations.of(context)!.enterPassword,
-                          prefixIcon: Icons.lock_outline,
+                          labelText: l10n.password,
+                          hintText: l10n.enterPassword,
+                          prefixIcon: Icons.lock_rounded,
                           obscureText: _obscurePassword,
-                          suffixIcon:
-                              _obscurePassword
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
+                          suffixIcon: _obscurePassword ? Icons.visibility_off_rounded : Icons.visibility_rounded,
                           onSuffixIconTap: () {
-                            setState(() {
-                              _obscurePassword = !_obscurePassword;
-                            });
+                            setState(() => _obscurePassword = !_obscurePassword);
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return AppLocalizations.of(
-                                context,
-                              )!.pleaseEnterPassword;
+                              return l10n.pleaseEnterPassword;
                             }
                             return null;
                           },
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
-                            Checkbox(
+                            RememberMeCheckbox(
                               value: _rememberMe,
+                              label: l10n.rememberMe,
                               onChanged: (value) {
-                                setState(() {
-                                  _rememberMe = value ?? false;
-                                });
+                                setState(() => _rememberMe = value);
                               },
-                              activeColor: AppColors.primary,
-                            ),
-                            Text(
-                              AppLocalizations.of(context)!.rememberMe,
-                              style: getRegularStyle(
-                                color: AppColors.black,
-                                fontSize: 14,
-                                fontFamily: FontConstant.cairo,
-                              ),
                             ),
                             const Spacer(),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  '/forgot-password',
-                                );
+                            ForgotPasswordLink(
+                              text: l10n.forgotPassword,
+                              onTap: () {
+                                Navigator.pushNamed(context, '/forgot-password');
                               },
-                              child: Text(
-                                AppLocalizations.of(context)!.forgotPassword,
-                                style: getMediumStyle(
-                                  color: AppColors.primary,
-                                  fontSize: 14,
-                                  fontFamily: FontConstant.cairo,
-                                ),
-                              ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 28),
                         CustomButton(
-                          text: AppLocalizations.of(context)!.login,
-                          onPressed:
-                              isLoading ? null : () => _handleLogin(context),
-                          isLoading: false, // إزالة loading من الزر
+                          text: l10n.login,
+                          onPressed: isLoading ? null : () => _handleLogin(context),
+                          isLoading: false,
                           backgroundColor: AppColors.primary,
                         ),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              AppLocalizations.of(context)!.dontHaveAccount,
-                              style: getRegularStyle(
-                                color: AppColors.black,
-                                fontSize: 14,
-                                fontFamily: FontConstant.cairo,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  '/register',
-                                );
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.signUp,
-                                style: getMediumStyle(
-                                  color: AppColors.primary,
-                                  fontSize: 14,
-                                  fontFamily: FontConstant.cairo,
-                                ),
-                              ),
-                            ),
-                          ],
+                        const SizedBox(height: 20),
+                        AuthNavLink(
+                          text: l10n.dontHaveAccount,
+                          linkText: l10n.signUp,
+                          onLinkTap: () {
+                            Navigator.pushReplacementNamed(context, '/register');
+                          },
                         ),
                       ],
                     ),
                   ),
                 ),
-                // إظهار الـ loading في منتصف الصفحة
                 if (isLoading) const CustomProgressIndicator(),
               ],
             );

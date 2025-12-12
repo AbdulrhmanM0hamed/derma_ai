@@ -1,15 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:derma_ai/core/utils/constant/font_manger.dart';
 import 'package:derma_ai/core/utils/constant/styles_manger.dart';
 import 'package:derma_ai/core/utils/theme/app_colors.dart';
+import 'package:derma_ai/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../user_features/location/presentation/bloc/location_cubit.dart';
 import '../../../../user_features/location/presentation/bloc/location_state.dart';
 import '../../../../user_features/location/presentation/widgets/location_selection_sheet.dart';
 import '../../../notifications/presentation/pages/notifications_page.dart';
 import '../../../notifications/data/datasources/notifications_static_data.dart';
+import '../../../profile/presentation/bloc/profile_cubit.dart';
+import '../../../profile/presentation/bloc/profile_state.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -50,104 +53,145 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             children: [
               // Profile Avatar with elegant design
-              Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.3),
-                    width: 2,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
+              BlocBuilder<ProfileCubit, ProfileState>(
+                builder: (context, profileState) {
+                  String? profilePictureUrl;
+                  if (profileState is ProfileSuccess) {
+                    profilePictureUrl = profileState.userProfile.profilePictureUrl;
+                  }
+                  
+                  return Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white.withValues(alpha: 0.3),
+                        width: 2,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.1),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                child: CircleAvatar(
-                  radius: 24,
-                  backgroundColor: Colors.white.withValues(alpha: 0.2),
-                  child: SvgPicture.asset(
-                    'assets/images/onboarding1.svg',
-                    width: 60,
-                    height: 60,
-                  ),
-                ),
+                    child: CircleAvatar(
+                      radius: 24,
+                      backgroundColor: Colors.white.withValues(alpha: 0.2),
+                      child: profilePictureUrl != null && profilePictureUrl.isNotEmpty
+                          ? ClipOval(
+                              child: CachedNetworkImage(
+                                imageUrl: profilePictureUrl,
+                                width: 48,
+                                height: 48,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => const Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                  size: 28,
+                                ),
+                                errorWidget: (context, url, error) => const Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                  size: 28,
+                                ),
+                              ),
+                            )
+                          : const Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 28,
+                            ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(width: 16),
               // User Info Section
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'مرحباً بك 👋',
-                      style: getRegularStyle(
-                        color: Colors.white.withValues(alpha: 0.9),
-                        fontSize: 14,
-                        fontFamily: FontConstant.cairo,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      'أحمد محمد',
-                      style: getBoldStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: FontConstant.cairo,
-                      ),
-                    ),
+                child: BlocBuilder<ProfileCubit, ProfileState>(
+                  builder: (context, profileState) {
+                    final l10n = AppLocalizations.of(context)!;
+                    String userName = l10n.user;
+                    
+                    if (profileState is ProfileSuccess) {
+                      userName = profileState.userProfile.fullName.isNotEmpty 
+                          ? profileState.userProfile.fullName 
+                          : l10n.user;
+                    }
+                    
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${l10n.welcomeBack} 👋',
+                          style: getRegularStyle(
+                            color: Colors.white.withValues(alpha: 0.9),
+                            fontSize: 14,
+                            fontFamily: FontConstant.cairo,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          userName,
+                          style: getBoldStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: FontConstant.cairo,
+                          ),
+                        ),
                     const SizedBox(height: 4),
-                    // Location Selector
-                    GestureDetector(
-                      onTap: () {
-                        HapticFeedback.lightImpact();
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) => const LocationSelectionSheet(),
-                        );
-                      },
-                      child: BlocBuilder<LocationCubit, LocationState>(
-                        builder: (context, state) {
-                          final locationText =
-                              context
+                        // Location Selector
+                        GestureDetector(
+                          onTap: () {
+                            HapticFeedback.lightImpact();
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              builder: (context) => const LocationSelectionSheet(),
+                            );
+                          },
+                          child: BlocBuilder<LocationCubit, LocationState>(
+                            builder: (context, state) {
+                              final locale = Localizations.localeOf(context).languageCode;
+                              final locationText = context
                                   .read<LocationCubit>()
-                                  .currentDisplayLocation;
-                          return Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on,
-                                color: Colors.white,
-                                size: 14,
-                              ),
-                              const SizedBox(width: 4),
-                              Flexible(
-                                child: Text(
-                                  locationText,
-                                  style: getMediumStyle(
-                                    color: Colors.white.withValues(alpha: 0.9),
-                                    fontSize: 12,
-                                    fontFamily: FontConstant.cairo,
+                                  .getLocalizedDisplayLocation(locale);
+                              return Row(
+                                children: [
+                                  const Icon(
+                                    Icons.location_on,
+                                    color: Colors.white,
+                                    size: 14,
                                   ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              const Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.white,
-                                size: 14,
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    ),
-                  ],
+                                  const SizedBox(width: 4),
+                                  Flexible(
+                                    child: Text(
+                                      locationText,
+                                      style: getMediumStyle(
+                                        color: Colors.white.withValues(alpha: 0.9),
+                                        fontSize: 12,
+                                        fontFamily: FontConstant.cairo,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  const Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: Colors.white,
+                                    size: 14,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
               // Notification Icon with modern design
