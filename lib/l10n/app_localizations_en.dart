@@ -1375,4 +1375,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get setLocation => 'Set Location';
+
+  @override
+  String get yearsExp => 'Years Exp.';
+
+  @override
+  String get years => 'years';
+
+  @override
+  String get approved => 'Approved';
+
+  @override
+  String get pendingApproval => 'Pending Approval';
+
+  @override
+  String get rejected => 'Rejected';
+
+  @override
+  String get consultations => 'Consultations';
+
+  @override
+  String get notProvided => 'Not provided';
+
+  @override
+  String get specialty => 'Specialty';
+
+  @override
+  String get subSpecialty => 'Sub-Specialty';
+
+  @override
+  String get licenseNumber => 'License Number';
+
+  @override
+  String get languagesSpoken => 'Languages Spoken';
+
+  @override
+  String get medicalSchool => 'Medical School';
+
+  @override
+  String get graduationYear => 'Graduation Year';
+
+  @override
+  String get boardCertifications => 'Board Certifications';
+
+  @override
+  String get biography => 'Biography';
+
+  @override
+  String get availableForBooking => 'Available for Booking';
+
+  @override
+  String get loadingProfile => 'Loading profile...';
+
+  @override
+  String get errorLoadingProfile => 'Error loading profile';
 }

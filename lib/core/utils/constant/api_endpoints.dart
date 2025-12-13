@@ -43,6 +43,10 @@ class ApiEndpoints {
   static const String profileBasic = '/profile-user/basic';
   static const String profilePicture = '/profile-user/picture';
 
+  // Doctor Profile endpoints
+  static const String doctorProfile = 'profile-doctor/';
+  static const String doctorProfilePicture = 'profile-doctor/picture';
+
   // Location endpoints
   static const String countries = 'countries-cities/countries';
   static String cities(int countryId) => 'countries-cities/cities/$countryId';

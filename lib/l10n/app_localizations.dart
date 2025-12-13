@@ -2749,6 +2749,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Set Location'**
   String get setLocation;
+
+  /// No description provided for @yearsExp.
+  ///
+  /// In en, this message translates to:
+  /// **'Years Exp.'**
+  String get yearsExp;
+
+  /// No description provided for @years.
+  ///
+  /// In en, this message translates to:
+  /// **'years'**
+  String get years;
+
+  /// No description provided for @approved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get approved;
+
+  /// No description provided for @pendingApproval.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending Approval'**
+  String get pendingApproval;
+
+  /// No description provided for @rejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get rejected;
+
+  /// No description provided for @consultations.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultations'**
+  String get consultations;
+
+  /// No description provided for @notProvided.
+  ///
+  /// In en, this message translates to:
+  /// **'Not provided'**
+  String get notProvided;
+
+  /// No description provided for @specialty.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialty'**
+  String get specialty;
+
+  /// No description provided for @subSpecialty.
+  ///
+  /// In en, this message translates to:
+  /// **'Sub-Specialty'**
+  String get subSpecialty;
+
+  /// No description provided for @licenseNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'License Number'**
+  String get licenseNumber;
+
+  /// No description provided for @languagesSpoken.
+  ///
+  /// In en, this message translates to:
+  /// **'Languages Spoken'**
+  String get languagesSpoken;
+
+  /// No description provided for @medicalSchool.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical School'**
+  String get medicalSchool;
+
+  /// No description provided for @graduationYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Graduation Year'**
+  String get graduationYear;
+
+  /// No description provided for @boardCertifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Board Certifications'**
+  String get boardCertifications;
+
+  /// No description provided for @biography.
+  ///
+  /// In en, this message translates to:
+  /// **'Biography'**
+  String get biography;
+
+  /// No description provided for @availableForBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Available for Booking'**
+  String get availableForBooking;
+
+  /// No description provided for @loadingProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading profile...'**
+  String get loadingProfile;
+
+  /// No description provided for @errorLoadingProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading profile'**
+  String get errorLoadingProfile;
 }
 
 class _AppLocalizationsDelegate

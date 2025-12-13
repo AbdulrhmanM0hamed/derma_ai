@@ -1,116 +1,140 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/utils/common/custom_progress_indicator.dart';
+import '../../../../core/utils/constant/font_manger.dart';
+import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../../core/widgets/logout_confirmation_dialog.dart';
+import '../../../../core/services/service_locatores.dart' as di;
+import '../bloc/doctor_profile_cubit.dart';
+import '../bloc/doctor_profile_state.dart';
+import '../widgets/doctor_profile_widgets.dart';
 
 class DoctorProfilePage extends StatelessWidget {
   const DoctorProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => di.sl<DoctorProfileCubit>()..getDoctorProfile(),
+      child: const _DoctorProfileView(),
+    );
+  }
+}
+
+class _DoctorProfileView extends StatelessWidget {
+  const _DoctorProfileView();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA),
-      appBar: AppBar(
-        title: Text(
-          AppLocalizations.of(context)?.profile ?? "Profile",
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: AppColors.textPrimary,
-          ),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Navigate to edit profile page
-            },
-            icon: const Icon(Icons.edit_outlined, color: AppColors.textSecondary),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildProfileHeader(context),
-            const SizedBox(height: 24),
-            _buildStatsRow(),
-            const SizedBox(height: 24),
-            _buildSectionTitle(context, "Personal Information"),
-            _buildInfoCard([
-              _buildInfoItem(Icons.person_outline, "Name", "Dr. Mohammed Ahmed"),
-              _buildInfoItem(Icons.medical_services_outlined, "Speciality", "Dermatologist"),
-              _buildInfoItem(Icons.email_outlined, "Email", "dr.mohammed@dermaai.com"),
-              _buildInfoItem(Icons.phone_outlined, "Phone", "+201234567890"),
-            ]),
-            const SizedBox(height: 16),
-            _buildSectionTitle(context, "Professional Information"),
-            _buildInfoCard([
-              _buildInfoItem(Icons.school_outlined, "Education", "Cairo University, Faculty of Medicine"),
-              _buildInfoItem(Icons.work_outline, "Experience", "15 years"),
-              _buildInfoItem(Icons.language_outlined, "Languages", "Arabic, English"),
-              _buildInfoItem(Icons.location_on_outlined, "Clinic Location", "Cairo, Egypt"),
-            ]),
-            const SizedBox(height: 16),
-            _buildSectionTitle(context, "Account Settings"),
-            _buildSettingsCard(context),
-            const SizedBox(height: 32),
-          ],
-        ),
+      backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFF5F7FA),
+      body: BlocBuilder<DoctorProfileCubit, DoctorProfileState>(
+        builder: (context, state) {
+          if (state is DoctorProfileLoading) {
+            return _buildLoadingState(l10n);
+          }
+
+          if (state is DoctorProfileError) {
+            return _buildErrorState(context, state.message, l10n);
+          }
+
+          if (state is DoctorProfileLoaded) {
+            return _buildProfileContent(context, state, isDark);
+          }
+
+          if (state is DoctorProfileUpdating) {
+            return _buildProfileContent(
+              context,
+              DoctorProfileLoaded(state.currentProfile),
+              isDark,
+              isUpdating: true,
+            );
+          }
+
+          return _buildLoadingState(l10n);
+        },
       ),
     );
   }
 
-  Widget _buildProfileHeader(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: Colors.grey.shade200),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const CircleAvatar(
-              radius: 50,
-              backgroundColor: AppColors.primary,
-              backgroundImage: null, // Replace with actual image
-              child: Icon(Icons.person, size: 50, color: Colors.white),
+  Widget _buildLoadingState(AppLocalizations l10n) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const CustomProgressIndicator(),
+          const SizedBox(height: 16),
+          Text(
+            l10n.loadingProfile,
+            style: getMediumStyle(
+              fontFamily: FontConstant.cairo,
+              fontSize: FontSize.size14,
+              color: AppColors.textSecondary,
             ),
-            const SizedBox(height: 16),
-            const Text(
-              "Dr. Mohammed Ahmed",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildErrorState(BuildContext context, String message, AppLocalizations l10n) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.red.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.error_outline_rounded,
+                color: Colors.red,
+                size: 48,
+              ),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              l10n.errorLoadingProfile,
+              style: getBoldStyle(
+                fontFamily: FontConstant.cairo,
+                fontSize: FontSize.size18,
                 color: AppColors.textPrimary,
               ),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 4),
-            const Text(
-              "Dermatologist",
-              style: TextStyle(
-                fontSize: 16,
+            const SizedBox(height: 8),
+            Text(
+              message,
+              style: getRegularStyle(
+                fontFamily: FontConstant.cairo,
+                fontSize: FontSize.size14,
                 color: AppColors.textSecondary,
               ),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildRatingInfo(),
-                Container(
-                  height: 24,
-                  width: 1,
-                  color: Colors.grey[300],
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: () {
+                context.read<DoctorProfileCubit>().getDoctorProfile();
+              },
+              icon: const Icon(Icons.refresh_rounded),
+              label: Text(l10n.retry),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                _buildExperienceInfo(),
-              ],
+              ),
             ),
           ],
         ),
@@ -118,252 +142,65 @@ class DoctorProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildRatingInfo() {
-    return Row(
+  Widget _buildProfileContent(
+    BuildContext context,
+    DoctorProfileLoaded state,
+    bool isDark, {
+    bool isUpdating = false,
+  }) {
+    return Stack(
       children: [
-        const Icon(
-          Icons.star,
-          color: Colors.amber,
-          size: 20,
-        ),
-        const SizedBox(width: 4),
-        const Text(
-          "4.9",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            color: AppColors.textPrimary,
-          ),
-        ),
-        const SizedBox(width: 4),
-        Text(
-          "(124 reviews)",
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildExperienceInfo() {
-    return Row(
-      children: [
-        const Icon(
-          Icons.work_outlined,
+        RefreshIndicator(
+          onRefresh: () => context.read<DoctorProfileCubit>().refreshProfile(),
           color: AppColors.primary,
-          size: 20,
-        ),
-        const SizedBox(width: 4),
-        const Text(
-          "15+",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            color: AppColors.textPrimary,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                // Header with gradient
+                DoctorProfileHeader(
+                  profile: state.profile,
+                  onEditTap: () {
+                    // Navigate to edit profile
+                  },
+                ),
+
+                // Transform to overlap with header
+                Transform.translate(
+                  offset: const Offset(0, -20),
+                  child: Column(
+                    children: [
+                      // Stats Row
+                      DoctorStatsRow(profile: state.profile),
+
+                      const SizedBox(height: 24),
+
+                      // Info Sections
+                      DoctorInfoSection(profile: state.profile),
+
+                      const SizedBox(height: 24),
+
+                      // Settings Section
+                      const DoctorSettingsSection(),
+
+                      const SizedBox(height: 40),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        const SizedBox(width: 4),
-        Text(
-          "years exp.",
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+
+        // Loading overlay when updating
+        if (isUpdating)
+          Container(
+            color: Colors.black.withValues(alpha: 0.3),
+            child: const Center(
+              child: CustomProgressIndicator(),
+            ),
           ),
-        ),
       ],
-    );
-  }
-
-  Widget _buildStatsRow() {
-    final stats = [
-      {"value": "1,240", "label": "Patients"},
-      {"value": "3,250", "label": "Consultations"},
-      {"value": "15", "label": "Years Exp."},
-    ];
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: stats.map((stat) {
-        return Expanded(
-          child: Card(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: BorderSide(color: Colors.grey.shade200),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Column(
-                children: [
-                  Text(
-                    stat["value"]!,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primary,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    stat["label"]!,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      }).toList(),
-    );
-  }
-
-  Widget _buildSectionTitle(BuildContext context, String title) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: AppColors.textPrimary,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildInfoCard(List<Widget> children) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: Colors.grey.shade200),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(children: children),
-      ),
-    );
-  }
-
-  Widget _buildInfoItem(IconData icon, String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(
-            icon,
-            size: 18,
-            color: AppColors.primary,
-          ),
-          const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.textPrimary,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSettingsCard(BuildContext context) {
-    final settings = [
-      {
-        "icon": Icons.notifications_outlined,
-        "title": "Notifications",
-        "onTap": () {},
-      },
-      {
-        "icon": Icons.lock_outlined,
-        "title": "Privacy & Security",
-        "onTap": () {},
-      },
-      {
-        "icon": Icons.language_outlined,
-        "title": "Language",
-        "onTap": () {},
-      },
-      {
-        "icon": Icons.help_outline,
-        "title": "Help & Support",
-        "onTap": () {},
-      },
-      {
-        "icon": Icons.logout,
-        "title": "Logout",
-        "onTap": () {
-          LogoutConfirmationDialog.show(context);
-        },
-      },
-    ];
-
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: Colors.grey.shade200),
-      ),
-      child: Column(
-        children: settings.asMap().entries.map((entry) {
-          final index = entry.key;
-          final setting = entry.value;
-          
-          return Column(
-            children: [
-              ListTile(
-                leading: Icon(
-                  setting["icon"] as IconData,
-                  color: setting["title"] == "Logout" 
-                      ? Colors.red 
-                      : AppColors.primary,
-                ),
-                title: Text(
-                  setting["title"] as String,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: setting["title"] == "Logout" 
-                        ? Colors.red 
-                        : AppColors.textPrimary,
-                  ),
-                ),
-                trailing: setting["title"] != "Logout"
-                    ? const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 16,
-                        color: AppColors.textSecondary,
-                      )
-                    : null,
-                onTap: setting["onTap"] as void Function(),
-              ),
-              if (index < settings.length - 1)
-                const Divider(height: 1, indent: 56),
-            ],
-          );
-        }).toList(),
-      ),
     );
   }
 }

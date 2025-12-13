@@ -11,6 +11,8 @@ import '../../user_features/profile/data/repositories/profile_repository.dart';
 import '../../user_features/profile/presentation/bloc/profile_cubit.dart';
 import '../../user_features/location/data/repositories/location_repository.dart';
 import '../../user_features/location/presentation/bloc/location_cubit.dart';
+import '../../doctor_feature/profile/data/repositories/doctor_profile_repository.dart';
+import '../../doctor_feature/profile/presentation/bloc/doctor_profile_cubit.dart';
 import '../network/api_service.dart';
 import '../network/dio_client.dart';
 import '../services/token_storage_service.dart';
@@ -75,4 +77,13 @@ Future<void> init() async {
 
   // Cubit
   sl.registerFactory(() => LocationCubit(sl(), sl()));
+
+  //! Features - Doctor Profile
+  // Repository
+  sl.registerLazySingleton<DoctorProfileRepository>(
+    () => DoctorProfileRepositoryImpl(sl()),
+  );
+
+  // Cubit
+  sl.registerLazySingleton(() => DoctorProfileCubit(sl()));
 }

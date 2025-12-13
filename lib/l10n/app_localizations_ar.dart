@@ -622,7 +622,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get experience => 'الخبرة';
 
   @override
-  String get reviews => 'تقييمات';
+  String get reviews => 'التقييمات';
 
   @override
   String get services => 'الخدمات';
@@ -1126,7 +1126,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notSpecified => 'غير محدد';
 
   @override
-  String get notAvailable => 'غير متوفر';
+  String get notAvailable => 'غير متاح';
 
   @override
   String get recentAppointments => 'المواعيد الأخيرة';
@@ -1363,4 +1363,58 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get setLocation => 'تحديد الموقع';
+
+  @override
+  String get yearsExp => 'سنوات خبرة';
+
+  @override
+  String get years => 'سنوات';
+
+  @override
+  String get approved => 'معتمد';
+
+  @override
+  String get pendingApproval => 'قيد الانتظار';
+
+  @override
+  String get rejected => 'مرفوض';
+
+  @override
+  String get consultations => 'الاستشارات';
+
+  @override
+  String get notProvided => 'غير محدد';
+
+  @override
+  String get specialty => 'التخصص';
+
+  @override
+  String get subSpecialty => 'التخصص الفرعي';
+
+  @override
+  String get licenseNumber => 'رقم الترخيص';
+
+  @override
+  String get languagesSpoken => 'اللغات';
+
+  @override
+  String get medicalSchool => 'كلية الطب';
+
+  @override
+  String get graduationYear => 'سنة التخرج';
+
+  @override
+  String get boardCertifications => 'الشهادات المهنية';
+
+  @override
+  String get biography => 'نبذة تعريفية';
+
+  @override
+  String get availableForBooking => 'متاح للحجز';
+
+  @override
+  String get loadingProfile => 'جاري تحميل الملف الشخصي...';
+
+  @override
+  String get errorLoadingProfile => 'حدث خطأ أثناء تحميل الملف الشخصي';
 }
