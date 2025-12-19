@@ -13,17 +13,24 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
   // Getters
   DoctorProfileModel? get currentProfile => _currentProfile;
 
+  // Safe emit - only emit if cubit is not closed
+  void _safeEmit(DoctorProfileState state) {
+    if (!isClosed) {
+      emit(state);
+    }
+  }
+
   // Get Doctor Profile
   Future<void> getDoctorProfile() async {
     try {
-      emit(DoctorProfileLoading());
+      _safeEmit(DoctorProfileLoading());
       
       final profile = await _repository.getDoctorProfile();
       _currentProfile = profile;
       
-      emit(DoctorProfileLoaded(profile));
+      _safeEmit(DoctorProfileLoaded(profile));
     } catch (e) {
-      emit(DoctorProfileError(e.toString()));
+      _safeEmit(DoctorProfileError(e.toString()));
     }
   }
 
@@ -35,68 +42,68 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
   // Update Doctor Profile
   Future<void> updateDoctorProfile(Map<String, dynamic> data) async {
     if (_currentProfile == null) {
-      emit(const DoctorProfileError('No profile data available'));
+      _safeEmit(const DoctorProfileError('No profile data available'));
       return;
     }
 
     try {
-      emit(DoctorProfileUpdating(_currentProfile!));
+      _safeEmit(DoctorProfileUpdating(_currentProfile!));
       
       final updatedProfile = await _repository.updateDoctorProfile(data);
       _currentProfile = updatedProfile;
       
-      emit(DoctorProfileUpdateSuccess(updatedProfile));
+      _safeEmit(DoctorProfileUpdateSuccess(updatedProfile));
       
       await Future.delayed(const Duration(milliseconds: 100));
-      emit(DoctorProfileLoaded(updatedProfile));
+      _safeEmit(DoctorProfileLoaded(updatedProfile));
     } catch (e) {
-      emit(DoctorProfileUpdateError(e.toString(), _currentProfile!));
+      _safeEmit(DoctorProfileUpdateError(e.toString(), _currentProfile!));
     }
   }
 
   // Upload Profile Picture
   Future<void> uploadProfilePicture(String filePath) async {
     if (_currentProfile == null) {
-      emit(const DoctorProfileError('No profile data available'));
+      _safeEmit(const DoctorProfileError('No profile data available'));
       return;
     }
 
     try {
-      emit(DoctorProfileUpdating(_currentProfile!));
+      _safeEmit(DoctorProfileUpdating(_currentProfile!));
       
       final updatedProfile = await _repository.uploadProfilePicture(filePath);
       _currentProfile = updatedProfile;
       
-      emit(DoctorProfileLoaded(updatedProfile));
+      _safeEmit(DoctorProfileLoaded(updatedProfile));
     } catch (e) {
-      emit(DoctorProfileUpdateError(e.toString(), _currentProfile!));
-      emit(DoctorProfileLoaded(_currentProfile!));
+      _safeEmit(DoctorProfileUpdateError(e.toString(), _currentProfile!));
+      _safeEmit(DoctorProfileLoaded(_currentProfile!));
     }
   }
 
   // Delete Profile Picture
   Future<void> deleteProfilePicture() async {
     if (_currentProfile == null) {
-      emit(const DoctorProfileError('No profile data available'));
+      _safeEmit(const DoctorProfileError('No profile data available'));
       return;
     }
 
     try {
-      emit(DoctorProfileUpdating(_currentProfile!));
+      _safeEmit(DoctorProfileUpdating(_currentProfile!));
       
       final updatedProfile = await _repository.deleteProfilePicture();
       _currentProfile = updatedProfile;
       
-      emit(DoctorProfileLoaded(updatedProfile));
+      _safeEmit(DoctorProfileLoaded(updatedProfile));
     } catch (e) {
-      emit(DoctorProfileUpdateError(e.toString(), _currentProfile!));
-      emit(DoctorProfileLoaded(_currentProfile!));
+      _safeEmit(DoctorProfileUpdateError(e.toString(), _currentProfile!));
+      _safeEmit(DoctorProfileLoaded(_currentProfile!));
     }
   }
 
   // Reset State
   void reset() {
     _currentProfile = null;
-    emit(DoctorProfileInitial());
+    _safeEmit(DoctorProfileInitial());
   }
 }

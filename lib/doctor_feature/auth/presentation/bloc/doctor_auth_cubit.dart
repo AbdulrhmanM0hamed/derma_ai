@@ -243,61 +243,36 @@ class DoctorAuthCubit extends Cubit<DoctorAuthState> {
   Future<void> logout() async {
     emit(DoctorAuthLoading());
 
-    try {
-      // إذا لم يكن هناك access token، نقوم بالـ logout محلياً فقط
-      if (_tokenStorage.accessToken == null ||
-          _tokenStorage.accessToken!.isEmpty) {
-        await _tokenStorage.clearTokens();
-        emit(
-          DoctorLogoutSuccess(
-            messageEn: 'Logged out successfully',
-            messageAr: 'تم تسجيل الخروج بنجاح',
-          ),
-        );
-        return;
-      }
+    // مسح الـ tokens محلياً أولاً لضمان logout حتى لو فشل السيرفر
+    final hadToken = _tokenStorage.accessToken != null &&
+        _tokenStorage.accessToken!.isNotEmpty;
+    
+    await _tokenStorage.clearTokens();
 
-      // محاولة logout من السيرفر
-      await _authRepository.logout();
-      await _tokenStorage.clearTokens();
-
+    // إذا لم يكن هناك token، نكتفي بالـ logout المحلي
+    if (!hadToken) {
       emit(
         DoctorLogoutSuccess(
           messageEn: 'Logged out successfully',
           messageAr: 'تم تسجيل الخروج بنجاح',
         ),
       );
-    } on ApiException catch (e) {
-      // حتى لو فشل الـ logout من السيرفر، نقوم بالـ logout محلياً
-      await _tokenStorage.clearTokens();
-
-      // إذا كان الخطأ 401 (Unauthorized)، نعتبره logout ناجح
-      if (e.statusCode == 401) {
-        emit(
-          DoctorLogoutSuccess(
-            messageEn: 'Logged out successfully',
-            messageAr: 'تم تسجيل الخروج بنجاح',
-          ),
-        );
-      } else {
-        emit(
-          DoctorLogoutFailure(
-            messageEn: e.message,
-            messageAr: e.messageAr ?? e.message,
-          ),
-        );
-      }
-    } catch (e) {
-      // حتى لو فشل الـ logout من السيرفر، نقوم بالـ logout محلياً
-      await _tokenStorage.clearTokens();
-
-      emit(
-        DoctorLogoutFailure(
-          messageEn: 'Logout completed locally due to connection error',
-          messageAr: 'تم تسجيل الخروج محلياً بسبب خطأ في الاتصال',
-        ),
-      );
+      return;
     }
+
+    // محاولة logout من السيرفر (اختياري - الـ tokens اتمسحت بالفعل)
+    try {
+      await _authRepository.logout();
+    } catch (_) {
+      // نتجاهل أي خطأ من السيرفر لأن الـ tokens اتمسحت محلياً
+    }
+
+    emit(
+      DoctorLogoutSuccess(
+        messageEn: 'Logged out successfully',
+        messageAr: 'تم تسجيل الخروج بنجاح',
+      ),
+    );
   }
 
   Future<void> verifyOtp({

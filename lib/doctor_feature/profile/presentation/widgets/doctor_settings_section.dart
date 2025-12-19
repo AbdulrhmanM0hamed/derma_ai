@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
-import '../../../../core/widgets/logout_confirmation_dialog.dart';
+import '../../../../core/widgets/doctor_logout_confirmation_dialog.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class DoctorSettingsSection extends StatelessWidget {
@@ -98,7 +98,7 @@ class DoctorSettingsSection extends StatelessWidget {
                   showArrow: false,
                   onTap: () {
                     HapticFeedback.lightImpact();
-                    LogoutConfirmationDialog.show(context);
+                    DoctorLogoutConfirmationDialog.show(context);
                   },
                 ),
               ],
