@@ -1,5 +1,6 @@
 import 'package:derma_ai/user_features/doctor_profile/doctor_profile.dart';
 import 'package:derma_ai/user_features/health_tips/presentation/pages/all_medical_articles_page.dart';
+import 'package:derma_ai/user_features/health_tips/presentation/pages/all_skin_diseases_page.dart';
 import 'package:derma_ai/user_features/navigation/presentation/pages/main_navigation_page.dart';
 import 'package:derma_ai/user_features/profile/data/models/user_profile_model.dart';
 import 'package:derma_ai/user_features/profile/presentation/pages/edit_profile_page.dart';
@@ -32,7 +33,6 @@ import '../../../doctor_feature/patients/presentation/pages/advanced_patients_pa
 import '../../../doctor_feature/appointments/presentation/pages/advanced_appointments_page.dart';
 import '../../../doctor_feature/settings/presentation/pages/doctor_settings_page.dart';
 import '../../../doctor_feature/analytics/presentation/pages/analytics_dashboard_page.dart';
-import '../../../doctor_feature/auth/presentation/pages/doctor_otp_verification_page.dart';
 import '../../../user_features/health_tips/presentation/pages/all_health_tips_page.dart';
 
 class AppRoutes {
@@ -179,19 +179,11 @@ Route<dynamic> onGeneratedRoutes(RouteSettings settings) {
     case AppRoutes.analyticsDashboard:
       return _createRoute(const AnalyticsDashboardPage());
 
-    case AppRoutes.doctorOtpVerification:
-      final args = settings.arguments as Map<String, dynamic>;
-      return _createRoute(
-        DoctorOtpVerificationPage(
-          userId: args['userId'] as int,
-          email: args['email'] as String,
-          phone: args['phone'] as String? ?? '',
-          type: args['type'] as String? ?? 'email',
-        ),
-      );
-
     case AppRoutes.allHealthTips:
       return _createRoute(const AllHealthTipsPage());
+
+    case AllSkinDiseasesPage.routeName:
+      return _createRoute(const AllSkinDiseasesPage());
 
     default:
       return _createRoute(const SplashPage());

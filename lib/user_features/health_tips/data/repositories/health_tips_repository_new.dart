@@ -1,16 +1,16 @@
 import 'package:derma_ai/core/network/api_service.dart';
 import 'package:derma_ai/core/utils/constant/api_endpoints.dart';
-import 'package:dio/dio.dart';
-import '../../../../core/network/dio_client.dart';
 import '../models/health_tip_model.dart';
 import '../models/medical_article_model.dart';
 import '../models/health_tips_response_model.dart';
+import '../models/skin_disease_model.dart';
 
 abstract class HealthTipsRepository {
   Future<HealthTipsResult> getDailyTips({int page = 1, int limit = 10});
   Future<HealthTipModel> getLatestTip();
   Future<MedicalArticlesResult> getMedicalArticles({int page = 1, int limit = 10});
   Future<MedicalArticleModel> getMedicalArticleById(int id);
+  Future<SkinDiseasesResult> getSkinDiseases({int page = 1, int limit = 10});
 }
 
 class HealthTipsRepositoryImpl implements HealthTipsRepository {
@@ -110,6 +110,32 @@ class HealthTipsRepositoryImpl implements HealthTipsRepository {
 
       final responseModel = SingleMedicalArticleResponse.fromJson(response);
       return responseModel.article;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<SkinDiseasesResult> getSkinDiseases({int page = 1, int limit = 10}) async {
+    try {
+      final queryParams = {'page': page, 'limit': limit};
+
+      final response = await _apiService.get<Map<String, dynamic>>(
+        ApiEndpoints.skinDiseasesActive,
+        queryParameters: queryParams,
+        fromJson: (data) => data,
+      );
+
+      final responseModel = SkinDiseasesResponse.fromJson(response);
+      final pagination = responseModel.pagination;
+
+      return SkinDiseasesResult(
+        diseases: responseModel.diseases,
+        hasMore: page < pagination.pages,
+        currentPage: pagination.page,
+        lastPage: pagination.pages,
+        total: pagination.total,
+      );
     } catch (e) {
       rethrow;
     }

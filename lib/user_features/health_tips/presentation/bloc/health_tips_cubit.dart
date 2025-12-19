@@ -2,6 +2,7 @@ import 'package:derma_ai/user_features/health_tips/data/repositories/health_tips
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/health_tip_model.dart';
 import '../../data/models/medical_article_model.dart';
+import '../../data/models/skin_disease_model.dart';
 import 'health_tips_state.dart';
 
 class HealthTipsCubit extends Cubit<HealthTipsState> {
@@ -16,6 +17,11 @@ class HealthTipsCubit extends Cubit<HealthTipsState> {
   List<MedicalArticleModel> _currentArticles = [];
   int _currentArticlesPage = 1;
   bool _hasMoreArticles = true;
+
+  // Skin Diseases variables
+  List<SkinDiseaseModel> _currentSkinDiseases = [];
+  int _currentSkinDiseasesPage = 1;
+  bool _hasMoreSkinDiseases = true;
 
   HealthTipsCubit(this._repository) : super(HealthTipsInitial());
 
@@ -155,6 +161,61 @@ class HealthTipsCubit extends Cubit<HealthTipsState> {
     }
   }
 
+  // Get Skin Diseases (First Page)
+  Future<void> getSkinDiseases({bool refresh = false}) async {
+    try {
+      if (refresh) {
+        _currentSkinDiseases.clear();
+        _currentSkinDiseasesPage = 1;
+        _hasMoreSkinDiseases = true;
+      }
+
+      emit(SkinDiseasesLoading());
+      
+      final result = await _repository.getSkinDiseases(page: _currentSkinDiseasesPage);
+      
+      _currentSkinDiseases = result.diseases;
+      _currentSkinDiseasesPage = result.currentPage;
+      _hasMoreSkinDiseases = result.hasMore;
+      
+      emit(SkinDiseasesSuccess(
+        diseases: _currentSkinDiseases,
+        hasMore: _hasMoreSkinDiseases,
+        currentPage: _currentSkinDiseasesPage,
+        totalPages: result.lastPage,
+        total: result.total,
+      ));
+    } catch (e) {
+      emit(SkinDiseasesFailure(e.toString()));
+    }
+  }
+
+  // Load More Skin Diseases (Pagination)
+  Future<void> loadMoreSkinDiseases() async {
+    if (!_hasMoreSkinDiseases) return;
+
+    try {
+      emit(LoadMoreSkinDiseasesLoading(_currentSkinDiseases));
+      
+      final nextPage = _currentSkinDiseasesPage + 1;
+      final result = await _repository.getSkinDiseases(page: nextPage);
+      
+      _currentSkinDiseases.addAll(result.diseases);
+      _currentSkinDiseasesPage = result.currentPage;
+      _hasMoreSkinDiseases = result.hasMore;
+      
+      emit(LoadMoreSkinDiseasesSuccess(
+        diseases: List.from(_currentSkinDiseases),
+        hasMore: _hasMoreSkinDiseases,
+        currentPage: _currentSkinDiseasesPage,
+        totalPages: result.lastPage,
+        total: result.total,
+      ));
+    } catch (e) {
+      emit(LoadMoreSkinDiseasesFailure(e.toString(), _currentSkinDiseases));
+    }
+  }
+
   // Reset State
   void reset() {
     _currentTips.clear();
@@ -163,6 +224,9 @@ class HealthTipsCubit extends Cubit<HealthTipsState> {
     _currentArticles.clear();
     _currentArticlesPage = 1;
     _hasMoreArticles = true;
+    _currentSkinDiseases.clear();
+    _currentSkinDiseasesPage = 1;
+    _hasMoreSkinDiseases = true;
     emit(HealthTipsInitial());
   }
 
@@ -174,4 +238,8 @@ class HealthTipsCubit extends Cubit<HealthTipsState> {
   List<MedicalArticleModel> get currentArticles => List.from(_currentArticles);
   int get currentArticlesPage => _currentArticlesPage;
   bool get hasMoreArticles => _hasMoreArticles;
+
+  List<SkinDiseaseModel> get currentSkinDiseases => List.from(_currentSkinDiseases);
+  int get currentSkinDiseasesPage => _currentSkinDiseasesPage;
+  bool get hasMoreSkinDiseases => _hasMoreSkinDiseases;
 }

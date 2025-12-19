@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import '../../data/models/health_tip_model.dart';
 import '../../data/models/medical_article_model.dart';
+import '../../data/models/skin_disease_model.dart';
 
 abstract class HealthTipsState extends Equatable {
   const HealthTipsState();
@@ -193,4 +194,75 @@ class SingleArticleFailure extends HealthTipsState {
 
   @override
   List<Object?> get props => [message];
+}
+
+
+// Skin Diseases States
+class SkinDiseasesLoading extends HealthTipsState {}
+
+class SkinDiseasesSuccess extends HealthTipsState {
+  final List<SkinDiseaseModel> diseases;
+  final bool hasMore;
+  final int currentPage;
+  final int totalPages;
+  final int total;
+
+  const SkinDiseasesSuccess({
+    required this.diseases,
+    required this.hasMore,
+    required this.currentPage,
+    required this.totalPages,
+    required this.total,
+  });
+
+  @override
+  List<Object?> get props => [diseases, hasMore, currentPage, totalPages, total];
+}
+
+class SkinDiseasesFailure extends HealthTipsState {
+  final String message;
+
+  const SkinDiseasesFailure(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
+// Load More Skin Diseases States
+class LoadMoreSkinDiseasesLoading extends HealthTipsState {
+  final List<SkinDiseaseModel> currentDiseases;
+
+  const LoadMoreSkinDiseasesLoading(this.currentDiseases);
+
+  @override
+  List<Object?> get props => [currentDiseases];
+}
+
+class LoadMoreSkinDiseasesSuccess extends HealthTipsState {
+  final List<SkinDiseaseModel> diseases;
+  final bool hasMore;
+  final int currentPage;
+  final int totalPages;
+  final int total;
+
+  const LoadMoreSkinDiseasesSuccess({
+    required this.diseases,
+    required this.hasMore,
+    required this.currentPage,
+    required this.totalPages,
+    required this.total,
+  });
+
+  @override
+  List<Object?> get props => [diseases, hasMore, currentPage, totalPages, total];
+}
+
+class LoadMoreSkinDiseasesFailure extends HealthTipsState {
+  final String message;
+  final List<SkinDiseaseModel> currentDiseases;
+
+  const LoadMoreSkinDiseasesFailure(this.message, this.currentDiseases);
+
+  @override
+  List<Object?> get props => [message, currentDiseases];
 }

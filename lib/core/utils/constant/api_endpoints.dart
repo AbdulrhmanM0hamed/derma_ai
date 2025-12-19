@@ -39,6 +39,10 @@ class ApiEndpoints {
   static String medicalArticlesActiveByID(int id) =>
       "health-tips/medical-articles/$id";
 
+  // Skin Diseases endpoints
+  static const String skinDiseasesActive = "health-tips/skin-diseases/active";
+  static String skinDiseaseById(int id) => "health-tips/skin-diseases/$id";
+
   // Profile endpoints
   static const String profileBasic = '/profile-user/basic';
   static const String profilePicture = '/profile-user/picture';
