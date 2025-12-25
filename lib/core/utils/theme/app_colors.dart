@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color primary = Color(0xFF1295CC); // Azure Blue
-  static const Color third = Color(0xFFF2F7FB); // Off White
+  // Off White
   static const Color secondary = Color.fromARGB(
     255,
     40,
     243,
     202,
   ); // Medical Deep Teal
+
   static const Color tertiary = Color.fromARGB(
     255,
     8,
     150,
     194,
   ); // Teal for Skin Care
+  static const Color third = Color(0xFFF2F7FB);
   static const Color quaternary = Colors.orange; // Orange for Health Tips
   // static const Color primary = Color(0xFF6EC1E4); // Sky Blue
   // static const Color secondary = Color(0xFFFDEFF2); // Very Pale Pink

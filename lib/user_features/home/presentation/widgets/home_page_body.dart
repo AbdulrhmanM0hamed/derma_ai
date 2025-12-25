@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../location/presentation/bloc/location_cubit.dart';
 import '../../../location/presentation/widgets/location_required_dialog.dart';
 
-import 'ai_feature_card.dart';
+import 'browse_cosmetic_doctors_section.dart';
 import 'home_features_section.dart';
 import 'home_top_doctors_section.dart';
 import 'home_recent_diagnoses_section.dart';
@@ -62,17 +62,8 @@ class _HomePageBodyState extends State<HomePageBody> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AiFeatureCard(),
-                // NotificationSummaryCard(
-                //   onTap: () {
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) => const NotificationsPage(),
-                //       ),
-                //     );
-                //   },
-                // ),
+                // Browse Cosmetic Doctors - Featured Section
+                const BrowseCosmeticDoctorsSection(),
                 const SizedBox(height: 24),
                 const HomeFeaturesSection(),
                 const SizedBox(height: 32),
