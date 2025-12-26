@@ -36,7 +36,6 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
   List<Map<String, dynamic>> filteredDoctors = [];
   List<Map<String, dynamic>> activeFilters = [];
   bool isLoading = false;
-  bool showLocationPermission = true;
   bool isMapView = false;
   String currentSort = "nearest";
 
@@ -133,18 +132,7 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
     HapticFeedback.lightImpact();
   }
 
-  void _onAllowLocation() {
-    setState(() {
-      showLocationPermission = false;
-    });
-    HapticFeedback.lightImpact();
-  }
 
-  void _onSkipLocation() {
-    setState(() {
-      showLocationPermission = false;
-    });
-  }
 
   void _toggleMapView() {
     setState(() {
@@ -216,13 +204,6 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
               FilterChipsWidget(
                 activeFilters: activeFilters,
                 onRemoveFilter: _removeFilter,
-              ),
-            ],
-            if (showLocationPermission) ...[
-              SizedBox(height: screenHeight * 0.02),
-              LocationPermissionWidget(
-                onAllowLocation: _onAllowLocation,
-                onSkip: _onSkipLocation,
               ),
             ],
             Expanded(

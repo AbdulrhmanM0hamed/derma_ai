@@ -12,11 +12,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _scrollController = ScrollController();
+  // final _scrollController = ScrollController();
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    // _scrollController.dispose();
     super.dispose();
   }
 
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         extendBodyBehindAppBar: false,
         appBar: const HomeAppBar(),
         body: HomePageBody(
-          scrollController: _scrollController,
+          // scrollController: _scrollController,
         ),
       ),
     );

@@ -28,7 +28,7 @@ class AppColors {
   // static const Color secondary = Color(0xFF7D44ED);
   // static const Color third = Color(0xFFCEB8F8);
   // Background Colors
-  static const Color scaffoldBackground = Colors.white;
+  static const Color scaffoldBackground = Color(0xFFF8F9FA);
   static const Color cardBackground = Colors.white;
 
   // Text Colors
@@ -55,8 +55,8 @@ class AppColors {
 
   static const List<Color> medicalGradient = [
     Color(0xFF3F8EFC), // Azure Blue
-    Color(0xFF2A7CC1), // Mid Blue (بين الأزرقين)
-    Color(0xFF005F73), // Deep Teal
+    Color.fromARGB(255, 37, 122, 191), // Mid Blue (بين الأزرقين)
+    // Color(0xFF005F73), // Deep Teal
   ];
 
   // Status Colors

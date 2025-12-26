@@ -10,11 +10,11 @@ import 'home_recent_diagnoses_section.dart';
 
 
 class HomePageBody extends StatefulWidget {
-  final ScrollController scrollController;
+  // final ScrollController scrollController;
 
   const HomePageBody({
     super.key,
-    required this.scrollController,
+    // required this.scrollController,
   });
 
   @override
@@ -54,7 +54,7 @@ class _HomePageBodyState extends State<HomePageBody> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      controller: widget.scrollController,
+      // controller: widget.scrollController,
       slivers: [
         SliverToBoxAdapter(
           child: Padding(

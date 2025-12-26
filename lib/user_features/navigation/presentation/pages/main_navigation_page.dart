@@ -19,11 +19,11 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   int currentPage = 0;
 
   final List<Widget> _pages = [
-    const HomePage(),                    // Index 0
-    const DoctorSearchAndBrowse(),       // Index 1
-    const AiDiagnosisPage(),            // Index 2 - AI Diagnosis Center
-    const AppointmentsPage(),           // Index 3
-    const ProfilePage(),                // Index 4
+    const HomePage(), // Index 0
+    const DoctorSearchAndBrowse(), // Index 1
+    SizedBox(),
+    const AppointmentsPage(), // Index 3
+    const ProfilePage(), // Index 4
   ];
 
   @override
@@ -34,15 +34,13 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: theme.scaffoldBackgroundColor,
-        systemNavigationBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
+        systemNavigationBarIconBrightness:
+            isLight ? Brightness.dark : Brightness.light,
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
       ),
       child: Scaffold(
-        body: IndexedStack(
-          index: currentPage,
-          children: _pages,
-        ),
+        body: IndexedStack(index: currentPage, children: _pages),
         bottomNavigationBar: SafeArea(
           child: CustomBottomNavigationBar(
             currentIndex: currentPage,
