@@ -27,19 +27,11 @@ class FeatureCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(4),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           // color: theme.cardColor,
           borderRadius: BorderRadius.circular(16),
-
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: AppColors.textSecondary.withValues(alpha:0.5),
-          //     blurRadius: 8,
-          //     spreadRadius: -2,
-          //     offset: const Offset(0, 5),
-          //   ),
-          // ],
+          border: Border.all(color: AppColors.border, width: 0.5),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

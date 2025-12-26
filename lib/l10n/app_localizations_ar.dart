@@ -573,7 +573,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get shareWithDoctor => 'مشاركة مع طبيب';
 
   @override
-  String get aiDiagnosis => 'تشخيص الذكاء الاصطناعي';
+  String get aiDiagnosis => 'تشخيص AI';
 
   @override
   String get confidence => 'الثقة';
@@ -658,13 +658,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ok => 'موافق';
 
   @override
-  String get doctorConsultation => 'استشارة طبيب';
+  String get doctorConsultation => 'استشارة طبية';
 
   @override
-  String get skinCare => 'العناية بالبشرة';
+  String get skinCare => 'رعاية البشرة';
 
   @override
-  String get healthTips => 'نصائح صحية';
+  String get healthTips => 'إرشادات صحية';
 
   @override
   String get ourServices => 'خدماتنا';

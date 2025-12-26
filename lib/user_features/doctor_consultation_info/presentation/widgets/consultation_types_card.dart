@@ -32,7 +32,7 @@ class ConsultationTypesCard extends StatelessWidget {
         'title': 'استشارة نصية',
         'description': 'محادثة نصية مع إرسال الصور',
         'duration': '24 ساعة رد',
-        'color': AppColors.third,
+        'color': AppColors.grey,
         'features': ['مرونة في التوقيت', 'إرسال صور', 'تقرير مكتوب'],
       },
       {
@@ -67,133 +67,145 @@ class ConsultationTypesCard extends StatelessWidget {
         ],
       ),
       child: Column(
-        children: consultationTypes.asMap().entries.map((entry) {
-          final index = entry.key;
-          final type = entry.value;
-          
-          return Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(
-                color: (type['color'] as Color).withValues(alpha: 0.2),
-                width: 1,
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: (type['color'] as Color).withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(
-                        type['icon'] as IconData,
-                        color: type['color'] as Color,
-                        size: 24,
+        children:
+            consultationTypes.asMap().entries.map((entry) {
+              final index = entry.key;
+              final type = entry.value;
+
+              return Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    padding: const EdgeInsets.all(18),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(
+                        color: (type['color'] as Color).withValues(alpha: 0.2),
+                        width: 1,
                       ),
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            type['title'] as String,
-                            style: getBoldStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: 16,
-                              fontFamily: FontConstant.cairo,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Header
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: (type['color'] as Color).withValues(
+                                  alpha: 0.1,
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Icon(
+                                type['icon'] as IconData,
+                                color: type['color'] as Color,
+                                size: 24,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            type['description'] as String,
-                            style: getRegularStyle(
-                              color: AppColors.textSecondary,
-                              fontSize: 13,
-                              fontFamily: FontConstant.cairo,
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    type['title'] as String,
+                                    style: getBoldStyle(
+                                      color: AppColors.textPrimary,
+                                      fontSize: 16,
+                                      fontFamily: FontConstant.cairo,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    type['description'] as String,
+                                    style: getRegularStyle(
+                                      color: AppColors.textSecondary,
+                                      fontSize: 13,
+                                      fontFamily: FontConstant.cairo,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: (type['color'] as Color).withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        type['duration'] as String,
-                        style: getRegularStyle(
-                          color: type['color'] as Color,
-                          fontSize: 11,
-                          fontFamily: FontConstant.cairo,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                color: (type['color'] as Color).withValues(
+                                  alpha: 0.1,
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                type['duration'] as String,
+                                style: getRegularStyle(
+                                  color: type['color'] as Color,
+                                  fontSize: 11,
+                                  fontFamily: FontConstant.cairo,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                
-                // Features
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: (type['features'] as List<String>).map((feature) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: (type['color'] as Color).withValues(alpha: 0.08),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: (type['color'] as Color).withValues(alpha: 0.2),
-                          width: 0.5,
+                        const SizedBox(height: 16),
+
+                        // Features
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children:
+                              (type['features'] as List<String>).map((feature) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 6,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: (type['color'] as Color).withValues(
+                                      alpha: 0.08,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: (type['color'] as Color)
+                                          .withValues(alpha: 0.2),
+                                      width: 0.5,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.check_circle_outline,
+                                        size: 14,
+                                        color: type['color'] as Color,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        feature,
+                                        style: getRegularStyle(
+                                          color: type['color'] as Color,
+                                          fontSize: 12,
+                                          fontFamily: FontConstant.cairo,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
                         ),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.check_circle_outline,
-                            size: 14,
-                            color: type['color'] as Color,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            feature,
-                            style: getRegularStyle(
-                              color: type['color'] as Color,
-                              fontSize: 12,
-                              fontFamily: FontConstant.cairo,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
-          ).animate().fadeIn(
-            duration: 600.ms,
-            delay: Duration(milliseconds: 150 * index),
-          ).slideX(begin: -0.1);
-        }).toList(),
+                      ],
+                    ),
+                  )
+                  .animate()
+                  .fadeIn(
+                    duration: 600.ms,
+                    delay: Duration(milliseconds: 150 * index),
+                  )
+                  .slideX(begin: -0.1);
+            }).toList(),
       ),
     ).animate().fadeIn(duration: 800.ms, delay: 200.ms).slideY(begin: 0.1);
   }

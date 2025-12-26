@@ -1,3 +1,4 @@
+import 'package:derma_ai/core/constants/app_constants.dart';
 import 'package:derma_ai/user_features/ai_diagnosis_info/presentation/pages/ai_diagnosis_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,7 +35,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          // Main navigation bar
+          // Main navigation bar with notch
           Container(
             height: 80,
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -78,15 +79,33 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ],
             ),
           ),
+          // Notch/cutout for center button
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            child: Center(
+              child: Container(
+                width: 70,
+                height: 35,
+                decoration: BoxDecoration(
+                  color: theme.scaffoldBackgroundColor,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(35),
+                    bottomRight: Radius.circular(35),
+                  ),
+                ),
+              ),
+            ),
+          ),
           // Center AI Diagnosis button
           Positioned(
             left: 0,
             right: 0,
-            top: 10,
+            top: -15,
             child: Center(
               child: MaterialButton(
                 onPressed: () {
-                  
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -94,75 +113,18 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     ),
                   );
                 },
-                shape: CircleBorder(),
-                padding: EdgeInsets.all(15),
+                shape: const CircleBorder(),
+                padding: const EdgeInsets.all(5),
                 color: AppColors.primary,
-                child: FaIcon(
-                  FontAwesomeIcons.brain,
-                  color: Colors.white,
-                  size: 28,
+                elevation: 3,
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: Image.asset(AppConstants.aiLogo),
                 ),
               ),
-
-              // child: Container(
-              //   width: 60,
-              //   height: 60,
-              //   decoration: BoxDecoration(
-              //     gradient: const LinearGradient(
-              //       colors: AppColors.medicalGradient,
-              //       begin: Alignment.topLeft,
-              //       end: Alignment.bottomRight,
-              //     ),
-              //     shape: BoxShape.circle,
-              //   ),
-              //   child: Material(
-              //     color: Colors.transparent,
-              //     child: InkWell(
-              //       borderRadius: BorderRadius.circular(35),
-              //       onTap: () => onTap(2),
-              //       child: Container(
-              //         decoration: const BoxDecoration(shape: BoxShape.circle),
-              //         child: const Center(
-              //           child: FaIcon(
-              //             FontAwesomeIcons.brain,
-              //             color: Colors.white,
-              //             size: 28,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ),
           ),
-          // Center button label
-          // if (currentIndex == 2)
-          //   Positioned(
-          //     left: 0,
-          //     right: 0,
-          //     bottom: 8,
-          //     child: Center(
-          //       child: Container(
-          //         padding: const EdgeInsets.symmetric(
-          //           horizontal: 8,
-          //           vertical: 2,
-          //         ),
-          //         decoration: BoxDecoration(
-          //           color: AppColors.primary.withValues(alpha: 0.1),
-          //           borderRadius: BorderRadius.circular(12),
-          //         ),
-          //         child: Text(
-          //           'تشخيص ذكي',
-          //           style: TextStyle(
-          //             color: AppColors.primary,
-          //             fontSize: 10,
-          //             fontWeight: FontWeight.w600,
-          //           ),
-          //           textAlign: TextAlign.center,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
         ],
       ),
     );
@@ -189,14 +151,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
             children: [
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                // padding: const EdgeInsets.all(8),
-                // decoration: BoxDecoration(
-                //   color:
-                //       isActive
-                //           ? AppColors.primary.withValues(alpha: 0.1)
-                //           : Colors.transparent,
-                //   borderRadius: BorderRadius.circular(12),
-                // ),
                 child: Icon(
                   isActive ? activeIcon : icon,
                   color:

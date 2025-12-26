@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../widgets/home_app_bar.dart';
 import '../widgets/home_page_body.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,11 +10,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // final _scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   @override
   void dispose() {
-    // _scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -27,13 +25,7 @@ class _HomePageState extends State<HomePage> {
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light,
       ),
-      child: Scaffold(
-        extendBodyBehindAppBar: false,
-        appBar: const HomeAppBar(),
-        body: HomePageBody(
-          // scrollController: _scrollController,
-        ),
-      ),
+      child: Scaffold(body: HomePageBody(scrollController: _scrollController)),
     );
   }
 }

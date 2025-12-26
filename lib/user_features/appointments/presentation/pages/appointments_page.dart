@@ -134,11 +134,7 @@ class _AppointmentsPageState extends State<AppointmentsPage>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.event_busy,
-            size: 80,
-            color: Colors.grey[400],
-          ),
+          Icon(Icons.event_busy, size: 80, color: Colors.grey[400]),
           const SizedBox(height: 16),
           Text(
             'لا توجد مواعيد ملغية',
@@ -162,8 +158,10 @@ class _AppointmentsPageState extends State<AppointmentsPage>
     );
   }
 
-  Widget _buildAppointmentCard(Map<String, dynamic> appointment,
-      {required bool isUpcoming}) {
+  Widget _buildAppointmentCard(
+    Map<String, dynamic> appointment, {
+    required bool isUpcoming,
+  }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -187,11 +185,7 @@ class _AppointmentsPageState extends State<AppointmentsPage>
                 CircleAvatar(
                   radius: 30,
                   backgroundColor: AppColors.primary.withValues(alpha: 0.1),
-                  child: Icon(
-                    Icons.person,
-                    color: AppColors.primary,
-                    size: 30,
-                  ),
+                  child: Icon(Icons.person, color: AppColors.primary, size: 30),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -276,11 +270,7 @@ class _AppointmentsPageState extends State<AppointmentsPage>
             const SizedBox(height: 12),
             Row(
               children: [
-                Icon(
-                  Icons.location_on,
-                  color: Colors.grey[500],
-                  size: 18,
-                ),
+                Icon(Icons.location_on, color: Colors.grey[500], size: 18),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -299,34 +289,42 @@ class _AppointmentsPageState extends State<AppointmentsPage>
               Row(
                 children: [
                   Expanded(
-                    child: OutlinedButton(
+                    child: MaterialButton(
                       onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        side: BorderSide(color: AppColors.error),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                      shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: AppColors.primary,
+                          width: 1,
                         ),
                       ),
+                      // color: AppColors.primary,
+                      elevation: 0,
+                      height: 45,
+                      padding: EdgeInsets.all(0),
                       child: Text(
                         'إلغاء',
                         style: getMediumStyle(
-                          color: AppColors.error,
+                          color: AppColors.primary,
                           fontSize: 14,
                           fontFamily: FontConstant.cairo,
                         ),
                       ),
                     ),
                   ),
+
                   const SizedBox(width: 12),
                   Expanded(
-                    child: ElevatedButton(
+                    child: MaterialButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+                      shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
                       ),
+                      color: AppColors.primary,
+                      elevation: 0,
+                      height: 45,
+                      padding: EdgeInsets.all(0),
                       child: Text(
                         'إعادة جدولة',
                         style: getMediumStyle(
