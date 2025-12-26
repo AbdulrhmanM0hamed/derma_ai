@@ -12,13 +12,8 @@ class BrowseCosmeticDoctorsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Animate(
-      effects: fadeInScaleUp(
-        duration: 500.ms,
-        delay: 300.ms,
-        begin: 0.95,
-      ),
+      effects: fadeInScaleUp(duration: 500.ms, delay: 300.ms, begin: 0.95),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -27,25 +22,25 @@ class BrowseCosmeticDoctorsSection extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-               AppColors.primary,
+              AppColors.primary,
               AppColors.primary.withValues(alpha: 0.8),
-              AppColors.primary.withValues(alpha: 0.6),
-              AppColors.primary.withValues(alpha: 0.4),
+              // AppColors.primary.withValues(alpha: 0.6),
+              // AppColors.primary.withValues(alpha: 0.4),
             ],
           ),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF667EEA).withValues(alpha: 0.4),
-              blurRadius: 20,
-              spreadRadius: 2,
-              offset: const Offset(0, 10),
-            ),
-            BoxShadow(
-              color: const Color(0xFF764BA2).withValues(alpha: 0.2),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: const Color(0xFF667EEA).withValues(alpha: 0.4),
+          //     blurRadius: 20,
+          //     spreadRadius: 2,
+          //     offset: const Offset(0, 10),
+          //   ),
+          //   BoxShadow(
+          //     color: const Color(0xFF764BA2).withValues(alpha: 0.2),
+          //     blurRadius: 10,
+          //     offset: const Offset(0, 4),
+          //   ),
+          // ],
         ),
         child: Stack(
           children: [
@@ -105,39 +100,39 @@ class BrowseCosmeticDoctorsSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Badge
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.3),
-                              width: 1,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.verified,
-                                color: Colors.white,
-                                size: 14,
-                              ),
-                              const SizedBox(width: 6),
-                              Text(
-                                'أطباء معتمدون',
-                                style: getSemiBoldStyle(
-                                  color: Colors.white,
-                                  fontSize: 11,
-                                  fontFamily: FontConstant.cairo,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   padding: const EdgeInsets.symmetric(
+                        //     horizontal: 12,
+                        //     vertical: 6,
+                        //   ),
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.white.withValues(alpha: 0.2),
+                        //     borderRadius: BorderRadius.circular(20),
+                        //     border: Border.all(
+                        //       color: Colors.white.withValues(alpha: 0.3),
+                        //       width: 1,
+                        //     ),
+                        //   ),
+                        //   child: Row(
+                        //     mainAxisSize: MainAxisSize.min,
+                        //     children: [
+                        //       Icon(
+                        //         Icons.verified,
+                        //         color: Colors.white,
+                        //         size: 14,
+                        //       ),
+                        //       const SizedBox(width: 6),
+                        //       Text(
+                        //         'أطباء معتمدون',
+                        //         style: getSemiBoldStyle(
+                        //           color: Colors.white,
+                        //           fontSize: 11,
+                        //           fontFamily: FontConstant.cairo,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         const SizedBox(height: 16),
                         // Title
                         Text(
@@ -158,21 +153,21 @@ class BrowseCosmeticDoctorsSection extends StatelessWidget {
                             fontFamily: FontConstant.cairo,
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        // const SizedBox(height: 20),
                         // Features row
-                        Row(
-                          children: [
-                            _buildFeatureChip(
-                              icon: Icons.star_rounded,
-                              label: 'تقييمات عالية',
-                            ),
-                            const SizedBox(width: 8),
-                            _buildFeatureChip(
-                              icon: Icons.schedule,
-                              label: 'حجز سريع',
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     _buildFeatureChip(
+                        //       icon: Icons.star_rounded,
+                        //       label: 'تقييمات عالية',
+                        //     ),
+                        //     const SizedBox(width: 8),
+                        //     _buildFeatureChip(
+                        //       icon: Icons.schedule,
+                        //       label: 'حجز سريع',
+                        //     ),
+                        //   ],
+                        // ),
                         const SizedBox(height: 20),
                         // CTA Button
                         Material(
@@ -188,15 +183,18 @@ class BrowseCosmeticDoctorsSection extends StatelessWidget {
                                 vertical: 14,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(16),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.15),
-                                    blurRadius: 10,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
+                                border: Border.all(
+                                  color: AppColors.white,
+                                  width: 2,
+                                ),
+                                // boxShadow: [
+                                //   BoxShadow(
+                                //     color: Colors.black.withValues(alpha: 0.15),
+                                //     blurRadius: 10,
+                                //     offset: const Offset(0, 4),
+                                //   ),
+                                // ],
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -204,25 +202,24 @@ class BrowseCosmeticDoctorsSection extends StatelessWidget {
                                   Text(
                                     'تصفح الآن',
                                     style: getBoldStyle(
-                                      color: const Color(0xFF667EEA),
+                                      color: AppColors.white,
                                       fontSize: 15,
                                       fontFamily: FontConstant.cairo,
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
-                                  Container(
-                                    padding: const EdgeInsets.all(4),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF667EEA)
-                                          .withValues(alpha: 0.1),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Icon(
-                                      Icons.arrow_forward_rounded,
-                                      color: const Color(0xFF667EEA),
-                                      size: 16,
-                                    ),
-                                  ),
+                                  // const SizedBox(width: 8),
+                                  // Container(
+                                  //   padding: const EdgeInsets.all(4),
+                                  //   decoration: BoxDecoration(
+                                  //     color: AppColors.white.withOpacity(0.2),
+                                  //     shape: BoxShape.circle,
+                                  //   ),
+                                  //   child: Icon(
+                                  //     Icons.arrow_forward_rounded,
+                                  //     color: AppColors.white,
+                                  //     size: 16,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -251,7 +248,6 @@ class BrowseCosmeticDoctorsSection extends StatelessWidget {
                             child: SvgPicture.asset(
                               'assets/images/header_profile.svg',
                               fit: BoxFit.cover,
-                            
                             ),
                           ),
                         ),
@@ -298,35 +294,28 @@ class BrowseCosmeticDoctorsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureChip({
-    required IconData icon,
-    required String label,
-  }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: Colors.amber[300],
-            size: 14,
-          ),
-          const SizedBox(width: 4),
-          Text(
-            label,
-            style: getRegularStyle(
-              color: Colors.white,
-              fontSize: 11,
-              fontFamily: FontConstant.cairo,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildFeatureChip({required IconData icon, required String label}) {
+  //   return Container(
+  //     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+  //     decoration: BoxDecoration(
+  //       color: Colors.white.withValues(alpha: 0.15),
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     child: Row(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Icon(icon, color: Colors.amber[300], size: 14),
+  //         const SizedBox(width: 4),
+  //         Text(
+  //           label,
+  //           style: getRegularStyle(
+  //             color: Colors.white,
+  //             fontSize: 11,
+  //             fontFamily: FontConstant.cairo,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

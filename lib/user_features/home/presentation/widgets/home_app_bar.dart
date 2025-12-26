@@ -25,27 +25,28 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       height: 100 + MediaQuery.of(context).padding.top,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.primary,
-            const Color.fromARGB(255, 35, 102, 196).withValues(alpha: 0.8),
-            const Color.fromARGB(255, 2, 83, 150),
-          ],
-        ),
+        // gradient: LinearGradient(
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        //   colors: [
+        //     AppColors.primary,
+        //     const Color.fromARGB(255, 35, 102, 196).withValues(alpha: 0.8),
+        //     const Color.fromARGB(255, 2, 83, 150),
+        //   ],
+        // ),
+        // color: Colors.black,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(30),
           bottomRight: Radius.circular(30),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-            spreadRadius: 0,
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: AppColors.primary.withValues(alpha: 0.3),
+        //     blurRadius: 20,
+        //     offset: const Offset(0, 8),
+        //     spreadRadius: 0,
+        //   ),
+        // ],
       ),
       child: SafeArea(
         child: Padding(
@@ -53,59 +54,65 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             children: [
               // Profile Avatar with elegant design
-              BlocBuilder<ProfileCubit, ProfileState>(
-                builder: (context, profileState) {
-                  String? profilePictureUrl;
-                  if (profileState is ProfileSuccess) {
-                    profilePictureUrl = profileState.userProfile.profilePictureUrl;
-                  }
-                  
-                  return Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.3),
-                        width: 2,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.1),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: CircleAvatar(
-                      radius: 24,
-                      backgroundColor: Colors.white.withValues(alpha: 0.2),
-                      child: profilePictureUrl != null && profilePictureUrl.isNotEmpty
-                          ? ClipOval(
-                              child: CachedNetworkImage(
-                                imageUrl: profilePictureUrl,
-                                width: 48,
-                                height: 48,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) => const Icon(
-                                  Icons.person,
-                                  color: Colors.white,
-                                  size: 28,
-                                ),
-                                errorWidget: (context, url, error) => const Icon(
-                                  Icons.person,
-                                  color: Colors.white,
-                                  size: 28,
-                                ),
-                              ),
-                            )
-                          : const Icon(
-                              Icons.person,
-                              color: Colors.white,
-                              size: 28,
-                            ),
-                    ),
-                  );
-                },
-              ),
+              // BlocBuilder<ProfileCubit, ProfileState>(
+              //   builder: (context, profileState) {
+              //     String? profilePictureUrl;
+              //     if (profileState is ProfileSuccess) {
+              //       profilePictureUrl =
+              //           profileState.userProfile.profilePictureUrl;
+              //     }
+
+              //     return Container(
+              //       decoration: BoxDecoration(
+              //         shape: BoxShape.circle,
+
+              //         // border: Border.all(
+              //         //   color: Colors.white.withValues(alpha: 0.3),
+              //         //   width: 2,
+              //         // ),
+              //         // boxShadow: [
+              //         //   BoxShadow(
+              //         //     color: Colors.black.withValues(alpha: 0.1),
+              //         //     blurRadius: 8,
+              //         //     offset: const Offset(0, 2),
+              //         //   ),
+              //         // ],
+              //       ),
+              //       child: CircleAvatar(
+              //         radius: 24,
+              //         backgroundColor: AppColors.divider,
+              //         child:
+              //             profilePictureUrl != null &&
+              //                     profilePictureUrl.isNotEmpty
+              //                 ? ClipOval(
+              //                   child: CachedNetworkImage(
+              //                     imageUrl: profilePictureUrl,
+              //                     width: 48,
+              //                     height: 48,
+              //                     fit: BoxFit.cover,
+              //                     placeholder:
+              //                         (context, url) => const Icon(
+              //                           Icons.person,
+              //                           color: Colors.white,
+              //                           size: 28,
+              //                         ),
+              //                     errorWidget:
+              //                         (context, url, error) => const Icon(
+              //                           Icons.person,
+              //                           color: Colors.white,
+              //                           size: 28,
+              //                         ),
+              //                   ),
+              //                 )
+              //                 : const Icon(
+              //                   Icons.person,
+              //                   color: AppColors.grey,
+              //                   size: 28,
+              //                 ),
+              //       ),
+              //     );
+              //   },
+              // ),
               const SizedBox(width: 16),
               // User Info Section
               Expanded(
@@ -113,35 +120,36 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   builder: (context, profileState) {
                     final l10n = AppLocalizations.of(context)!;
                     String userName = l10n.user;
-                    
+
                     if (profileState is ProfileSuccess) {
-                      userName = profileState.userProfile.fullName.isNotEmpty 
-                          ? profileState.userProfile.fullName 
-                          : l10n.user;
+                      userName =
+                          profileState.userProfile.fullName.isNotEmpty
+                              ? profileState.userProfile.fullName
+                              : l10n.user;
                     }
-                    
+
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Text(
+                        //   '${l10n.welcomeBack} 👋',
+                        //   style: getRegularStyle(
+                        //     color: Colors.white.withValues(alpha: 0.9),
+                        //     fontSize: 14,
+                        //     fontFamily: FontConstant.cairo,
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 2),
                         Text(
-                          '${l10n.welcomeBack} 👋',
-                          style: getRegularStyle(
-                            color: Colors.white.withValues(alpha: 0.9),
-                            fontSize: 14,
-                            fontFamily: FontConstant.cairo,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          userName,
+                          'Hi, $userName',
                           style: getBoldStyle(
-                            color: Colors.white,
+                            color: AppColors.textPrimary,
                             fontSize: 20,
                             fontFamily: FontConstant.cairo,
                           ),
                         ),
-                    const SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         // Location Selector
                         GestureDetector(
                           onTap: () {
@@ -150,12 +158,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                               context: context,
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
-                              builder: (context) => const LocationSelectionSheet(),
+                              builder:
+                                  (context) => const LocationSelectionSheet(),
                             );
                           },
                           child: BlocBuilder<LocationCubit, LocationState>(
                             builder: (context, state) {
-                              final locale = Localizations.localeOf(context).languageCode;
+                              final locale =
+                                  Localizations.localeOf(context).languageCode;
                               final locationText = context
                                   .read<LocationCubit>()
                                   .getLocalizedDisplayLocation(locale);
@@ -171,7 +181,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                                     child: Text(
                                       locationText,
                                       style: getMediumStyle(
-                                        color: Colors.white.withValues(alpha: 0.9),
+                                        color: AppColors.grey,
                                         fontSize: 12,
                                         fontFamily: FontConstant.cairo,
                                       ),
@@ -197,12 +207,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               // Notification Icon with modern design
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    width: 1,
-                  ),
+                  shape: BoxShape.circle,
+                  color: const Color.fromARGB(96, 225, 225, 225),
+                  // borderRadius: BorderRadius.circular(12),
+                  // border: Border.all(
+                  //   color: Colors.white.withValues(alpha: 0.2),
+                  //   width: 1,
+                  // ),
                 ),
                 child: IconButton(
                   onPressed: () {
@@ -218,23 +229,19 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       Icon(
                         Icons.notifications_outlined,
-                        color: Colors.white,
+                        color: AppColors.black,
                         size: 26,
                       ),
                       if (NotificationsStaticData.getUnreadCount() > 0)
                         Positioned(
-                          right: 2,
-                          top: 2,
+                          right: 3.5,
+                          top: 3.5,
                           child: Container(
-                            width: 10,
-                            height: 10,
+                            width: 7,
+                            height: 7,
                             decoration: BoxDecoration(
                               color: AppColors.error,
                               shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.white,
-                                width: 1.5,
-                              ),
                             ),
                           ),
                         ),
