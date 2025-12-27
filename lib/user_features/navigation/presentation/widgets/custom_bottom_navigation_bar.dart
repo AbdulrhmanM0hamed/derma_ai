@@ -1,5 +1,8 @@
+import 'package:derma_ai/core/constants/app_constants.dart';
+import 'package:derma_ai/user_features/ai_diagnosis_info/presentation/pages/ai_diagnosis_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 
@@ -16,7 +19,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Container(
       height: 80,
       decoration: BoxDecoration(
@@ -32,7 +35,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          // Main navigation bar
+          // Main navigation bar with notch
           Container(
             height: 80,
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -41,16 +44,16 @@ class CustomBottomNavigationBar extends StatelessWidget {
               children: [
                 _buildNavItem(
                   context: context,
-                  icon: Icons.home_outlined,
-                  activeIcon: Icons.home,
+                  icon: Iconsax.home,
+                  activeIcon: Iconsax.home,
                   label: AppLocalizations.of(context)!.home,
                   index: 0,
                   isActive: currentIndex == 0,
                 ),
                 _buildNavItem(
                   context: context,
-                  icon: Icons.local_hospital_outlined,
-                  activeIcon: Icons.local_hospital,
+                  icon: Iconsax.user_octagon,
+                  activeIcon: Iconsax.user_octagon,
                   label: AppLocalizations.of(context)!.doctors,
                   index: 1,
                   isActive: currentIndex == 1,
@@ -59,16 +62,16 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 const SizedBox(width: 60),
                 _buildNavItem(
                   context: context,
-                  icon: Icons.calendar_today_outlined,
-                  activeIcon: Icons.calendar_today,
+                  icon: Iconsax.calendar,
+                  activeIcon: Iconsax.calendar,
                   label: AppLocalizations.of(context)!.appointments,
                   index: 3,
                   isActive: currentIndex == 3,
                 ),
                 _buildNavItem(
                   context: context,
-                  icon: Icons.person_outline,
-                  activeIcon: Icons.person,
+                  icon: Iconsax.profile_circle,
+                  activeIcon: Iconsax.profile_circle,
                   label: AppLocalizations.of(context)!.profile,
                   index: 4,
                   isActive: currentIndex == 4,
@@ -76,83 +79,52 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ],
             ),
           ),
-          // Center AI Diagnosis button
+          // Notch/cutout for center button
           Positioned(
             left: 0,
             right: 0,
-            top: -10,
+            top: 0,
             child: Center(
               child: Container(
                 width: 70,
-                height: 70,
+                height: 35,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: AppColors.medicalGradient,
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.3),
-                      blurRadius: 15,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 5),
-                    ),
-                    BoxShadow(
-                      color: AppColors.secondary.withValues(alpha: 0.2),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(35),
-                    onTap: () => onTap(2),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.brain,
-                          color: Colors.white,
-                          size: 28,
-                        ),
-                      ),
-                    ),
+                  color: theme.scaffoldBackgroundColor,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(35),
+                    bottomRight: Radius.circular(35),
                   ),
                 ),
               ),
             ),
           ),
-          // Center button label
-          if (currentIndex == 2)
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 8,
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    'تشخيص ذكي',
-                    style: TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600,
+          // Center AI Diagnosis button
+          Positioned(
+            left: 0,
+            right: 0,
+            top: -15,
+            child: Center(
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AiDiagnosisInfoPage(),
                     ),
-                    textAlign: TextAlign.center,
-                  ),
+                  );
+                },
+                shape: const CircleBorder(),
+                padding: const EdgeInsets.all(5),
+                color: AppColors.primary,
+                elevation: 3,
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: Image.asset(AppConstants.aiLogo),
                 ),
               ),
             ),
+          ),
         ],
       ),
     );
@@ -167,7 +139,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     required bool isActive,
   }) {
     final theme = Theme.of(context);
-    
+
     return Expanded(
       child: GestureDetector(
         onTap: () => onTap(index),
@@ -179,28 +151,23 @@ class CustomBottomNavigationBar extends StatelessWidget {
             children: [
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: isActive 
-                      ? AppColors.primary.withValues(alpha: 0.1)
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(12),
-                ),
                 child: Icon(
                   isActive ? activeIcon : icon,
-                  color: isActive 
-                      ? AppColors.primary 
-                      : theme.unselectedWidgetColor,
-                  size: 24,
+                  color:
+                      isActive
+                          ? AppColors.primary
+                          : theme.unselectedWidgetColor,
+                  size: 25,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 label,
                 style: TextStyle(
-                  color: isActive 
-                      ? AppColors.primary 
-                      : theme.unselectedWidgetColor,
+                  color:
+                      isActive
+                          ? AppColors.primary
+                          : theme.unselectedWidgetColor,
                   fontSize: 10,
                   fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                 ),

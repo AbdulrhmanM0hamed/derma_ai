@@ -38,6 +38,8 @@ class AppConstants {
   static const String onboardingImagePath3 = 'assets/images/onboarding3.svg';
   static const String placeholderDoctorImage = 'assets/images/doctor_placeholder.png';
   static const String placeholderUserImage = 'assets/images/user_placeholder.png';
+  static const String aiLogo = 'assets/images/ai_logo.png';
+
   
   // ML Model
   static const String mlModelPath = 'assets/ml/skin_disease_model.tflite';

@@ -14,7 +14,8 @@ class ConsultationBenefitsCard extends StatelessWidget {
       {
         'icon': Icons.verified_user_outlined,
         'title': 'أطباء معتمدون',
-        'description': 'جميع الأطباء حاصلون على شهادات معتمدة وخبرة واسعة في التخصص',
+        'description':
+            'جميع الأطباء حاصلون على شهادات معتمدة وخبرة واسعة في التخصص',
         'color': AppColors.primary,
       },
       {
@@ -27,7 +28,7 @@ class ConsultationBenefitsCard extends StatelessWidget {
         'icon': Icons.security_outlined,
         'title': 'خصوصية تامة',
         'description': 'جميع المعلومات الطبية محمية ومشفرة بأعلى معايير الأمان',
-        'color': AppColors.third,
+        'color': AppColors.grey,
       },
       {
         'icon': Icons.support_agent_outlined,
@@ -51,7 +52,7 @@ class ConsultationBenefitsCard extends StatelessWidget {
         'icon': Icons.star_outlined,
         'title': 'تقييم الأطباء',
         'description': 'اختر الطبيب المناسب بناءً على تقييمات المرضى الآخرين',
-        'color': AppColors.third,
+        'color': AppColors.textSecondary,
       },
       {
         'icon': Icons.language_outlined,
@@ -111,7 +112,7 @@ class ConsultationBenefitsCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          
+
           // Benefits grid
           GridView.builder(
             shrinkWrap: true,
@@ -125,67 +126,74 @@ class ConsultationBenefitsCard extends StatelessWidget {
             itemCount: benefits.length,
             itemBuilder: (context, index) {
               final benefit = benefits[index];
-              
+
               return Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: (benefit['color'] as Color).withValues(alpha: 0.1),
-                    width: 1,
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Icon
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: (benefit['color'] as Color).withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Icon(
-                        benefit['icon'] as IconData,
-                        color: benefit['color'] as Color,
-                        size: 22,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    
-                    // Title
-                    Text(
-                      benefit['title'] as String,
-                      style: getBoldStyle(
-                        color: AppColors.textPrimary,
-                        fontSize: 14,
-                        fontFamily: FontConstant.cairo,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 8),
-                    
-                    // Description
-                    Expanded(
-                      child: Text(
-                        benefit['description'] as String,
-                        style: getRegularStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 12,
-                          fontFamily: FontConstant.cairo,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: (benefit['color'] as Color).withValues(
+                          alpha: 0.1,
                         ),
-                        maxLines: 4,
-                        overflow: TextOverflow.ellipsis,
+                        width: 1,
                       ),
                     ),
-                  ],
-                ),
-              ).animate().fadeIn(
-                duration: 600.ms,
-                delay: Duration(milliseconds: 100 * index),
-              ).scale(begin: const Offset(0.5, 0.5));
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Icon
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: (benefit['color'] as Color).withValues(
+                              alpha: 0.1,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Icon(
+                            benefit['icon'] as IconData,
+                            color: benefit['color'] as Color,
+                            size: 22,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+
+                        // Title
+                        Text(
+                          benefit['title'] as String,
+                          style: getBoldStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 14,
+                            fontFamily: FontConstant.cairo,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 8),
+
+                        // Description
+                        Expanded(
+                          child: Text(
+                            benefit['description'] as String,
+                            style: getRegularStyle(
+                              color: AppColors.textSecondary,
+                              fontSize: 12,
+                              fontFamily: FontConstant.cairo,
+                            ),
+                            maxLines: 4,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                  .animate()
+                  .fadeIn(
+                    duration: 600.ms,
+                    delay: Duration(milliseconds: 100 * index),
+                  )
+                  .scale(begin: const Offset(0.5, 0.5));
             },
           ),
         ],

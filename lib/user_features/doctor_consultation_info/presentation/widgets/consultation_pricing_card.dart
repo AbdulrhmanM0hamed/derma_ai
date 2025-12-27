@@ -44,7 +44,7 @@ class ConsultationPricingCard extends StatelessWidget {
         'price': '150',
         'originalPrice': '200',
         'duration': '30-45 دقيقة',
-        'color': AppColors.third,
+        'color': AppColors.grey,
         'popular': false,
         'features': [
           'مكالمة فيديو مباشرة',
@@ -105,169 +105,191 @@ class ConsultationPricingCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          
+
           // Pricing cards
           Column(
-            children: pricingPlans.asMap().entries.map((entry) {
-              final index = entry.key;
-              final plan = entry.value;
-              
-              return Container(
-                margin: const EdgeInsets.only(bottom: 16),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: plan['popular'] as bool
-                        ? (plan['color'] as Color)
-                        : (plan['color'] as Color).withValues(alpha: 0.2),
-                    width: plan['popular'] as bool ? 2 : 1,
-                  ),
-                ),
-                child: Stack(
-                  children: [
-                    // Popular badge
-                    if (plan['popular'] as bool)
-                      Positioned(
-                        top: -8,
-                        right: 16,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: plan['color'] as Color,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            'الأكثر طلباً',
-                            style: getBoldStyle(
-                              color: Colors.white,
-                              fontSize: 11,
-                              fontFamily: FontConstant.cairo,
-                            ),
+            children:
+                pricingPlans.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final plan = entry.value;
+
+                  return Container(
+                        margin: const EdgeInsets.only(bottom: 16),
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color:
+                                plan['popular'] as bool
+                                    ? (plan['color'] as Color)
+                                    : (plan['color'] as Color).withValues(
+                                      alpha: 0.2,
+                                    ),
+                            width: plan['popular'] as bool ? 2 : 1,
                           ),
                         ),
-                      ),
-                    
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Header
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Stack(
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  plan['type'] as String,
-                                  style: getBoldStyle(
-                                    color: AppColors.textPrimary,
-                                    fontSize: 18,
-                                    fontFamily: FontConstant.cairo,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  plan['duration'] as String,
-                                  style: getRegularStyle(
-                                    color: AppColors.textSecondary,
-                                    fontSize: 13,
-                                    fontFamily: FontConstant.cairo,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      '${plan['originalPrice']} ر.س',
-                                      style: getRegularStyle(
-                                        color: AppColors.textSecondary,
-                                        fontSize: 14,
-                                        fontFamily: FontConstant.cairo,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      '${plan['price']} ر.س',
-                                      style: getBoldStyle(
-                                        color: plan['color'] as Color,
-                                        fontSize: 20,
-                                        fontFamily: FontConstant.cairo,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 4),
+                            // Popular badge
+                            if (plan['popular'] as bool)
+                              Positioned(
+                                top: -8,
+                                right: 16,
+                                child: Container(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 2,
+                                    horizontal: 12,
+                                    vertical: 4,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.green.withValues(alpha: 0.1),
-                                    borderRadius: BorderRadius.circular(8),
+                                    color: plan['color'] as Color,
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Text(
-                                    'خصم 30%',
-                                    style: getRegularStyle(
-                                      color: Colors.green,
+                                    'الأكثر طلباً',
+                                    style: getBoldStyle(
+                                      color: Colors.white,
                                       fontSize: 11,
                                       fontFamily: FontConstant.cairo,
                                     ),
                                   ),
                                 ),
+                              ),
+
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Header
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          plan['type'] as String,
+                                          style: getBoldStyle(
+                                            color: AppColors.textPrimary,
+                                            fontSize: 18,
+                                            fontFamily: FontConstant.cairo,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          plan['duration'] as String,
+                                          style: getRegularStyle(
+                                            color: AppColors.textSecondary,
+                                            fontSize: 13,
+                                            fontFamily: FontConstant.cairo,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '${plan['originalPrice']} ر.س',
+                                              style: getRegularStyle(
+                                                color: AppColors.textSecondary,
+                                                fontSize: 14,
+                                                fontFamily: FontConstant.cairo,
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Text(
+                                              '${plan['price']} ر.س',
+                                              style: getBoldStyle(
+                                                color: plan['color'] as Color,
+                                                fontSize: 16,
+                                                fontFamily: FontConstant.cairo,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 4),
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8,
+                                            vertical: 2,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: Colors.green.withValues(
+                                              alpha: 0.1,
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              8,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            'خصم 30%',
+                                            style: getRegularStyle(
+                                              color: Colors.green,
+                                              fontSize: 11,
+                                              fontFamily: FontConstant.cairo,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 16),
+
+                                // Features
+                                Column(
+                                  children:
+                                      (plan['features'] as List<String>).map((
+                                        feature,
+                                      ) {
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: 8,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.check_circle,
+                                                size: 16,
+                                                color: plan['color'] as Color,
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Expanded(
+                                                child: Text(
+                                                  feature,
+                                                  style: getRegularStyle(
+                                                    color:
+                                                        AppColors.textSecondary,
+                                                    fontSize: 14,
+                                                    fontFamily:
+                                                        FontConstant.cairo,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }).toList(),
+                                ),
                               ],
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
-                        
-                        // Features
-                        Column(
-                          children: (plan['features'] as List<String>).map((feature) {
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.check_circle,
-                                    size: 16,
-                                    color: plan['color'] as Color,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                    child: Text(
-                                      feature,
-                                      style: getRegularStyle(
-                                        color: AppColors.textSecondary,
-                                        fontSize: 14,
-                                        fontFamily: FontConstant.cairo,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ).animate().fadeIn(
-                duration: 600.ms,
-                delay: Duration(milliseconds: 150 * index),
-              ).slideX(begin: 0.1);
-            }).toList(),
+                      )
+                      .animate()
+                      .fadeIn(
+                        duration: 600.ms,
+                        delay: Duration(milliseconds: 150 * index),
+                      )
+                      .slideX(begin: 0.1);
+                }).toList(),
           ),
         ],
       ),

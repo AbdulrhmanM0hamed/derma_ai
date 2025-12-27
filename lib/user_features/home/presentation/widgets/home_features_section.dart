@@ -25,7 +25,9 @@ class HomeFeaturesSection extends StatelessWidget {
         'onTap': () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AiDiagnosisInfoPage()),
+            MaterialPageRoute(
+              builder: (context) => const AiDiagnosisInfoPage(),
+            ),
           );
         },
       },
@@ -71,11 +73,7 @@ class HomeFeaturesSection extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context)!.ourServices,
-          style: getBoldStyle(
-        
-            fontSize: 22,
-            fontFamily: FontConstant.cairo,
-          ),
+          style: getBoldStyle(fontSize: 22, fontFamily: FontConstant.cairo),
         ),
         const SizedBox(height: 16),
         GridView.builder(
@@ -86,7 +84,7 @@ class HomeFeaturesSection extends StatelessWidget {
             crossAxisCount: 4,
             crossAxisSpacing: 8,
             mainAxisSpacing: 16,
-            childAspectRatio: 0.8,
+            childAspectRatio: 0.7,
           ),
           itemCount: features.length,
           itemBuilder: (context, index) {

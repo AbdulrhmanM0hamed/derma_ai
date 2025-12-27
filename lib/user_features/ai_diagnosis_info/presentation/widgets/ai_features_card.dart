@@ -51,7 +51,11 @@ class AiFeaturesCard extends StatelessWidget {
 
     return Card(
       elevation: 2,
+<<<<<<< HEAD
        margin: EdgeInsets.zero,
+=======
+      margin: EdgeInsets.zero,
+>>>>>>> temim
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
@@ -62,11 +66,16 @@ class AiFeaturesCard extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 16,
             mainAxisSpacing: 18,
+<<<<<<< HEAD
             childAspectRatio: 1.0,
+=======
+            childAspectRatio: 1 / 1.2,
+>>>>>>> temim
           ),
           itemCount: features.length,
           itemBuilder: (context, index) {
             final feature = features[index];
+<<<<<<< HEAD
             
             return Container(
               padding: const EdgeInsets.all(16),
@@ -121,6 +130,67 @@ class AiFeaturesCard extends StatelessWidget {
               duration: 600.ms,
               delay: Duration(milliseconds: 100 * index),
             ).scale(begin: const Offset(0.5, 0.5));
+=======
+
+            return Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: (feature['color'] as Color).withValues(alpha: 0.1),
+                      width: 1,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: (feature['color'] as Color).withValues(
+                            alpha: 0.1,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Icon(
+                          feature['icon'] as IconData,
+                          color: feature['color'] as Color,
+                          size: 24,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        feature['title'] as String,
+                        style: getBoldStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: 14,
+                          fontFamily: FontConstant.cairo,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        feature['description'] as String,
+                        style: getRegularStyle(
+                          color: AppColors.textSecondary,
+                          fontSize: 12,
+                          fontFamily: FontConstant.cairo,
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                )
+                .animate()
+                .fadeIn(
+                  duration: 600.ms,
+                  delay: Duration(milliseconds: 100 * index),
+                )
+                .scale(begin: const Offset(0.5, 0.5));
+>>>>>>> temim
           },
         ),
       ),

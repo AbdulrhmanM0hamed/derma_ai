@@ -80,8 +80,8 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    _initializeCamera();
-  }
+      _initializeCamera();
+    }
 
   @override
   void dispose() {
@@ -115,13 +115,13 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
               : _cameras.firstWhere(
                 (c) => c.lensDirection == CameraLensDirection.back,
                 orElse: () => _cameras.first,
-              );
+    );
 
       // Initialize camera controller
       _cameraController = CameraController(
         camera,
         kIsWeb ? ResolutionPreset.medium : ResolutionPreset.high,
-      );
+    );
 
       await _cameraController!.initialize();
 
@@ -132,12 +132,12 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
         setState(() {
           _isCameraInitialized = true;
         });
-      }
+  }
     } catch (e) {
       // print('Camera initialization error: $e');
       if (mounted) {
         _showCameraErrorDialog();
-      }
+  }
     }
   }
 
@@ -180,14 +180,14 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
         maxWidth: 1920,
         maxHeight: 1080,
         imageQuality: 85,
-      );
+    );
 
       if (image != null) {
         setState(() {
           _capturedImagePath = image.path;
           _currentState = DiagnosisState.preview;
         });
-      }
+  }
     } catch (e) {
       _showErrorSnackBar('فشل في اختيار الصورة من المعرض.');
     }
@@ -229,9 +229,8 @@ class _AiSkinDiagnosisState extends State<AiSkinDiagnosis>
         setState(() {
           _processingStatus = processingSteps[i];
         });
-      }
-    }
-
+  }
+}
     // Generate mock analysis result
     final mockResult = {
       'condition': 'Acne Vulgaris',
