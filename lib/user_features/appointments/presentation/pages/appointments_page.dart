@@ -134,15 +134,7 @@ class _AppointmentsPageState extends State<AppointmentsPage>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-<<<<<<< HEAD
-          Icon(
-            Icons.event_busy,
-            size: 80,
-            color: Colors.grey[400],
-          ),
-=======
           Icon(Icons.event_busy, size: 80, color: Colors.grey[400]),
->>>>>>> temim
           const SizedBox(height: 16),
           Text(
             'لا توجد مواعيد ملغية',
@@ -166,15 +158,10 @@ class _AppointmentsPageState extends State<AppointmentsPage>
     );
   }
 
-<<<<<<< HEAD
-  Widget _buildAppointmentCard(Map<String, dynamic> appointment,
-      {required bool isUpcoming}) {
-=======
   Widget _buildAppointmentCard(
     Map<String, dynamic> appointment, {
     required bool isUpcoming,
   }) {
->>>>>>> temim
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -198,15 +185,7 @@ class _AppointmentsPageState extends State<AppointmentsPage>
                 CircleAvatar(
                   radius: 30,
                   backgroundColor: AppColors.primary.withValues(alpha: 0.1),
-<<<<<<< HEAD
-                  child: Icon(
-                    Icons.person,
-                    color: AppColors.primary,
-                    size: 30,
-                  ),
-=======
                   child: Icon(Icons.person, color: AppColors.primary, size: 30),
->>>>>>> temim
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -291,15 +270,7 @@ class _AppointmentsPageState extends State<AppointmentsPage>
             const SizedBox(height: 12),
             Row(
               children: [
-<<<<<<< HEAD
-                Icon(
-                  Icons.location_on,
-                  color: Colors.grey[500],
-                  size: 18,
-                ),
-=======
                 Icon(Icons.location_on, color: Colors.grey[500], size: 18),
->>>>>>> temim
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -318,20 +289,6 @@ class _AppointmentsPageState extends State<AppointmentsPage>
               Row(
                 children: [
                   Expanded(
-<<<<<<< HEAD
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        side: BorderSide(color: AppColors.error),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: Text(
-                        'إلغاء',
-                        style: getMediumStyle(
-                          color: AppColors.error,
-=======
                     child: MaterialButton(
                       onPressed: () {},
                       shape: OutlineInputBorder(
@@ -349,25 +306,12 @@ class _AppointmentsPageState extends State<AppointmentsPage>
                         'إلغاء',
                         style: getMediumStyle(
                           color: AppColors.primary,
->>>>>>> temim
                           fontSize: 14,
                           fontFamily: FontConstant.cairo,
                         ),
                       ),
                     ),
                   ),
-<<<<<<< HEAD
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-=======
 
                   const SizedBox(width: 12),
                   Expanded(
@@ -381,7 +325,6 @@ class _AppointmentsPageState extends State<AppointmentsPage>
                       elevation: 0,
                       height: 45,
                       padding: EdgeInsets.all(0),
->>>>>>> temim
                       child: Text(
                         'إعادة جدولة',
                         style: getMediumStyle(

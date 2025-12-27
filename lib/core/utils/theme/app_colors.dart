@@ -3,16 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color primary = Color(0xFF1295CC); // Azure Blue
   // Off White
-<<<<<<< HEAD
-  static const Color secondary = Color.fromARGB(
-    255,
-    40,
-    243,
-    202,
-  ); // Medical Deep Teal
-=======
   static const Color secondary = Color(0xFF16BB9A); // Medical Deep Teal
->>>>>>> temim
 
   static const Color tertiary = Color.fromARGB(
     255,
@@ -32,11 +23,7 @@ class AppColors {
   // static const Color secondary = Color(0xFF7D44ED);
   // static const Color third = Color(0xFFCEB8F8);
   // Background Colors
-<<<<<<< HEAD
-  static const Color scaffoldBackground = Colors.white;
-=======
   static const Color scaffoldBackground = Color(0xFFF8F9FA);
->>>>>>> temim
   static const Color cardBackground = Colors.white;
 
   // Text Colors
@@ -63,13 +50,8 @@ class AppColors {
 
   static const List<Color> medicalGradient = [
     Color(0xFF3F8EFC), // Azure Blue
-<<<<<<< HEAD
-    Color(0xFF2A7CC1), // Mid Blue (بين الأزرقين)
-    Color(0xFF005F73), // Deep Teal
-=======
     Color.fromARGB(255, 37, 122, 191), // Mid Blue (بين الأزرقين)
     // Color(0xFF005F73), // Deep Teal
->>>>>>> temim
   ];
 
   // Status Colors

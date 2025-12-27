@@ -131,7 +131,7 @@ class DoctorCard extends StatelessWidget {
                         ),
                         const Spacer(),
                         Text(
-                          '\$${doctor.consultationFee.toStringAsFixed(0)}',
+                          '${doctor.consultationFee.toStringAsFixed(0)} ج.م',
                           style: getBoldStyle(
                             color: AppColors.primary,
                             fontSize: 14,
@@ -227,7 +227,7 @@ class DoctorCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                '\$${doctor.consultationFee.toStringAsFixed(0)}',
+                '${doctor.consultationFee.toStringAsFixed(0)} ج.م',
                 style: getBoldStyle(
                   color: AppColors.primary,
                   fontSize: 14,

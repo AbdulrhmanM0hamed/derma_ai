@@ -36,10 +36,6 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
   List<Map<String, dynamic>> filteredDoctors = [];
   List<Map<String, dynamic>> activeFilters = [];
   bool isLoading = false;
-<<<<<<< HEAD
-  bool showLocationPermission = true;
-=======
->>>>>>> temim
   bool isMapView = false;
   String currentSort = "nearest";
 
@@ -136,22 +132,7 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
     HapticFeedback.lightImpact();
   }
 
-<<<<<<< HEAD
-  void _onAllowLocation() {
-    setState(() {
-      showLocationPermission = false;
-    });
-    HapticFeedback.lightImpact();
-  }
 
-  void _onSkipLocation() {
-    setState(() {
-      showLocationPermission = false;
-    });
-  }
-=======
-
->>>>>>> temim
 
   void _toggleMapView() {
     setState(() {
@@ -225,16 +206,6 @@ class DoctorSearchAndBrowseState extends State<DoctorSearchAndBrowse>
                 onRemoveFilter: _removeFilter,
               ),
             ],
-<<<<<<< HEAD
-            if (showLocationPermission) ...[
-              SizedBox(height: screenHeight * 0.02),
-              LocationPermissionWidget(
-                onAllowLocation: _onAllowLocation,
-                onSkip: _onSkipLocation,
-              ),
-            ],
-=======
->>>>>>> temim
             Expanded(
               child: TabBarView(
                 controller: _tabController,
