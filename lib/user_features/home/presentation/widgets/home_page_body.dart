@@ -1,3 +1,4 @@
+import 'package:derma_ai/core/utils/theme/app_colors.dart';
 import 'package:derma_ai/user_features/home/presentation/widgets/home_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,28 +82,13 @@ class _HomePageBodyState extends State<HomePageBody> {
 
   Widget _buildSliverAppBar(BuildContext context) {
     return SliverAppBar(
-      floating: true,
-      snap: true,
+      floating: false,
+      snap: false,
       expandedHeight: 100,
       collapsedHeight: 100,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      flexibleSpace: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-            child: buildAppBarContent(context),
-          ),
-        ),
-      ),
+      flexibleSpace: HomeAppBar(),
     );
   }
-
-
 }

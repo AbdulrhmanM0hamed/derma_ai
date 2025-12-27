@@ -1,5 +1,5 @@
-import '../../../doctor_booking/presentation/widgets/doctor_card.dart';
-import '../../../ai_diagnosis/presentation/widgets/diagnosis_card.dart';
+import '../../doctor_booking/presentation/widgets/doctor_card.dart';
+import '../../ai_diagnosis/presentation/widgets/diagnosis_card.dart';
 
 class HomeDummyData {
   static List<DoctorModel> getTopDoctors() {
