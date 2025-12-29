@@ -25,26 +25,27 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       height: 100 + MediaQuery.of(context).padding.top,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.primary,
-            const Color.fromARGB(255, 35, 102, 196).withValues(alpha: 0.8),
-          ],
-        ),
+        color: AppColors.primary,
+        // gradient: LinearGradient(
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        //   colors: [
+        //     AppColors.primary,
+        //     const Color.fromARGB(255, 35, 102, 196).withValues(alpha: 0.8),
+        //   ],
+        // ),
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(30),
           bottomRight: Radius.circular(30),
         ),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: AppColors.primary.withValues(alpha: 0.3),
-        //     blurRadius: 20,
-        //     offset: const Offset(0, 8),
-        //     spreadRadius: 0,
-        //   ),
-        // ],
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.textPrimary.withValues(alpha: 0.3),
+            blurRadius: 20,
+            offset: const Offset(0, 1),
+            spreadRadius: 0,
+          ),
+        ],
       ),
       child: SafeArea(
         child: Padding(

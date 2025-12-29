@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:derma_ai/core/constants/app_constants.dart';
 import 'package:derma_ai/user_features/ai_diagnosis/presentation/pages/ai_skin_diagnosis.dart';
 import 'package:derma_ai/user_features/ai_diagnosis_info/presentation/pages/ai_diagnosis_info_page.dart';
@@ -80,52 +81,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ],
             ),
           ),
-          // Notch/cutout for center button
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Center(
-              child: Container(
-                width: 70,
-                height: 35,
-                decoration: BoxDecoration(
-                  color: theme.scaffoldBackgroundColor,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(35),
-                    bottomRight: Radius.circular(35),
-                  ),
-                ),
-              ),
-            ),
-          ),
+
           // Center AI Diagnosis button
-          Positioned(
-            left: 0,
-            right: 0,
-            top: -15,
-            child: Center(
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AiSkinDiagnosis(),
-                    ),
-                  );
-                },
-                shape: const CircleBorder(),
-                padding: const EdgeInsets.all(5),
-                color: AppColors.primary,
-                elevation: 3,
-                child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: Image.asset(AppConstants.aiLogo),
-                ),
-              ),
-            ),
-          ),
+          CenterAIDiagnosisbutton(onTap: onTap, isSelected: currentIndex == 2),
         ],
       ),
     );
@@ -177,6 +135,40 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CenterAIDiagnosisbutton extends StatelessWidget {
+  const CenterAIDiagnosisbutton({
+    super.key,
+    required this.onTap,
+    required this.isSelected,
+  });
+
+  final Function(int p1) onTap;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: 0,
+      right: 0,
+      top: isSelected ? -18 : -15,
+      child: Center(
+        child: MaterialButton(
+          onPressed: () => onTap(2),
+          shape: const CircleBorder(),
+          padding: const EdgeInsets.all(5),
+          color: AppColors.primary,
+          elevation: 3,
+          child: SizedBox(
+            height: 50,
+            width: 50,
+            child: Image.asset(AppConstants.aiLogo),
           ),
         ),
       ),
