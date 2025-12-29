@@ -1,4 +1,4 @@
-import 'package:derma_ai/user_features/ai_diagnosis/presentation/pages/ai_diagnosis_page.dart';
+import 'package:derma_ai/user_features/ai_diagnosis/presentation/pages/ai_skin_diagnosis.dart';
 import 'package:derma_ai/user_features/appointments/presentation/pages/appointments_page.dart';
 import 'package:derma_ai/user_features/doctor_search_and_browse/doctor_search_and_browse.dart';
 import 'package:derma_ai/user_features/home/presentation/pages/home_page.dart';
@@ -18,13 +18,22 @@ class MainNavigationPage extends StatefulWidget {
 class _MainNavigationPageState extends State<MainNavigationPage> {
   int currentPage = 0;
 
-  final List<Widget> _pages = [
-    const HomePage(), // Index 0
-    const DoctorSearchAndBrowse(), // Index 1
-    SizedBox(),
-    const AppointmentsPage(), // Index 3
-    const ProfilePage(), // Index 4
-  ];
+  Widget _getCurrentPage() {
+    switch (currentPage) {
+      case 0:
+        return const HomePage();
+      case 1:
+        return const DoctorSearchAndBrowse();
+      case 2:
+        return const AiSkinDiagnosis();
+      case 3:
+        return const AppointmentsPage();
+      case 4:
+        return const ProfilePage();
+      default:
+        return const HomePage();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +49,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
       ),
       child: Scaffold(
-        body: IndexedStack(index: currentPage, children: _pages),
+        body: _getCurrentPage(),
         bottomNavigationBar: SafeArea(
           child: CustomBottomNavigationBar(
             currentIndex: currentPage,
@@ -54,6 +63,3 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     );
   }
 }
-
-
-// 
