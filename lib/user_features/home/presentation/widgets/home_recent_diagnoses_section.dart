@@ -7,7 +7,7 @@ import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../ai_diagnosis/presentation/widgets/diagnosis_card.dart';
-import '../data/home_dummy_data.dart';
+import '../../data/home_dummy_data.dart';
 
 class HomeRecentDiagnosesSection extends StatelessWidget {
   const HomeRecentDiagnosesSection({super.key});

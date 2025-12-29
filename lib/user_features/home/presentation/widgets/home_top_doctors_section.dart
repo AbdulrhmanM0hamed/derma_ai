@@ -7,7 +7,7 @@ import '../../../../core/utils/constant/font_manger.dart';
 import '../../../../core/utils/constant/styles_manger.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../doctor_booking/presentation/widgets/doctor_card.dart';
-import '../data/home_dummy_data.dart';
+import '../../data/home_dummy_data.dart';
 
 class HomeTopDoctorsSection extends StatelessWidget {
   const HomeTopDoctorsSection({super.key});
