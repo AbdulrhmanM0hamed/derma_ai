@@ -1,7 +1,12 @@
+import 'package:derma_ai/core/services/service_locatores.dart';
+import 'package:derma_ai/doctor_feature/home/data/models/home_doctor_model.dart';
+import 'package:derma_ai/doctor_feature/home/presentation/cubit/doctor_home_cubit.dart';
 import 'package:derma_ai/doctor_feature/home/presentation/widgets/stat_card.dart';
+import 'package:derma_ai/user_features/doctor_booking/presentation/widgets/doctor_card.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
@@ -44,35 +49,53 @@ class _DoctorHomePageState extends State<DoctorHomePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA),
-      drawer: _buildDrawer(),
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          _buildAppBar(),
-          _buildQuickActionsSection(),
-          _buildAdvancedStatsGrid(),
+    return BlocProvider(
+      create: (context) => DoctorHomeCubit(sl())..getDoctorData(),
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF8F9FA),
+        drawer: _buildDrawer(),
+        body: BlocBuilder<DoctorHomeCubit, DoctorHomeState>(
+          builder: (context, state) {
+            if (state is DoctorHomeLoaded) {
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  _buildAppBar(doctor: state.profile),
+                  _buildQuickActionsSection(),
+                  _buildAdvancedStatsGrid(),
+                  _buildRevenueSection(),
+                  _buildPatientSummarySection(),
+                  _buildTimelineSection(),
+                  _buildChartsSection(),
+                  _buildNotificationsSection(),
+                  _buildUpcomingAppointmentsSection(),
+                ],
+              );
+            }
+            if (state is DoctorHomeLoading) {
+              /// TODO: change withe custom loading widget
+              return CircularProgressIndicator();
+            }
 
-          _buildRevenueSection(),
-          _buildPatientSummarySection(),
-          _buildTimelineSection(),
-          _buildChartsSection(),
-          _buildNotificationsSection(),
-          _buildUpcomingAppointmentsSection(),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        heroTag: "doctor_home_fab",
-        onPressed: () => _showQuickActionsMenu(),
-        backgroundColor: AppColors.primary,
-        icon: const Icon(Icons.add, color: Colors.white),
-        label: const Text('إجراء سريع', style: TextStyle(color: Colors.white)),
+            /// TODO: change withw custom Error Widget
+            return Center(child: Text('Have Error'));
+          },
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          heroTag: "doctor_home_fab",
+          onPressed: () => _showQuickActionsMenu(),
+          backgroundColor: AppColors.primary,
+          icon: const Icon(Icons.add, color: Colors.white),
+          label: const Text(
+            'إجراء سريع',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ),
     );
   }
 
-  SliverAppBar _buildAppBar() {
+  SliverAppBar _buildAppBar({required HomeDoctorModel doctor}) {
     return SliverAppBar(
       expandedHeight: 150,
       floating: true,
@@ -87,99 +110,93 @@ class _DoctorHomePageState extends State<DoctorHomePage>
             ),
       ),
       flexibleSpace: FlexibleSpaceBar(
-        title: Text(
-          AppLocalizations.of(context)?.dashboard ?? "Dashboard",
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         background: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.primary,
-                AppColors.primary.withValues(alpha: 0.8),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
+          decoration: BoxDecoration(color: AppColors.primary),
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Column(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // الصف الأول: الصورة الشخصية، الاسم، وزر الإشعارات
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.white,
+
+                    backgroundImage: NetworkImage(doctor.profilePictureUrl!),
+                    child:
+                        doctor.profilePictureUrl != null
+                            ? SizedBox()
+                            : Icon(
+                              Icons.person,
+                              size: 30,
+                              color: AppColors.primary,
+                            ),
+                  ),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Colors.white,
-                        child: Icon(
-                          Icons.person,
-                          size: 30,
-                          color: AppColors.primary,
+                      Text(
+                        doctor.displayName,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      const Expanded(
-                        child: Text(
-                          "دكتور محمد أحمد",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        spacing: 5,
+                        children: [
+                          // مساحة مماثلة للصورة الشخ60صية + المسافة
+                          Text(
+                            doctor.specialty ?? 'Specialty Not selected',
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.9),
+                              fontSize: 12,
+                            ),
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.notifications_none,
-                              color: Colors.white,
-                              size: 20,
+                          Text(
+                            '⭐ ${doctor.ratingAverage} ',
+                            // "دكتور أمراض جلدية • 4.9 ",
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.9),
+                              fontSize: 12,
                             ),
-                            SizedBox(width: 5),
-                            Text(
-                              "3",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  // الصف الثاني: التخصص والتقييم
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 66,
-                      ), // مساحة مماثلة للصورة الشخصية + المسافة
-                      Expanded(
-                        child: Text(
-                          "دكتور أمراض جلدية • 4.9 ⭐",
+                  Spacer(),
+                  // Notifaction icon
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.notifications_none,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "3",
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.9),
-                            fontSize: 12,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -1,3 +1,5 @@
+import 'package:derma_ai/doctor_feature/home/data/repositories/doctor_home_repository.dart';
+import 'package:derma_ai/doctor_feature/home/presentation/cubit/doctor_home_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,6 +41,9 @@ Future<void> init() async {
   sl.registerLazySingleton<DoctorAuthRepository>(
     () => DoctorAuthRepositoryImpl(sl()),
   );
+  sl.registerLazySingleton<DoctorHomeRepository>(
+    () => DoctorHomeRepositoryImpl(sl()),
+  );
 
   // Bloc
   sl.registerFactory(() => AuthCubit(authRepository: sl(), tokenStorage: sl()));
@@ -50,6 +55,7 @@ Future<void> init() async {
       tokenStorage: sl(),
     ),
   );
+  sl.registerFactory(() => DoctorHomeCubit(sl()));
 
   //! Features - Health Tips
   // Repository
