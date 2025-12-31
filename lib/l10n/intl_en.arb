@@ -348,6 +348,8 @@
   "profileUpdateFailed": "Profile update failed",
   "profileUpdatedSuccessfully": "Profile updated successfully",
   "changeProfilePicture": "Change Profile Picture",
+  "chooseFromGallery": "Choose from Gallery",
+  "removePhoto": "Remove Photo",
   "uploadPicture": "Upload Picture",
   "deletePicture": "Delete Picture",
   "chooseImageSource": "Choose Image Source",

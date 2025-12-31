@@ -1045,6 +1045,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get changeProfilePicture => 'Change Profile Picture';
 
   @override
+  String get chooseFromGallery => 'Choose from Gallery';
+
+  @override
+  String get removePhoto => 'Remove Photo';
+
+  @override
   String get uploadPicture => 'Upload Picture';
 
   @override

@@ -1034,6 +1034,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get changeProfilePicture => 'تغيير الصورة الشخصية';
 
   @override
+  String get chooseFromGallery => 'اختر من المعرض';
+
+  @override
+  String get removePhoto => 'إزالة الصورة';
+
+  @override
   String get uploadPicture => 'رفع صورة';
 
   @override
