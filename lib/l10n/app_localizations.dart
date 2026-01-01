@@ -2869,6 +2869,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error loading profile'**
   String get errorLoadingProfile;
+
+  /// No description provided for @packages.
+  ///
+  /// In en, this message translates to:
+  /// **'packages'**
+  String get packages;
 }
 
 class _AppLocalizationsDelegate

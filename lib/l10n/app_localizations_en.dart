@@ -1435,4 +1435,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorLoadingProfile => 'Error loading profile';
+
+  @override
+  String get packages => 'packages';
 }

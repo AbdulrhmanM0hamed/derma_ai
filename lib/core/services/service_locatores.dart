@@ -1,5 +1,7 @@
 import 'package:derma_ai/doctor_feature/home/data/repositories/doctor_home_repository.dart';
 import 'package:derma_ai/doctor_feature/home/presentation/cubit/doctor_home_cubit.dart';
+import 'package:derma_ai/doctor_feature/packages/data/repositories/packages_repository.dart';
+import 'package:derma_ai/doctor_feature/packages/presentation/cubit/packages_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -92,4 +94,12 @@ Future<void> init() async {
 
   // Cubit
   sl.registerLazySingleton(() => DoctorProfileCubit(sl()));
+
+  //! Features - Packages
+
+  // cubit
+  sl.registerLazySingleton(() => PackagesCubit(sl<PackagesRepositoryImpl>()));
+
+  // Repository
+  sl.registerLazySingleton(() => PackagesRepositoryImpl(sl()));
 }

@@ -495,5 +495,6 @@
   "reviews": "Reviews",
   "loadingProfile": "Loading profile...",
   "errorLoadingProfile": "Error loading profile",
-  "retry": "Retry"
+  "retry": "Retry" ,
+  "packages":"packages" 
 }

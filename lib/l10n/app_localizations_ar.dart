@@ -1423,4 +1423,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorLoadingProfile => 'حدث خطأ أثناء تحميل الملف الشخصي';
+
+  @override
+  String get packages => 'الباقات';
 }

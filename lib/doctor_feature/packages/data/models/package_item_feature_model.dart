@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-// Package Feature Model
-class PackageFeatureModel extends Equatable {
+// Package Item Feature Model (features inside package)
+class PackageItemFeatureModel extends Equatable {
   final String featureValue;
   final int isIncluded;
   final int featureId;
@@ -12,7 +12,7 @@ class PackageFeatureModel extends Equatable {
   final String featureName;
   final String featureUnit;
 
-  const PackageFeatureModel({
+  const PackageItemFeatureModel({
     required this.featureValue,
     required this.isIncluded,
     required this.featureId,
@@ -28,11 +28,11 @@ class PackageFeatureModel extends Equatable {
   bool get included => isIncluded == 1;
 
   // From JSON
-  factory PackageFeatureModel.fromJson(Map<String, dynamic> json) {
-    return PackageFeatureModel(
+  factory PackageItemFeatureModel.fromJson(Map<String, dynamic> json) {
+    return PackageItemFeatureModel(
       featureValue: json['feature_value'] as String? ?? '',
       isIncluded: json['is_included'] as int? ?? 0,
-      featureId: json['feature_id'] as int? ?? 0,
+      featureId: json['feature_id'] as int,
       nameAr: json['name_ar'] as String? ?? '',
       nameEn: json['name_en'] as String? ?? '',
       unitAr: json['unit_ar'] as String? ?? '',
@@ -58,7 +58,7 @@ class PackageFeatureModel extends Equatable {
   }
 
   // Copy With
-  PackageFeatureModel copyWith({
+  PackageItemFeatureModel copyWith({
     String? featureValue,
     int? isIncluded,
     int? featureId,
@@ -69,7 +69,7 @@ class PackageFeatureModel extends Equatable {
     String? featureName,
     String? featureUnit,
   }) {
-    return PackageFeatureModel(
+    return PackageItemFeatureModel(
       featureValue: featureValue ?? this.featureValue,
       isIncluded: isIncluded ?? this.isIncluded,
       featureId: featureId ?? this.featureId,
