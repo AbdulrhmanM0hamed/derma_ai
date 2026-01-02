@@ -10,11 +10,7 @@ class DoctorProfileHeader extends StatelessWidget {
   final DoctorProfileModel profile;
   final VoidCallback? onEditTap;
 
-  const DoctorProfileHeader({
-    super.key,
-    required this.profile,
-    this.onEditTap,
-  });
+  const DoctorProfileHeader({super.key, required this.profile, this.onEditTap});
 
   @override
   Widget build(BuildContext context) {
@@ -23,26 +19,27 @@ class DoctorProfileHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.primary,
-            AppColors.primary.withValues(alpha: 0.8),
-            const Color(0xFF1565C0),
-          ],
-        ),
+        // gradient: LinearGradient(
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        //   colors: [
+        //     AppColors.primary,
+        //     AppColors.primary.withValues(alpha: 0.8),
+        //     const Color(0xFF1565C0),
+        //   ],
+        // ),
+        color: AppColors.primary,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(32),
           bottomRight: Radius.circular(32),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: AppColors.primary.withValues(alpha: 0.3),
+        //     blurRadius: 20,
+        //     offset: const Offset(0, 10),
+        //   ),
+        // ],
       ),
       child: SafeArea(
         child: Column(
@@ -99,38 +96,41 @@ class DoctorProfileHeader extends StatelessWidget {
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.2),
                         blurRadius: 15,
-                        offset: const Offset(0, 5),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
                   child: CircleAvatar(
-                    radius: 55,
+                    radius: 45,
                     backgroundColor: Colors.white,
-                    child: profile.profilePictureUrl != null &&
-                            profile.profilePictureUrl!.isNotEmpty
-                        ? ClipOval(
-                            child: CachedNetworkImage(
-                              imageUrl: profile.profilePictureUrl!,
-                              width: 106,
-                              height: 106,
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) => const Icon(
-                                Icons.person,
-                                size: 50,
-                                color: AppColors.primary,
+                    child:
+                        profile.profilePictureUrl != null &&
+                                profile.profilePictureUrl!.isNotEmpty
+                            ? ClipOval(
+                              child: CachedNetworkImage(
+                                imageUrl: profile.profilePictureUrl!,
+                                width: 106,
+                                height: 106,
+                                fit: BoxFit.cover,
+                                placeholder:
+                                    (context, url) => const Icon(
+                                      Icons.person,
+                                      size: 50,
+                                      color: AppColors.primary,
+                                    ),
+                                errorWidget:
+                                    (context, url, error) => const Icon(
+                                      Icons.person,
+                                      size: 50,
+                                      color: AppColors.primary,
+                                    ),
                               ),
-                              errorWidget: (context, url, error) => const Icon(
-                                Icons.person,
-                                size: 50,
-                                color: AppColors.primary,
-                              ),
+                            )
+                            : const Icon(
+                              Icons.person,
+                              size: 50,
+                              color: AppColors.primary,
                             ),
-                          )
-                        : const Icon(
-                            Icons.person,
-                            size: 50,
-                            color: AppColors.primary,
-                          ),
                   ),
                 ),
                 // Verification Badge
@@ -211,11 +211,10 @@ class DoctorProfileHeader extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 24),
+            // const SizedBox(height: 24),
 
             // Status Badge
-            _buildStatusBadge(context, l10n),
-
+            // _buildStatusBadge(context, l10n),
             const SizedBox(height: 24),
           ],
         ),

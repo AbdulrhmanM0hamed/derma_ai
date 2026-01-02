@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+enum LastActiveUserType { user, doctor, none }
+
 class AppStateService {
   static const String _isOnboardingCompletedKey = 'is_onboarding_completed';
   static const String _isLoggedInKey = 'is_logged_in';
@@ -7,6 +9,7 @@ class AppStateService {
   static const String _savedEmailKey = 'saved_email';
   static const String _savedPasswordKey = 'saved_password';
   static const String _hasLoggedOutKey = 'has_logged_out';
+  static const String _lastActiveUserTypeKey = 'last_active_user_type';
 
   final SharedPreferences _prefs;
 
@@ -69,6 +72,20 @@ class AppStateService {
     return _prefs.getBool(_hasLoggedOutKey) ?? false;
   }
 
+  // Last active user type (user or doctor)
+  Future<void> setLastActiveUserType(LastActiveUserType userType) async {
+    await _prefs.setString(_lastActiveUserTypeKey, userType.name);
+  }
+
+  LastActiveUserType getLastActiveUserType() {
+    final value = _prefs.getString(_lastActiveUserTypeKey);
+    if (value == null) return LastActiveUserType.none;
+    return LastActiveUserType.values.firstWhere(
+      (e) => e.name == value,
+      orElse: () => LastActiveUserType.none,
+    );
+  }
+
   // Clear all app state (for complete reset)
   Future<void> clearAllState() async {
     await _prefs.remove(_isOnboardingCompletedKey);
@@ -77,6 +94,7 @@ class AppStateService {
     await _prefs.remove(_savedEmailKey);
     await _prefs.remove(_savedPasswordKey);
     await _prefs.remove(_hasLoggedOutKey);
+    await _prefs.remove(_lastActiveUserTypeKey);
   }
 
   // Get initial route based on app state

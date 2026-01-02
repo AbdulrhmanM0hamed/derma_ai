@@ -1,3 +1,7 @@
+import 'package:derma_ai/doctor_feature/home/data/repositories/doctor_home_repository.dart';
+import 'package:derma_ai/doctor_feature/home/presentation/cubit/doctor_home_cubit.dart';
+import 'package:derma_ai/doctor_feature/packages/data/repositories/packages_repository.dart';
+import 'package:derma_ai/doctor_feature/packages/presentation/cubit/packages_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +19,7 @@ import '../../doctor_feature/profile/data/repositories/doctor_profile_repository
 import '../../doctor_feature/profile/presentation/bloc/doctor_profile_cubit.dart';
 import '../network/api_service.dart';
 import '../network/dio_client.dart';
+import '../network/app_state_service.dart';
 import '../services/token_storage_service.dart';
 
 final sl = GetIt.instance;
@@ -26,6 +31,7 @@ Future<void> init() async {
 
   //! Core Services
   sl.registerLazySingleton(() => TokenStorageService(sl()));
+  sl.registerLazySingleton(() => AppStateService(sl()));
   sl.registerLazySingleton(() => ApiService());
 
   // Initialize DioClient with Auth Interceptor
@@ -39,6 +45,9 @@ Future<void> init() async {
   sl.registerLazySingleton<DoctorAuthRepository>(
     () => DoctorAuthRepositoryImpl(sl()),
   );
+  sl.registerLazySingleton<DoctorHomeRepository>(
+    () => DoctorHomeRepositoryImpl(sl()),
+  );
 
   // Bloc
   sl.registerFactory(() => AuthCubit(authRepository: sl(), tokenStorage: sl()));
@@ -50,6 +59,7 @@ Future<void> init() async {
       tokenStorage: sl(),
     ),
   );
+  sl.registerFactory(() => DoctorHomeCubit(sl()));
 
   //! Features - Health Tips
   // Repository
@@ -86,4 +96,12 @@ Future<void> init() async {
 
   // Cubit
   sl.registerLazySingleton(() => DoctorProfileCubit(sl()));
+
+  //! Features - Packages
+
+  // cubit
+  sl.registerLazySingleton(() => PackagesCubit(sl<PackagesRepositoryImpl>()));
+
+  // Repository
+  sl.registerLazySingleton(() => PackagesRepositoryImpl(sl()));
 }

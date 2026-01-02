@@ -8,10 +8,7 @@ import '../../data/models/doctor_profile_model.dart';
 class DoctorStatsRow extends StatelessWidget {
   final DoctorProfileModel profile;
 
-  const DoctorStatsRow({
-    super.key,
-    required this.profile,
-  });
+  const DoctorStatsRow({super.key, required this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,7 @@ class DoctorStatsRow extends StatelessWidget {
             icon: Icons.people_alt_outlined,
             value: '0', // Static for now
             label: l10n.patients,
-            color: const Color(0xFF6C5CE7),
+            color: const Color.fromARGB(255, 97, 77, 253),
             isDark: isDark,
           ),
           const SizedBox(width: 12),
@@ -68,16 +65,13 @@ class DoctorStatsRow extends StatelessWidget {
           color: isDark ? Colors.grey[850] : Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
-            BoxShadow(
-              color: color.withValues(alpha: 0.15),
-              blurRadius: 15,
-              offset: const Offset(0, 5),
-            ),
+            // BoxShadow(
+            //   color: color.withValues(alpha: 0.15),
+            //   blurRadius: 3,
+            //   offset: const Offset(0, 5),
+            // ),
           ],
-          border: Border.all(
-            color: color.withValues(alpha: 0.2),
-            width: 1,
-          ),
+          border: Border.all(color: color.withValues(alpha: 0.4), width: 1),
         ),
         child: Column(
           children: [

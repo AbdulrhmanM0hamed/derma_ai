@@ -2096,6 +2096,18 @@ abstract class AppLocalizations {
   /// **'Change Profile Picture'**
   String get changeProfilePicture;
 
+  /// No description provided for @chooseFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from Gallery'**
+  String get chooseFromGallery;
+
+  /// No description provided for @removePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Photo'**
+  String get removePhoto;
+
   /// No description provided for @uploadPicture.
   ///
   /// In en, this message translates to:
@@ -2857,6 +2869,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error loading profile'**
   String get errorLoadingProfile;
+
+  /// No description provided for @packages.
+  ///
+  /// In en, this message translates to:
+  /// **'packages'**
+  String get packages;
 }
 
 class _AppLocalizationsDelegate

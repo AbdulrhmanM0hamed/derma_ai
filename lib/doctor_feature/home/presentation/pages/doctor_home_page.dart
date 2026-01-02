@@ -1,7 +1,12 @@
+import 'package:derma_ai/core/services/service_locatores.dart';
+import 'package:derma_ai/doctor_feature/home/data/models/home_doctor_model.dart';
+import 'package:derma_ai/doctor_feature/home/presentation/cubit/doctor_home_cubit.dart';
 import 'package:derma_ai/doctor_feature/home/presentation/widgets/stat_card.dart';
+import 'package:derma_ai/user_features/doctor_booking/presentation/widgets/doctor_card.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/utils/animations/app_animations.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
@@ -44,37 +49,53 @@ class _DoctorHomePageState extends State<DoctorHomePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA),
-      drawer: _buildDrawer(),
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          _buildAppBar(),
-          _buildQuickActionsSection(),
-          _buildAdvancedStatsGrid(),
-          _buildRevenueSection(),
-          _buildPatientSummarySection(),
-          _buildTimelineSection(),
-          _buildChartsSection(),
-          _buildNotificationsSection(),
-          _buildUpcomingAppointmentsSection(),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        heroTag: "doctor_home_fab",
-        onPressed: () => _showQuickActionsMenu(),
-        backgroundColor: AppColors.primary,
-        icon: const Icon(Icons.add, color: Colors.white),
-        label: const Text(
-          'إجراء سريع',
-          style: TextStyle(color: Colors.white),
+    return BlocProvider(
+      create: (context) => DoctorHomeCubit(sl())..getDoctorData(),
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF8F9FA),
+        drawer: _buildDrawer(),
+        body: BlocBuilder<DoctorHomeCubit, DoctorHomeState>(
+          builder: (context, state) {
+            if (state is DoctorHomeLoaded) {
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  _buildAppBar(doctor: state.profile),
+                  _buildQuickActionsSection(),
+                  _buildAdvancedStatsGrid(),
+                  _buildRevenueSection(),
+                  _buildPatientSummarySection(),
+                  _buildTimelineSection(),
+                  _buildChartsSection(),
+                  _buildNotificationsSection(),
+                  _buildUpcomingAppointmentsSection(),
+                ],
+              );
+            }
+            if (state is DoctorHomeLoading) {
+              /// TODO: change withe custom loading widget
+              return CircularProgressIndicator();
+            }
+
+            /// TODO: change withw custom Error Widget
+            return Center(child: Text('Have Error'));
+          },
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          heroTag: "doctor_home_fab",
+          onPressed: () => _showQuickActionsMenu(),
+          backgroundColor: AppColors.primary,
+          icon: const Icon(Icons.add, color: Colors.white),
+          label: const Text(
+            'إجراء سريع',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );
   }
 
-  SliverAppBar _buildAppBar() {
+  SliverAppBar _buildAppBar({required HomeDoctorModel doctor}) {
     return SliverAppBar(
       expandedHeight: 150,
       floating: true,
@@ -82,96 +103,100 @@ class _DoctorHomePageState extends State<DoctorHomePage>
       backgroundColor: AppColors.primary,
       stretch: true,
       leading: Builder(
-        builder: (context) => IconButton(
-          icon: const Icon(Icons.menu, color: Colors.white),
-          onPressed: () => Scaffold.of(context).openDrawer(),
-        ),
+        builder:
+            (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.white),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
       ),
       flexibleSpace: FlexibleSpaceBar(
-        title: Text(
-          AppLocalizations.of(context)?.dashboard ?? "Dashboard",
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         background: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [AppColors.primary, AppColors.primary.withValues(alpha:0.8)],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
+          decoration: BoxDecoration(color: AppColors.primary),
           child: SafeArea(
             child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Column(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // الصف الأول: الصورة الشخصية، الاسم، وزر الإشعارات
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.white,
+                    backgroundImage: doctor.profilePictureUrl != null
+                        ? NetworkImage(doctor.profilePictureUrl!)
+                        : null,
+                    child: doctor.profilePictureUrl == null
+                        ? Icon(
+                            Icons.person,
+                            size: 30,
+                            color: AppColors.primary,
+                          )
+                        : null,
+                  ),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.person, size: 30, color: AppColors.primary),
+                      Text(
+                        doctor.displayName,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
-                      const SizedBox(width: 16),
-                      const Expanded(
-                        child: Text(
-                          "دكتور محمد أحمد",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        spacing: 5,
+                        children: [
+                          // مساحة مماثلة للصورة الشخ60صية + المسافة
+                          Text(
+                            doctor.specialty ?? 'Specialty Not selected',
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.9),
+                              fontSize: 12,
+                            ),
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha:0.2),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.notifications_none,
-                              color: Colors.white,
-                              size: 20,
+                          Text(
+                            '⭐ ${doctor.ratingAverage} ',
+                            // "دكتور أمراض جلدية • 4.9 ",
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.9),
+                              fontSize: 12,
                             ),
-                            SizedBox(width: 5),
-                            Text(
-                              "3",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  // الصف الثاني: التخصص والتقييم
-                  Row(
-                    children: [
-                      const SizedBox(width: 66), // مساحة مماثلة للصورة الشخصية + المسافة
-                      Expanded(
-                        child: Text(
-                          "دكتور أمراض جلدية • 4.9 ⭐",
+                  Spacer(),
+                  // Notifaction icon
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.notifications_none,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "3",
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha:0.9),
-                            fontSize: 12,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -183,7 +208,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
         preferredSize: const Size.fromHeight(60),
         child: Container(
           color: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical:8),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -470,7 +495,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                     dotData: const FlDotData(show: false),
                     belowBarData: BarAreaData(
                       show: true,
-                      color: AppColors.primary.withValues(alpha:0.1),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                     ),
                   ),
                 ],
@@ -642,7 +667,11 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                   ),
                 ),
                 TextButton(
-                  onPressed: () => Navigator.pushNamed(context, '/advanced-appointments'),
+                  onPressed:
+                      () => Navigator.pushNamed(
+                        context,
+                        '/advanced-appointments',
+                      ),
                   style: TextButton.styleFrom(
                     foregroundColor: AppColors.primary,
                     padding: EdgeInsets.zero,
@@ -666,7 +695,8 @@ class _DoctorHomePageState extends State<DoctorHomePage>
               condition: "أكزيما",
               appointmentTime: "10:30 ص",
               severity: "متوسطة",
-              onTap: () => Navigator.pushNamed(context, '/advanced-appointments'),
+              onTap:
+                  () => Navigator.pushNamed(context, '/advanced-appointments'),
             ),
             PatientSummaryCard(
               patientName: "سارة محمد",
@@ -674,7 +704,8 @@ class _DoctorHomePageState extends State<DoctorHomePage>
               condition: "صدفية",
               appointmentTime: "11:30 ص",
               severity: "عالية",
-              onTap: () => Navigator.pushNamed(context, '/advanced-appointments'),
+              onTap:
+                  () => Navigator.pushNamed(context, '/advanced-appointments'),
             ),
             PatientSummaryCard(
               patientName: "عمر علي",
@@ -682,7 +713,8 @@ class _DoctorHomePageState extends State<DoctorHomePage>
               condition: "حب الشباب",
               appointmentTime: "2:00 م",
               severity: "منخفضة",
-              onTap: () => Navigator.pushNamed(context, '/advanced-appointments'),
+              onTap:
+                  () => Navigator.pushNamed(context, '/advanced-appointments'),
             ),
           ],
         ),
@@ -713,37 +745,27 @@ class _DoctorHomePageState extends State<DoctorHomePage>
               crossAxisCount: 2,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 1.2,
+              childAspectRatio: 1.1,
               children: [
-                QuickActionCard(
-                  title: 'مرضى جدد',
-                  subtitle: 'إضافة مريض جديد',
-                  icon: Icons.person_add,
-                  color: Colors.blue,
-                  badge: '5',
-                  onTap: () => Navigator.pushNamed(context, AppRoutes.advancedPatients),
-                ),
                 QuickActionCard(
                   title: 'تشخيص ذكي',
                   subtitle: 'تحليل الصور بالذكاء الاصطناعي',
                   icon: Icons.psychology,
                   color: Colors.purple,
-                  onTap: () => Navigator.pushNamed(context, AppRoutes.doctorAiDiagnosis),
+                  onTap:
+                      () => Navigator.pushNamed(
+                        context,
+                        AppRoutes.doctorAiDiagnosis,
+                      ),
                 ),
                 QuickActionCard(
                   title: 'وصفات طبية',
                   subtitle: 'إنشاء وصفة جديدة',
                   icon: Icons.receipt_long,
-                  color: Colors.green,
-                  onTap: () => Navigator.pushNamed(context, AppRoutes.prescriptions),
-                ),
-                QuickActionCard(
-                  title: 'التقارير',
-                  subtitle: 'عرض التقارير الطبية',
-                  icon: Icons.analytics,
                   color: Colors.orange,
-                  badge: '12',
-                  onTap: () => Navigator.pushNamed(context, AppRoutes.reports),
+                  onTap:
+                      () =>
+                          Navigator.pushNamed(context, AppRoutes.prescriptions),
                 ),
               ],
             ),
@@ -756,60 +778,57 @@ class _DoctorHomePageState extends State<DoctorHomePage>
   // Advanced Stats Grid
   SliverPadding _buildAdvancedStatsGrid() {
     return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      sliver: SliverGrid(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 0.74,
-        ),
-        delegate: SliverChildListDelegate([
-          AdvancedStatCard(
-            title: 'إجمالي المرضى',
-            value: '1,247',
-            subtitle: 'مريض نشط',
-            icon: Icons.people,
-            iconColor: Colors.blue,
-            trend: '+12.5%',
-            isPositiveTrend: true,
-            chartData: [20, 35, 25, 40, 30, 45, 35],
-            onTap: () => Navigator.pushNamed(context, '/advanced-patients'),
+      padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+      sliver: SliverMainAxisGroup(
+        slivers: [
+          SliverGrid(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 0.68,
+            ),
+            delegate: SliverChildListDelegate([
+              AdvancedStatCard(
+                title: 'إجمالي المرضى',
+                value: '1,247',
+                subtitle: 'مريض نشط',
+                icon: Icons.people,
+                iconColor: Colors.blue,
+                trend: '+12.5%',
+                isPositiveTrend: true,
+                chartData: [20, 35, 25, 40, 30, 45, 35],
+                onTap: () => Navigator.pushNamed(context, '/advanced-patients'),
+              ),
+              AdvancedStatCard(
+                title: 'الإيرادات الشهرية',
+                value: '45,230',
+                subtitle: 'جنيه مصري',
+                icon: Icons.attach_money,
+                iconColor: Colors.green,
+                trend: '+8.2%',
+                isPositiveTrend: true,
+                chartData: [30, 25, 35, 40, 32, 38, 42],
+                onTap:
+                    () => Navigator.pushNamed(context, '/analytics-dashboard'),
+              ),
+            ]),
           ),
-          AdvancedStatCard(
-            title: 'الإيرادات الشهرية',
-            value: '45,230',
-            subtitle: 'جنيه مصري',
-            icon: Icons.attach_money,
-            iconColor: Colors.green,
-            trend: '+8.2%',
-            isPositiveTrend: true,
-            chartData: [30, 25, 35, 40, 32, 38, 42],
-            onTap: () => Navigator.pushNamed(context, '/analytics-dashboard'),
+          SliverToBoxAdapter(child: SizedBox(height: 16)),
+          SliverToBoxAdapter(
+            child: AdvancedStatCard(
+              title: 'معدل الشفاء',
+              value: '94.2%',
+              subtitle: 'نسبة نجاح العلاج',
+              icon: Icons.healing,
+              iconColor: Colors.teal,
+              trend: '+2.1%',
+              isPositiveTrend: true,
+              chartData: [85, 88, 90, 92, 91, 93, 94],
+              onTap: () => Navigator.pushNamed(context, '/reports'),
+            ),
           ),
-          AdvancedStatCard(
-            title: 'معدل الشفاء',
-            value: '94.2%',
-            subtitle: 'نسبة نجاح العلاج',
-            icon: Icons.healing,
-            iconColor: Colors.purple,
-            trend: '+2.1%',
-            isPositiveTrend: true,
-            chartData: [85, 88, 90, 92, 91, 93, 94],
-            onTap: () => Navigator.pushNamed(context, '/reports'),
-          ),
-          AdvancedStatCard(
-            title: 'تقييم المرضى',
-            value: '4.9',
-            subtitle: 'من 5 نجوم',
-            icon: Icons.star,
-            iconColor: Colors.amber,
-            trend: '+0.3',
-            isPositiveTrend: true,
-            chartData: [4.5, 4.6, 4.7, 4.8, 4.8, 4.9, 4.9],
-            onTap: () => Navigator.pushNamed(context, '/analytics-dashboard'),
-          ),
-        ]),
+        ],
       ),
     );
   }
@@ -821,7 +840,15 @@ class _DoctorHomePageState extends State<DoctorHomePage>
       sliver: SliverToBoxAdapter(
         child: RevenueChart(
           monthlyRevenue: [25000, 28000, 32000, 35000, 38000, 42000, 45000],
-          months: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+          months: [
+            'يناير',
+            'فبراير',
+            'مارس',
+            'أبريل',
+            'مايو',
+            'يونيو',
+            'يوليو',
+          ],
         ),
       ),
     );
@@ -924,7 +951,11 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                   ),
                 ),
                 TextButton(
-                  onPressed: () => Navigator.pushNamed(context, AppRoutes.analyticsDashboard),
+                  onPressed:
+                      () => Navigator.pushNamed(
+                        context,
+                        AppRoutes.analyticsDashboard,
+                      ),
                   child: const Text('عرض الكل'),
                 ),
               ],
@@ -971,7 +1002,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
           gradient: LinearGradient(
             colors: [
               AppColors.primary,
-              AppColors.primary.withValues(alpha:0.8),
+              AppColors.primary.withValues(alpha: 0.8),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -1006,25 +1037,24 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                   Text(
                     'طبيب أمراض جلدية',
                     style: TextStyle(
-                      color: Colors.white.withValues(alpha:0.9),
+                      color: Colors.white.withValues(alpha: 0.9),
                       fontSize: 14,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha:0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 16,
-                        ),
+                        const Icon(Icons.star, color: Colors.amber, size: 16),
                         const SizedBox(width: 4),
                         Text(
                           '4.9 • 1,247 مريض',
@@ -1040,7 +1070,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                 ],
               ),
             ),
-            
+
             // Menu Items
             Expanded(
               child: Container(
@@ -1061,14 +1091,17 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                       onTap: () => Navigator.pop(context),
                       isSelected: true,
                     ),
-                    
+
                     // إدارة المرضى والمواعيد
                     _buildDrawerItem(
                       icon: Icons.people,
                       title: 'إدارة المرضى',
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, AppRoutes.advancedPatients);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.advancedPatients,
+                        );
                       },
                     ),
                     _buildDrawerItem(
@@ -1076,19 +1109,25 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                       title: 'إدارة المواعيد',
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, AppRoutes.advancedAppointments);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.advancedAppointments,
+                        );
                       },
                     ),
-                    
+
                     const Divider(height: 20, indent: 16, endIndent: 16),
-                    
+
                     // الأدوات الطبية
                     _buildDrawerItem(
                       icon: Icons.psychology,
                       title: 'التشخيص الذكي',
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, AppRoutes.doctorAiDiagnosis);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.doctorAiDiagnosis,
+                        );
                       },
                     ),
                     _buildDrawerItem(
@@ -1107,16 +1146,19 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                         Navigator.pushNamed(context, AppRoutes.prescriptions);
                       },
                     ),
-                    
+
                     const Divider(height: 20, indent: 16, endIndent: 16),
-                    
+
                     // التقارير والتحليلات
                     _buildDrawerItem(
                       icon: Icons.analytics,
                       title: 'التحليلات المتقدمة',
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, AppRoutes.analyticsDashboard);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.analyticsDashboard,
+                        );
                       },
                     ),
                     _buildDrawerItem(
@@ -1132,12 +1174,15 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                       title: 'تقارير الأداء',
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, AppRoutes.analyticsDashboard);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.analyticsDashboard,
+                        );
                       },
                     ),
-                    
+
                     const Divider(height: 20, indent: 16, endIndent: 16),
-                    
+
                     // الإعدادات والدعم
                     _buildDrawerItem(
                       icon: Icons.settings,
@@ -1210,16 +1255,20 @@ class _DoctorHomePageState extends State<DoctorHomePage>
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.primary.withValues(alpha:0.1) : Colors.transparent,
+        color:
+            isSelected
+                ? AppColors.primary.withValues(alpha: 0.1)
+                : Colors.transparent,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
         leading: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: isSelected 
-                ? AppColors.primary.withValues(alpha:0.2) 
-                : Colors.grey.withValues(alpha:0.1),
+            color:
+                isSelected
+                    ? AppColors.primary.withValues(alpha: 0.2)
+                    : Colors.grey.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
@@ -1237,9 +1286,7 @@ class _DoctorHomePageState extends State<DoctorHomePage>
           ),
         ),
         onTap: onTap,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
@@ -1249,87 +1296,94 @@ class _DoctorHomePageState extends State<DoctorHomePage>
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(20),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Handle bar
-            Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(2),
-              ),
+      builder:
+          (context) => Container(
+            padding: const EdgeInsets.all(20),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
-            
-            const SizedBox(height: 20),
-            
-            const Text(
-              'الإجراءات السريعة',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            
-            const SizedBox(height: 20),
-            
-            GridView.count(
-              shrinkWrap: true,
-              crossAxisCount: 2,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-              childAspectRatio: 2.5,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                _buildQuickActionButton(
-                  icon: Icons.person_add,
-                  title: 'مريض جديد',
-                  color: Colors.blue,
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, AppRoutes.advancedPatients);
-                  },
+                // Handle bar
+                Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                 ),
-                _buildQuickActionButton(
-                  icon: Icons.calendar_today,
-                  title: 'موعد جديد',
-                  color: Colors.green,
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, AppRoutes.advancedAppointments);
-                  },
+
+                const SizedBox(height: 20),
+
+                const Text(
+                  'الإجراءات السريعة',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                _buildQuickActionButton(
-                  icon: Icons.psychology,
-                  title: 'تشخيص ذكي',
-                  color: Colors.purple,
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, AppRoutes.doctorAiDiagnosis);
-                  },
+
+                const SizedBox(height: 20),
+
+                GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                  childAspectRatio: 2.5,
+                  children: [
+                    _buildQuickActionButton(
+                      icon: Icons.person_add,
+                      title: 'مريض جديد',
+                      color: Colors.blue,
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.advancedPatients,
+                        );
+                      },
+                    ),
+                    _buildQuickActionButton(
+                      icon: Icons.calendar_today,
+                      title: 'موعد جديد',
+                      color: Colors.green,
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.advancedAppointments,
+                        );
+                      },
+                    ),
+                    _buildQuickActionButton(
+                      icon: Icons.psychology,
+                      title: 'تشخيص ذكي',
+                      color: Colors.purple,
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.doctorAiDiagnosis,
+                        );
+                      },
+                    ),
+                    _buildQuickActionButton(
+                      icon: Icons.receipt_long,
+                      title: 'وصفة طبية',
+                      color: Colors.orange,
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, AppRoutes.prescriptions);
+                      },
+                    ),
+                  ],
                 ),
-                _buildQuickActionButton(
-                  icon: Icons.receipt_long,
-                  title: 'وصفة طبية',
-                  color: Colors.orange,
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, AppRoutes.prescriptions);
-                  },
-                ),
+
+                const SizedBox(height: 20),
               ],
             ),
-            
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
+          ),
     );
   }
 
@@ -1344,26 +1398,19 @@ class _DoctorHomePageState extends State<DoctorHomePage>
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: color.withValues(alpha:0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: color.withValues(alpha:0.3),
-            width: 1,
-          ),
+          border: Border.all(color: color.withValues(alpha: 0.3), width: 1),
         ),
         child: Row(
           children: [
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: color.withValues(alpha:0.2),
+                color: color.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(
-                icon,
-                color: color,
-                size: 20,
-              ),
+              child: Icon(icon, color: color, size: 20),
             ),
             const SizedBox(width: 12),
             Expanded(

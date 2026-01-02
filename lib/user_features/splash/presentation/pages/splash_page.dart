@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/helper/on_genrated_routes.dart';
 import '../../../../core/services/service_locatores.dart';
 import '../../../../core/services/token_storage_service.dart';
+import '../../../../core/network/app_state_service.dart';
 import '../widgets/splash_logo.dart';
 import '../widgets/splash_app_name.dart';
 import '../widgets/splash_loading_indicator.dart';
@@ -24,20 +25,28 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _navigateToNext() async {
     await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      // Check if user is already logged in
       try {
         final tokenStorage = sl<TokenStorageService>();
+        final appStateService = sl<AppStateService>();
         final token = tokenStorage.accessToken;
         
         if (token != null && token.isNotEmpty) {
-          // User is logged in, go to main navigation
-          Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
+          // User is logged in, check last active user type
+          final lastUserType = appStateService.getLastActiveUserType();
+          
+          if (lastUserType == LastActiveUserType.doctor) {
+            // Last session was as doctor
+            Navigator.pushReplacementNamed(context, AppRoutes.doctorNavigation);
+          } else {
+            // Last session was as user (or first time)
+            Navigator.pushReplacementNamed(context, AppRoutes.mainNavigationPage);
+          }
         } else {
           // User is not logged in, go to login page
           Navigator.pushReplacementNamed(context, AppRoutes.login);
         }
       } catch (e) {
-        // If there's an error checking token, go to login page
+        // If there's an error, go to login page
         Navigator.pushReplacementNamed(context, AppRoutes.login);
       }
     }

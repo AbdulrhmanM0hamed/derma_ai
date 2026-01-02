@@ -5,7 +5,7 @@ import '../models/doctor_profile_model.dart';
 abstract class DoctorProfileRepository {
   Future<DoctorProfileModel> getDoctorProfile();
   Future<DoctorProfileModel> updateDoctorProfile(Map<String, dynamic> data);
-  Future<DoctorProfileModel> uploadProfilePicture(String filePath);
+  Future<String> uploadProfilePicture(String filePath);
   Future<DoctorProfileModel> deleteProfilePicture();
 }
 
@@ -21,33 +21,41 @@ class DoctorProfileRepositoryImpl implements DoctorProfileRepository {
     );
 
     if (response['success'] == true && response['data'] != null) {
-      return DoctorProfileModel.fromJson(response['data'] as Map<String, dynamic>);
+      return DoctorProfileModel.fromJson(
+        response['data'] as Map<String, dynamic>,
+      );
     }
     throw Exception(response['message'] ?? 'Failed to load doctor profile');
   }
 
   @override
-  Future<DoctorProfileModel> updateDoctorProfile(Map<String, dynamic> data) async {
+  Future<DoctorProfileModel> updateDoctorProfile(
+    Map<String, dynamic> data,
+  ) async {
     final response = await _apiService.put<Map<String, dynamic>>(
       ApiEndpoints.doctorProfile,
       data: data,
     );
 
     if (response['success'] == true && response['data'] != null) {
-      return DoctorProfileModel.fromJson(response['data'] as Map<String, dynamic>);
+      return DoctorProfileModel.fromJson(
+        response['data'] as Map<String, dynamic>,
+      );
     }
     throw Exception(response['message'] ?? 'Failed to update doctor profile');
   }
 
   @override
-  Future<DoctorProfileModel> uploadProfilePicture(String filePath) async {
+  Future<String> uploadProfilePicture(String filePath) async {
     final response = await _apiService.postMultipart<Map<String, dynamic>>(
       ApiEndpoints.doctorProfilePicture,
       files: {'profile_picture': filePath},
     );
 
     if (response['success'] == true && response['data'] != null) {
-      return DoctorProfileModel.fromJson(response['data'] as Map<String, dynamic>);
+      final imageUrl = response['data']['profile_picture_url'];
+      return imageUrl;
+      // return DoctorProfileModel.fromJson(response['data'] as Map<String, dynamic>);
     }
     throw Exception(response['message'] ?? 'Failed to upload profile picture');
   }
@@ -59,7 +67,9 @@ class DoctorProfileRepositoryImpl implements DoctorProfileRepository {
     );
 
     if (response['success'] == true && response['data'] != null) {
-      return DoctorProfileModel.fromJson(response['data'] as Map<String, dynamic>);
+      return DoctorProfileModel.fromJson(
+        response['data'] as Map<String, dynamic>,
+      );
     }
     throw Exception(response['message'] ?? 'Failed to delete profile picture');
   }

@@ -55,4 +55,13 @@ class ApiEndpoints {
   static const String countries = 'countries-cities/countries';
   static String cities(int countryId) => 'countries-cities/cities/$countryId';
   static String regions(int cityId) => 'countries-cities/regions/$cityId';
+
+  // Packages endpoints
+  static const String packageFeatures = 'public/features';
+  static const String packages = 'public/packages';
+  static String packageById(int id) => 'public/packages/$id';
+  static const String packagesComparison = 'public/packages/comparison';
+  static const String packagesFeatured = 'public/packages/featured';
+  static const String packagesCheapest = 'public/packages/cheapest';
+  static const String packagesPremium = 'public/packages/premium';
 }

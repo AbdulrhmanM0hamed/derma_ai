@@ -338,6 +338,8 @@
   "saveChanges": "حفظ التغييرات",
   "cancel": "إلغاء",
   "changeProfilePicture": "تغيير الصورة الشخصية",
+  "chooseFromGallery": "اختر من المعرض",
+  "removePhoto": "إزالة الصورة",
   "uploadPicture": "رفع صورة",
   "deletePicture": "حذف الصورة",
   "chooseImageSource": "اختر مصدر الصورة",
@@ -487,5 +489,6 @@
   "reviews": "التقييمات",
   "loadingProfile": "جاري تحميل الملف الشخصي...",
   "errorLoadingProfile": "حدث خطأ أثناء تحميل الملف الشخصي",
-  "retry": "إعادة المحاولة"
+  "retry": "إعادة المحاولة" ,
+  "packages" : "الباقات" 
 }

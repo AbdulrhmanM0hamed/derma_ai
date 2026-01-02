@@ -35,25 +35,19 @@ class AdvancedStatCard extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Colors.white,
-              iconColor.withValues(alpha:0.02),
-            ],
+            colors: [Colors.white, iconColor.withValues(alpha: 0.04)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: iconColor.withValues(alpha:0.1),
+              color: iconColor.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
           ],
-          border: Border.all(
-            color: iconColor.withValues(alpha:0.1),
-            width: 1,
-          ),
+          border: Border.all(color: iconColor.withValues(alpha: 0.1), width: 1),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,26 +58,30 @@ class AdvancedStatCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: iconColor.withValues(alpha:0.1),
+                    color: iconColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Icon(
-                    icon,
-                    color: iconColor,
-                    size: 24,
-                  ),
+                  child: Icon(icon, color: iconColor, size: 24),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
-                    color: isPositiveTrend ? Colors.green.withValues(alpha:0.1) : Colors.red.withValues(alpha:0.1),
+                    color:
+                        isPositiveTrend
+                            ? Colors.green.withValues(alpha: 0.1)
+                            : Colors.red.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
-                        isPositiveTrend ? Icons.trending_up : Icons.trending_down,
+                        isPositiveTrend
+                            ? Icons.trending_up
+                            : Icons.trending_down,
                         color: isPositiveTrend ? Colors.green : Colors.red,
                         size: 16,
                       ),
@@ -122,20 +120,14 @@ class AdvancedStatCard extends StatelessWidget {
             const SizedBox(height: 2),
             Text(
               subtitle,
-              style: TextStyle(
-                fontSize: 12,
-                color: AppColors.textSecondary,
-              ),
+              style: TextStyle(fontSize: 12, color: AppColors.textSecondary),
             ),
             const SizedBox(height: 16),
             // Mini chart
             SizedBox(
               height: 40,
               child: CustomPaint(
-                painter: MiniChartPainter(
-                  data: chartData,
-                  color: iconColor,
-                ),
+                painter: MiniChartPainter(data: chartData, color: iconColor),
                 size: const Size(double.infinity, 40),
               ),
             ),
@@ -156,14 +148,16 @@ class MiniChartPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (data.isEmpty) return;
 
-    final paint = Paint()
-      ..color = color.withValues(alpha:0.3)
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
+    final paint =
+        Paint()
+          ..color = color.withValues(alpha: 0.3)
+          ..strokeWidth = 2
+          ..style = PaintingStyle.stroke;
 
-    final fillPaint = Paint()
-      ..color = color.withValues(alpha:0.1)
-      ..style = PaintingStyle.fill;
+    final fillPaint =
+        Paint()
+          ..color = color.withValues(alpha: 0.1)
+          ..style = PaintingStyle.fill;
 
     final path = Path();
     final fillPath = Path();

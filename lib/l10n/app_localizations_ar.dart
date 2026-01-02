@@ -1034,6 +1034,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get changeProfilePicture => 'تغيير الصورة الشخصية';
 
   @override
+  String get chooseFromGallery => 'اختر من المعرض';
+
+  @override
+  String get removePhoto => 'إزالة الصورة';
+
+  @override
   String get uploadPicture => 'رفع صورة';
 
   @override
@@ -1417,4 +1423,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorLoadingProfile => 'حدث خطأ أثناء تحميل الملف الشخصي';
+
+  @override
+  String get packages => 'الباقات';
 }

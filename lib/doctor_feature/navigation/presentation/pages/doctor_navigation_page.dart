@@ -1,7 +1,9 @@
 import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
 import 'package:circle_bottom_navigation/widgets/tab_data.dart';
+import 'package:derma_ai/doctor_feature/packages/presentation/pages/packages_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iconsax/iconsax.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../home/presentation/pages/doctor_home_page.dart';
@@ -21,6 +23,7 @@ class _DoctorNavigationPageState extends State<DoctorNavigationPage> {
     const DoctorHomePage(),
     // const DoctorAppointmentsPage(),
     // const PatientsListPage(),
+    const PackagesPage(),
     const DoctorProfilePage(),
   ];
 
@@ -32,18 +35,16 @@ class _DoctorNavigationPageState extends State<DoctorNavigationPage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: theme.scaffoldBackgroundColor,
-        systemNavigationBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
+        systemNavigationBarIconBrightness:
+            isLight ? Brightness.dark : Brightness.light,
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
       ),
       child: Scaffold(
-        body: IndexedStack(
-          index: currentPage,
-          children: _pages,
-        ),
+        body: IndexedStack(index: currentPage, children: _pages),
         bottomNavigationBar: Material(
           elevation: 8.0,
-          shadowColor: Colors.black.withValues(alpha:0.1),
+          shadowColor: Colors.black.withValues(alpha: 0.1),
           child: SafeArea(
             child: CircleBottomNavigation(
               initialSelection: currentPage,
@@ -62,28 +63,23 @@ class _DoctorNavigationPageState extends State<DoctorNavigationPage> {
               blurShadowRadius: 8.0,
               tabs: [
                 TabData(
-                  icon: Icons.home_rounded,
+                  icon: Iconsax.home,
                   title: AppLocalizations.of(context)!.home,
                   iconSize: 24,
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
-                // TabData(
-                //   icon: Icons.calendar_month_rounded,
-                //   title: AppLocalizations.of(context)!.appointments,
-                //   iconSize: 24,
-                //   fontSize: 12,
-                //   fontWeight: FontWeight.w600,
-                // ),
-                // TabData(
-                //   icon: Icons.people_alt_rounded,
-                //   title: AppLocalizations.of(context)!.patients,
-                //   iconSize: 24,
-                //   fontSize: 12,
-                //   fontWeight: FontWeight.w600,
-                // ),
+
                 TabData(
-                  icon: Icons.person_rounded,
+                  icon: Iconsax.archive,
+                  title: AppLocalizations.of(context)!.packages,
+                  iconSize: 24,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+
+                TabData(
+                  icon: Iconsax.profile_circle,
                   title: AppLocalizations.of(context)!.profile,
                   iconSize: 24,
                   fontSize: 12,
