@@ -121,16 +121,16 @@ class _DoctorHomePageState extends State<DoctorHomePage>
                   CircleAvatar(
                     radius: 25,
                     backgroundColor: Colors.white,
-
-                    backgroundImage: NetworkImage(doctor.profilePictureUrl!),
-                    child:
-                        doctor.profilePictureUrl != null
-                            ? SizedBox()
-                            : Icon(
-                              Icons.person,
-                              size: 30,
-                              color: AppColors.primary,
-                            ),
+                    backgroundImage: doctor.profilePictureUrl != null
+                        ? NetworkImage(doctor.profilePictureUrl!)
+                        : null,
+                    child: doctor.profilePictureUrl == null
+                        ? Icon(
+                            Icons.person,
+                            size: 30,
+                            color: AppColors.primary,
+                          )
+                        : null,
                   ),
                   const SizedBox(width: 16),
                   Column(

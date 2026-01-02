@@ -1,4 +1,4 @@
-import 'package:derma_ai/user_features/ai_diagnosis/presentation/pages/ai_skin_diagnosis.dart';
+import 'package:derma_ai/user_features/ai_diagnosis/presentation/pages/ai_features_page.dart';
 import 'package:derma_ai/user_features/appointments/presentation/pages/appointments_page.dart';
 import 'package:derma_ai/user_features/doctor_search_and_browse/doctor_search_and_browse.dart';
 import 'package:derma_ai/user_features/home/presentation/pages/home_page.dart';
@@ -25,7 +25,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       case 1:
         return const DoctorSearchAndBrowse();
       case 2:
-        return const AiSkinDiagnosis();
+        return const AiFeaturesPage();
       case 3:
         return const AppointmentsPage();
       case 4:

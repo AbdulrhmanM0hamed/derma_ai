@@ -1,9 +1,5 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:derma_ai/core/constants/app_constants.dart';
-import 'package:derma_ai/user_features/ai_diagnosis/presentation/pages/ai_skin_diagnosis.dart';
-import 'package:derma_ai/user_features/ai_diagnosis_info/presentation/pages/ai_diagnosis_info_page.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';

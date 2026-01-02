@@ -1,7 +1,3 @@
-import 'package:derma_ai/doctor_feature/home/presentation/pages/doctor_home_page.dart';
-import 'package:derma_ai/doctor_feature/navigation/presentation/pages/doctor_navigation_page.dart';
-import 'package:derma_ai/doctor_feature/packages/presentation/pages/packages_page.dart';
-import 'package:derma_ai/user_features/home/presentation/widgets/home_features_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,9 +54,8 @@ class MyApp extends StatelessWidget {
                 themeMode: themeState.themeMode,
                 debugShowCheckedModeBanner: false,
                 navigatorKey: NavigatorKey.key,
-                // initialRoute: AppRoutes.splash,
-                // onGenerateRoute: onGeneratedRoutes,
-                home: DoctorNavigationPage(),
+                initialRoute: AppRoutes.splash,
+                onGenerateRoute: onGeneratedRoutes,
                 locale: localeState.locale,
                 supportedLocales: AppLocalizations.supportedLocales,
                 localizationsDelegates: const [

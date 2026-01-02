@@ -19,6 +19,7 @@ import '../../doctor_feature/profile/data/repositories/doctor_profile_repository
 import '../../doctor_feature/profile/presentation/bloc/doctor_profile_cubit.dart';
 import '../network/api_service.dart';
 import '../network/dio_client.dart';
+import '../network/app_state_service.dart';
 import '../services/token_storage_service.dart';
 
 final sl = GetIt.instance;
@@ -30,6 +31,7 @@ Future<void> init() async {
 
   //! Core Services
   sl.registerLazySingleton(() => TokenStorageService(sl()));
+  sl.registerLazySingleton(() => AppStateService(sl()));
   sl.registerLazySingleton(() => ApiService());
 
   // Initialize DioClient with Auth Interceptor

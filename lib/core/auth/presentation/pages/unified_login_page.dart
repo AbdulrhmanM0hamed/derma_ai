@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../services/service_locatores.dart';
 import '../../../services/token_storage_service.dart';
+import '../../../network/app_state_service.dart';
 import '../../../utils/common/custom_progress_indicator.dart';
 import '../../../utils/helper/on_genrated_routes.dart';
 import '../../../utils/theme/app_colors.dart';
@@ -148,6 +149,9 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                   BlocListener<AuthCubit, AuthState>(
                     listener: (context, state) {
                       if (state is LoginSuccess) {
+                        // Save last active user type
+                        sl<AppStateService>().setLastActiveUserType(LastActiveUserType.user);
+                        
                         CustomSnackbar.showSuccess(
                           context: context,
                           message: CustomSnackbar.getLocalizedMessage(
@@ -210,6 +214,9 @@ class _UnifiedLoginPageState extends State<UnifiedLoginPage>
                   BlocListener<DoctorAuthCubit, DoctorAuthState>(
                     listener: (context, state) {
                       if (state is DoctorLoginSuccess) {
+                        // Save last active user type
+                        sl<AppStateService>().setLastActiveUserType(LastActiveUserType.doctor);
+                        
                         CustomSnackbar.showSuccess(
                           context: context,
                           message: CustomSnackbar.getLocalizedMessage(
